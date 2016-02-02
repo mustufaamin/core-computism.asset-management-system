@@ -1,0 +1,10 @@
+
+-- problem_type
+insert into harmony.problem_type (type_code, descr, creation_date, last_modified_date, version)
+	values ('MANUAL_ASSIGNMENT', 'Manual Assignment', now(), now(), 1);
+
+-- ticket_config
+insert into harmony.ticket_config (problem_type_id, robot_name, action_required, auto_expire_min, creation_date, last_modified_date, version)
+select id, 'any robot', 'MANUAL ASSIGNMENT - Assign captain to booking', 1, NOW(), NOW(), 1
+FROM problem_type
+WHERE type_code = 'MANUAL_ASSIGNMENT'

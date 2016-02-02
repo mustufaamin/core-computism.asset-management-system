@@ -1,0 +1,14 @@
+
+-- ticket: for all unclosed tickets
+UPDATE ticket t
+JOIN problem_type pt ON t.problem_type_id = pt.id
+SET t.ticket_priority = 2,
+t.VERSION = t.version + 1,
+t.last_modified_date = NOW()
+WHERE type_code IN (
+    'CAPTAIN_NEEDS_HELP',
+    'LOCATION_NOT_GEOCODABLE',
+    'CHECK_FLIGHT_STATUS',
+    'CHECK_45_MINS')
+AND ticket_status < 8
+AND ticket_priority = 3;

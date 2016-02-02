@@ -1,0 +1,2 @@
+ALTER TABLE `harmony`.`booking_info`
+CHANGE COLUMN `sa_short_display_name` `service_area_short_name` VARCHAR(255) NULL ;

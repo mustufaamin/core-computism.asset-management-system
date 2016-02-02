@@ -1,0 +1,5 @@
+ALTER TABLE harmony.booking_info
+ADD COLUMN booking_status INT(11) NULL DEFAULT 1;
+
+ALTER TABLE harmony.ticket
+ADD COLUMN ticket_priority INT(11) NULL DEFAULT 0;

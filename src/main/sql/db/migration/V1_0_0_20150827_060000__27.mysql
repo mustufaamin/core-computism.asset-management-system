@@ -1,0 +1,41 @@
+
+alter table harmony.booking_info
+
+add column booking_creation_date 	timestamp  		not null default current_timestamp,
+add column booking_modified_date    timestamp,
+add column booking_type           	int(11),
+add column booking_source         	int(11),
+add column total_waypoint         	int(11)     	not null,
+
+add column pickup_latitude        	double,
+add column pickup_longitude       	double,
+add column dropoff_latitude       	double,
+add column dropoff_longitude      	double,
+
+add column customer_id				int(11)			not null,
+add column customer_fname   		varchar(200)	not null,
+add column customer_lname    		varchar(200)	not null,
+add column customer_phone        	varchar(20) ,
+add column customer_type         	int(11)     	not null,
+add column customer_company      	varchar(45),
+
+add column captain_id				int(11),
+add column captain_name            	varchar(60),
+add column captain_phone			varchar(45),
+add column notes_to_captain        	varchar(450),
+add column captain_for_vip         	int(11),
+
+add column car_type             	int(11),
+add column car_license_plate       	varchar(45),
+add column car_make               	varchar(245),
+add column car_model              	varchar(245),
+add column car_color              	varchar(45),
+
+add column service_area_id			int(11)			not null,
+add column service_area     		varchar(255),
+add column country_id				int(11),
+add column country  				varchar(300)	not null,
+
+add column booker_fname           	varchar(200) 	not null,
+add column booker_lname            	varchar(200) 	not null,
+add column booker_phone         	varchar(20);

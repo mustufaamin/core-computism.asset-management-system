@@ -1,0 +1,44 @@
+-- problem_type
+insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
+	values ('LOCATION_NOT_GEOCODABLE', 'Location is not Geocodable', now(), now(), 1);
+insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
+	values ('CAPTAIN_MAY_GET_LATE', 'Captain might not Make it On Time', now(), now(), 1);
+insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
+	values ('CAPTAIN_NEEDS_HELP', 'Captain Needs Help', now(), now(), 1);
+insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
+	values ('CAPTAIN_NOT_PRESSED_ARRIVED', 'Captain has not Pressed Arrived', now(), now(), 1);
+insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
+	values ('CAPTAIN_WAITING_FOR_LONGTIME', 'Captain Waiting for Longtime', now(), now(), 1);
+insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
+	values ('CAPTAIN_NOT_PRESSED_ONMYWAY', 'Captain not Pressed On-My-Way', now(), now(), 1);
+insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
+	values ('CHECK_FLIGHT_STATUS', 'Check Flight Status', now(), now(), 1);
+
+-- ticket_config
+SELECT @problemId:=id FROM problem_type WHERE type_code = 'LOCATION_NOT_GEOCODABLE';
+INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
+	VALUES (@problemId, 'any robot', 'Fix location manually', 30, NOW(), NOW(), 1);
+
+SELECT @problemId:=id FROM problem_type WHERE type_code = 'CAPTAIN_MAY_GET_LATE';
+INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
+	VALUES (@problemId, 'any robot', 'Call captain and check, possibly re-assign', 30, NOW(), NOW(), 1);
+
+SELECT @problemId:=id FROM problem_type WHERE type_code = 'CAPTAIN_NEEDS_HELP';
+INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
+	VALUES (@problemId, 'any robot', 'Call captain', 30, NOW(), NOW(), 1);
+
+SELECT @problemId:=id FROM problem_type WHERE type_code = 'CAPTAIN_NOT_PRESSED_ARRIVED';
+INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
+	VALUES (@problemId, 'any robot', 'Call captain', 30, NOW(), NOW(), 1);
+
+SELECT @problemId:=id FROM problem_type WHERE type_code = 'CAPTAIN_WAITING_FOR_LONGTIME';
+INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
+	VALUES (@problemId, 'any robot', 'Call customer, then inform captain', 30, NOW(), NOW(), 1);
+
+SELECT @problemId:=id FROM problem_type WHERE type_code = 'CAPTAIN_NOT_PRESSED_ONMYWAY';
+INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
+	VALUES (@problemId, 'any robot', 'Call captain and check, possibly re-assign', 30, NOW(), NOW(), 1);
+
+SELECT @problemId:=id FROM problem_type WHERE type_code = 'CHECK_FLIGHT_STATUS';
+INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
+	VALUES (@problemId, 'any robot', 'Check flight, update booking (if required)', 30, NOW(), NOW(), 1);

@@ -1,0 +1,10 @@
+
+-- ticket: for only active tickets
+UPDATE ticket t
+JOIN booking_info b ON b.id = t.booking_info_id
+SET t.ticket_priority = 2,
+t.VERSION = t.version + 1,
+t.last_modified_date = NOW()
+WHERE booking_type = 2
+AND ticket_status < 5
+AND ticket_priority = 3;

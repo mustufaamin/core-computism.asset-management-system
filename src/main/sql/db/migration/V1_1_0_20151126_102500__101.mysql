@@ -1,0 +1,41 @@
+-- Drop the old definition, if exists
+drop table if exists harmony.ticket_history;
+
+-- Create table with new definition
+create table harmony.ticket_history (
+  id					int(11)     not null auto_increment,
+  ticket_id             int(11)     not null,
+  ticket_status         int(11)     not null,
+  changed_by            int(11)     not null,
+  creation_date         timestamp   not null default current_timestamp,
+  last_modified_date    timestamp   not null default current_timestamp,
+  version             	int(11)   	not null default '0',
+  primary key (id),
+  foreign key (ticket_id) references ticket(id),
+  foreign key (changed_by) references agent(id),
+  index ticket_history_fk_ticket (ticket_id),
+  index ticket_history_fk_agent (changed_by)
+) engine=innodb character set utf8 collate utf8_general_ci;
+
+-- Agent record for Harmony SYSTEM
+INSERT INTO harmony.agent (first_name, last_name, manager_agent_id, effective_date, end_date, creation_date, last_modified_date, VERSION, user_id)
+SELECT 'HARMONY', 'SYSTEM', NULL, NOW(), NULL, NOW(), 	NOW(), 1, 0
+FROM DUAL
+WHERE NOT EXISTS
+    (SELECT first_name FROM agent WHERE first_name = 'HARMONY' AND last_name = 'SYSTEM');
+
+
+-- Remove unused fields
+alter table harmony.ticket
+  drop column last_ticket_state,
+  drop column last_assigned_agent;
+
+-- Added resolve date, as closed would be tracked with last_modified_date
+alter table harmony.ticket
+  change closed_date resolved_date timestamp null default null;
+
+-- Update all existing records.
+update harmony.ticket
+set resolved_date = last_modified_date
+where ticket_status in (5,6,7);
+

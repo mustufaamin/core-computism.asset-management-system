@@ -1,0 +1,3 @@
+
+alter table harmony.booking_info
+add column captain_pickup_time  timestamp   null default null;

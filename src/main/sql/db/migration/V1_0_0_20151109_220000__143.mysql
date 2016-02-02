@@ -1,0 +1,5 @@
+
+DELETE FROM ticket_config
+WHERE problem_type_id = (SELECT id FROM problem_type WHERE type_code = 'NOTES_TO_CAPTAIN');
+
+DELETE FROM problem_type WHERE type_code = 'NOTES_TO_CAPTAIN';

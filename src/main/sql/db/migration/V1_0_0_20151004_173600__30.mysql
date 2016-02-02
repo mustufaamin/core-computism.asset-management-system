@@ -1,0 +1,2 @@
+ALTER TABLE `harmony`.`ticket`
+ADD COLUMN `snoozed_date` TIMESTAMP NULL DEFAULT NULL AFTER `ticket_priority`;

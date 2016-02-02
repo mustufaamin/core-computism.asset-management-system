@@ -1,0 +1,8 @@
+
+-- ticket
+DELETE t FROM ticket t
+JOIN  booking_info b ON t.booking_info_id = b.id
+JOIN problem_type pt ON t.problem_type_id = pt.id
+WHERE t.ticket_status < 5
+AND pt.type_code = 'LOCATION_NOT_GEOCODABLE'
+AND b.captain_pickup_time > DATE_ADD(NOW(), INTERVAL 24 HOUR)

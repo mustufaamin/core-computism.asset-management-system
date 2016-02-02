@@ -1,0 +1,3 @@
+ALTER TABLE `harmony`.`ticket`
+ADD COLUMN `last_ticket_state` INT(11) NULL DEFAULT NULL AFTER `snoozed_date`,
+ADD COLUMN `last_assigned_agent` INT(11) NULL DEFAULT NULL AFTER `last_ticket_state`;

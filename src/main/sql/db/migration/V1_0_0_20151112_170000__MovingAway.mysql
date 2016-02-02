@@ -1,0 +1,17 @@
+
+-- ticket config
+UPDATE harmony.ticket_config tc
+JOIN problem_type pt ON pt.id = tc.problem_type_id
+SET tc.auto_expire_min = 2,
+    tc.last_modified_date = NOW(),
+    tc.VERSION = tc.version + 1
+WHERE pt.type_code = 'CAPTAIN_MOVING_AWAY';
+
+-- ticket
+UPDATE harmony.ticket t
+JOIN problem_type pt ON pt.id = t.problem_type_id
+JOIN ticket_config tc ON pt.id = tc.problem_type_id
+SET t.auto_expire_min = tc.auto_expire_min,
+t.VERSION = t.version + 1,
+t.last_modified_date = NOW()
+WHERE pt.type_code = 'CAPTAIN_MOVING_AWAY';

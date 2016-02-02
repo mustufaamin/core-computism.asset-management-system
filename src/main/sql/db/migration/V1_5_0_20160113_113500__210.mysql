@@ -1,0 +1,1 @@
+ALTER TABLE `harmony`.`booking_info` DROP COLUMN `car_category` , ADD COLUMN `car_type_display_name` VARCHAR(45) NULL  AFTER `expected_arrival_date` ;

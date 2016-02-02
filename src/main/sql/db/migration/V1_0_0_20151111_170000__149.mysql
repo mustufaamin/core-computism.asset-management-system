@@ -1,0 +1,14 @@
+
+UPDATE harmony.ticket_config tc
+JOIN problem_type pt ON pt.id = tc.problem_type_id
+SET tc.auto_expire_min = 1,
+    tc.last_modified_date = NOW(),
+    tc.VERSION = tc.version + 1
+WHERE pt.type_code IN (
+    'CAPTAIN_MAY_GET_LATE',
+    'ASSIGN_CAPTAIN_EARLY',
+    'CAPTAIN_NOT_PRESSED_ONMYWAY',
+    'CAPTAIN_NOT_PRESSED_ARRIVED',
+    'CHECK_45_MINS',
+    'CAPTAIN_WAITING_WRONG_LOCATION'
+);
