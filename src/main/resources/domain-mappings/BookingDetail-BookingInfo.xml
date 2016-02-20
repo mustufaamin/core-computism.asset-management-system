@@ -4,8 +4,8 @@
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
 
 	<mapping type="one-way">
-		<class-a>com.core.computism.assetmanagementsystem.persistence.entity.booking.BookingDetail</class-a>
-		<class-b>com.core.computism.assetmanagementsystem.persistence.entity.ticket.BookingInfo</class-b>
+		<class-a>com.core.computism.assasa.persistence.entity.booking.BookingDetail</class-a>
+		<class-b>com.core.computism.assasa.persistence.entity.ticket.BookingInfo</class-b>
 
 		<!-- Fields with same name will be mapped by default -->
 
