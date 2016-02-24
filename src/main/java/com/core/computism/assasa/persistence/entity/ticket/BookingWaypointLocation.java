@@ -1,6 +1,13 @@
 package com.core.computism.assasa.persistence.entity.ticket;
 
-import javax.persistence.*;
+import com.core.computism.assasa.ar.entity.BaseEntity;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Created by M.Mustufa Amin Shah on 9/11/2015.

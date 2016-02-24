@@ -1,5 +1,6 @@
 package com.core.computism.assasa.persistence.entity.ticket;
 
+
 import com.core.computism.assasa.domain.type.TicketStatus;
 
 import javax.persistence.Column;
