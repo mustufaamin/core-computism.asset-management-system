@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonAutoDetect;
 @JsonAutoDetect
 public class AccountTypeDto {
 
+    public AccountTypeDto() {}
+
     private String description;
     private String name;
     private Integer normalBalanceFlag;

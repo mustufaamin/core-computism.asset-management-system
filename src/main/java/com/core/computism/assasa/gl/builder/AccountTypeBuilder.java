@@ -1,6 +1,6 @@
 package com.core.computism.assasa.gl.builder;
 
-import com.core.computism.assasa.gl.entity.AccountType;
+import com.core.computism.assasa.gl.entity.admin.AccountType;
 
 /**
  * Created by VD on 2/21/2016.

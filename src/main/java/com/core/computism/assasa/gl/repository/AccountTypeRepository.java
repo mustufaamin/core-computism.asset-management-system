@@ -1,6 +1,6 @@
 package com.core.computism.assasa.gl.repository;
 
-import com.core.computism.assasa.gl.entity.AccountType;
+import com.core.computism.assasa.gl.entity.admin.AccountType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
