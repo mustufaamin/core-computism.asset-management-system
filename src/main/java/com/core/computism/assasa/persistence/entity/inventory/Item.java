@@ -21,9 +21,10 @@ public class Item extends BaseEntity {
     private String salesPrice;
     private String location;
     private String itemDescription;
+    private String color;
+    private Integer size;
     private ItemType itemType;
-    private Supplier supplierRef;
-
+    private Supplier supplier;
 
     @Basic
     @Column(name = "item_number", nullable = false, insertable = true, updatable = true, length = 255)
@@ -105,6 +106,23 @@ public class Item extends BaseEntity {
         this.itemDescription = itemDescription;
     }
 
+    @Column(name = "color", nullable = true, insertable = true, updatable = true, length = 45)
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    @Column(name = "size", nullable = true, insertable = true, updatable = true)
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
 
     @ManyToOne
     @JoinColumn(name = "item_type", referencedColumnName = "id", nullable = false)
@@ -119,13 +137,12 @@ public class Item extends BaseEntity {
 
 
     @ManyToOne
-    @JoinColumn(name = "supplier_ref", referencedColumnName = "id", nullable = false)
-
-    public Supplier getSupplierRef() {
-        return supplierRef;
+    @JoinColumn(name = "supplier", referencedColumnName = "id", nullable = false)
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setSupplierRef(Supplier supplierRef) {
-        this.supplierRef = supplierRef;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
 }

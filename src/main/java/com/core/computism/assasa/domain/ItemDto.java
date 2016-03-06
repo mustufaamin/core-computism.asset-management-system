@@ -16,10 +16,8 @@ public class ItemDto {
     private String salesPrice;
     private String location;
     private String itemDescription;
-    private Integer supplierRef;
-    private Integer itemType;
-    private ItemType itemTypeByItemType;
-    private Supplier supplierBySupplierRef;
+    private Long supplerId;
+    private Long itemType;
 
     public Long getId() {
         return id;
@@ -93,35 +91,20 @@ public class ItemDto {
         this.itemDescription = itemDescription;
     }
 
-    public Integer getSupplierRef() {
-        return supplierRef;
+    public Long getSupplerId() {
+        return supplerId;
     }
 
-    public void setSupplierRef(Integer supplierRef) {
-        this.supplierRef = supplierRef;
+    public void setSupplerId(Long supplerId) {
+        this.supplerId = supplerId;
     }
 
-    public Integer getItemType() {
+    public Long getItemType() {
         return itemType;
     }
 
-    public void setItemType(Integer itemType) {
+    public void setItemType(Long itemType) {
         this.itemType = itemType;
     }
 
-    public ItemType getItemTypeByItemType() {
-        return itemTypeByItemType;
-    }
-
-    public void setItemTypeByItemType(ItemType itemTypeByItemType) {
-        this.itemTypeByItemType = itemTypeByItemType;
-    }
-
-    public Supplier getSupplierBySupplierRef() {
-        return supplierBySupplierRef;
-    }
-
-    public void setSupplierBySupplierRef(Supplier supplierBySupplierRef) {
-        this.supplierBySupplierRef = supplierBySupplierRef;
-    }
 }

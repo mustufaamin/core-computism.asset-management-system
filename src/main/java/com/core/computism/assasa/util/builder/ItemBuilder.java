@@ -35,7 +35,6 @@ public class ItemBuilder {
     }
     public Item buildItemEntity( Item item, ItemDto itemDto) {
 
-
         item.setItemNumber(itemDto.getItemNumber());
         item.setItemUnit(itemDto.getItemUnit());
         item.setStockLevel(itemDto.getStockLevel());
@@ -44,11 +43,6 @@ public class ItemBuilder {
         item.setSalesPrice(itemDto.getSalesPrice());
         item.setLocation(itemDto.getLocation());
         item.setItemDescription(itemDto.getItemDescription());
-//        item.setSupplierRef(itemDto.getSupplierRef());
-//        item.setItemType(itemDto.getItemType());
-//        item.setItemTypeByItemType(itemDto.getItemTypeByItemType());
-//        item.setSupplierBySupplierRef(itemDto.getSupplierBySupplierRef());
-
         return item;
 
     }

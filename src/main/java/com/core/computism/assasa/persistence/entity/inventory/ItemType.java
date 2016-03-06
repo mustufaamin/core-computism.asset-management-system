@@ -14,33 +14,11 @@ import java.util.Collection;
 @Table(name = "item_type")
 public class ItemType extends BaseEntity {
 
-    private Integer size;
-    private String color;
     private String name;
     private Collection<Item> itemsById;
 
     @Basic
-    @Column(name = "size", nullable = true, insertable = true, updatable = true)
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    @Basic
-    @Column(name = "color", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    @Basic
-    @Column(name = "name", nullable = true, insertable = true, updatable = true, length = 45)
+    @Column(name = "name", nullable = true, insertable = true, updatable = true)
     public String getName() {
         return name;
     }

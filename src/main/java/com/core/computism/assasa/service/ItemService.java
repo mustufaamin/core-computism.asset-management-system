@@ -8,4 +8,5 @@ import com.core.computism.assasa.exception.PosBusinessException;
  */
 public interface ItemService {
     Long addItem(ItemDto itemDto) throws PosBusinessException;
+    Long addItemType(String typeName) throws PosBusinessException;
 }

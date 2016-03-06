@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by Venturedive on 8/5/2015.
  */
 @Controller
-@RequestMapping(value = "/brain", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
-public class BrainController {
+@RequestMapping(value = "/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
+public class BrainController extends BaseController {
 
     private static final Logger LOGGER = Logger.getLogger(BrainController.class);
 

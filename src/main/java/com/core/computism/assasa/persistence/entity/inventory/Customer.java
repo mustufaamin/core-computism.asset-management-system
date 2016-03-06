@@ -1,11 +1,14 @@
 package com.core.computism.assasa.persistence.entity.inventory;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.List;
@@ -19,8 +22,9 @@ public class Customer extends BaseEntity {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private String mobileNumber;
     private String email;
-    private Address addresses;
+    private Address address;
     private List<Order> orders;
 
     @Basic
@@ -43,8 +47,6 @@ public class Customer extends BaseEntity {
         this.lastName = lastName;
     }
 
-
-
     @Basic
     @Column(name = "phone_number", nullable = false, insertable = true, updatable = true, length = 45)
     public String getPhoneNumber() {
@@ -65,14 +67,22 @@ public class Customer extends BaseEntity {
         this.email = email;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "mailing_address_id", referencedColumnName = "id", nullable = false)
-    public Address getAddresses() {
-        return addresses;
+    public String getMobileNumber() {
+        return mobileNumber;
     }
 
-    public void setAddresses(Address addresses) {
-        this.addresses = addresses;
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
+    }
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "mailing_address_id", referencedColumnName = "id", nullable = false)
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @OneToMany(mappedBy = "customer")

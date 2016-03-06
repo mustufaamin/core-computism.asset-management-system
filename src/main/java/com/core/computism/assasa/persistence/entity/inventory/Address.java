@@ -4,6 +4,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Collection;
 import java.util.List;
@@ -18,8 +19,8 @@ public class Address extends BaseEntity {
     private String locationAddress;
     private String city;
     private String country;
-    private List<Customer> customersById;
-    private List<Supplier> suppliersById;
+    private Customer customer;
+    private Supplier supplier;
 
 
     @Basic
@@ -52,21 +53,22 @@ public class Address extends BaseEntity {
         this.country = country;
     }
 
-    @OneToMany(mappedBy = "addresses")
-    public List<Customer> getCustomersById() {
-        return customersById;
+    @OneToOne(mappedBy = "address")
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomersById(List<Customer> customersById) {
-        this.customersById = customersById;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    @OneToMany(mappedBy = "addresses")
-    public List<Supplier> getSuppliersById() {
-        return suppliersById;
+    @OneToOne(mappedBy = "address")
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setSuppliersById(List<Supplier> suppliersById) {
-        this.suppliersById = suppliersById;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
     }
+
 }
