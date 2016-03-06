@@ -1,0 +1,39 @@
+CREATE TABLE `ac_account_type` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `description` VARCHAR(255) DEFAULT NULL,
+  `name` VARCHAR(20) DEFAULT NULL,
+  `normal_balance_flag` INT(1) DEFAULT NULL,
+  `version` INT(11) DEFAULT NULL,
+  `creation_date` TIMESTAMP NOT NULL,
+  `last_modified_date` TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB;
+
+CREATE TABLE `ac_gl_account` (
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `company_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  `dept_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  `major_acct_num` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  `account_type_id` TINYINT(1) UNSIGNED NOT NULL DEFAULT '0',
+  `acct_usage_type` INT(3) DEFAULT '0',
+  `short_desc` VARCHAR(50) NOT NULL DEFAULT 'SHORT_DESC',
+  `long_desc` VARCHAR(255) DEFAULT NULL,
+  `activation_date` TIMESTAMP ,
+  `termination_date` TIMESTAMP ,
+  `ext_acct_num` VARCHAR(50) DEFAULT NULL,
+  `changed_by` INT(11) UNSIGNED DEFAULT NULL,
+  `status` INT(11) DEFAULT NULL,
+  `is_transferred` INT(11) UNSIGNED DEFAULT '0',
+  `detailed_view_on_posting` TINYINT(1) DEFAULT '0',
+  `allow_manual_JE_entries_against_CA` TINYINT(3) NOT NULL DEFAULT '0',
+  `is_multi_currency` TINYINT(1) DEFAULT '0',
+  `account_nature` TINYINT(1) DEFAULT '1',
+  `version` INT(11) DEFAULT NULL,
+  `creation_date` TIMESTAMP NOT NULL,
+  `last_modified_date` TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_acct_nums` (`major_acct_num`,`company_id`,`dept_id`),
+  UNIQUE KEY `company_id` (`company_id`,`id`)
+) ENGINE=INNODB;
+
+

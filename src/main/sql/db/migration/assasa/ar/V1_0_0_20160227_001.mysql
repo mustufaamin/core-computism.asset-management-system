@@ -1,0 +1,43 @@
+CREATE TABLE `ar_account_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account_type_name` varchar(50) NOT NULL DEFAULT '',
+  `account_type_desc` varchar(255) DEFAULT NULL,
+  `gl_account_id` int(11) DEFAULT '0',
+  `status` int(1) unsigned DEFAULT '1',
+  `company_id` int(11) DEFAULT '0',
+  `account_type_code` varchar(2) DEFAULT NULL,
+  `priority` int(11) DEFAULT '0',
+  `is_left_over_amount` tinyint(1) DEFAULT '0',
+  `required_status` tinyint(1) unsigned DEFAULT '1',
+  `over30_message` varchar(255) DEFAULT NULL,
+  `over60_message` varchar(255) DEFAULT NULL,
+  `over90_message` varchar(255) DEFAULT NULL,
+  `over120_message` varchar(255) DEFAULT NULL,
+  `show_aging_message` tinyint(1) DEFAULT '0',
+  `version` int(11) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `account_type_name` (`account_type_name`,`company_id`),
+  UNIQUE KEY `account_type_code` (`company_id`,`account_type_code`)
+) ENGINE=INNODB;
+
+CREATE TABLE `ar_account` (
+  `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `customer_id` INT(11) NOT NULL DEFAULT '0',
+  `account_type_id` INT(1) NOT NULL DEFAULT '0',
+  `current_balance` DECIMAL(10,2) NOT NULL DEFAULT '0.00',
+  `account_status` INT(1) NOT NULL DEFAULT '0',
+  `company_id` INT(3) NOT NULL DEFAULT '0',
+  `created_by` INT(11) DEFAULT NULL,
+  `modified_by` INT(11) DEFAULT NULL,
+  `activation_date` TIMESTAMP ,
+  `deactivation_date` TIMESTAMP ,
+  `version` INT(11) DEFAULT NULL,
+  `creation_date` TIMESTAMP NOT NULL,
+  `last_modified_date` TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB;
+
+
+

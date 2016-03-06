@@ -24,7 +24,7 @@ public class ApplicationProperties {
     public static final String SQS_SECRET_KEY = "FetfUJrLzEpHQ1HaYKHKiEY1iLqtahVIrLLh8rPZ";
 
     public static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-    public static final String CAREEM_DB = "careem";
+    public static final String CAREEM_DB = "coretech";
     public static final Integer HARMONY_DB_POOLSIZE = 5;
     public static final Integer CAREEM_DB_POOLSIZE = 5;
 

@@ -105,9 +105,9 @@ public class JobConfig {
         scheduler.setQuartzProperties(properties);
 
         scheduler.setTriggers(
-            issueConsumerJobTrigger().getObject(),
+            /*issueConsumerJobTrigger().getObject(),
             closeTicketJobTrigger().getObject(),
-            autoResolverJobTrigger().getObject()
+            autoResolverJobTrigger().getObject()*/
 //                unsnoozeTicketJobTrigger().getObject(),// Turned off the nsnooze ticket job feature
         );
         return scheduler;
