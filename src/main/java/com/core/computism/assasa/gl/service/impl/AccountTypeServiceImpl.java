@@ -7,12 +7,14 @@ import com.core.computism.assasa.gl.service.AccountTypeService;
 import com.core.computism.assasa.persistence.entity.gl.admin.AccountType;
 import com.core.computism.assasa.persistence.repository.gl.AccountTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by VD on 2/21/2016.
  */
+@Service(value = "accountTypeService")
 public class AccountTypeServiceImpl implements AccountTypeService {
 
     @Autowired
