@@ -3,19 +3,6 @@ package com.core.computism.assasa.web.controller;
 import com.core.computism.assasa.util.ServerResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-
-/**
- * Created by VD on 2/28/2016.
- */
-@RequestMapping(value = "/assasa/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
-public abstract class BaseController {
-
-    protected <T> ServerResponse<T> toResponse(T data){
-        ServerResponse<T> response = new ServerResponse<>();
-        response.setData(data);
-        response.setSuccess(true);
-        return response;
 import com.core.computism.assasa.ar.enumtype.ErrorEnumType;
 import org.apache.commons.collections.CollectionUtils;
 
@@ -26,6 +13,11 @@ import java.util.Map;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 
+
+/**
+ * Created by VD on 2/28/2016.
+ */
+@RequestMapping(value = "/assasa/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
 public abstract class BaseController {
 
     public static final String DEFAULT_SERVICE_PROVIDER_KEY = "CAREEM";
@@ -40,6 +32,14 @@ public abstract class BaseController {
     private static final String TRACE = "trace";
     private static final String FIELDS = "fields";
 
+
+
+    protected <T> ServerResponse<T> toResponse(T data) {
+        ServerResponse<T> response = new ServerResponse<>();
+        response.setData(data);
+        response.setSuccess(true);
+        return response;
+    }
     protected Map<String, Object> createFailedModelMapWithErrorCode(String errorCode, String msg, String trace, Map<String, String> fields) {
         Map<String, Object> modelMap = new HashMap<>();
         modelMap.put(SUCCESS, false);

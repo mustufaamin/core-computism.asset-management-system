@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
- * Created by VD on 2/27/2016.
+ * Created by Mustufa Amin Shah on 2/27/2016.
  */
-@Service
+@Service(value = "glAccountServiceImpl")
 public class GlAccountServiceImpl implements GlAccountService {
 
     @Autowired
