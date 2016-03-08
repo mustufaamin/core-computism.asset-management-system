@@ -1,6 +1,6 @@
-package com.core.computism.assasa.gl.entity.admin;
+package com.core.computism.assasa.persistence.entity.gl.admin;
 
-import com.core.computism.assasa.gl.entity.BaseEntity;
+import com.core.computism.assasa.persistence.entity.gl.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

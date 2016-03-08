@@ -1,7 +1,5 @@
 package com.core.computism.assasa.persistence.entity.ticket;
 
-import com.core.computism.assasa.ar.entity.BaseEntity;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

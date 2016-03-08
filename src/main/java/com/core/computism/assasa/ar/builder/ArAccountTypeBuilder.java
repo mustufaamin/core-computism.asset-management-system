@@ -1,6 +1,6 @@
 package com.core.computism.assasa.ar.builder;
 
-import com.core.computism.assasa.ar.entity.account.ArAccountType;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
 
 /**
  * Created by VD on 2/21/2016.

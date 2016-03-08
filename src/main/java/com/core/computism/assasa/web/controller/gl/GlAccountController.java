@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * Created by VD on 2/21/2016.
  */
-@Controller(value = "arAccountController")
+@Controller(value = "glAccountController")
 @RequestMapping(value = "/glAccount/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
 public class GlAccountController extends BaseController {
 

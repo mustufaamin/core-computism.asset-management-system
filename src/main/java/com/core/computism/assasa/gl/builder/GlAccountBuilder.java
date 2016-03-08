@@ -1,6 +1,6 @@
 package com.core.computism.assasa.gl.builder;
 
-import com.core.computism.assasa.gl.entity.admin.GlAccount;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
 import java.util.Date;
 

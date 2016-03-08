@@ -27,6 +27,7 @@ public class ApplicationProperties {
     public static final String CAREEM_DB = "coretech";
     public static final Integer HARMONY_DB_POOLSIZE = 5;
     public static final Integer CAREEM_DB_POOLSIZE = 5;
+    public static final Integer ASSASA_DB_POOLSIZE = 5;
 
 
 

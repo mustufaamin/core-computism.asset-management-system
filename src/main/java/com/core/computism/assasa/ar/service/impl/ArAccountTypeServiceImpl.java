@@ -2,11 +2,10 @@ package com.core.computism.assasa.ar.service.impl;
 
 import com.core.computism.assasa.ar.builder.ArAccountTypeBuilder;
 import com.core.computism.assasa.ar.dto.ArAccountTypeDto;
-import com.core.computism.assasa.ar.entity.account.ArAccountType;
-import com.core.computism.assasa.ar.repository.ArAccountTypeRepository;
 import com.core.computism.assasa.ar.service.ArAccountTypeService;
 import com.core.computism.assasa.exception.ArBusinessException;
-import com.core.computism.assasa.exception.BrainBusinessException;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
+import com.core.computism.assasa.persistence.repository.ar.ArAccountTypeRepository;
 import com.core.computism.assasa.service.impl.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

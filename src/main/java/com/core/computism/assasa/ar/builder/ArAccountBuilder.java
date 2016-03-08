@@ -1,6 +1,6 @@
 package com.core.computism.assasa.ar.builder;
 
-import com.core.computism.assasa.ar.entity.account.ArAccount;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 
 import java.math.BigDecimal;
 import java.util.Date;

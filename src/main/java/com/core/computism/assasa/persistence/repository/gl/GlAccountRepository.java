@@ -1,6 +1,6 @@
-package com.core.computism.assasa.gl.repository;
+package com.core.computism.assasa.persistence.repository.gl;
 
-import com.core.computism.assasa.gl.entity.admin.GlAccount;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

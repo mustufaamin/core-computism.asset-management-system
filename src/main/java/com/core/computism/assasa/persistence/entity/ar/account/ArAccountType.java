@@ -1,6 +1,6 @@
-package com.core.computism.assasa.ar.entity.account;
+package com.core.computism.assasa.persistence.entity.ar.account;
 
-import com.core.computism.assasa.ar.entity.BaseEntity;
+import com.core.computism.assasa.persistence.entity.ar.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

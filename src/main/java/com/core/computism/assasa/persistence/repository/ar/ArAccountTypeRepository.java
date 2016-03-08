@@ -1,6 +1,7 @@
-package com.core.computism.assasa.ar.repository;
+package com.core.computism.assasa.persistence.repository.ar;
 
-import com.core.computism.assasa.ar.entity.account.ArAccountType;
+
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

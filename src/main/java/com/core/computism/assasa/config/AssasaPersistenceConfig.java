@@ -21,11 +21,11 @@ import java.beans.PropertyVetoException;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "coreTechEntityManagerFactory",
-        transactionManagerRef = "coreTechTransactionManager",
-        basePackages = "com.core.computism.assasa.ar.repository"
+        entityManagerFactoryRef = "assasaEntityManagerFactory",
+        transactionManagerRef = "assasaTransactionManager",
+        basePackages = "com.core.computism.assasa.persistence.repository.*"
 )
-public class CoreTechPersistenceConfig {
+public class AssasaPersistenceConfig {
 
     @Autowired
     private JpaVendorAdapter jpaVendorAdapter;
@@ -33,7 +33,7 @@ public class CoreTechPersistenceConfig {
     @Autowired
     private ApplicationProperties applicationProperties;
 
-    @Bean(name = "coreTechDataSource")
+    @Bean(name = "assasaDataSource")
     DataSource dataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setDriverClass(ApplicationProperties.MYSQL_DRIVER);
@@ -44,7 +44,7 @@ public class CoreTechPersistenceConfig {
         dataSource.setInitialPoolSize(2);
         dataSource.setMinPoolSize(2);
         dataSource.setAcquireIncrement(2);
-        dataSource.setMaxPoolSize(ApplicationProperties.CAREEM_DB_POOLSIZE);
+        dataSource.setMaxPoolSize(ApplicationProperties.ASSASA_DB_POOLSIZE);
         dataSource.setMaxIdleTime(600);
         dataSource.setMaxIdleTimeExcessConnections(190);
         dataSource.setMaxConnectionAge(720);
@@ -57,18 +57,18 @@ public class CoreTechPersistenceConfig {
         return dataSource;
     }
 
-    @Bean(name = "coreTechEntityManagerFactory")
+    @Bean(name = "assasaEntityManagerFactory")
     EntityManagerFactory entityManagerFactory() throws PropertyVetoException {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
-        factory.setPersistenceUnitName("coreTechPersistenceUnit");
-        factory.setPackagesToScan("com.core.computism.assasa.ar.entity.account");
+        factory.setPersistenceUnitName("assasaPersistenceUnit");
+        factory.setPackagesToScan("com.core.computism.assasa.persistence.entity.*");
         factory.setDataSource(dataSource());
         factory.setJpaVendorAdapter(jpaVendorAdapter);
         factory.afterPropertiesSet();
         return factory.getObject();
     }
 
-    @Bean(name = "coreTechTransactionManager")
+    @Bean(name = "assasaTransactionManager")
     PlatformTransactionManager transactionManager() throws PropertyVetoException  {
         return new JpaTransactionManager(entityManagerFactory());
     }

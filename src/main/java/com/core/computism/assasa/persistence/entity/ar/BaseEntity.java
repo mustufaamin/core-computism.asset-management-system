@@ -1,4 +1,4 @@
-package com.core.computism.assasa.gl.entity;
+package com.core.computism.assasa.persistence.entity.ar;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
