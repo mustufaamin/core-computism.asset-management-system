@@ -1,0 +1,10 @@
+CREATE TABLE `cc_company` (
+`id` INT NOT NULL AUTO_INCREMENT ,
+`name` VARCHAR(30) NOT NULL DEFAULT '',
+`company_type` INT(1) NOT NULL DEFAULT '0',
+`status` INT(1) NOT NULL DEFAULT '0',
+`creation_date` TIMESTAMP NULL ,
+`last_modified_date` TIMESTAMP NULL ,
+`version` INT(11) NULL ,
+PRIMARY KEY (`id`))
+ENGINE = INNODB;
