@@ -3,6 +3,8 @@ package com.core.computism.assasa.persistence.entity.inventory;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -12,28 +14,27 @@ import javax.persistence.Table;
 @Table(name = "order_item")
 public class OrderItem extends BaseEntity {
 
-    private Integer itemId;
-    private Integer orderId;
+    private Item Item;
+    private Order order;
     private Integer quantity;
 
-    @Basic
-    @Column(name = "item_id", nullable = true, insertable = true, updatable = true)
-    public Integer getItemId() {
-        return itemId;
+    @ManyToOne
+    @JoinColumn(name = "item_id", referencedColumnName = "id", nullable = false)
+    public Item getItem() {
+        return Item;
     }
 
-    public void setItemId(Integer itemId) {
-        this.itemId = itemId;
+    public void setItem(Item item) {
+        Item = item;
+    }
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
+    public Order getOrder() {
+        return order;
     }
 
-    @Basic
-    @Column(name = "order_id", nullable = true, insertable = true, updatable = true)
-    public Integer getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     @Basic

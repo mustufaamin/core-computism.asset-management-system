@@ -33,4 +33,10 @@ public class ItemController extends BaseController{
         LOGGER.info("Adding item ...");
         return itemService.addItemType(typeName);
     }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public Long addType(@RequestBody ItemDto itemDto) throws PosBusinessException {
+        LOGGER.info("Adding item ...");
+        return itemService.update(itemDto);
+    }
 }

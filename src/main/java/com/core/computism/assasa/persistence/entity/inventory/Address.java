@@ -3,11 +3,8 @@ package com.core.computism.assasa.persistence.entity.inventory;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by VD on 2/9/2016.

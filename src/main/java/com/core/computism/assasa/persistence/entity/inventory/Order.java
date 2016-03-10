@@ -1,11 +1,15 @@
 package com.core.computism.assasa.persistence.entity.inventory;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 /**
  * Created by VD on 2/9/2016.
@@ -20,6 +24,8 @@ public class Order extends BaseEntity{
     private Integer numberOfItems;
     private Customer customer;
     private Currency currency;
+
+    private List<OrderItem> orderItems;
 
     @Basic
     @Column(name = "invoice_number", nullable = true, insertable = true, updatable = true)
@@ -72,9 +78,6 @@ public class Order extends BaseEntity{
         this.customer = customer;
     }
 
-
-
-
     @ManyToOne
     @JoinColumn(name = "currency_id",  nullable = false)
 
@@ -84,5 +87,14 @@ public class Order extends BaseEntity{
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
