@@ -15,8 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * Created by VD on 2/21/2016.
  */
-@Service
-@Transactional
+@Service(value = "arAccountTypeService")
 public class ArAccountTypeServiceImpl extends BaseService implements ArAccountTypeService {
 
     @Autowired

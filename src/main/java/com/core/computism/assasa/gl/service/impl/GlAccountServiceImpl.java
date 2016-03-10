@@ -17,8 +17,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service(value = "glAccountServiceImpl")
 public class GlAccountServiceImpl implements GlAccountService {
 
-    @Autowired
-    GlAccountRepository glAccountRepository;
+    /*@Autowired
+    GlAccountRepository glAccountRepository;*/
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
@@ -43,6 +43,6 @@ public class GlAccountServiceImpl implements GlAccountService {
                 .setMultiCurrency(glAccountDto.getMultiCurrency())
                 .setAccountNature(glAccountDto.getAccountNature()).build();
 
-        glAccountRepository.save(glAccount);
+       /* glAccountRepository.save(glAccount);*/
     }
 }
