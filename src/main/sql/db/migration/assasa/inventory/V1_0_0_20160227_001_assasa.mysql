@@ -1,0 +1,200 @@
+delimiter $$
+
+CREATE TABLE `address` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `location_address` varchar(500) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `currency` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `symbol` varchar(3) NOT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `mailing_address_id` int(11) NOT NULL,
+  `mobile_number` varchar(45) NOT NULL,
+  `phone_number` varchar(45) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_Customer_address1_idx` (`mailing_address_id`),
+  CONSTRAINT `fk_Customer_address1` FOREIGN KEY (`mailing_address_id`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_number` varchar(255) NOT NULL,
+  `item_unit` varchar(255) NOT NULL,
+  `stock_level` int(11) NOT NULL,
+  `min_stock_level` int(11) NOT NULL,
+  `cost_price` varchar(45) DEFAULT NULL,
+  `sales_price` varchar(45) DEFAULT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `item_description` varchar(45) DEFAULT NULL,
+  `supplier_ref` int(11) DEFAULT NULL,
+  `item_type` int(11) NOT NULL,
+  `size` varchar(45) DEFAULT NULL,
+  `color` varchar(45) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_Item_item_type1_idx` (`item_type`),
+  KEY `fk_Item_Supplier1_idx` (`supplier_ref`),
+  CONSTRAINT `fk_Item_item_type1` FOREIGN KEY (`item_type`) REFERENCES `item_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Item_Supplier1` FOREIGN KEY (`supplier_ref`) REFERENCES `supplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `item_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `invoice_number` int(11) DEFAULT NULL,
+  `batch_number` int(11) DEFAULT NULL,
+  `customer_Id` int(11) NOT NULL,
+  `total_amount` int(11) DEFAULT NULL,
+  `currency_id` int(11) NOT NULL,
+  `number_of_items` int(11) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_quotation_Customer_idx` (`customer_Id`),
+  KEY `fk_order_currency1_idx` (`currency_id`),
+  CONSTRAINT `fk_order_currency1` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_quotation_Customer` FOREIGN KEY (`customer_Id`) REFERENCES `customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `order_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_order_item_order1_idx` (`order_id`),
+  KEY `fk_order_item_Item1_idx` (`item_id`),
+  CONSTRAINT `fk_order_item_Item1` FOREIGN KEY (`item_id`) REFERENCES `item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_order_item_order1` FOREIGN KEY (`order_id`) REFERENCES `order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `purchase_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `invoice_number` int(11) DEFAULT NULL,
+  `batch_number` int(11) DEFAULT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `total_items` int(11) DEFAULT NULL,
+  `total_amount` int(11) DEFAULT NULL,
+  `currency_id` int(11) NOT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_purchase_order_Supplier1_idx` (`supplier_id`),
+  KEY `fk_purchase_order_currency1_idx` (`currency_id`),
+  CONSTRAINT `fk_purchase_order_currency1` FOREIGN KEY (`currency_id`) REFERENCES `currency` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_purchase_order_Supplier1` FOREIGN KEY (`supplier_id`) REFERENCES `supplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `purchase_order_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Item_id` int(11) NOT NULL,
+  `purchase_order_id` int(11) NOT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_purchase_order_item_Item1_idx` (`Item_id`),
+  KEY `fk_purchase_order_item_purchase_order1_idx` (`purchase_order_id`),
+  CONSTRAINT `fk_purchase_order_item_Item1` FOREIGN KEY (`Item_id`) REFERENCES `item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_purchase_order_item_purchase_order1` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_order` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `supplier` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `address` int(11) NOT NULL,
+  `mobile_number` varchar(45) DEFAULT NULL,
+  `phone_number` varchar(45) DEFAULT NULL,
+  `office_number` varchar(45) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_Supplier_address1_idx` (`address`),
+  CONSTRAINT `fk_Supplier_address1` FOREIGN KEY (`address`) REFERENCES `address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8$$
+
+
+delimiter $$
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(45) NOT NULL,
+  `last_name` varchar(45) DEFAULT NULL,
+  `phone_number` varchar(20) DEFAULT NULL,
+  `email_id` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `sex` int(11) DEFAULT NULL,
+  `date_of_birth` timestamp NULL DEFAULT NULL,
+  `join_date` timestamp NULL DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_modified_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+
+

@@ -1,3 +1,0 @@
-ALTER TABLE `harmony`.`booking_info`
-ADD COLUMN `captain_email` VARCHAR(255) NULL DEFAULT NULL ,
-ADD COLUMN `customer_email` VARCHAR(255) NULL DEFAULT NULL;

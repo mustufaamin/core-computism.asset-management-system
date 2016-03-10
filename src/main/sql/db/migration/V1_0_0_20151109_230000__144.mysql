@@ -1,6 +1,0 @@
-
-UPDATE harmony.ticket_config
-SET auto_expire_min = 2,
-last_modified_date = NOW(),
-VERSION = 3
-WHERE problem_type_id = (SELECT id FROM problem_type WHERE type_code = 'CAPTAIN_WAITING_WRONG_LOCATION');

@@ -1,9 +1,0 @@
-
-ALTER DATABASE harmony CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-ALTER TABLE agent CHARACTER SET utf8 COLLATE utf8_general_ci;  ALTER TABLE agent CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE booking_info CHARACTER SET utf8 COLLATE utf8_general_ci;  ALTER TABLE booking_info CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE problem_type CHARACTER SET utf8 COLLATE utf8_general_ci;  ALTER TABLE problem_type CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE schema_history CHARACTER SET utf8 COLLATE utf8_general_ci;  ALTER TABLE schema_history CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE ticket CHARACTER SET utf8 COLLATE utf8_general_ci;  ALTER TABLE ticket CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE ticket_config CHARACTER SET utf8 COLLATE utf8_general_ci;  ALTER TABLE ticket_config CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;

@@ -1,12 +1,10 @@
 package com.core.computism.assasa.web.controller;
 
-import com.core.computism.assasa.domain.SupplierDto;
+import com.core.computism.assasa.inventory.domain.SupplierDto;
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.persistence.entity.inventory.Supplier;
-import com.core.computism.assasa.service.SupplierService;
+import com.core.computism.assasa.inventory.service.SupplierService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

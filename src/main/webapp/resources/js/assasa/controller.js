@@ -2,7 +2,7 @@
  * Created by VD on 2/20/2016.
  */
 
-    angular.module()
+
 var testController = function ($scope,assasaGateway){
     //var testController = function ($scope,Item){
     $scope.customers = "This is customer";
@@ -28,7 +28,7 @@ var testController = function ($scope,assasaGateway){
     $scope.addSupplier = function(){
 
 
-        $scope.postBody = {
+        var postBody = {
             name: 'Abc Supplier',
             mobileNumber: '03142039839',
             phoneNumber: '02112545414',

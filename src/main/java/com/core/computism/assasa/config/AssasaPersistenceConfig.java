@@ -37,9 +37,9 @@ public class AssasaPersistenceConfig {
     DataSource dataSource() throws PropertyVetoException {
         ComboPooledDataSource dataSource = new ComboPooledDataSource();
         dataSource.setDriverClass(ApplicationProperties.MYSQL_DRIVER);
-        dataSource.setJdbcUrl(applicationProperties.getCareemDBUrl());
-        dataSource.setUser(applicationProperties.getCareemDBUsername());
-        dataSource.setPassword( applicationProperties.getCareemDBPassword() );
+        dataSource.setJdbcUrl(applicationProperties.getAssasaDBUrl());
+        dataSource.setUser(applicationProperties.getAssasaDBUsername());
+        dataSource.setPassword( applicationProperties.getAssasaDBPassword() );
 
         dataSource.setInitialPoolSize(2);
         dataSource.setMinPoolSize(2);

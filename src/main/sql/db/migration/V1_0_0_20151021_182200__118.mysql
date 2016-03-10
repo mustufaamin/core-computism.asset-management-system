@@ -1,7 +1,0 @@
-insert into `harmony`.`problem_type` (`type_code`, `descr`, `creation_date`, `last_modified_date`, `version`)
-	values ('CHECK_45_MINS', '45 mins Check', now(), now(), 1);
-
-SELECT @problemId:=id FROM problem_type WHERE type_code = 'CHECK_45_MINS';
-INSERT INTO `harmony`.`ticket_config` (`problem_type_id`, `robot_name`, `action_required`, `auto_expire_min`, `creation_date`, `last_modified_date`, `version`)
-	VALUES (@problemId, 'any robot', '45 mins check', 30, NOW(), NOW(), 1);
-

@@ -1,17 +1,14 @@
 package com.core.computism.assasa.web.controller;
 
-import com.core.computism.assasa.domain.ItemDto;
+import com.core.computism.assasa.inventory.domain.ItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.service.ItemService;
+import com.core.computism.assasa.inventory.service.ItemService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -29,7 +26,7 @@ public class ItemController extends BaseController{
     public Long add(@RequestBody ItemDto itemDto) throws PosBusinessException {
 
         LOGGER.info("Adding item ...");
-        return itemService.addItem(itemDto);
+        return itemService.add(itemDto);
     }
     @RequestMapping(value = "addType/{typeName}", method = RequestMethod.POST)
     public Long addType(@PathVariable String typeName) throws PosBusinessException {

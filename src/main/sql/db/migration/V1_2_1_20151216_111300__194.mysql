@@ -1,2 +1,0 @@
-ALTER TABLE `harmony`.`booking_info`
-ADD COLUMN `expected_arrival_date` TIMESTAMP NULL DEFAULT NULL;

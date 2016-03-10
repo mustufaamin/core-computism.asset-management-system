@@ -1,3 +1,0 @@
-ALTER TABLE `harmony`.`agent`
-ADD COLUMN `user_id` INT(11) NOT NULL AFTER `version`,
-ADD UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC);

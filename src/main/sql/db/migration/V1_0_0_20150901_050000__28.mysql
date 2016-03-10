@@ -1,4 +1,0 @@
-
-alter table harmony.booking_info
-add column pickup_time      timestamp       null default null,
-add column car_category     int(11);
