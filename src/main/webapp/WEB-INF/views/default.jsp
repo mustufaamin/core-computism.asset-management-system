@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="assasaApp">
 <head>
-    <title>Harmony Brain</title>
+    <title>App</title>
     <script src = ../resources/js/libraries/bower_components/angular/angular.min.js></script>
     <script src = ../resources/js/libraries/bower_components/angular-resource/angular-resource.min.js></script>
     <script src = ../resources/js/assasa/app.js></script>
@@ -45,7 +45,7 @@
 
         {{postBody}}
     </div>
-<h3>Harmony - Brain started successfully!</h3>
+<h3>started successfully!</h3>
 ${message}
 </body>
 </html>

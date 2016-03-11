@@ -18,7 +18,7 @@ public class AssasaController extends BaseController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
-        LOGGER.info("BrainController.printWelcome method called.");
+        LOGGER.info("Assasa.printWelcome method called.");
         model.addAttribute("message", "Welcome :-)");
         return "default";
     }
