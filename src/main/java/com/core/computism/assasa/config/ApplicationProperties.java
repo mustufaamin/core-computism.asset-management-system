@@ -15,21 +15,11 @@ public class ApplicationProperties {
 
     private static final Logger LOGGER = Logger.getLogger(ApplicationProperties.class);
 
-    public static final int ISSUE_CONSUMER_INTERVAL_SEC = 2;
-    public static final int AUTO_RESOLVER_INTERVAL_SEC =120; // 2 minute
-    public static final int UNSNOOZE_TICKET_INTERVAL_SEC = 120; // 2 minute
-    public static final int CLOSE_TICKET_INTERVAL_SEC = 120; // 2 minute
-
     public static final String SQS_ACCESS_KEY = "AKIAIAL36MTVOWERWYRQ";
     public static final String SQS_SECRET_KEY = "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";
 
     public static final String MYSQL_DRIVER = "com.mysql.jdbc.Driver";
-    public static final String CAREEM_DB = "coretech";
-    public static final Integer HARMONY_DB_POOLSIZE = 5;
-    public static final Integer CAREEM_DB_POOLSIZE = 5;
     public static final Integer ASSASA_DB_POOLSIZE = 5;
-
-
 
     public static final int REDIS_PORT = 6379;
     public static final int REDIS_TIMEOUT_SEC = 3600;
@@ -44,18 +34,6 @@ public class ApplicationProperties {
 
     // Amazon SQS Properties
     private @Value("${SQS.PROBLEM.QUEUE}") String sqsProblemQueueName;
-
-    // Harmony Datasource Properties
-    private @Value("${HARMONY.DB:harmony}") String harmonyDB;
-    private @Value("${HARMONY.DB.ENDPOINT}") String harmonyDBEndpoint;
-    private @Value("${HARMONY.DB.USERNAME}") String harmonyDBUsername;
-    private @Value("${HARMONY.DB.PASSWORD}") String harmonyDBPassword;
-
-    // Careem Datasource Properties
-    private @Value("${CAREEM.DB.ENDPOINT}") String careemDBEndpoint;
-    private @Value("${CAREEM.DB.USERNAME}") String careemDBUsername;
-    private @Value("${CAREEM.DB.PASSWORD}") String careemDBPassword;
-
 
     // Assasa
     private @Value("${ASSASA.DB.ENDPOINT}") String assasaDBEndPoint;
@@ -83,33 +61,12 @@ public class ApplicationProperties {
         return showSql;
     }
 
-    public String getHarmonyDBUrl() {
-        return "jdbc:mysql://" + harmonyDBEndpoint + "/" + harmonyDB +"?characterEncoding=UTF-8&amp;useUnicode=true";
-    }
 
-    public String getHarmonyDBUsername() {
-        return harmonyDBUsername;
-    }
-
-    public String getHarmonyDBPassword() {
-        return harmonyDBPassword;
-    }
-
-    public String getCareemDBUrl() {
-        return "jdbc:mysql://" + careemDBEndpoint + "/" + CAREEM_DB +"?characterEncoding=UTF-8&amp;useUnicode=true";
-    }
 
     public String getAssasaDBUrl(){
         return "jdbc:mysql://" + assasaDBEndPoint + "/" + ASSASA_DB +"?characterEncoding=UTF-8&amp;useUnicode=true";
     }
 
-    public String getCareemDBUsername() {
-        return careemDBUsername;
-    }
-
-    public String getCareemDBPassword() {
-        return careemDBPassword;
-    }
 
     public String getTicketVerificationUrl() {
         return "http://" + problemIdentifierEndpoint + "/pi/verify";

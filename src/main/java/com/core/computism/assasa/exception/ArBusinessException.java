@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 public class ArBusinessException extends Exception {
 
     private static final long serialVersionUID = -4418716700680302975L;
-    private static final Logger LOGGER = Logger.getLogger(BrainBusinessException.class);
+    private static final Logger LOGGER = Logger.getLogger(ArBusinessException.class);
 
     public ArBusinessException() {
         super();

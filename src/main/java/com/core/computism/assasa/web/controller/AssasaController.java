@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping(value = "/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
-public class BrainController extends BaseController {
+public class AssasaController extends BaseController {
 
-    private static final Logger LOGGER = Logger.getLogger(BrainController.class);
+    private static final Logger LOGGER = Logger.getLogger(AssasaController.class);
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {

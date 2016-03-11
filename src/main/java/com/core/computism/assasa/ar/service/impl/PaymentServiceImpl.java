@@ -6,7 +6,7 @@ import com.core.computism.assasa.persistence.repository.ar.PaymentRepository;
 import com.core.computism.assasa.ar.service.PaymentService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Payment;
-import com.core.computism.assasa.service.impl.BaseService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

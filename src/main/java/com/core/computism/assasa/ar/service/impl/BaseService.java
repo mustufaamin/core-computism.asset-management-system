@@ -1,4 +1,4 @@
-package com.core.computism.assasa.service.impl;
+package com.core.computism.assasa.ar.service.impl;
 
 import com.core.computism.assasa.util.DomainEntityBuilder;
 import org.apache.log4j.Logger;

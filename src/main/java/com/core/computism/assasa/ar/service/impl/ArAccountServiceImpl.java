@@ -6,7 +6,7 @@ import com.core.computism.assasa.ar.service.ArAccountService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
-import com.core.computism.assasa.service.impl.BaseService;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
