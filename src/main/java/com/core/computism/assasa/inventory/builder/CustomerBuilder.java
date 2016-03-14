@@ -6,6 +6,9 @@ import com.core.computism.assasa.persistence.entity.inventory.Address;
 import com.core.computism.assasa.persistence.entity.inventory.Customer;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by VD on 2/28/2016.
  */
@@ -19,7 +22,6 @@ public class CustomerBuilder {
         }
 
         Customer customer = new Customer();
-        Address address = new Address();
 
         customer.setFirstName(customerDto.getFirstName());
         customer.setLastName(customerDto.getLastName());
@@ -27,12 +29,37 @@ public class CustomerBuilder {
         customer.setPhoneNumber(customerDto.getPhoneNumber());
         customer.setMobileNumber(customerDto.getMobileNumber());
 
-        address.setLocationAddress(customerDto.getLocationAddress());
-        address.setCity(customerDto.getCity());
-        address.setCountry(customerDto.getCountry());
-
-        customer.setAddress(address);
-
         return customer;
+    }
+    public CustomerDto buildCustomerDto(Customer customer) throws BuilderException {
+
+        if(customer == null){
+            throw new BuilderException("Customer Entity not found");
+        }
+
+        CustomerDto customerDto = new CustomerDto();
+
+        customerDto.setFirstName(customer.getFirstName());
+        customerDto.setLastName(customer.getLastName());
+        customerDto.setLocationAddress(customer.getAddress().getLocationAddress());
+        customerDto.setCityId(customer.getAddress().getCity().getId());
+        customerDto.setEmail(customer.getEmail());
+        customerDto.setMobileNumber(customer.getMobileNumber());
+        customerDto.setPhoneNumber(customer.getPhoneNumber());
+
+        return customerDto;
+    }
+
+    public List<CustomerDto> buildCustomerDtoList(List<Customer> customers) throws BuilderException {
+        if(customers == null || customers.size() < 1){
+            throw new BuilderException("Unable to build Item DTO List for [null] Item or empty.");
+        }
+
+        List<CustomerDto> customerDtos = new ArrayList<>();
+
+        for(Customer customer: customers){
+            customerDtos.add( buildCustomerDto(customer));
+        }
+        return customerDtos;
     }
 }

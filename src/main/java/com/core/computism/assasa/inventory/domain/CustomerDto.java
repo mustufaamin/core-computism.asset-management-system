@@ -1,10 +1,12 @@
 package com.core.computism.assasa.inventory.domain;
 
 import com.core.computism.assasa.persistence.entity.inventory.Address;
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
 /**
- * Created by VD on 2/28/2016.
+ * Created by M.Mustafa Amin Shah on 2/28/2016.
  */
+@JsonAutoDetect
 public class CustomerDto {
 
     private String firstName;
@@ -13,8 +15,8 @@ public class CustomerDto {
     private String mobileNumber;
     private String email;
     private String locationAddress;
-    private String city;
-    private String country;
+    private Long cityId;
+
 
     public String getFirstName() {
         return firstName;
@@ -56,20 +58,12 @@ public class CustomerDto {
         this.locationAddress = locationAddress;
     }
 
-    public String getCity() {
-        return city;
+    public Long getCityId() {
+        return cityId;
     }
 
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCityId(Long cityId) {
+        this.cityId = cityId;
     }
 
     public String getMobileNumber() {

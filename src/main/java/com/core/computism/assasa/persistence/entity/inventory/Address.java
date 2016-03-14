@@ -3,6 +3,8 @@ package com.core.computism.assasa.persistence.entity.inventory;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -14,11 +16,7 @@ import javax.persistence.Table;
 public class Address extends BaseEntity {
 
     private String locationAddress;
-    private String city;
-    private String country;
-    private Customer customer;
-    private Supplier supplier;
-
+    private City city;
 
     @Basic
     @Column(name = "location_address", nullable = true, insertable = true, updatable = true, length = 500)
@@ -30,42 +28,13 @@ public class Address extends BaseEntity {
         this.locationAddress = locationAddress;
     }
 
-    @Basic
-    @Column(name = "city", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getCity() {
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "id", nullable = false)
+    public City getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
-
-    @Basic
-    @Column(name = "country", nullable = true, insertable = true, updatable = true, length = 45)
-    public String getCountry() {
-        return country;
-    }
-
-    public void setCountry(String country) {
-        this.country = country;
-    }
-
-    @OneToOne(mappedBy = "address")
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    @OneToOne(mappedBy = "address")
-    public Supplier getSupplier() {
-        return supplier;
-    }
-
-    public void setSupplier(Supplier supplier) {
-        this.supplier = supplier;
-    }
-
 }
