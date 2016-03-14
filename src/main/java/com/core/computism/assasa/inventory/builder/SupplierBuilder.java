@@ -27,8 +27,8 @@ public class SupplierBuilder {
         supplier.setOfficeNumber(supplierDto.getOfficeNumber());
 
         address.setLocationAddress(supplierDto.getLocationAddress());
-        address.setCity(supplierDto.getCity());
-        address.setCountry(supplierDto.getCountry());
+//        address.setCity(supplierDto.getCity());
+//        address.setCountry(supplierDto.getCountry());
 
         supplier.setAddress(address);
 
