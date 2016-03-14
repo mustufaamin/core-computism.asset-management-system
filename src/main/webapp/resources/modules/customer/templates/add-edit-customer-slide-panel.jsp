@@ -10,7 +10,7 @@
     </div>
     <div class="cust-panel-content">
       <div class="first-name cust-panel-field-div">
-        <label class="cust-panel-lbl">First name:</label>
+        <label class="cust-panel-lbl">First name AKKASKDK:</label>
         <input class="cust-panel-input" placeholder="Enter first name..."/>
       </div>
       <div class="last-name cust-panel-field-div">
