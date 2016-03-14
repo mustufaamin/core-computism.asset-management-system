@@ -1,0 +1,36 @@
+.mainHeading{font-size: 34px;font-family: fantasy;color: #2D89EF !important;}
+.widgetTitle{font-size: 19px;}
+/*.statbox .footer:hover{background-color: green; font-size: 20px}
+.statbox .footer a:hover{font-size: 20px}*/
+.breadcrumb{background-color: green}
+.breadcrumb a, .breadcrumb .icon-home, .breadcrumb .icon-right-angle {color: #fff}
+.breadcrumb a:hover{font-size: 20px}
+.statbox:hover{background-color: green !important; font-size: 30px !important; }
+/*
+.slidepanel
+{   right: 5px;
+    opacity: 1;
+    position: fixed;
+    z-index: 2000;
+    width: 30%;
+    height: 100%;
+    background: #fff;
+    margin-right: -5px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    box-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+    -webkit-transition: 0.2s all ease-out;
+    transition: 0.2s all ease-out;
+    top: 0px;
+}
+.slideoverlay
+{   background: rgba(0,70,0,0.3);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 1060;
+    left: 0;
+    top: 0px;
+    -webkit-transition: 0.1s all linear;
+    transition: 0.1s all linear;
+}*/
