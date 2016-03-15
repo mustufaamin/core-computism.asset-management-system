@@ -56,6 +56,8 @@ public class Customer extends BaseEntity {
         this.phoneNumber = phoneNumber;
     }
 
+
+
     @Basic
     @Column(name = "email", nullable = false, insertable = true, updatable = true, length = 255)
     public String getEmail() {
@@ -66,6 +68,9 @@ public class Customer extends BaseEntity {
         this.email = email;
     }
 
+
+    @Basic
+    @Column(name = "mobile_number", nullable = false, insertable = true, updatable = true, length = 45)
     public String getMobileNumber() {
         return mobileNumber;
     }
