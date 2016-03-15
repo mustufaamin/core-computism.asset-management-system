@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Assasa</title>
-    <base href="http://localhost:8080/assasa/">
+    <base href="http://localhost:8080">
 
     <link id="bootstrap-style" href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -1082,6 +1082,7 @@
     <script src="resources/modules/asasa.js"></script>
     <script src="resources/modules/customer/customer.js"></script>
     <script src="resources/libraries/bower-components/ng-table/dist/ng-table.js"></script>
+    <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
 
 </body>
 </html>

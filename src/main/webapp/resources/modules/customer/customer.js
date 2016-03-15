@@ -19,11 +19,21 @@
     });
 
     angular.module('Asasa')
-        .controller('CustomerController', ['$http', function($http){
+        .controller('CustomerController', ['CustomerGatewayService','$http', function(custGatewaySrv, $http){
             var custCtrl = this;
             custCtrl.showPanel = false;
             custCtrl.isView = false;
             custCtrl.slidePanelHeading = '';
+            custCtrl.listCustomer = [];
+
+            custCtrl.getCustomerList = function(){
+                custCtrl.listCustomer = [];
+                custGatewaySrv.listCustomer().$promise.then(function(response){
+                    custCtrl.listCustomer = response;
+                });
+            };
+            custCtrl.getCustomerList();
+
             custCtrl.openCustomerSlidePanel = function(type){
                 custCtrl.showPanel = true;
                 custCtrl.isView = false;
@@ -37,4 +47,25 @@
                 }
             };
     }]);
+
+
+    /*Customer Gateway*/
+    angular.module('Asasa')
+        .service('CustomerGatewayService',['$resource' ,function ($resource) {
+            var custGatewaySrv = this;
+            return $resource('',{},
+            {
+                listCustomer: {method: 'GET', isArray: false, url: '/customer/list'}
+                /*addItem: {method: 'POST',isArray: false,url:'item/:add'},
+                addItemType: {method: 'POST',isArray: false,url:'/item/addType/:typeName'},
+
+                *//*Supplier Methods*//*
+                addSupplier:{method: 'POST',isArray: false,url:'/supplier/add'},
+
+                *//*Customer Methods*//*
+                addCustomer:{method: 'POST',isArray: false,url:'/customer/add'}*/
+            });
+    }]);
+
+
 })();
