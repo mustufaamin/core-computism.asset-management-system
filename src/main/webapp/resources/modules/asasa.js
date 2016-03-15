@@ -11,11 +11,12 @@ app.controller('MainModulesController', ['$http', '$window', '$location',  funct
     mainMdlsCtrl.openCustomerPanel =  function(path){
         mainMdlsCtrl.showMainModules = false;
         mainMdlsCtrl.showCustomerPanel = true;
-        $window.location.href = path;
+        /*$window.location.href = path;*/
     };
 
 }]);
 
+/*
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
@@ -23,4 +24,4 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
         when("/customer", { templateUrl: "resources/modules/customer/templates/customer-panel.jsp" })
         otherwise({ redirectTo: '/assasa' });
 
-}]);
+}]);*/
