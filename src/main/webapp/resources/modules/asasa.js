@@ -1,7 +1,7 @@
 /**
  * Created by Muhammad Umer on 3/12/2016.
  */
-var app = angular.module('Asasa', ["ngTable", "ngRoute"]);
+var app = angular.module('Asasa', ['ngTable', 'ngRoute', 'ngResource']);
 
 app.controller('MainModulesController', ['$http', '$window', '$location',  function ($http, $window, $location){
     var mainMdlsCtrl = this;
