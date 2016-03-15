@@ -4,6 +4,7 @@ import com.core.computism.assasa.inventory.domain.CustomerDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.inventory.service.CustomerService;
 import com.core.computism.assasa.persistence.entity.inventory.Customer;
+import com.core.computism.assasa.util.ServerResponse;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,9 +33,10 @@ public class CustomerController extends BaseController {
     }
 
     @RequestMapping(value = "list",method = RequestMethod.GET)
-    public List<CustomerDto> listCustomers() throws PosBusinessException {
+    public ServerResponse<List<CustomerDto>> listCustomers() throws PosBusinessException {
         LOGGER.info("List Customers ...");
-        return customerService.getCustomers();
+        ServerResponse<List<CustomerDto>> response = toResponse(customerService.getCustomers());
+        return response;
 
     }
 }
