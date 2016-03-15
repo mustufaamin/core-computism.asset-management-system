@@ -342,7 +342,7 @@
         <div class="slidepanel">
 
         </div>--%>
-        <div id="content" class="span10">
+        <div id="content-m" class="span10">
 
 
             <ul class="breadcrumb">
