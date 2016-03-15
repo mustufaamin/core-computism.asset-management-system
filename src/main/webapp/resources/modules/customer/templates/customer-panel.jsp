@@ -1,4 +1,4 @@
-<span id="customerPanel" ng-controller="CustomerController as customerCtrl">
+<span id="customerPanel" ng-controller="CustomerController as custCtrl">
 <div class="row">
   <div class="col-xs-12">
     <div class="srch-box">
@@ -14,7 +14,7 @@
             <button class="c-btn c-btn-action cust-add-btn"
                     ng-class=""
                     ng-disabled=""
-                    ng-click="">Add Customer</button>
+                    ng-click="custCtrl.openCustomerSlidePanel(1)">Add Customer</button>
 
             <%--<div class="col-xs-3 pull-right">
               <div class="c-form-gp btn-add-adjst">
@@ -35,6 +35,41 @@
     <div class="cap-adj-cycle">
       <div class="cap-adj-cyc-head">List of Current Customers</div>
 
+      <table ng-table="custList" class="table" show-filter="true">
+        <tr>
+          <td title="'#'">
+            <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(2)">View: <i class="fa fa-eye"></i><br></div>
+            <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(3)">Edit: <i class="fa fa-scissors"></i></div>
+          </td>
+          <td title="'ID'">
+            Umer</td>
+          <td title="'Name'">
+            Mustufa</td>
+          <td title="'Gender'">
+            Male</td>
+          <td title="'Address'">
+            ##@#@DDSD</td>
+          <td title="'Contact #'">
+            322343</td>
+
+        </tr>
+        <tr>
+          <td title="'#'">
+            <i class="fa fa-eye"></i><i class="fa fa-scissors"></i>
+          </td>
+          <td title="'ID'">
+            faizan</td>
+          <td title="'Name'">
+            umer</td>
+          <td title="'Gender'">
+            sadasd</td>
+          <td title="'Address'">
+            3r3edwd</td>
+          <td title="'Contact #'">
+            5456sa4d</td>
+
+        </tr>
+      </table>
       <%--<div class="row cap-adj-cyc-th">
         <div class="col-xs-2"><div class="c-th-label"></div></div>
         <div class="col-xs-2"><div class="c-th-label">ID</div></div>

@@ -54,8 +54,9 @@ textarea.c-form-inpt{max-width:100%;min-width:100%;-webkit-transition:0.1s all l
 }
 #customerPanel .cap-adj-cyc-head {
     padding: 10px 9px;
-    color: #303030;
     font-size: 28px;
+    background-color: #4285f4;
+    color: #fff;
 }
 #customerPanel .cap-adj-cyc-th {
     background-color: #4285f4;
@@ -234,28 +235,49 @@ textarea.c-form-inpt{max-width:100%;min-width:100%;-webkit-transition:0.1s all l
 }
 .cust-panel-close{
     color: #fff;
-    padding: 6px 0px 0px 178px;
+    padding: 6px 0px 0px 168px;
+}
+.close-cur{
+    cursor: pointer;
 }
 .cust-panel-content{
     padding: 10px 0px 0px 5px;
 }
 .cust-panel-lbl{
     font-size: 10px;
-    font-weight: bold;/*
+    font-weight: bold;
+    /*
     margin-right: 50px;*/
 }
 .cust-panel-input{
-    border-color: #eee!important;
+    border-color: #eee !important;
     outline: none;
     border-left: none;
     border-right: none;
     border-top: none;
     margin-top: 0px;
     margin-bottom: 10px;
+    color: green;
+    font-size: 16px;
 }
 .cust-panel-field-div{
     /*display: inline-flex;*/
 }
 .cust-panel-foot{
     margin-top: 50px;
+}
+.grid-func:hover{
+    color: #4285f4;
+    cursor: pointer;
+}
+
+.disabled{
+    border: none;
+    box-shadow: none !important;
+    border-bottom: 1px dotted #ccc !important;
+    outline: none;
+    color: #999 !important;
+    font-style: italic;
+    background: none !important;
+    pointer-events: none;
 }

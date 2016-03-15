@@ -9,12 +9,14 @@ import com.core.computism.assasa.persistence.entity.inventory.City;
 import com.core.computism.assasa.persistence.repository.inventory.CityRepository;
 import com.core.computism.assasa.persistence.repository.inventory.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Created by M.Mustafa Amin Shah on 3/13/2016.
  */
+@Service(value = "cityService")
 public class CityServiceImpl implements CityService {
 
     @Autowired CityRepository cityRepository;
