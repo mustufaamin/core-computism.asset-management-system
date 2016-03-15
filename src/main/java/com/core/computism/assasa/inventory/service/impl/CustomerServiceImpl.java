@@ -43,6 +43,7 @@ public class CustomerServiceImpl implements CustomerService {
             return customer.getId();
         }
         catch (BuilderException | PersistenceException e){
+            e.printStackTrace();
             throw new PosBusinessException(e);
         }
     }

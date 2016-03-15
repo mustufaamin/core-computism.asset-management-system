@@ -27,13 +27,13 @@ public class CustomerController extends BaseController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public Long add(@RequestBody CustomerDto customerDto) throws PosBusinessException {
-        LOGGER.info("Adding item ...");
+        LOGGER.info("Adding Customer..");
         return customerService.add(customerDto);
     }
 
     @RequestMapping(value = "list",method = RequestMethod.GET)
     public List<CustomerDto> listCustomers() throws PosBusinessException {
-        LOGGER.info("Adding item ...");
+        LOGGER.info("List Customers ...");
         return customerService.getCustomers();
 
     }
