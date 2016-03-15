@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Assasa</title>
+    <base href="http://localhost:8080/assasa/">
 
     <link id="bootstrap-style" href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet">
@@ -9,6 +10,7 @@
     <link id="base-style-responsive" href="resources/css/style-responsive.css" rel="stylesheet">
     <link href="resources/css/font-awesome/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&subset=latin,cyrillic-ext,latin-ext' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="resources/libraries/ng-table/dist/ng-table.css">
 
     <link href="resources/modules/customer/css/customer.css" rel="stylesheet">
     <link href="resources/css/asasa/asasa.css" rel="stylesheet">
@@ -357,7 +359,7 @@
             </div>
             <div class="mainModules" ng-show="mainMdlsCtrl.showMainModules">
                 <div class="row-fluid">
-                    <div class="span3 statbox blue" onTablet="span6" onDesktop="span3" ng-click="mainMdlsCtrl.openCustomerPanel()">
+                    <div class="span3 statbox blue" onTablet="span6" onDesktop="span3" ng-click="mainMdlsCtrl.openCustomerPanel('/customer')">
                         <div class="number"><i class="icon-group"></i></div>
                         <div class="widgetTitle">Customers</div>
                         <%--<div class="footer">
@@ -1046,6 +1048,7 @@
     <%--Custom JS files--%>
 
     <script src="resources/libraries/angular.js"></script>
+    <script src="resources/libraries/angular-route.min.js"></script>
     <script src="resources/libraries/jquery-1.9.1.min.js"></script>
     <script src="resources/libraries/jquery-migrate-1.0.0.min.js"></script>
     <script src="resources/libraries/jquery-ui-1.10.0.custom.min.js"></script>
@@ -1078,6 +1081,7 @@
     <script src="resources/libraries/custom.js"></script>
     <script src="resources/modules/asasa.js"></script>
     <script src="resources/modules/customer/customer.js"></script>
+    <script src="resources/libraries/ng-table/dist/ng-table.js"></script>
 
 </body>
 </html>
