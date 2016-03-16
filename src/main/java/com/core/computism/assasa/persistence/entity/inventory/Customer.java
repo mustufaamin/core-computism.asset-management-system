@@ -56,8 +56,6 @@ public class Customer extends BaseEntity {
         this.phoneNumber = phoneNumber;
     }
 
-
-
     @Basic
     @Column(name = "email", nullable = false, insertable = true, updatable = true, length = 255)
     public String getEmail() {
@@ -67,7 +65,6 @@ public class Customer extends BaseEntity {
     public void setEmail(String email) {
         this.email = email;
     }
-
 
     @Basic
     @Column(name = "mobile_number", nullable = false, insertable = true, updatable = true, length = 45)
@@ -79,7 +76,7 @@ public class Customer extends BaseEntity {
         this.mobileNumber = mobileNumber;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "mailing_address_id", referencedColumnName = "id", nullable = false)
     public Address getAddress() {
         return address;

@@ -1,6 +1,7 @@
 package com.core.computism.assasa.persistence.entity.inventory;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -17,6 +18,7 @@ public class Address extends BaseEntity {
 
     private String locationAddress;
     private City city;
+    private Customer customer;
 
     @Basic
     @Column(name = "location_address", nullable = true, insertable = true, updatable = true, length = 500)

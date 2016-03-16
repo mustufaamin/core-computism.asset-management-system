@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.PersistenceException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -36,6 +37,9 @@ public class CustomerServiceImpl implements CustomerService {
             Address address = new Address();
             address.setLocationAddress(customerDto.getLocationAddress());
             address.setCity(cityRepository.findOne(customerDto.getCityId()));
+//            address.setCreationDate(new Date());
+//            address.setLastModifiedDate(new Date());
+//            address.setVersion(1L);
 
             customer.setAddress(address);
 
