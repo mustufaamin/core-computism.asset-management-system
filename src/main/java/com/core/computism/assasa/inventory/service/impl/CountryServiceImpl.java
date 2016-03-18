@@ -8,12 +8,16 @@ import com.core.computism.assasa.inventory.service.CountryService;
 import com.core.computism.assasa.persistence.entity.inventory.Country;
 import com.core.computism.assasa.persistence.repository.inventory.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Mustafa Amin Shah on 3/13/2016.
  */
+@Service(value = "countryService")
 public class CountryServiceImpl implements CountryService{
     @Autowired private CountryBuilder countryBuilder;
     @Autowired private CountryRepository countryRepository;
@@ -27,17 +31,27 @@ public class CountryServiceImpl implements CountryService{
 
             return country.getId();
         }catch (BuilderException e){
-            throw new PosBusinessException("Error occurred while adding the country",e);
+            throw new PosBusinessException("Error occurred Country add",e);
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public CountryDto getCountry(Long id) throws PosBusinessException {
+    public CountryDto findCountry(Long id) throws PosBusinessException {
         try {
             return countryBuilder.builderCountryDto(countryRepository.findOne(id));
         } catch (BuilderException e) {
-            throw new PosBusinessException("Error Occurred While fetching Country", e);
+            throw new PosBusinessException("Error Occurred on getCountry", e);
+        }
+    }
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<CountryDto> findAllCountries() throws PosBusinessException {
+        try {
+            List<Country> countries = countryRepository.findAll();
+            return countryBuilder.buildCountryDtoList(countries);
+        } catch (BuilderException e) {
+            throw new PosBusinessException("Error Occurred getCountties", e);
         }
     }
 }

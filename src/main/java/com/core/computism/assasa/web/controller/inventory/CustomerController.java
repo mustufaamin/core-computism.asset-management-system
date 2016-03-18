@@ -1,10 +1,10 @@
-package com.core.computism.assasa.web.controller;
+package com.core.computism.assasa.web.controller.inventory;
 
 import com.core.computism.assasa.inventory.domain.CustomerDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.inventory.service.CustomerService;
-import com.core.computism.assasa.persistence.entity.inventory.Customer;
 import com.core.computism.assasa.util.ServerResponse;
+import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;

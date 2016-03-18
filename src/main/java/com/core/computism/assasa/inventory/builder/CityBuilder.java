@@ -7,6 +7,9 @@ import com.core.computism.assasa.persistence.repository.inventory.CountryReposit
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Mustafa Amin Shah on 3/13/2016.
  */
@@ -35,5 +38,13 @@ public class CityBuilder {
         cityDto.setCountry_id(city.getCountry().getId());
 
         return cityDto;
+    }
+    public List<CityDto> buildCityDtoList(List<City> cities){
+        List<CityDto> cityDtos = new ArrayList<>(0);
+
+        for(City city : cities){
+            cityDtos.add(buildCityDto(city));
+        }
+        return cityDtos;
     }
 }

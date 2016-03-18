@@ -1,6 +1,7 @@
-package com.core.computism.assasa.web.controller;
+package com.core.computism.assasa.web.controller.inventory;
 
 import com.core.computism.assasa.ar.Response;
+import com.core.computism.assasa.web.controller.BaseController;
 import org.joda.time.DateTimeUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

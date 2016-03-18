@@ -1,5 +1,6 @@
-package com.core.computism.assasa.web.controller;
+package com.core.computism.assasa.web.controller.inventory;
 
+import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;

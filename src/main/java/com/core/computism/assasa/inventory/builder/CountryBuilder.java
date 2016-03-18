@@ -5,8 +5,11 @@ import com.core.computism.assasa.inventory.domain.CountryDto;
 import com.core.computism.assasa.persistence.entity.inventory.Country;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Created by VD on 3/13/2016.
+ * Created by M.Mustufa Amin Shah on 3/13/2016.
  */
 @Component(value = "countryBuilder")
 public class CountryBuilder {
@@ -30,5 +33,13 @@ public class CountryBuilder {
         countryDto.setName(country.getName());
 
         return countryDto;
+    }
+
+    public List<CountryDto> buildCountryDtoList(List<Country> countries) throws BuilderException {
+        List<CountryDto> countryDtos = new ArrayList<>(0);
+        for(Country country: countries){
+            countryDtos.add(builderCountryDto(country));
+        }
+        return countryDtos;
     }
 }

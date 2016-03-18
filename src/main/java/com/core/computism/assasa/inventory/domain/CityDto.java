@@ -10,6 +10,7 @@ public class CityDto {
     private String state;
     private Long country_id;
 
+
     public Long getId() {
         return id;
     }

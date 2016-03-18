@@ -16,6 +16,7 @@ public class CustomerDto {
     private String email;
     private String locationAddress;
     private Long cityId;
+    private String city;
 
 
     public String getFirstName() {
@@ -72,5 +73,13 @@ public class CustomerDto {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

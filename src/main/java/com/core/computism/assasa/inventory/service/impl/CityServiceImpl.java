@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by M.Mustafa Amin Shah on 3/13/2016.
  */
@@ -33,7 +35,7 @@ public class CityServiceImpl implements CityService {
 
             return city.getId();
         } catch (BuilderException e) {
-            throw new PosBusinessException("Error Occurred While saveing City",e);
+            throw new PosBusinessException("Error Occurred While saving City",e);
         }
     }
 
@@ -42,4 +44,13 @@ public class CityServiceImpl implements CityService {
     public CityDto getCity(Long id) {
         return cityBuilder.buildCityDto(cityRepository.findOne(id));
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<CityDto> getCitiesByCountry(Long countryId){
+        List<City> cities = cityRepository.findCityByCountryId(countryId);
+        return cityBuilder.buildCityDtoList(cities);
+    }
+
+
 }

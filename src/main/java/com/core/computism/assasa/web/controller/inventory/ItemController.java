@@ -1,8 +1,9 @@
-package com.core.computism.assasa.web.controller;
+package com.core.computism.assasa.web.controller.inventory;
 
 import com.core.computism.assasa.inventory.domain.ItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.inventory.service.ItemService;
+import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping(value = "item/")
-public class ItemController extends BaseController{
+public class ItemController extends BaseController {
 
     private static final Logger LOGGER = Logger.getLogger(ItemController.class);
 

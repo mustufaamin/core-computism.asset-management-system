@@ -3,6 +3,7 @@ package com.core.computism.assasa.inventory.builder;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.inventory.domain.CustomerDto;
 import com.core.computism.assasa.persistence.entity.inventory.Address;
+import com.core.computism.assasa.persistence.entity.inventory.City;
 import com.core.computism.assasa.persistence.entity.inventory.Customer;
 import org.springframework.stereotype.Component;
 
@@ -42,10 +43,13 @@ public class CustomerBuilder {
         customerDto.setFirstName(customer.getFirstName());
         customerDto.setLastName(customer.getLastName());
         customerDto.setLocationAddress(customer.getAddress().getLocationAddress());
-        customerDto.setCityId(customer.getAddress().getCity().getId());
         customerDto.setEmail(customer.getEmail());
         customerDto.setMobileNumber(customer.getMobileNumber());
         customerDto.setPhoneNumber(customer.getPhoneNumber());
+
+        City city = customer.getAddress().getCity();
+        customerDto.setCityId(city.getId());
+        customerDto.setCity(city.getName());
 
         return customerDto;
     }

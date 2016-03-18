@@ -21,9 +21,9 @@ import javax.persistence.PersistenceException;
 import java.util.List;
 
 /**
- * Created by VD on 2/19/2016.
+ * Created by M.Mustafa Amin Shah on 2/19/2016.
  */
-@Service
+@Service(value = "itemService")
 public class ItemServiceImpl implements ItemService {
     @Autowired private ItemRepository itemRepository;
     @Autowired private ItemBuilder itemBuilder;

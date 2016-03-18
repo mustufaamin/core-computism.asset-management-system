@@ -37,9 +37,6 @@ public class CustomerServiceImpl implements CustomerService {
             Address address = new Address();
             address.setLocationAddress(customerDto.getLocationAddress());
             address.setCity(cityRepository.findOne(customerDto.getCityId()));
-//            address.setCreationDate(new Date());
-//            address.setLastModifiedDate(new Date());
-//            address.setVersion(1L);
 
             customer.setAddress(address);
 
@@ -47,7 +44,6 @@ public class CustomerServiceImpl implements CustomerService {
             return customer.getId();
         }
         catch (BuilderException | PersistenceException e){
-            e.printStackTrace();
             throw new PosBusinessException(e);
         }
     }
