@@ -6,12 +6,19 @@ var app = angular.module('Asasa', ['ngTable', 'ngRoute', 'ngResource']);
 app.controller('MainModulesController', ['$http', '$window', '$location',  function ($http, $window, $location){
     var mainMdlsCtrl = this;
     mainMdlsCtrl.showMainModules = true;
+
     mainMdlsCtrl.showCustomerPanel = false;
+    mainMdlsCtrl.showArPanel = false;
 
     mainMdlsCtrl.openCustomerPanel =  function(path){
         mainMdlsCtrl.showMainModules = false;
         mainMdlsCtrl.showCustomerPanel = true;
         /*$window.location.href = path;*/
+    };
+
+    mainMdlsCtrl.openArPanel = function(){
+        mainMdlsCtrl.showMainModules = false;
+        mainMdlsCtrl.showArPanel = true;
     };
 
 }]);
