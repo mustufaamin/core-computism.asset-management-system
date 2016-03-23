@@ -15,6 +15,7 @@
     <link href="resources/modules/customer/css/customer.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/css/account-receivable.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/payments/payment-type/css/payment-type.css" rel="stylesheet">
+    <link href="resources/modules/account-receivable/sub-modules/admin/ar-types/css/ar-types.css" rel="stylesheet">
     <link href="resources/css/asasa/asasa.css" rel="stylesheet">
 
 
@@ -1088,6 +1089,7 @@
     <script src="resources/modules/customer/customer.js"></script>
     <script src="resources/modules/account-receivable/account-receivable.js"></script>
     <script src="resources/modules/account-receivable/sub-modules/payments/payment-type/payment-type.js"></script>
+    <script src="resources/modules/account-receivable/sub-modules/admin/ar-types/ar-types.js"></script>
     <script src="resources/libraries/bower-components/ng-table/dist/ng-table.js"></script>
     <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
 

@@ -14,7 +14,7 @@
         .controller('AccountReceivableController', ['$http', function($http){
             var arCtrl = this;
             arCtrl.showPaymentsTypePanel = false;
-
+            arCtrl.showArTypesPanel = false;
 
         }]);
 
