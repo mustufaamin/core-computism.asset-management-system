@@ -1,13 +1,17 @@
 package com.core.computism.assasa.ar.dto;
 
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * Created by VD on 2/21/2016.
  */
 @JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ArAccountTypeDto {
 
+    private Long arAccountTypeId;
     private String accountTypeName;
     private String accountTypeDesc;
     private Integer glAccountId;
@@ -22,6 +26,34 @@ public class ArAccountTypeDto {
     private String over90Message;
     private String over120Message;
     private Integer showAgingMessage;
+
+    public ArAccountTypeDto() {}
+
+    public ArAccountTypeDto(ArAccountType arAccountType) {
+        this.arAccountTypeId = arAccountType.getId();
+        this.accountTypeName = arAccountType.getAccountTypeName();
+        this.accountTypeDesc = arAccountType.getAccountTypeDesc();
+        this.glAccountId = arAccountType.getGlAccountId();
+        this.status = arAccountType.getStatus();
+        this.companyId = arAccountType.getCompanyId();
+        this.accountTypeCode = arAccountType.getAccountTypeCode();
+        this.priority = arAccountType.getPriority();
+        this.leftOverAmount = arAccountType.getLeftOverAmount();
+        this.requiredStatus = arAccountType.getRequiredStatus();
+        this.over30Message = arAccountType.getOver30Message();
+        this.over60Message = arAccountType.getOver60Message();
+        this.over90Message = arAccountType.getOver90Message();
+        this.over120Message = arAccountType.getOver120Message();
+        this.showAgingMessage = arAccountType.getShowAgingMessage();
+    }
+
+    public Long getArAccountTypeId() {
+        return arAccountTypeId;
+    }
+
+    public void setArAccountTypeId(Long arAccountTypeId) {
+        this.arAccountTypeId = arAccountTypeId;
+    }
 
     public String getAccountTypeName() {
         return accountTypeName;

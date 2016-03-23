@@ -7,10 +7,14 @@ import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountTypeRepository;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by VD on 2/21/2016.
@@ -36,5 +40,22 @@ public class ArAccountTypeServiceImpl extends BaseService implements ArAccountTy
                 .build();
 
         arAccountTypeRepository.save(arAccountType);
+    }
+
+    @Override
+    public List<ArAccountTypeDto> getArAccountTypes() throws ArBusinessException {
+
+        List<ArAccountTypeDto> arAccountTypeDtos = new ArrayList<>();
+        List<ArAccountType> arAccountTypes = arAccountTypeRepository.findAll();
+
+        if (CollectionUtils.isEmpty(arAccountTypes)) {
+            throw new ArBusinessException("Ar Account Types does not exist.");
+        }
+
+        for (ArAccountType arAccountType : arAccountTypes) {
+            ArAccountTypeDto arAccountTypeDto = new ArAccountTypeDto(arAccountType);
+            arAccountTypeDtos.add(arAccountTypeDto);
+        }
+        return arAccountTypeDtos;
     }
 }

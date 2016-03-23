@@ -64,7 +64,40 @@ CREATE TABLE `ar_payment` (
   PRIMARY KEY (`payment_id`),
   KEY `batch_id` (`batch_id`),
   KEY `ar_account_id_index` (`ar_account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+) ENGINE=InnoDB;
+
+CREATE TABLE `ar_transaction` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `ar_account_id` INT(11) DEFAULT NULL,
+  `statement_id` INT(11) NOT NULL DEFAULT '0',
+  `reference_id` INT(11) NOT NULL DEFAULT '0',
+  `source_id` INT(11) DEFAULT NULL,
+  `transaction_date` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `transaction_type` INT(1) NOT NULL DEFAULT '0',
+  `amount` DECIMAL(10,3) NOT NULL DEFAULT '0.000',
+  `status` INT(1) NOT NULL DEFAULT '0',
+  `stmt_desc_1` VARCHAR(255) DEFAULT NULL,
+  `stmt_desc_2` VARCHAR(255) DEFAULT NULL,
+  `description` VARCHAR(255) DEFAULT NULL,
+  `posting_date` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `charge_customer_id` INT(11) UNSIGNED NOT NULL DEFAULT '0',
+  `created_by` INT(11) DEFAULT NULL,
+  `glaccount_id` INT(11) UNSIGNED DEFAULT NULL,
+  `journal_entry_id` INT(11) UNSIGNED DEFAULT NULL,
+  `transaction_sub_type` INT(1) UNSIGNED DEFAULT NULL,
+  `total_amount` DECIMAL(10,3) NOT NULL DEFAULT '0.000',
+  `suppress_on_statement` TINYINT(1) DEFAULT '0',
+  `version` INT(11) DEFAULT NULL,
+  `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_date` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_transaction` (`ar_account_id`,`transaction_type`,`reference_id`),
+  KEY `ar_account_id` (`ar_account_id`),
+  KEY `reference_id` (`reference_id`),
+  KEY `statement_id` (`statement_id`),
+  KEY `transaction_type` (`transaction_type`),
+  KEY `transaction_date` (`transaction_date`)
+) ENGINE=INNODB;
 
 
 

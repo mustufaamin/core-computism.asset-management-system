@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.List;
+
 /**
  * Created by VD on 2/20/2016.
  */
@@ -52,6 +54,18 @@ public class ArAccountController extends BaseController {
         }
     }
 
+    @RequestMapping(value = "arAccountTypes", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public @ResponseBody
+    List<ArAccountTypeDto> getArAccountTypes() throws ArBusinessException {
+        List<ArAccountTypeDto> arAccountTypeDtos = null;
+        try {
+            arAccountTypeDtos = arAccountTypeService.getArAccountTypes();
+        } catch (ArBusinessException e) {
+            LOGGER.error(e);
+        }
+        return arAccountTypeDtos;
+    }
 
     @RequestMapping(value = "heartbeat", method = {RequestMethod.GET})
     public
