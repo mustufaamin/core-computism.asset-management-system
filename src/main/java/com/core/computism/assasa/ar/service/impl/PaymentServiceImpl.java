@@ -22,7 +22,7 @@ import java.util.List;
 /**
  * Created by VD on 3/6/2016.
  */
-@Service(value = "paymentServiceImpl")
+@Service(value = "arPaymentServiceImpl")
 public class PaymentServiceImpl extends BaseService implements PaymentService, IMemberCharge {
 
     @Autowired

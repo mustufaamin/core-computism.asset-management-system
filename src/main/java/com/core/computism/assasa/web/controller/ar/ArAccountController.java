@@ -55,7 +55,6 @@ public class ArAccountController extends BaseController {
     }
 
     @RequestMapping(value = "arAccountTypes", method = RequestMethod.GET)
-    @ResponseStatus(HttpStatus.ACCEPTED)
     public @ResponseBody
     List<ArAccountTypeDto> getArAccountTypes() throws ArBusinessException {
         List<ArAccountTypeDto> arAccountTypeDtos = null;

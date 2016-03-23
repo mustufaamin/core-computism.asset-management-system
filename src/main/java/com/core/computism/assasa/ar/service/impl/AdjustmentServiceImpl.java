@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by VD on 3/23/2016.
  */
-@Service
+@Service(value = "arAdjustmentServiceImpl")
 public class AdjustmentServiceImpl implements AdjustmentService, IMemberCharge {
     @Override
     public void doPost(Posting posting, List<? extends IPostable> postingList, String transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {

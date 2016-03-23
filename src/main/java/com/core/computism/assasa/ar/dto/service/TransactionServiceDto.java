@@ -21,7 +21,7 @@ import java.util.Map;
 /**
  * Created by VD on 3/13/2016.
  */
-@Service(value = "sransactionServiceDto")
+@Service(value = "transactionServiceDto")
 public class TransactionServiceDto implements IMemberCharge {
 
     public final static int PERIODIC_TR_ID = 1;
@@ -32,12 +32,6 @@ public class TransactionServiceDto implements IMemberCharge {
     public final static int POSTED_CHARGE_POST_STATUS = 1;
     public final static int UN_POSTED_CHARGE_POST_STATUS = 2;
     public final static int REVERSED_CHARGE_POST_STATUS = 3;
-
-    /*private IMemberCharge memberCharge = null;*/
-
-    /*private TransactionServiceDto(IMemberCharge memberCharge) {
-        this.memberCharge = memberCharge;
-    }*/
 
     public TransactionServiceDto() {}
 
@@ -53,24 +47,19 @@ public class TransactionServiceDto implements IMemberCharge {
     @Autowired
     Map<String,IMemberCharge> iMemberChargeMap;
 
-    @Autowired
-    @Qualifier("paymentService")
-    IMemberCharge memberCharge;
-
     public IMemberCharge getInstance(int transactionTypeId) throws ArBusinessException {
-        IMemberCharge memberChargeTest = null;
-        memberChargeTest = memberCharge;
+        IMemberCharge memberCharge = null;
         switch (transactionTypeId) {
             case PAYMENT_TR_ID: {
-                memberCharge = iMemberChargeMap.get("paymentServiceImpl");
+                memberCharge = iMemberChargeMap.get("arPaymentServiceImpl");
                 break;
             }
             case ADJUSTMENT_TR_ID: {
-                memberCharge = iMemberChargeMap.get("paymentServiceImpl");
+                memberCharge = iMemberChargeMap.get("arAdjustmentServiceImpl");
                 break;
             }
             case PERIODIC_TR_ID: {
-                memberCharge = iMemberChargeMap.get("paymentServiceImpl");
+                memberCharge = iMemberChargeMap.get("customerChargeServiceImpl");
                 break;
             }
             case POS_TR_ID: {
@@ -78,13 +67,13 @@ public class TransactionServiceDto implements IMemberCharge {
             }
 
         }
-        return memberChargeTest;
+        return memberCharge;
     }
 
     @Override
     public void doPost(Posting posting, List<? extends IPostable> postingList, String transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
-        basicPosting(posting, (postingList), transactionDate, transactionTypeId, userId, companyId);
-        memberCharge.doPost(posting, postingList, transactionDate, transactionTypeId, userId, companyId);
+       /* basicPosting(posting, (postingList), transactionDate, transactionTypeId, userId, companyId);
+        memberCharge.doPost(posting, postingList, transactionDate, transactionTypeId, userId, companyId);*/
     }
 
     public void basicPosting(Posting posting, List<? extends IPostable> postingList, String transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
