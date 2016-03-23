@@ -1,4 +1,4 @@
-package com.core.computism.assasa.persistence.repository.inventory;
+package com.core.computism.assasa.persistence.repository.pos;
 
 import com.core.computism.assasa.persistence.entity.pos.Country;
 import org.springframework.data.jpa.repository.JpaRepository;

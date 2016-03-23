@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Created by VD on 2/9/2016.
+ * Created by M.Mustufa Amin Shah on 2/9/2016.
  */
 @Entity
 @Table(name = "pos_item_type")

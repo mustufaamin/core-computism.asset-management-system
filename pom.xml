@@ -82,138 +82,138 @@
                     <scope>provided</scope>
                 </dependency>
             </dependencies>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.16</version>
-                        <configuration>
-                            <skipTests>${skipTests}</skipTests>
-                            <forkCount>1</forkCount>
-                            <reuseForks>true</reuseForks>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>default-test</id>
-                                <phase>test</phase>
-                                <goals>
-                                    <goal>test</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <groupId>com.github.eirslett</groupId>
-                        <artifactId>frontend-maven-plugin</artifactId>
-                        <!-- NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md -->
-                        <version>0.0.27</version>
-                        <!--<configuration>
-                            <workingDirectory>${basedir}/WebContent/overview</workingDirectory>
-                        </configuration>-->
-                        <executions>
-                            <execution>
-                                <id>install node and npm</id>
-                                <goals>
-                                    <goal>install-node-and-npm</goal>
-                                </goals>
-                                <configuration>
-                                    <nodeVersion>v4.2.6</nodeVersion>
-                                    <npmVersion>3.6.0</npmVersion>
-                                    <workingDirectory>${basedir}/src/main/webapp</workingDirectory>
-                                </configuration>
-                            </execution>
+            <!--<build>-->
+                <!--<plugins>-->
+                    <!--<plugin>-->
+                        <!--<groupId>org.apache.maven.plugins</groupId>-->
+                        <!--<artifactId>maven-surefire-plugin</artifactId>-->
+                        <!--<version>2.16</version>-->
+                        <!--<configuration>-->
+                            <!--<skipTests>${skipTests}</skipTests>-->
+                            <!--<forkCount>1</forkCount>-->
+                            <!--<reuseForks>true</reuseForks>-->
+                        <!--</configuration>-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<id>default-test</id>-->
+                                <!--<phase>test</phase>-->
+                                <!--<goals>-->
+                                    <!--<goal>test</goal>-->
+                                <!--</goals>-->
+                            <!--</execution>-->
+                        <!--</executions>-->
+                    <!--</plugin>-->
+                    <!--<plugin>-->
+                        <!--<groupId>com.github.eirslett</groupId>-->
+                        <!--<artifactId>frontend-maven-plugin</artifactId>-->
+                        <!--&lt;!&ndash; NB! Set <version> to the latest released version of frontend-maven-plugin, like in README.md &ndash;&gt;-->
+                        <!--<version>0.0.27</version>-->
+                        <!--&lt;!&ndash;<configuration>-->
+                            <!--<workingDirectory>${basedir}/WebContent/overview</workingDirectory>-->
+                        <!--</configuration>&ndash;&gt;-->
+                        <!--<executions>-->
+                            <!--<execution>-->
+                                <!--<id>install node and npm</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>install-node-and-npm</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<nodeVersion>v4.2.6</nodeVersion>-->
+                                    <!--<npmVersion>3.6.0</npmVersion>-->
+                                    <!--<workingDirectory>${basedir}/src/main/webapp</workingDirectory>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
 
-                            <execution>
-                                <id>npm install</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <!-- Optional configuration which provides for running any npm command -->
-                                <configuration>
-                                    <arguments>install</arguments>
-                                    <workingDirectory>${basedir}/src/main/webapp</workingDirectory>
+                            <!--<execution>-->
+                                <!--<id>npm install</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--&lt;!&ndash; Optional configuration which provides for running any npm command &ndash;&gt;-->
+                                <!--<configuration>-->
+                                    <!--<arguments>install</arguments>-->
+                                    <!--<workingDirectory>${basedir}/src/main/webapp</workingDirectory>-->
+                                    <!--&lt;!&ndash;<workingDirectory>${basedir}/WebContent/overview</workingDirectory>&ndash;&gt;-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+
+                            <!--<execution>-->
+                                <!--<id>npm install grunt</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--&lt;!&ndash; Optional configuration which provides for running any npm command &ndash;&gt;-->
+                                <!--<configuration>-->
+                                    <!--<arguments>install -g grunt-cli</arguments>-->
+                                    <!--<installDirectory>${basedir}/src/main/webapp</installDirectory>-->
+                                    <!--<workingDirectory>${basedir}/src/main/webapp</workingDirectory>-->
+                                    <!--&lt;!&ndash;<workingDirectory>${basedir}/WebContent/overview</workingDirectory>&ndash;&gt;-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+
+                            <!--<execution>-->
+                                <!--<id>npm run</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>run</arguments>-->
+                                    <!--<workingDirectory>${basedir}/src/main/webapp</workingDirectory>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+
+                            <!--<execution>-->
+                                <!--<id>npm build</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>npm</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>build</arguments>-->
+                                    <!--<workingDirectory>${basedir}/src/main/webapp</workingDirectory>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+
+                            <!--<execution>-->
+                                <!--<id>bower install</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>bower</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>install</arguments>-->
+                                    <!--<workingDirectory>${basedir}/src/main/webapp</workingDirectory>-->
+                                <!--</configuration>-->
+                            <!--</execution>-->
+
+
+                            <!--&lt;!&ndash;<execution>-->
+                                <!--<id>grunt build</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>grunt</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--<arguments>-no-color</arguments>-->
+                                    <!--<workingDirectory>${basedir}/src/main/webapp</workingDirectory>-->
+                                    <!--&lt;!&ndash;<arguments>-no-color</arguments>&ndash;&gt;-->
+                                <!--</configuration>-->
+                            <!--</execution>&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<execution>-->
+                                <!--<id>javascript tests</id>-->
+                                <!--<goals>-->
+                                    <!--<goal>karma</goal>-->
+                                <!--</goals>-->
+                                <!--<configuration>-->
+                                    <!--&lt;!&ndash;<karmaConfPath>src/test/javascript/karma.conf.ci.js</karmaConfPath>&ndash;&gt;-->
                                     <!--<workingDirectory>${basedir}/WebContent/overview</workingDirectory>-->
-                                </configuration>
-                            </execution>
+                                    <!--<karmaConfPath>${basedir}/WebContent/overview/test/karma.conf.js</karmaConfPath>-->
 
-                            <execution>
-                                <id>npm install grunt</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <!-- Optional configuration which provides for running any npm command -->
-                                <configuration>
-                                    <arguments>install -g grunt-cli</arguments>
-                                    <installDirectory>${basedir}/src/main/webapp</installDirectory>
-                                    <workingDirectory>${basedir}/src/main/webapp</workingDirectory>
-                                    <!--<workingDirectory>${basedir}/WebContent/overview</workingDirectory>-->
-                                </configuration>
-                            </execution>
+                                <!--</configuration>-->
+                            <!--</execution>&ndash;&gt;-->
 
-                            <execution>
-                                <id>npm run</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>run</arguments>
-                                    <workingDirectory>${basedir}/src/main/webapp</workingDirectory>
-                                </configuration>
-                            </execution>
-
-                            <execution>
-                                <id>npm build</id>
-                                <goals>
-                                    <goal>npm</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>build</arguments>
-                                    <workingDirectory>${basedir}/src/main/webapp</workingDirectory>
-                                </configuration>
-                            </execution>
-
-                            <execution>
-                                <id>bower install</id>
-                                <goals>
-                                    <goal>bower</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>install</arguments>
-                                    <workingDirectory>${basedir}/src/main/webapp</workingDirectory>
-                                </configuration>
-                            </execution>
-
-
-                            <!--<execution>
-                                <id>grunt build</id>
-                                <goals>
-                                    <goal>grunt</goal>
-                                </goals>
-                                <configuration>
-                                    <arguments>-no-color</arguments>
-                                    <workingDirectory>${basedir}/src/main/webapp</workingDirectory>
-                                    &lt;!&ndash;<arguments>-no-color</arguments>&ndash;&gt;
-                                </configuration>
-                            </execution>-->
-
-                            <!--<execution>
-                                <id>javascript tests</id>
-                                <goals>
-                                    <goal>karma</goal>
-                                </goals>
-                                <configuration>
-                                    &lt;!&ndash;<karmaConfPath>src/test/javascript/karma.conf.ci.js</karmaConfPath>&ndash;&gt;
-                                    <workingDirectory>${basedir}/WebContent/overview</workingDirectory>
-                                    <karmaConfPath>${basedir}/WebContent/overview/test/karma.conf.js</karmaConfPath>
-
-                                </configuration>
-                            </execution>-->
-
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
+                        <!--</executions>-->
+                    <!--</plugin>-->
+                <!--</plugins>-->
+            <!--</build>-->
         </profile>
         <profile>
             <id>Compile-Unit</id>

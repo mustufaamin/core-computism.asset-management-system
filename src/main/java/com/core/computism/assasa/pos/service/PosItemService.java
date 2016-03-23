@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Created by VD on 2/19/2016.
  */
-public interface ItemService {
+public interface PosItemService {
     Long add(ItemDto itemDto) throws PosBusinessException;
     Long update(ItemDto itemDto) throws PosBusinessException;
     ItemDto get(Long itemId) throws PosBusinessException;

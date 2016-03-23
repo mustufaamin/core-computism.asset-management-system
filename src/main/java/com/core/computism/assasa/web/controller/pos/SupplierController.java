@@ -1,4 +1,4 @@
-package com.core.computism.assasa.web.controller.inventory;
+package com.core.computism.assasa.web.controller.pos;
 
 import com.core.computism.assasa.pos.domain.SupplierDto;
 import com.core.computism.assasa.exception.PosBusinessException;

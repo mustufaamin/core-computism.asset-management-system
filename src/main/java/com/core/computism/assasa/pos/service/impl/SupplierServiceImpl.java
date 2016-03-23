@@ -4,7 +4,7 @@ import com.core.computism.assasa.pos.domain.SupplierDto;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.persistence.entity.pos.Supplier;
-import com.core.computism.assasa.persistence.repository.inventory.SupplierRepository;
+import com.core.computism.assasa.persistence.repository.pos.SupplierRepository;
 import com.core.computism.assasa.pos.service.SupplierService;
 import com.core.computism.assasa.pos.builder.SupplierBuilder;
 import org.springframework.beans.factory.annotation.Autowired;

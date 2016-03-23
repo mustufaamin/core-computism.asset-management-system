@@ -11,8 +11,8 @@ import java.util.List;
 /**
  * Created by VD on 2/20/2016.
  */
-@Component(value = "itemBuilder")
-public class ItemBuilder {
+@Component(value = "posItemBuilder")
+public class PosItemBuilder {
 
     public ItemDto buildItemDto(PosItem posItem) throws BuilderException {
         if (posItem == null) {
