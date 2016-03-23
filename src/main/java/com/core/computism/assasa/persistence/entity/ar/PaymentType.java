@@ -1,43 +1,34 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.persistence.entity.pos.*;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 /**
- * Created by VD on 3/14/2016.
+ * Created by VD on 3/23/2016.
  */
 @Entity
 @Table(name = "cmn_payment_type")
-public class PaymentType extends BaseEntity  {
+public class PaymentType extends BaseEntity {
 
-    @Column(name = "payment_type_name")
     private String paymentTypeName;
-
-    @Column(name = "payment_type_desc")
     private String paymentTypeDesc;
-
-    @Column(name = "gl_account_id")
     private Integer glAccountId;
-
-    @Column(name = "status")
     private Integer status;
-
-    @Column(name = "module_id")
     private Integer moduleId;
-
-    @Column(name = "company_id")
     private Integer companyId;
-
-    @Column(name = "display_priority")
-    private Integer displayPriority;
-
-    @Column(name = "thankyou_description")
-    private Integer description;
-
-    @Column(name = "add_on_group_id")
     private Integer addOnGroupId;
+    private Integer displayPriority;
+    private String thankyouDescription;
 
+
+    @Basic
+    @Column(name = "payment_type_name", nullable = false, insertable = true, updatable = true, length = 50)
     public String getPaymentTypeName() {
         return paymentTypeName;
     }
@@ -46,6 +37,8 @@ public class PaymentType extends BaseEntity  {
         this.paymentTypeName = paymentTypeName;
     }
 
+    @Basic
+    @Column(name = "payment_type_desc", nullable = true, insertable = true, updatable = true, length = 255)
     public String getPaymentTypeDesc() {
         return paymentTypeDesc;
     }
@@ -54,6 +47,8 @@ public class PaymentType extends BaseEntity  {
         this.paymentTypeDesc = paymentTypeDesc;
     }
 
+    @Basic
+    @Column(name = "gl_account_id", nullable = true, insertable = true, updatable = true)
     public Integer getGlAccountId() {
         return glAccountId;
     }
@@ -62,6 +57,8 @@ public class PaymentType extends BaseEntity  {
         this.glAccountId = glAccountId;
     }
 
+    @Basic
+    @Column(name = "status", nullable = true, insertable = true, updatable = true)
     public Integer getStatus() {
         return status;
     }
@@ -70,6 +67,8 @@ public class PaymentType extends BaseEntity  {
         this.status = status;
     }
 
+    @Basic
+    @Column(name = "module_id", nullable = true, insertable = true, updatable = true)
     public Integer getModuleId() {
         return moduleId;
     }
@@ -78,6 +77,8 @@ public class PaymentType extends BaseEntity  {
         this.moduleId = moduleId;
     }
 
+    @Basic
+    @Column(name = "company_id", nullable = true, insertable = true, updatable = true)
     public Integer getCompanyId() {
         return companyId;
     }
@@ -86,6 +87,8 @@ public class PaymentType extends BaseEntity  {
         this.companyId = companyId;
     }
 
+    @Basic
+    @Column(name = "add_on_group_id", nullable = true, insertable = true, updatable = true)
     public Integer getAddOnGroupId() {
         return addOnGroupId;
     }
@@ -94,6 +97,8 @@ public class PaymentType extends BaseEntity  {
         this.addOnGroupId = addOnGroupId;
     }
 
+    @Basic
+    @Column(name = "display_priority", nullable = true, insertable = true, updatable = true)
     public Integer getDisplayPriority() {
         return displayPriority;
     }
@@ -102,12 +107,15 @@ public class PaymentType extends BaseEntity  {
         this.displayPriority = displayPriority;
     }
 
-    public Integer getDescription() {
-        return description;
+    @Basic
+    @Column(name = "thankyou_description", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getThankyouDescription() {
+        return thankyouDescription;
     }
 
-    public void setDescription(Integer description) {
-        this.description = description;
+    public void setThankyouDescription(String thankyouDescription) {
+        this.thankyouDescription = thankyouDescription;
     }
+
 
 }

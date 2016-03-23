@@ -34,7 +34,7 @@ public class PaymentTypeDto {
         this. companyId= paymentType.getCompanyId();
         this. addOnGroupId= paymentType.getAddOnGroupId();
         this. displayPriority= paymentType.getDisplayPriority();
-        this. description= paymentType.getDescription();
+//        this. description= paymentType.getDescription();
     }
 
     public String getPaymentTypeName() {

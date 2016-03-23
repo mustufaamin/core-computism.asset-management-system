@@ -109,7 +109,7 @@ public class PaymentTypeBuilder {
         paymentType.setCompanyId(this.getCompanyId());
         paymentType.setAddOnGroupId(this.getAddOnGroupId());
         paymentType.setDisplayPriority(this.getDisplayPriority());
-        paymentType.setDescription(this.getDescription());
+//        paymentType.setDescription(this.getDescription());
 
         return paymentType;
     }
