@@ -1,8 +1,8 @@
 package com.core.computism.assasa.web.controller.inventory;
 
-import com.core.computism.assasa.inventory.domain.CustomerDto;
+import com.core.computism.assasa.pos.domain.CustomerDto;
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.inventory.service.CustomerService;
+import com.core.computism.assasa.pos.service.CustomerService;
 import com.core.computism.assasa.util.ServerResponse;
 import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
