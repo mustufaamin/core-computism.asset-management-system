@@ -1,11 +1,9 @@
 package com.core.computism.assasa.persistence.repository.inventory;
 
-import com.core.computism.assasa.persistence.entity.inventory.City;
-import com.core.computism.assasa.persistence.entity.inventory.Customer;
+import com.core.computism.assasa.persistence.entity.pos.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import sun.security.krb5.internal.Ticket;
 
 import java.util.List;
 
