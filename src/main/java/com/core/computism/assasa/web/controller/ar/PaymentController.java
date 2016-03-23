@@ -1,5 +1,6 @@
 package com.core.computism.assasa.web.controller.ar;
 
+import com.core.computism.assasa.ar.dto.ArAccountTypeDto;
 import com.core.computism.assasa.ar.dto.PaymentDto;
 import com.core.computism.assasa.ar.dto.PaymentTypeDto;
 import com.core.computism.assasa.ar.service.PaymentService;
@@ -13,7 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.util.List;
 
 /**
  * Created by VD on 3/6/2016.
@@ -58,5 +62,17 @@ public class PaymentController {
         } catch (ArBusinessException e) {
             LOGGER.error(e);
         }
+    }
+
+    @RequestMapping(value = "paymentTypes", method = RequestMethod.GET)
+    public @ResponseBody
+    List<PaymentTypeDto> getPaymentTypes() throws ArBusinessException {
+        List<PaymentTypeDto> paymentTypeDtos = null;
+        try {
+            paymentTypeDtos = paymentTypeService.getPaymentTypes();
+        } catch (ArBusinessException e) {
+            LOGGER.error(e);
+        }
+        return paymentTypeDtos;
     }
 }

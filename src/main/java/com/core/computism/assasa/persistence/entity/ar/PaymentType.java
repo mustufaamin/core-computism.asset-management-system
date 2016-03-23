@@ -29,14 +29,14 @@ public class PaymentType extends BaseEntity  {
     @Column(name = "company_id")
     private Integer companyId;
 
-    @Column(name = "add_on_group_id")
-    private Integer addOnGroupId;
-
     @Column(name = "display_priority")
     private Integer displayPriority;
 
-    @Column(name = "description")
+    @Column(name = "thankyou_description")
     private Integer description;
+
+    @Column(name = "add_on_group_id")
+    private Integer addOnGroupId;
 
     public String getPaymentTypeName() {
         return paymentTypeName;
@@ -109,4 +109,5 @@ public class PaymentType extends BaseEntity  {
     public void setDescription(Integer description) {
         this.description = description;
     }
+
 }
