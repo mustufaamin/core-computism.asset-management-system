@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="resources/libraries/bower-components/ng-table/dist/ng-table.css">
 
     <link href="resources/modules/customer/css/customer.css" rel="stylesheet">
+    <link href="resources/modules/account-receivable/css/account-receivable.css" rel="stylesheet">
+    <link href="resources/modules/account-receivable/sub-modules/payments/payment-type/css/payment-type.css" rel="stylesheet">
     <link href="resources/css/asasa/asasa.css" rel="stylesheet">
 
 
@@ -357,6 +359,9 @@
             <div ng-show="mainMdlsCtrl.showCustomerPanel">
                 <customer-panel></customer-panel>
             </div>
+            <div ng-show="mainMdlsCtrl.showArPanel">
+                <account-receivable-panel></account-receivable-panel>
+            </div>
             <div class="mainModules" ng-show="mainMdlsCtrl.showMainModules">
                 <div class="row-fluid">
                     <div class="span3 statbox blue" onTablet="span6" onDesktop="span3" ng-click="mainMdlsCtrl.openCustomerPanel('/customer')">
@@ -373,7 +378,7 @@
                             <a href="#"> Click Here <i class="icon-arrow-up"></i></a>
                         </div>--%>
                     </div>
-                    <div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3">
+                    <div class="span3 statbox blue noMargin" onTablet="span6" onDesktop="span3" ng-click="mainMdlsCtrl.openArPanel()">
                         <div class="number"><i class="fa fa-book"></i></div>
                         <div class="widgetTitle">Account Receivables</div>
                         <%--<div class="footer">
@@ -1081,6 +1086,8 @@
     <script src="resources/libraries/custom.js"></script>
     <script src="resources/modules/asasa.js"></script>
     <script src="resources/modules/customer/customer.js"></script>
+    <script src="resources/modules/account-receivable/account-receivable.js"></script>
+    <script src="resources/modules/account-receivable/sub-modules/payments/payment-type/payment-type.js"></script>
     <script src="resources/libraries/bower-components/ng-table/dist/ng-table.js"></script>
     <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
 
