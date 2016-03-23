@@ -1,0 +1,51 @@
+.ar-subPanel{
+    position:relative;
+    width:130px;
+    height:160px;
+    background-color: green;
+    overflow:hidden;
+}
+.ar-subHeading{
+    color: #fff;
+    font-size: 15px;
+    height:20px;
+    width: 100%;
+    padding: 2px 0px 0px 0px;
+    background: #2D89EF;
+}
+.ar-subPanel:hover > .ar-slidingOpt{
+    bottom:0;
+    transition: bottom 0.8s ease;
+}
+.ar-slidingOpt{
+    position:absolute;
+    bottom:-138px;
+    width:130px;
+    height:138px;
+    background-color: #2D89EF;
+    transition: bottom 0.8s ease;
+}
+
+.ar-subPanelCenter{
+    font-size: 62px;
+    position: absolute;
+    padding: 16px 0px 0px 26px;
+    color: #fff;
+}
+
+.ar-optBox{
+    margin-top: 10px;
+}
+.ar-option{
+    text-align: left;
+    color: #fff;
+    background: green;
+    padding: 0px 0px 0px 3px;
+}
+.ar-optLabel{
+    display: inline;
+    padding: 0px 0px 0px 3px;
+}
+.ar-optList{
+    display: inline;
+}

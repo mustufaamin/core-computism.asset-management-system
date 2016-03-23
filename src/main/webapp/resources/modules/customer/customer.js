@@ -1,5 +1,5 @@
 /**
- * Created by VD on 3/12/2016.
+ * Created by Muhammad Umer on 3/12/2016.
  */
 (function(){
     angular.module('Asasa')
@@ -29,10 +29,31 @@
             custCtrl.getCustomerList = function(){
                 custCtrl.listCustomer = [];
                 custGatewaySrv.listCustomer().$promise.then(function(response){
-                    custCtrl.listCustomer = response;
+                    if(response != null){
+                        for(var i = 0; i < response.data.length; i++){
+                            var customer = {};
+                            customer.id = response.data[i].id;
+                            customer.firstName = response.data[i].firstName;
+                            customer.lastName = response.data[i].lastName;
+                            customer.locationAddress = response.data[i].locationAddress;
+                            customer.phoneNumber = response.data[i].phoneNumber;
+                            customer.mobileNumber = response.data[i].mobileNumber;
+                            customer.email = response.data[i].email;
+                            customer.cityId = response.data[i].cityId;
+
+                            custCtrl.listCustomer.push(customer);
+                        }
+                    }
                 });
             };
             custCtrl.getCustomerList();
+
+            custCtrl.addCustomer = function (){
+                var customer = {};
+                custGatewaySrv.addCustomer().$promise.then(function(response){
+
+                });
+            };
 
             custCtrl.openCustomerSlidePanel = function(type){
                 custCtrl.showPanel = true;
@@ -55,7 +76,9 @@
             var custGatewaySrv = this;
             return $resource('',{},
             {
-                listCustomer: {method: 'GET', isArray: false, url: '/customer/list'}
+                listCustomer: {method: 'GET', isArray: false, url: '/customer/list'},
+
+                addCustomer: {method: 'POST', isArray: false, url: '/customer/add'}
                 /*addItem: {method: 'POST',isArray: false,url:'item/:add'},
                 addItemType: {method: 'POST',isArray: false,url:'/item/addType/:typeName'},
 

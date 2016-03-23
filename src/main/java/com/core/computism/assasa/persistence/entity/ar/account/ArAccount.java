@@ -21,7 +21,6 @@ public class ArAccount extends BaseEntity {
     private Integer accountStatus;
     private Integer companyId;
     private Integer createdBy;
-    private Date modifiedDate;
     private Integer modifiedBy;
     private Date activationDate;
     private Date deactivationDate;
@@ -78,15 +77,6 @@ public class ArAccount extends BaseEntity {
 
     public void setCreatedBy(Integer createdBy) {
         this.createdBy = createdBy;
-    }
-
-    @Column(name = "modified_date")
-    public Date getModifiedDate() {
-        return modifiedDate;
-    }
-
-    public void setModifiedDate(Date modifiedDate) {
-        this.modifiedDate = modifiedDate;
     }
 
     @Column(name = "modified_by")

@@ -1,72 +1,56 @@
 <span id="customerPanel" ng-controller="CustomerController as custCtrl">
-<div class="row">
-  <div class="col-xs-12">
-    <div class="srch-box">
-      <div class="row">
-        <div class="col-xs-4">
-          <div class="c-form-gp pos-rel">
-            <label class="c-form-lbl">Customer</label>
-            <input <%--typeahead-click-open typeahead-min-length="0" ng-model="" ng-required="true"
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="srch-box">
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="c-form-gp pos-rel">
+              <label class="c-form-lbl">Customer</label>
+              <input <%--typeahead-click-open typeahead-min-length="0" ng-model="" ng-required="true"
                    uib-typeahead="driver as driver.label for driver in getDrivers($viewValue)"
                    typeahead-on-select="onSelectDriver($item)" typeahead-no-results="noDrivers" typeahead-wait-ms=1500--%>
-                    class="c-form-inpt custSearch" type="text" class="c-form-inpt" ng-disabled="" placeholder="Search customer.."/>
-            <%--<span class="ccload loadtca adjCaptLoader" ng-show="drivAdjustCtrl.adjCaptLoader"></span>--%>
-            <button class="c-btn c-btn-action cust-add-btn"
-                    ng-class=""
-                    ng-disabled=""
-                    ng-click="custCtrl.openCustomerSlidePanel(1)">Add Customer</button>
+                      class="c-form-inpt custSearch" type="text" class="c-form-inpt" ng-disabled="" placeholder="Search customer.."/>
+              <%--<span class="ccload loadtca adjCaptLoader" ng-show="drivAdjustCtrl.adjCaptLoader"></span>--%>
+              <button class="c-btn c-btn-action cust-add-btn"
+                      ng-class=""
+                      ng-disabled=""
+                      ng-click="custCtrl.openCustomerSlidePanel(1)">Add Customer</button>
 
-            <%--<div class="col-xs-3 pull-right">
-              <div class="c-form-gp btn-add-adjst">
-                <button class="c-btn c-btn-action"
-                        ng-class=""
-                        ng-disabled=""
-                        ng-click="">Add Customer</button>
-              </div>
-            </div>--%>
+              <%--<div class="col-xs-3 pull-right">
+                <div class="c-form-gp btn-add-adjst">
+                  <button class="c-btn c-btn-action"
+                          ng-class=""
+                          ng-disabled=""
+                          ng-click="">Add Customer</button>
+                </div>
+              </div>--%>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 <div class="row">
   <div class="col-xs-12">
     <div class="cap-adj-cycle">
       <div class="cap-adj-cyc-head">List of Current Customers</div>
 
       <table ng-table="custList" class="table" show-filter="true">
-        <tr>
+        <tr ng-repeat="customer in custCtrl.listCustomer">
           <td title="'#'">
             <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(2)">View: <i class="fa fa-eye"></i><br></div>
             <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(3)">Edit: <i class="fa fa-scissors"></i></div>
           </td>
           <td title="'ID'">
-            Umer</td>
+            {{customer.id}}</td>
           <td title="'Name'">
-            Mustufa</td>
+            {{customer.firstName}} {{customer.lastName}}</td>
           <td title="'Gender'">
-            Male</td>
+            {{customer.gender}}</td>
           <td title="'Address'">
-            ##@#@DDSD</td>
-          <td title="'Contact #'">
-            322343</td>
-
-        </tr>
-        <tr>
-          <td title="'#'">
-            <i class="fa fa-eye"></i><i class="fa fa-scissors"></i>
-          </td>
-          <td title="'ID'">
-            faizan</td>
-          <td title="'Name'">
-            umer</td>
-          <td title="'Gender'">
-            sadasd</td>
-          <td title="'Address'">
-            3r3edwd</td>
-          <td title="'Contact #'">
-            5456sa4d</td>
+            {{customer.locationAddress}}</td>
+          <td title="'Mobile #'">
+            {{customer.mobileNumber}}</td>
 
         </tr>
       </table>
@@ -110,5 +94,5 @@
   </div>
 </div>
 <add-edit-customer-slide-panel></add-edit-customer-slide-panel>
-  </span>
+</span>
 
