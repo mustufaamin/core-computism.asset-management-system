@@ -15,7 +15,7 @@ public class PaymentTypeBuilder {
     private Integer companyId;
     private Integer addOnGroupId;
     private Integer displayPriority;
-    private Integer description;
+    private String description;
 
     public PaymentTypeBuilder setPaymentTypeName(String paymentTypeName) {
         this.paymentTypeName = paymentTypeName;
@@ -57,12 +57,12 @@ public class PaymentTypeBuilder {
         return this;
     }
 
-    public PaymentTypeBuilder setDescription(Integer description) {
+    public PaymentTypeBuilder setDescription(String description) {
         this.description = description;
         return this;
     }
 
-    public Integer getDescription() {
+    public String getDescription() {
         return description;
     }
 
@@ -109,7 +109,7 @@ public class PaymentTypeBuilder {
         paymentType.setCompanyId(this.getCompanyId());
         paymentType.setAddOnGroupId(this.getAddOnGroupId());
         paymentType.setDisplayPriority(this.getDisplayPriority());
-//        paymentType.setDescription(this.getDescription());
+        paymentType.setThankyouDescription(this.getDescription());
 
         return paymentType;
     }

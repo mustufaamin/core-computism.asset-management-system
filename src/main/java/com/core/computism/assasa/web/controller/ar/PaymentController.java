@@ -64,7 +64,7 @@ public class PaymentController {
         }
     }
 
-    @RequestMapping(value = "paymentTypes", method = RequestMethod.GET)
+    @RequestMapping(value = "paymenttypes", method = RequestMethod.GET)
     public @ResponseBody
     List<PaymentTypeDto> getPaymentTypes() throws ArBusinessException {
         List<PaymentTypeDto> paymentTypeDtos = null;
