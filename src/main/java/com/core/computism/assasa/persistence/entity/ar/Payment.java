@@ -1,5 +1,10 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.ar.enumtype.TransactionType;
+import com.core.computism.assasa.ar.transaction.IPostable;
+import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
+import javax.persistence.Transient;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,7 +16,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "ar_payment")
-public class Payment extends BaseEntity {
+public class Payment extends BaseEntity implements IPostable {
 
     private Integer arAccountId;
     private Integer referenceArAccountId;
@@ -178,6 +183,63 @@ public class Payment extends BaseEntity {
     @Column(name = "reference_id")
     public Integer getReferenceId() {
         return referenceId;
+    }
+
+    @Transient
+    public Long getArTransactionReferenceId() {
+        return this.getId();
+    }
+
+    @Transient
+    public int getArTransactionSourceId() {
+        return 0;
+    }
+
+    @Transient
+    public Date getArTransactionDate() {
+        return this.paymentDate;
+    }
+
+
+
+    @Transient
+    public int getArTransactionType() {
+        return TransactionType.PAYMENT_TR_ID.getCode();
+    }
+
+    @Transient
+    public BigDecimal getArTransactionAmount() {
+        return this.getPaymentAmount().negate();
+    }
+
+    @Transient
+    public String getArTransactionStatementDescription1() {
+        return this.getDescription();
+    }
+
+    @Transient
+    public String getArTransactionStatementDescription2() {
+        return this.getStatementDescription2();
+    }
+
+    @Transient
+    public String getArTransactionInternalDescription() {
+        return "";
+    }
+
+    @Transient
+    public int getGlAccountId() {
+        return this.getPaymentTypeId();
+    }
+
+    @Transient
+    public JournalEntry getJournalEntry() {
+        return null;
+    }
+
+    @Transient
+    public int getArTransactionSubType() {
+        return TransactionType.PAYMENT_TR_ID.getCode();
     }
 
     public void setReferenceId(Integer referenceId) {
