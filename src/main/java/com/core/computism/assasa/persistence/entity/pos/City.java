@@ -5,11 +5,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  * Created by VD on 3/13/2016.
  */
 @Entity
+@Table(name = "cmn_city")
 public class City extends BaseEntity {
     private String name;
     private String state;

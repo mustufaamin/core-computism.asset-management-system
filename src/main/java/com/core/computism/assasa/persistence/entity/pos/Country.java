@@ -3,11 +3,13 @@ package com.core.computism.assasa.persistence.entity.pos;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * Created by VD on 3/13/2016.
  */
 @Entity
+@Table(name = "cmn_country")
 public class Country extends BaseEntity{
     private String name;
 
