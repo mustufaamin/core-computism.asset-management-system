@@ -1,4 +1,4 @@
-<span id="arTypesPanel" ng-controller="AccountReceivableTypesController as arTypesCtrl">
+<span ui-view id="arTypesPanel" ng-controller="AccountReceivableTypesController as arTypesCtrl">
   <div class="row">
     <div class="col-xs-12">
       <div class="srch-box">

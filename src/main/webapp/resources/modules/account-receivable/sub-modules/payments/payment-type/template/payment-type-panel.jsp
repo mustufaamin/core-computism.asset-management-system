@@ -1,4 +1,4 @@
-<span id="paymentTypePanel" ng-controller="PaymentTypeController as paymentTypeCtrl">
+<span ui-view id="paymentTypePanel" ng-controller="PaymentTypeController as paymentTypeCtrl">
   <div class="row">
     <div class="col-xs-12">
       <div class="srch-box">
