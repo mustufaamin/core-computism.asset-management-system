@@ -14,7 +14,7 @@ import java.util.List;
  * Created by VD on 2/9/2016.
  */
 @Entity
-@Table(name = "customer")
+@Table(name = "cc_customer")
 public class Customer extends BaseEntity {
     private String firstName;
     private String lastName;
@@ -22,7 +22,7 @@ public class Customer extends BaseEntity {
     private String mobileNumber;
     private String email;
     private Address address;
-    private List<Order> orders;
+    private List<PosOrder> posOrders;
 
     @Basic
     @Column(name = "first_name", nullable = false, insertable = true, updatable = true, length = 255)
@@ -85,11 +85,11 @@ public class Customer extends BaseEntity {
     }
 
     @OneToMany(mappedBy = "customer")
-    public List<Order> getOrders() {
-        return orders;
+    public List<PosOrder> getPosOrders() {
+        return posOrders;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setPosOrders(List<PosOrder> posOrders) {
+        this.posOrders = posOrders;
     }
 }

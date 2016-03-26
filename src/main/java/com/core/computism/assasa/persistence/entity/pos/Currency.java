@@ -13,12 +13,12 @@ import java.util.List;
  * Created by VD on 2/9/2016.
  */
 @Entity
-@Table(name = "currency")
+@Table(name = "cmn_currency")
 public class Currency extends BaseEntity {
 
     private String name;
     private String symbol;
-    private List<Order> orders;
+    private List<PosOrder> posOrders;
     private List<PurchaseOrder> purchaseOrders;
 
     @Basic
@@ -51,11 +51,11 @@ public class Currency extends BaseEntity {
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "currency")
-    public List<Order> getOrders() {
-        return orders;
+    public List<PosOrder> getPosOrders() {
+        return posOrders;
     }
 
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
+    public void setPosOrders(List<PosOrder> posOrders) {
+        this.posOrders = posOrders;
     }
 }

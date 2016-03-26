@@ -11,7 +11,7 @@ import javax.persistence.Table;
  * Created by VD on 2/9/2016.
  */
 @Entity
-@Table(name = "address")
+@Table(name = "cmn_address")
 public class Address extends BaseEntity {
 
     private String locationAddress;

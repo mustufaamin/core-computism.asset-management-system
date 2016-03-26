@@ -15,8 +15,8 @@ import java.util.List;
  * Created by VD on 2/9/2016.
  */
 @Entity
-@Table(name = "order")
-public class Order extends BaseEntity{
+@Table(name = "pos_order")
+public class PosOrder extends BaseEntity{
 
     private Integer invoiceNumber;
     private Integer batchNumber;
@@ -25,7 +25,7 @@ public class Order extends BaseEntity{
     private Customer customer;
     private Currency currency;
 
-    private List<OrderItem> orderItems;
+    private List<PosOrderItem> posOrderItems;
 
     @Basic
     @Column(name = "invoice_number", nullable = true, insertable = true, updatable = true)
@@ -89,12 +89,12 @@ public class Order extends BaseEntity{
         this.currency = currency;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "order")
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "posOrder")
+    public List<PosOrderItem> getPosOrderItems() {
+        return posOrderItems;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    public void setPosOrderItems(List<PosOrderItem> posOrderItems) {
+        this.posOrderItems = posOrderItems;
     }
 }

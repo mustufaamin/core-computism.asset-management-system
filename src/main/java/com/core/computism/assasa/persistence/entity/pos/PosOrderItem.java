@@ -11,11 +11,11 @@ import javax.persistence.Table;
  * Created by VD on 2/9/2016.
  */
 @Entity
-@Table(name = "order_item")
-public class OrderItem extends BaseEntity {
+@Table(name = "pos_order_item")
+public class PosOrderItem extends BaseEntity {
 
     private PosItem PosItem;
-    private Order order;
+    private PosOrder posOrder;
     private Integer quantity;
 
     @ManyToOne
@@ -29,12 +29,12 @@ public class OrderItem extends BaseEntity {
     }
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
-    public Order getOrder() {
-        return order;
+    public PosOrder getPosOrder() {
+        return posOrder;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setPosOrder(PosOrder posOrder) {
+        this.posOrder = posOrder;
     }
 
     @Basic

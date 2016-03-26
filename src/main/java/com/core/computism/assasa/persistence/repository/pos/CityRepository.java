@@ -13,6 +13,6 @@ import java.util.List;
 public interface CityRepository extends JpaRepository<City,Long> {
 
     @Query("from City c where c.country.id = :countryId")
-    List<City> findCityByCountryId(@Param("countryId") Long bookingId);
+    List<City> findCityByCountryId(@Param("countryId") Long countryId);
 
 }
