@@ -20,7 +20,7 @@ public class PaymentTypeDto {
     private Integer companyId;
     private Integer addOnGroupId;
     private Integer displayPriority;
-    private Integer description;
+    private String description;
 
     public PaymentTypeDto() {}
 
@@ -32,9 +32,9 @@ public class PaymentTypeDto {
         this. status= paymentType.getStatus();
         this. moduleId= paymentType.getModuleId();
         this. companyId= paymentType.getCompanyId();
-        this. addOnGroupId= paymentType.getAddOnGroupId();
+        this. addOnGroupId= null;
         this. displayPriority= paymentType.getDisplayPriority();
-//        this. description= paymentType.getDescription();
+        this. description= paymentType.getThankyouDescription();
     }
 
     public String getPaymentTypeName() {
@@ -101,11 +101,19 @@ public class PaymentTypeDto {
         this.displayPriority = displayPriority;
     }
 
-    public Integer getDescription() {
+    public Long getPaymentTypeId() {
+        return paymentTypeId;
+    }
+
+    public void setPaymentTypeId(Long paymentTypeId) {
+        this.paymentTypeId = paymentTypeId;
+    }
+
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Integer description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 }
