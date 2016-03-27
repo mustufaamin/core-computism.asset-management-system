@@ -3,7 +3,7 @@ package com.core.computism.assasa.pos.domain;
 /**
  * Created by M.Mustufa Amin on 2/19/2016.
  */
-public class ItemDto {
+public class PosItemDto {
     private Long id;
     private String itemNumber;
     private String itemUnit;

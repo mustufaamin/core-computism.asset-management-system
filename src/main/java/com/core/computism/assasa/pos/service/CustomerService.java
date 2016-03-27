@@ -9,7 +9,7 @@ import java.util.List;
  * Created by Mustafa Amin Shah  on 2/28/2016.
  */
 public interface CustomerService {
-    Long add(CustomerDto customerDto) throws PosBusinessException;
+    CustomerDto add(CustomerDto customerDto) throws PosBusinessException;
     CustomerDto getCustomer(Long customerId) throws PosBusinessException;
     List<CustomerDto> getCustomers() throws PosBusinessException;
 }

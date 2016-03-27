@@ -1,6 +1,6 @@
 package com.core.computism.assasa.web.controller.pos;
 
-import com.core.computism.assasa.pos.domain.ItemDto;
+import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.pos.service.PosItemService;
 import com.core.computism.assasa.web.controller.BaseController;
@@ -24,10 +24,10 @@ public class ItemController extends BaseController {
     @Autowired private PosItemService posItemService;
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public Long add(@RequestBody ItemDto itemDto) throws PosBusinessException {
+    public Long add(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
 
         LOGGER.info("Adding item ...");
-        return posItemService.add(itemDto);
+        return posItemService.add(posItemDto);
     }
     @RequestMapping(value = "addType/{typeName}", method = RequestMethod.POST)
     public Long addType(@PathVariable String typeName) throws PosBusinessException {
@@ -36,8 +36,8 @@ public class ItemController extends BaseController {
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public Long addType(@RequestBody ItemDto itemDto) throws PosBusinessException {
+    public Long addType(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
         LOGGER.info("Adding item ...");
-        return posItemService.update(itemDto);
+        return posItemService.update(posItemDto);
     }
 }

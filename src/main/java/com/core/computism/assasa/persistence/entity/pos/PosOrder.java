@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import java.util.List;
 
 /**
- * Created by VD on 2/9/2016.
+ * Created by M.Mustufa Amin Shah on 2/9/2016.
  */
 @Entity
 @Table(name = "pos_order")
@@ -24,6 +24,7 @@ public class PosOrder extends BaseEntity{
     private Integer numberOfItems;
     private Customer customer;
     private Currency currency;
+
 
     private List<PosOrderItem> posOrderItems;
 

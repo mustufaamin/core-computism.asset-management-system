@@ -31,9 +31,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
-    public Long add(CustomerDto customerDto) throws PosBusinessException {
+    public CustomerDto add(CustomerDto customerDto) throws PosBusinessException {
         try{
-            Customer customer = customerBuilder.buildCustomerEntity(customerDto);
+              Customer customer = customerBuilder.buildCustomerEntity(customerDto);
 
             Address address = new Address();
             address.setLocationAddress(customerDto.getLocationAddress());
@@ -42,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
             customer.setAddress(address);
 
             customer = customerRepository.save(customer);
-            return customer.getId();
+            return customerBuilder.buildCustomerDto(customer);
         }
         catch (BuilderException | PersistenceException e){
             throw new PosBusinessException(e);
