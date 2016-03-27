@@ -2,12 +2,15 @@ package com.core.computism.assasa.pos.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
+import java.security.acl.LastOwnerException;
+
 /**
  * Created by M.Mustafa Amin Shah on 2/28/2016.
  */
 @JsonAutoDetect
 public class CustomerDto {
 
+    private Long id;
     private String firstName;
     private String lastName;
     private String phoneNumber;
@@ -16,7 +19,16 @@ public class CustomerDto {
     private String locationAddress;
     private Long cityId;
     private String city;
+    private String country;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -40,6 +52,14 @@ public class CustomerDto {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public String getEmail() {
@@ -66,19 +86,19 @@ public class CustomerDto {
         this.cityId = cityId;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
-    }
-
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

@@ -1,5 +1,6 @@
 package com.core.computism.assasa.pos.service.impl;
 
+import com.core.computism.assasa.persistence.repository.pos.CountryRepository;
 import com.core.computism.assasa.pos.domain.CustomerDto;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
@@ -26,6 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired private CustomerRepository customerRepository;
     @Autowired private CityRepository cityRepository;
     @Autowired private CustomerBuilder customerBuilder;
+    @Autowired private CountryRepository countryRepository;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
