@@ -1,20 +1,25 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
-import com.core.computism.assasa.persistence.entity.pos.*;
+import com.core.computism.assasa.ar.IJournalizeableItem;
+import com.core.computism.assasa.ar.dto.service.JournalEntryItem;
+import com.core.computism.assasa.ar.dto.service.JournalizeableItemDetail;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
+import javax.persistence.Transient;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by VD on 3/23/2016.
  */
 @Entity
 @Table(name = "cmn_payment_type")
-public class PaymentType extends BaseEntity {
+public class PaymentType extends BaseEntity implements IJournalizeableItem {
 
     private String paymentTypeName;
     private String paymentTypeDesc;
@@ -115,6 +120,28 @@ public class PaymentType extends BaseEntity {
 
     public void setThankyouDescription(String thankyouDescription) {
         this.thankyouDescription = thankyouDescription;
+    }
+
+    @Transient
+    public String getJournalizeableItemName() {
+        return this.getPaymentTypeName();
+    }
+
+    @Transient
+    public GlAccount getAccountDetail() {
+        return new GlAccount();
+    }
+
+    @Transient
+    public List<JournalEntryItem> getJournalizeableItems(GlAccount accountDetail, JournalizeableItemDetail journalizeableItemDetail, String journalEntryItemComments) {
+        BigDecimal amountToDistribute = journalizeableItemDetail.getAmount();
+        String journalEntryItemComment = this.getPaymentTypeName() + journalEntryItemComments;
+
+        List<JournalEntryItem> journalizeableItems = new ArrayList<JournalEntryItem>();
+        JournalEntryItem ji = new JournalEntryItem(accountDetail, journalizeableItemDetail, journalEntryItemComment, (amountToDistribute.doubleValue() < 0));
+        journalizeableItems.add(ji);
+
+        return journalizeableItems;
     }
 
 
