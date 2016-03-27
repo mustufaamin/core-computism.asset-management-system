@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by M.Mustafa Amin Shah on 3/10/2016.
  */
-public class OrderDto {
+public class PosOrderDto {
 
     private Integer invoiceNumber;
     private Integer batchNumber;
@@ -14,7 +14,7 @@ public class OrderDto {
     private Long customerId;
     private Long currencyId;
 
-    List<ItemDto> orderItems;
+    List<PosItemDto> orderItems;
 
     public Integer getInvoiceNumber() {
         return invoiceNumber;
@@ -64,11 +64,11 @@ public class OrderDto {
         this.currencyId = currencyId;
     }
 
-    public List<ItemDto> getOrderItems() {
+    public List<PosItemDto> getOrderItems() {
         return orderItems;
     }
 
-    public void setOrderItems(List<ItemDto> orderItems) {
+    public void setOrderItems(List<PosItemDto> orderItems) {
         this.orderItems = orderItems;
     }
 }

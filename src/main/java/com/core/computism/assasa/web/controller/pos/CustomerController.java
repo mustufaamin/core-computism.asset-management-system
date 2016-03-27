@@ -27,9 +27,10 @@ public class CustomerController extends BaseController {
     CustomerService customerService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public Long add(@RequestBody CustomerDto customerDto) throws PosBusinessException {
+    public ServerResponse<CustomerDto> add(@RequestBody CustomerDto customerDto) throws PosBusinessException {
         LOGGER.info("Adding Customer..");
-        return customerService.add(customerDto);
+        ServerResponse<CustomerDto> response = toResponse(customerService.add(customerDto));
+        return response;
     }
 
     @RequestMapping(value = "list",method = RequestMethod.GET)

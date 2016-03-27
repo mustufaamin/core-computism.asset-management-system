@@ -1,7 +1,7 @@
 package com.core.computism.assasa.pos.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.pos.domain.ItemDto;
+import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.persistence.entity.pos.PosItem;
 import org.springframework.stereotype.Component;
 
@@ -14,48 +14,44 @@ import java.util.List;
 @Component(value = "posItemBuilder")
 public class PosItemBuilder {
 
-    public ItemDto buildItemDto(PosItem posItem) throws BuilderException {
+    public PosItemDto buildItemDto(PosItem posItem) throws BuilderException {
         if (posItem == null) {
             throw new BuilderException("Unable to build Item DTO for [null] Item.");
         }
-        ItemDto itemDto = new ItemDto();
+        PosItemDto posItemDto = new PosItemDto();
 
-        itemDto.setId(posItem.getId());
-        itemDto.setItemNumber(posItem.getItemNumber());
-        itemDto.setItemUnit(posItem.getItemUnit());
-        itemDto.setStockLevel(posItem.getStockLevel());
-        itemDto.setMinStockLevel(posItem.getMinStockLevel());
-        itemDto.setCostPrice(posItem.getCostPrice());
-        itemDto.setSalesPrice(posItem.getSalesPrice());
-        itemDto.setLocation(posItem.getLocation());
-        itemDto.setItemDescription(posItem.getItemDescription());
+        posItemDto.setId(posItem.getId());
+        posItemDto.setItemNumber(posItem.getItemNumber());
+        posItemDto.setItemUnit(posItem.getItemUnit());
+        posItemDto.setStockLevel(posItem.getStockLevel());
+        posItemDto.setMinStockLevel(posItem.getMinStockLevel());
+        posItemDto.setCostPrice(posItem.getCostPrice());
+        posItemDto.setSalesPrice(posItem.getSalesPrice());
+        posItemDto.setLocation(posItem.getLocation());
+        posItemDto.setItemDescription(posItem.getItemDescription());
 
-        return itemDto;
+        return posItemDto;
     }
-    public PosItem buildItemEntity( PosItem posItem, ItemDto itemDto) {
+    public PosItem buildItemEntity( PosItem posItem, PosItemDto posItemDto) {
 
-        posItem.setItemNumber(itemDto.getItemNumber());
-        posItem.setItemUnit(itemDto.getItemUnit());
-        posItem.setStockLevel(itemDto.getStockLevel());
-        posItem.setMinStockLevel(itemDto.getMinStockLevel());
-        posItem.setCostPrice(itemDto.getCostPrice());
-        posItem.setSalesPrice(itemDto.getSalesPrice());
-        posItem.setLocation(itemDto.getLocation());
-        posItem.setItemDescription(itemDto.getItemDescription());
+        posItem.setItemNumber(posItemDto.getItemNumber());
+        posItem.setItemUnit(posItemDto.getItemUnit());
+        posItem.setStockLevel(posItemDto.getStockLevel());
+        posItem.setMinStockLevel(posItemDto.getMinStockLevel());
+        posItem.setCostPrice(posItemDto.getCostPrice());
+        posItem.setSalesPrice(posItemDto.getSalesPrice());
+        posItem.setLocation(posItemDto.getLocation());
+        posItem.setItemDescription(posItemDto.getItemDescription());
         return posItem;
 
     }
-    public List<ItemDto> buildItemDtoList(List<PosItem> posItems) throws BuilderException {
-        if(posItems == null || posItems.size() < 1){
-            throw new BuilderException("Unable to build Item DTO List for [null] Item or empty.");
-        }
-
-        List<ItemDto> itemDtos = new ArrayList<>();
+    public List<PosItemDto> buildItemDtoList(List<PosItem> posItems) throws BuilderException {
+        List<PosItemDto> posItemDtos = new ArrayList<>();
 
         for(PosItem posItem : posItems){
-            itemDtos.add(buildItemDto(posItem));
+            posItemDtos.add(buildItemDto(posItem));
         }
-        return itemDtos;
+        return posItemDtos;
     }
 
 
