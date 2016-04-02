@@ -32,7 +32,7 @@ public class PosItemServiceImpl implements PosItemService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
-    public Long add(PosItemDto posItemDto) throws PosBusinessException {
+    public PosItemDto add(PosItemDto posItemDto) throws PosBusinessException {
 
         try {
             if (posItemDto == null) {
@@ -49,15 +49,15 @@ public class PosItemServiceImpl implements PosItemService {
             posItem.setPosItemType(posItemType);
 
             posItem = posItemRepository.save(posItem);
-            return posItem.getId();
-        } catch(PersistenceException e){
+            return posItemBuilder.buildItemDto(posItem);
+        } catch(PersistenceException | BuilderException e){
             throw new PosBusinessException(e);
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
-    public Long update(PosItemDto posItemDto) throws PosBusinessException {
+    public PosItemDto update(PosItemDto posItemDto) throws PosBusinessException {
         try {
             if (posItemDto == null) {
                 throw new PosBusinessException("No DTO Found");
@@ -73,8 +73,8 @@ public class PosItemServiceImpl implements PosItemService {
             posItem.setPosItemType(posItemType);
 
             posItem = posItemRepository.save(posItem);
-            return posItem.getId();
-        } catch(PersistenceException e){
+            return posItemBuilder.buildItemDto(posItem);
+        } catch(PersistenceException | BuilderException e){
             throw new PosBusinessException(e);
         }
     }
