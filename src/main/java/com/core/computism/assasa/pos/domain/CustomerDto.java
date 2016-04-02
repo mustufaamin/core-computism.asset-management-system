@@ -18,9 +18,9 @@ public class CustomerDto {
     private String email;
     private String locationAddress;
     private Long cityId;
-    private String city;
-    private String country;
-
+    private String cityName;
+    private Long countryId;
+    private String countryName;
 
     public Long getId() {
         return id;
@@ -86,19 +86,27 @@ public class CustomerDto {
         this.cityId = cityId;
     }
 
-    public String getCity() {
-        return city;
+    public String getCityName() {
+        return cityName;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
-    public String getCountry() {
-        return country;
+    public Long getCountryId() {
+        return countryId;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountryId(Long countryId) {
+        this.countryId = countryId;
+    }
+
+    public String getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
     }
 }
