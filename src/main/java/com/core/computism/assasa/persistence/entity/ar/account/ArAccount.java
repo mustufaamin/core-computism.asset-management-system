@@ -1,9 +1,13 @@
 package com.core.computism.assasa.persistence.entity.ar.account;
 
 import com.core.computism.assasa.persistence.entity.ar.BaseEntity;
+import com.core.computism.assasa.persistence.entity.pos.Customer;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -15,8 +19,8 @@ import java.util.Date;
 @Table(name = "ar_account")
 public class ArAccount extends BaseEntity {
 
-    private Integer customerId;
-    private Integer accountTypeId;
+    private Customer customer;
+    private ArAccountType arAccountType;
     private BigDecimal currentBalance;
     private Integer accountStatus;
     private Integer companyId;
@@ -25,31 +29,24 @@ public class ArAccount extends BaseEntity {
     private Date activationDate;
     private Date deactivationDate;
 
-    @Column(name = "customer_id")
-    public Integer getCustomerId() {
-        return customerId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false)
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    @Column(name = "account_type_id")
-    public Integer getAccountTypeId() {
-        return accountTypeId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_type_id", referencedColumnName = "id", nullable = false)
+    public ArAccountType getArAccountType() {
+        return arAccountType;
     }
 
-    public void setAccountTypeId(Integer accountTypeId) {
-        this.accountTypeId = accountTypeId;
-    }
-
-    @Column(name = "current_balance")
-    public BigDecimal getCurrentBalance() {
-        return currentBalance;
-    }
-
-    public void setCurrentBalance(BigDecimal currentBalance) {
-        this.currentBalance = currentBalance;
+    public void setArAccountType(ArAccountType arAccountType) {
+        this.arAccountType = arAccountType;
     }
 
     @Column(name = "account_status")
@@ -104,5 +101,14 @@ public class ArAccount extends BaseEntity {
 
     public void setDeactivationDate(Date deactivationDate) {
         this.deactivationDate = deactivationDate;
+    }
+
+    @Column(name = "current_balance")
+    public BigDecimal getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(BigDecimal currentBalance) {
+        this.currentBalance = currentBalance;
     }
 }

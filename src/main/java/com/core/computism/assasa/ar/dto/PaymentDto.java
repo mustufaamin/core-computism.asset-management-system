@@ -11,9 +11,9 @@ import java.util.Date;
 @JsonAutoDetect
 public class PaymentDto {
 
-    private Integer arAccountId;
+    private Long arAccountId;
     private Integer referenceArAccountId;
-    private Integer paymentTypeId;
+    private Long paymentTypeId;
     private BigDecimal paymentAmount;
     private Date paymentDate;
     private Date postedDate;
@@ -29,11 +29,11 @@ public class PaymentDto {
     private String statementDescription2;
     private Integer referenceId;
 
-    public Integer getArAccountId() {
+    public Long getArAccountId() {
         return arAccountId;
     }
 
-    public void setArAccountId(Integer arAccountId) {
+    public void setArAccountId(Long arAccountId) {
         this.arAccountId = arAccountId;
     }
 
@@ -45,11 +45,11 @@ public class PaymentDto {
         this.referenceArAccountId = referenceArAccountId;
     }
 
-    public Integer getPaymentTypeId() {
+    public Long getPaymentTypeId() {
         return paymentTypeId;
     }
 
-    public void setPaymentTypeId(Integer paymentTypeId) {
+    public void setPaymentTypeId(Long paymentTypeId) {
         this.paymentTypeId = paymentTypeId;
     }
 

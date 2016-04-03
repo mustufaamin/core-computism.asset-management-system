@@ -1,5 +1,6 @@
 package com.core.computism.assasa.ar.transaction;
 
+import com.core.computism.assasa.ar.dto.service.IJournalizeable;
 import com.core.computism.assasa.ar.dto.service.TransactionServiceDto;
 import com.core.computism.assasa.exception.ArBusinessException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,6 +84,12 @@ public class Posting {
                 transactionService.doPost(this, postingObjectsSubList, "", transactionTypeId, this.getCreatedBy(), companyId);
                 break;
             }
+        }
+    }
+
+    public void journalTransactions(List<? extends IJournalizeable> journalizeables) throws ArBusinessException {
+        for(IJournalizeable journalizeable : journalizeables) {
+            journalizeable.getJournalizeableControlItem();
         }
     }
 }

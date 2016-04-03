@@ -5,6 +5,7 @@ import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Transaction;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
+import com.core.computism.assasa.persistence.entity.pos.Customer;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 import com.core.computism.assasa.persistence.repository.ar.TransactionRepository;
 import org.slf4j.Logger;
@@ -53,14 +54,24 @@ public class TransactionServiceImpl implements TransactionService {
             for (IPostable po : postingObjectsSubList) {
                 Transaction trans = new Transaction();
                 recordCount++;
-                ArAccount baseAcc = null;//po.getArAccountId();
-                LOG.debug("po.getCustomerId():" + (baseAcc != null ? baseAcc.getCustomerId() : 0));
 
-                if (baseAcc != null && baseAcc.getCustomerId() == 0) {
-                    throw new ArBusinessException("Charge Member id is not set.");
+                ArAccount baseAcc = arAccountRepository.findOne(trans.getArAccountId().longValue());
+                if (baseAcc == null) {
+                    throw new ArBusinessException("Unable to find Ar Account.");
+                }
+
+                Customer customer = baseAcc.getCustomer();
+                if (customer == null) {
+                    throw new ArBusinessException("Unable to find customer.");
+                }
+
+                LOG.debug("po.getCustomerId():" + customer.getId());
+
+                if (baseAcc.getCustomer().getId().equals(0)) {
+                    throw new ArBusinessException("Charge customer id is not set.");
                 }
                 if (baseAcc != null && po.getArAccountId() == 0) {
-                    throw new ArBusinessException("Counldn't find account id of bill to customer id " + baseAcc.getCustomerId());
+                    throw new ArBusinessException("Could not find account id of bill to customer id " + customer.getId());
                 }
                 trans.setArAccountId(po.getArAccountId());
                 trans.setTransactionDate(po.getArTransactionDate());
@@ -68,13 +79,13 @@ public class TransactionServiceImpl implements TransactionService {
                 baseAcc = arAccountRepository.findOne(trans.getArAccountId().longValue());
 
                 if (baseAcc.getAccountStatus() != INT_ACTIVE) {
-                    throw new ArBusinessException("Posting is Not Allowed on Inactive AR Account " + baseAcc.getCustomerId() + ".");
+                    throw new ArBusinessException("Posting is Not Allowed on Inactive Ar Account " + customer.getId() + ".");
                 }
                 if (baseAcc.getActivationDate().equals("")) {
                     throw new ArBusinessException("AR Account activation date is not correct");
                 }
                 if (po.getArTransactionDate().before(baseAcc.getActivationDate())) {
-                    throw new ArBusinessException("Member (" + baseAcc.getCustomerId() + ") activation date is greater than System Date (" + transactionDate + ").");
+                    throw new ArBusinessException("Customer (" + customer.getId() + ") activation date is greater than System Date (" + transactionDate + ").");
                 }
                 trans.setReferenceId(po.getArTransactionReferenceId().intValue());
                 trans.setPostingDate(new Date(System.currentTimeMillis()));

@@ -5,7 +5,9 @@ import com.core.computism.assasa.ar.dto.PaymentTypeDto;
 import com.core.computism.assasa.ar.service.PaymentTypeService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.PaymentType;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.repository.ar.PaymentTypeRepository;
+import com.core.computism.assasa.persistence.repository.gl.GlAccountRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,12 +26,22 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
     @Autowired
     PaymentTypeRepository paymentTypeRepository;
 
+    @Autowired
+    GlAccountRepository glAccountRepository;
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public void savePaymentType(PaymentTypeDto paymentTypeDto) throws ArBusinessException {
+
+        if (paymentTypeDto.getGlAccountDto() == null || paymentTypeDto.getGlAccountDto().getGlAccountId() == null) {
+            throw new ArBusinessException("Invalid Gl Account.");
+        }
+
+        GlAccount glAccount = glAccountRepository.findOne(paymentTypeDto.getGlAccountDto().getGlAccountId());
+
         PaymentType paymentType = new PaymentTypeBuilder().
                 setPaymentTypeName(paymentTypeDto.getPaymentTypeName()).setPaymentTypeDesc(paymentTypeDto.getPaymentTypeDesc()).
-                setGlAccountId(paymentTypeDto.getGlAccountId()).setStatus(paymentTypeDto.getStatus()).
+                setGlAccount(glAccount).setStatus(paymentTypeDto.getStatus()).
                 setModuleId(paymentTypeDto.getModuleId()).setCompanyId(paymentTypeDto.getCompanyId()).
                 setAddOnGroupId(paymentTypeDto.getAddOnGroupId()).setDisplayPriority(paymentTypeDto.getDisplayPriority()).
                 setDescription(paymentTypeDto.getDescription()).build();

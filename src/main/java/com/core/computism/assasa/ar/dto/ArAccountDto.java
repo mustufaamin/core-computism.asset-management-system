@@ -11,8 +11,8 @@ import java.util.Date;
 @JsonAutoDetect
 public class ArAccountDto {
 
-    private Integer customerId;
-    private Integer accountTypeId;
+    private Long customerId;
+    private Long accountTypeId;
     private BigDecimal currentBalance;
     private Integer accountStatus;
     private Integer companyId;
@@ -22,19 +22,19 @@ public class ArAccountDto {
     private Date activationDate;
     private Date deactivationDate;
 
-    public Integer getCustomerId() {
+    public Long getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(Integer customerId) {
+    public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
 
-    public Integer getAccountTypeId() {
+    public Long getAccountTypeId() {
         return accountTypeId;
     }
 
-    public void setAccountTypeId(Integer accountTypeId) {
+    public void setAccountTypeId(Long accountTypeId) {
         this.accountTypeId = accountTypeId;
     }
 

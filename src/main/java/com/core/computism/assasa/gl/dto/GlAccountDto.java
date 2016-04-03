@@ -1,6 +1,8 @@
 package com.core.computism.assasa.gl.dto;
 
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.Date;
 
@@ -8,8 +10,10 @@ import java.util.Date;
  * Created by VD on 2/27/2016.
  */
 @JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GlAccountDto {
 
+    public Long glAccountId;
     public Integer companyId;
     public Integer departmentId;
     public Integer majorAccountNumber;
@@ -28,7 +32,37 @@ public class GlAccountDto {
     public Boolean multiCurrency;
     public Boolean accountNature;
 
-    public GlAccountDto() {}
+    public GlAccountDto() {
+    }
+
+    public GlAccountDto(GlAccount glAccount) {
+        this.glAccountId = glAccount.getId();
+        this.companyId = glAccount.getCompanyId();
+        this.departmentId = glAccount.getDepartmentId();
+        this.majorAccountNumber = glAccount.getMajorAccountNumber();
+        this.accountTypeId = glAccount.getAccountTypeId();
+        this.accountUsageType = glAccount.getAccountUsageType();
+        this.shortDescription = glAccount.getShortDescription();
+        this.longDescription = glAccount.getLongDescription();
+        this.activationDate = glAccount.getActivationDate();
+        this.terminationDate = glAccount.getTerminationDate();
+        this.extAcctNum = glAccount.getExtAcctNum();
+        this.changedBy = glAccount.getChangedBy();
+        this.status = glAccount.getStatus();
+        this.transferred = glAccount.getTransferred();
+        this.detailedViewOnPosting = glAccount.getDetailedViewOnPosting();
+        this.allowManualJEEntriesAgainstCA = glAccount.getAllowManualJEEntriesAgainstCA();
+        this.multiCurrency = glAccount.getMultiCurrency();
+        this.accountNature = glAccount.getAccountNature();
+    }
+
+    public Long getGlAccountId() {
+        return glAccountId;
+    }
+
+    public void setGlAccountId(Long glAccountId) {
+        this.glAccountId = glAccountId;
+    }
 
     public Integer getCompanyId() {
         return companyId;

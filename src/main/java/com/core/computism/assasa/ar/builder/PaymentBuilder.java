@@ -1,6 +1,8 @@
 package com.core.computism.assasa.ar.builder;
 
 import com.core.computism.assasa.persistence.entity.ar.Payment;
+import com.core.computism.assasa.persistence.entity.ar.PaymentType;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,9 +12,9 @@ import java.util.Date;
  */
 public class PaymentBuilder {
 
-    private Integer arAccountId;
+    private ArAccount arAccount;
     private Integer referenceArAccountId;
-    private Integer paymentTypeId;
+    private PaymentType paymentType;
     private BigDecimal paymentAmount;
     private Date paymentDate;
     private Date postedDate;
@@ -28,8 +30,8 @@ public class PaymentBuilder {
     private String statementDescription2;
     private Integer referenceId;
 
-    public PaymentBuilder setArAccountId(Integer arAccountId) {
-        this.arAccountId = arAccountId;
+    public PaymentBuilder setArAccount(ArAccount arAccount) {
+        this.arAccount = arAccount;
         return this;
     }
 
@@ -38,8 +40,8 @@ public class PaymentBuilder {
         return this;
     }
 
-    public PaymentBuilder setPaymentTypeId(Integer paymentTypeId) {
-        this.paymentTypeId = paymentTypeId;
+    public PaymentBuilder setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
         return this;
     }
 
@@ -113,16 +115,16 @@ public class PaymentBuilder {
         return this;
     }
 
-    public Integer getArAccountId() {
-        return arAccountId;
+    public ArAccount getArAccount() {
+        return arAccount;
     }
 
     public Integer getReferenceArAccountId() {
         return referenceArAccountId;
     }
 
-    public Integer getPaymentTypeId() {
-        return paymentTypeId;
+    public PaymentType getPaymentType() {
+        return paymentType;
     }
 
     public BigDecimal getPaymentAmount() {
@@ -184,9 +186,9 @@ public class PaymentBuilder {
     public Payment build() {
 
         Payment payment = new Payment();
-        payment.setArAccountId(this.getArAccountId());
+        payment.setArAccount(this.getArAccount());
         payment.setReferenceArAccountId(this.getReferenceArAccountId());
-        payment.setPaymentTypeId(this.getPaymentTypeId());
+        payment.setPaymentType(this.getPaymentType());
         payment.setPaymentAmount(this.getPaymentAmount());
         payment.setPaymentDate(this.getPaymentDate());
         payment.setPostedDate(this.getPostedDate());

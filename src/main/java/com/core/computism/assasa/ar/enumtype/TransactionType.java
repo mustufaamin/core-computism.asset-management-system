@@ -8,7 +8,7 @@ import java.util.List;
 
 public enum TransactionType implements IntegerEnumType<TransactionType> {
 
-    PAYMENT_TR_ID(1), ADJUSTMENT_TR_ID(2);
+    ADJUSTMENT_TR_ID(2), PAYMENT_TR_ID(4) ;
 
     private static final List<TransactionType> TRANSACTION_TYPES = Collections.unmodifiableList(Arrays.asList(PAYMENT_TR_ID, ADJUSTMENT_TR_ID));
 

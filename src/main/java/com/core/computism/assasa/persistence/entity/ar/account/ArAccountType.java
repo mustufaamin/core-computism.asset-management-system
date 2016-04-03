@@ -1,21 +1,32 @@
 package com.core.computism.assasa.persistence.entity.ar.account;
 
+import com.core.computism.assasa.ar.IJournalizeableItem;
+import com.core.computism.assasa.ar.dto.service.JournalEntryItem;
+import com.core.computism.assasa.ar.dto.service.JournalizeableItemDetail;
 import com.core.computism.assasa.persistence.entity.ar.BaseEntity;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by VD on 2/21/2016.
  */
 @Entity
 @Table(name = "ar_account_type")
-public class ArAccountType extends BaseEntity {
+public class ArAccountType extends BaseEntity implements IJournalizeableItem {
 
     private String accountTypeName;
     private String accountTypeDesc;
-    private Integer glAccountId;
+    private GlAccount glAccount;
     private Integer status;
     private Integer companyId;
     private String accountTypeCode;
@@ -46,13 +57,14 @@ public class ArAccountType extends BaseEntity {
         this.accountTypeDesc = accountTypeDesc;
     }
 
-    @Column(name = "gl_account_id")
-    public Integer getGlAccountId() {
-        return glAccountId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "gl_account_id", referencedColumnName = "id", nullable = false)
+    public GlAccount getGlAccount() {
+        return glAccount;
     }
 
-    public void setGlAccountId(Integer glAccountId) {
-        this.glAccountId = glAccountId;
+    public void setGlAccount(GlAccount glAccount) {
+        this.glAccount = glAccount;
     }
 
     @Column(name = "status")
@@ -152,5 +164,48 @@ public class ArAccountType extends BaseEntity {
 
     public void setShowAgingMessage(Integer showAgingMessage) {
         this.showAgingMessage = showAgingMessage;
+    }
+
+    @Transient
+    public String getJournalizeableItemName() {
+        return this.getAccountTypeName();
+    }
+
+    @Transient
+    public GlAccount getAccountDetail() {
+        return this.getGlAccount();
+    }
+
+    @Transient
+    public List<JournalEntryItem> getJournalizeableItems(GlAccount accountDetail, JournalizeableItemDetail journalizeableItemDetail, String journalEntryItemComments) {
+        String journalEntryItemConsolidatedComments = journalEntryItemComments + " " + this.getJournalizeableItemName();
+        List<JournalEntryItem> journalizeableItems = new ArrayList<JournalEntryItem>();
+        journalizeableItemDetail.setQuantity(new BigDecimal(0.00));
+
+        JournalEntryItem ji = new JournalEntryItem(this.getAccountDetail(), journalizeableItemDetail, journalEntryItemConsolidatedComments);
+
+        try {
+            journalizeableItemDetail = (JournalizeableItemDetail) journalizeableItemDetail.clone();
+            journalizeableItemDetail.setAmount(new BigDecimal(0.00));
+            journalizeableItemDetail.setQuantity(new BigDecimal(0.00));
+
+            JournalEntryItem mainARAccountJournalizeableItemDebitREV = new JournalEntryItem(getAccountDetail(), (JournalizeableItemDetail) journalizeableItemDetail.clone(), journalEntryItemComments);
+            mainARAccountJournalizeableItemDebitREV.setDebit(true);
+            JournalEntryItem mainARAccountJournalizeableItemCreditREV = (JournalEntryItem) mainARAccountJournalizeableItemDebitREV.clone();
+            mainARAccountJournalizeableItemCreditREV.setDebit(false);
+            JournalEntryItem mainARAccountJournalizeableItemDebitEXP = new JournalEntryItem(getAccountDetail(), (JournalizeableItemDetail) journalizeableItemDetail.clone(), journalEntryItemComments);
+            mainARAccountJournalizeableItemDebitEXP.setDebit(true);
+            JournalEntryItem mainARAccountJournalizeableItemCreditEXP = (JournalEntryItem) mainARAccountJournalizeableItemDebitEXP.clone();
+            mainARAccountJournalizeableItemCreditEXP.setDebit(false);
+
+            journalizeableItems.add(mainARAccountJournalizeableItemDebitREV);
+            journalizeableItems.add(mainARAccountJournalizeableItemCreditREV);
+            journalizeableItems.add(mainARAccountJournalizeableItemDebitEXP);
+            journalizeableItems.add(mainARAccountJournalizeableItemCreditEXP);
+
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
+        return journalizeableItems;
     }
 }

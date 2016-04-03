@@ -9,7 +9,11 @@ import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.ar.transaction.Posting;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Payment;
+import com.core.computism.assasa.persistence.entity.ar.PaymentType;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
+import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 import com.core.computism.assasa.persistence.repository.ar.PaymentRepository;
+import com.core.computism.assasa.persistence.repository.ar.PaymentTypeRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +37,12 @@ public class PaymentServiceImpl extends BaseService implements PaymentService, I
 
     @Autowired
     Posting posting;
+
+    @Autowired
+    ArAccountRepository arAccountRepository;
+
+    @Autowired
+    PaymentTypeRepository paymentTypeRepository;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
@@ -63,9 +73,28 @@ public class PaymentServiceImpl extends BaseService implements PaymentService, I
         posting.doPosting(postingList);
     }
 
-    private Payment paymentBuilder(PaymentDto paymentDto) {
-        Payment payment = new PaymentBuilder().setArAccountId(paymentDto.getArAccountId())
-                .setReferenceArAccountId(paymentDto.getReferenceArAccountId()).setPaymentTypeId(paymentDto.getPaymentTypeId())
+    private Payment paymentBuilder(PaymentDto paymentDto) throws ArBusinessException{
+
+        if(paymentDto.getArAccountId() == null) {
+            throw new ArBusinessException("Provide Ar Account Id");
+        }
+
+        if(paymentDto.getPaymentTypeId() == null) {
+            throw new ArBusinessException("Provide Payment Type Id");
+        }
+
+        ArAccount arAccount = arAccountRepository.findOne(paymentDto.getArAccountId());
+        if(arAccount == null) {
+            throw new ArBusinessException("Unable to find Ar Account.");
+        }
+
+        PaymentType paymentType = paymentTypeRepository.findOne(paymentDto.getPaymentTypeId());
+        if(paymentType == null) {
+            throw new ArBusinessException("Unable to find Payment Type.");
+        }
+
+        Payment payment = new PaymentBuilder().setArAccount(arAccount)
+                .setReferenceArAccountId(paymentDto.getReferenceArAccountId()).setPaymentType(paymentType)
                 .setPaymentAmount(paymentDto.getPaymentAmount()).setPaymentDate(paymentDto.getPaymentDate())
                 .setPostedDate(paymentDto.getPostedDate()).setProcessedBy(paymentDto.getProcessedBy())
                 .setDescription(paymentDto.getDescription()).setNote(paymentDto.getNote())

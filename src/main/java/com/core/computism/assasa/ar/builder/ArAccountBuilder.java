@@ -1,6 +1,8 @@
 package com.core.computism.assasa.ar.builder;
 
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
+import com.core.computism.assasa.persistence.entity.pos.Customer;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -10,8 +12,8 @@ import java.util.Date;
  */
 public class ArAccountBuilder {
 
-    private Integer customerId;
-    private Integer accountTypeId;
+    private Customer customer;
+    private ArAccountType arAccountType;
     private BigDecimal currentBalance;
     private Integer accountStatus;
     private Integer companyId;
@@ -20,13 +22,13 @@ public class ArAccountBuilder {
     private Date activationDate;
     private Date deactivationDate;
 
-    public ArAccountBuilder setCustomerId(Integer customerId) {
-        this.customerId = customerId;
+    public ArAccountBuilder setCustomer(Customer customer) {
+        this.customer = customer;
         return this;
     }
 
-    public ArAccountBuilder setAccountTypeId(Integer accountTypeId) {
-        this.accountTypeId = accountTypeId;
+    public ArAccountBuilder setAccountType(ArAccountType arAccountType) {
+        this.arAccountType = arAccountType;
         return this;
     }
 
@@ -65,12 +67,12 @@ public class ArAccountBuilder {
         return this;
     }
 
-    public Integer getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public Integer getAccountTypeId() {
-        return accountTypeId;
+    public ArAccountType getArAccountType() {
+        return arAccountType;
     }
 
     public BigDecimal getCurrentBalance() {
@@ -104,8 +106,8 @@ public class ArAccountBuilder {
     public ArAccount build() {
 
         ArAccount arAccount = new ArAccount();
-        arAccount.setCustomerId(this.customerId);
-        arAccount.setAccountTypeId(this.accountTypeId);
+        arAccount.setCustomer(this.customer);
+        arAccount.setArAccountType(this.arAccountType);
         arAccount.setCurrentBalance(this.currentBalance);
         arAccount.setAccountStatus(this.accountStatus);
         arAccount.setCompanyId(this.companyId);

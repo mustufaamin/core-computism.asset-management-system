@@ -6,8 +6,11 @@ import com.core.computism.assasa.ar.dto.service.JournalizeableItemDetail;
 import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import java.math.BigDecimal;
@@ -23,7 +26,7 @@ public class PaymentType extends BaseEntity implements IJournalizeableItem {
 
     private String paymentTypeName;
     private String paymentTypeDesc;
-    private Integer glAccountId;
+    private GlAccount glAccount;
     private Integer status;
     private Integer moduleId;
     private Integer companyId;
@@ -52,14 +55,14 @@ public class PaymentType extends BaseEntity implements IJournalizeableItem {
         this.paymentTypeDesc = paymentTypeDesc;
     }
 
-    @Basic
-    @Column(name = "gl_account_id", nullable = true, insertable = true, updatable = true)
-    public Integer getGlAccountId() {
-        return glAccountId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "gl_account_id", referencedColumnName = "id", nullable = false)
+    public GlAccount getGlAccount() {
+        return glAccount;
     }
 
-    public void setGlAccountId(Integer glAccountId) {
-        this.glAccountId = glAccountId;
+    public void setGlAccount(GlAccount glAccount) {
+        this.glAccount = glAccount;
     }
 
     @Basic
@@ -129,7 +132,7 @@ public class PaymentType extends BaseEntity implements IJournalizeableItem {
 
     @Transient
     public GlAccount getAccountDetail() {
-        return new GlAccount();
+        return this.getGlAccount();
     }
 
     @Transient

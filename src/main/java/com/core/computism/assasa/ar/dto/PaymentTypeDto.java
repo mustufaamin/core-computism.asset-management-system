@@ -1,5 +1,6 @@
 package com.core.computism.assasa.ar.dto;
 
+import com.core.computism.assasa.gl.dto.GlAccountDto;
 import com.core.computism.assasa.persistence.entity.ar.PaymentType;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -14,7 +15,7 @@ public class PaymentTypeDto {
     private Long paymentTypeId;
     private String paymentTypeName;
     private String paymentTypeDesc;
-    private Integer glAccountId;
+    private GlAccountDto glAccountDto;
     private Integer status;
     private Integer moduleId;
     private Integer companyId;
@@ -28,13 +29,13 @@ public class PaymentTypeDto {
         this.paymentTypeId = paymentType.getId();
         this.paymentTypeName = paymentType.getPaymentTypeName();
         this.paymentTypeDesc = paymentType.getPaymentTypeDesc() ;
-        this. glAccountId= paymentType.getGlAccountId();
-        this. status= paymentType.getStatus();
-        this. moduleId= paymentType.getModuleId();
-        this. companyId= paymentType.getCompanyId();
-        this. addOnGroupId= null;
-        this. displayPriority= paymentType.getDisplayPriority();
-        this. description= paymentType.getThankyouDescription();
+        this.glAccountDto= new GlAccountDto(paymentType.getGlAccount());
+        this.status= paymentType.getStatus();
+        this.moduleId= paymentType.getModuleId();
+        this.companyId= paymentType.getCompanyId();
+        this.addOnGroupId= null;
+        this.displayPriority= paymentType.getDisplayPriority();
+        this.description= paymentType.getThankyouDescription();
     }
 
     public String getPaymentTypeName() {
@@ -53,12 +54,12 @@ public class PaymentTypeDto {
         this.paymentTypeDesc = paymentTypeDesc;
     }
 
-    public Integer getGlAccountId() {
-        return glAccountId;
+    public GlAccountDto getGlAccountDto() {
+        return glAccountDto;
     }
 
-    public void setGlAccountId(Integer glAccountId) {
-        this.glAccountId = glAccountId;
+    public void setGlAccountDto(GlAccountDto glAccountDto) {
+        this.glAccountDto = glAccountDto;
     }
 
     public Integer getStatus() {

@@ -23,8 +23,8 @@ public class TransactionServiceDto implements IMemberCharge {
 
     public final static int PERIODIC_TR_ID = 1;
     public final static int ADJUSTMENT_TR_ID = 2;
-    public final static int PAYMENT_TR_ID = 3;
-    public final static int POS_TR_ID = 4;
+    public final static int POS_TR_ID = 3;
+    public final static int PAYMENT_TR_ID = 4;
 
     public final static int POSTED_CHARGE_POST_STATUS = 1;
     public final static int UN_POSTED_CHARGE_POST_STATUS = 2;
@@ -70,11 +70,10 @@ public class TransactionServiceDto implements IMemberCharge {
     }
 
     public void basicPosting(Posting posting, List<? extends IPostable> postingList, String transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
-        /*List<? extends IJournalizeable> journalizeables = (List<? extends IJournalizeable>) (postingList);
+        List<? extends IJournalizeable> journalizeables = (List<? extends IJournalizeable>) (postingList);
 
-        posting.journalTransactions(journalizeables);*/
+        posting.journalTransactions(journalizeables);
 
-        //TransactionList tList = new TransactionList(companyId);
         List<Transaction> transactions = transactionService.populateTransaction(postingList, transactionDate, transactionTypeId, userId);
         transactionRepository.save(transactions);
 

@@ -5,8 +5,10 @@ import com.core.computism.assasa.ar.dto.ArAccountTypeDto;
 import com.core.computism.assasa.ar.service.ArAccountTypeService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountTypeRepository;
 
+import com.core.computism.assasa.persistence.repository.gl.GlAccountRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,13 +27,25 @@ public class ArAccountTypeServiceImpl extends BaseService implements ArAccountTy
     @Autowired
     ArAccountTypeRepository arAccountTypeRepository;
 
+    @Autowired
+    GlAccountRepository glAccountRepository;
+
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public void saveArAccountType(ArAccountTypeDto arAccountTypeDto) throws ArBusinessException {
 
+        if (arAccountTypeDto.getGlAccountId() == null) {
+            throw new ArBusinessException("Provide Gl Account Id.");
+        }
+
+        GlAccount glAccount = glAccountRepository.findOne(arAccountTypeDto.getGlAccountId());
+        if (glAccount == null) {
+            throw new ArBusinessException("Unable to find Gl Account.");
+        }
+
         ArAccountType arAccountType = new ArAccountTypeBuilder()
                 .setAccountTypeName(arAccountTypeDto.getAccountTypeName()).setAccountTypeDesc(arAccountTypeDto.getAccountTypeDesc())
-                .setGlAccountId(arAccountTypeDto.getGlAccountId()).setStatus(arAccountTypeDto.getStatus())
+                .setGlAccount(glAccount).setStatus(arAccountTypeDto.getStatus())
                 .setCompanyId(arAccountTypeDto.getCompanyId()).setAccountTypeCode(arAccountTypeDto.getAccountTypeCode())
                 .setPriority(arAccountTypeDto.getPriority()).setLeftOverAmount(arAccountTypeDto.getLeftOverAmount())
                 .setRequiredStatus(arAccountTypeDto.getRequiredStatus()).setOver30Message(arAccountTypeDto.getOver30Message())

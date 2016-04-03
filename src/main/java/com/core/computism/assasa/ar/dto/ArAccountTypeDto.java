@@ -14,7 +14,7 @@ public class ArAccountTypeDto {
     private Long arAccountTypeId;
     private String accountTypeName;
     private String accountTypeDesc;
-    private Integer glAccountId;
+    private Long glAccountId;
     private Integer status;
     private Integer companyId;
     private String accountTypeCode;
@@ -33,7 +33,7 @@ public class ArAccountTypeDto {
         this.arAccountTypeId = arAccountType.getId();
         this.accountTypeName = arAccountType.getAccountTypeName();
         this.accountTypeDesc = arAccountType.getAccountTypeDesc();
-        this.glAccountId = arAccountType.getGlAccountId();
+        this.glAccountId = arAccountType.getGlAccount().getId();
         this.status = arAccountType.getStatus();
         this.companyId = arAccountType.getCompanyId();
         this.accountTypeCode = arAccountType.getAccountTypeCode();
@@ -71,11 +71,11 @@ public class ArAccountTypeDto {
         this.accountTypeDesc = accountTypeDesc;
     }
 
-    public Integer getGlAccountId() {
+    public Long getGlAccountId() {
         return glAccountId;
     }
 
-    public void setGlAccountId(Integer glAccountId) {
+    public void setGlAccountId(Long glAccountId) {
         this.glAccountId = glAccountId;
     }
 

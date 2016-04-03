@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.List;
 
 /**
@@ -91,5 +92,12 @@ public class Customer extends BaseEntity {
 
     public void setPosOrders(List<PosOrder> posOrders) {
         this.posOrders = posOrders;
+    }
+
+    @Transient
+    public String getCustomerFullName() {
+        return new StringBuilder()
+                .append(this.getFirstName() == null ? "" : this.getFirstName())
+                .append(" ").append(this.getLastName() == null ? "" : this.getLastName()).toString();
     }
 }

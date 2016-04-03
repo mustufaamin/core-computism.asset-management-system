@@ -1,6 +1,7 @@
 package com.core.computism.assasa.ar.builder;
 
 import com.core.computism.assasa.persistence.entity.ar.PaymentType;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
 /**
  * Created by VD on 3/14/2016.
@@ -9,7 +10,7 @@ public class PaymentTypeBuilder {
 
     private String paymentTypeName;
     private String paymentTypeDesc;
-    private Integer glAccountId;
+    private GlAccount glAccount;
     private Integer status;
     private Integer moduleId;
     private Integer companyId;
@@ -27,8 +28,8 @@ public class PaymentTypeBuilder {
         return this;
     }
 
-    public PaymentTypeBuilder setGlAccountId(Integer glAccountId) {
-        this.glAccountId = glAccountId;
+    public PaymentTypeBuilder setGlAccount(GlAccount glAccount) {
+        this.glAccount = glAccount;
         return this;
     }
 
@@ -74,8 +75,8 @@ public class PaymentTypeBuilder {
         return paymentTypeDesc;
     }
 
-    public Integer getGlAccountId() {
-        return glAccountId;
+    public GlAccount getGlAccount() {
+        return glAccount;
     }
 
     public Integer getStatus() {
@@ -103,7 +104,7 @@ public class PaymentTypeBuilder {
         PaymentType paymentType = new PaymentType();
         paymentType.setPaymentTypeName(this.getPaymentTypeName());
         paymentType.setPaymentTypeDesc(this.getPaymentTypeDesc());
-        paymentType.setGlAccountId(this.getGlAccountId());
+        paymentType.setGlAccount(this.getGlAccount());
         paymentType.setStatus(this.getStatus());
         paymentType.setModuleId(this.getModuleId());
         paymentType.setCompanyId(this.getCompanyId());

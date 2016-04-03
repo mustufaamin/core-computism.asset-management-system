@@ -1,8 +1,17 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.ar.IJournalizeableItem;
+import com.core.computism.assasa.ar.dto.service.IJournalizeable;
 import com.core.computism.assasa.ar.enumtype.TransactionType;
 import com.core.computism.assasa.ar.transaction.IPostable;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
+import com.core.computism.assasa.utilities.*;
+
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import javax.persistence.Column;
@@ -16,11 +25,11 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "ar_payment")
-public class Payment extends BaseEntity implements IPostable {
+public class Payment extends BaseEntity implements IPostable, IJournalizeable {
 
-    private Integer arAccountId;
+    private ArAccount arAccount;
     private Integer referenceArAccountId;
-    private Integer paymentTypeId;
+    private PaymentType paymentType;
     private BigDecimal paymentAmount;
     private Date paymentDate;
     private Date postedDate;
@@ -36,13 +45,14 @@ public class Payment extends BaseEntity implements IPostable {
     private String statementDescription2;
     private Integer referenceId;
 
-    @Column(name = "ar_account_id")
-    public Integer getArAccountId() {
-        return arAccountId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ar_account_id", referencedColumnName = "id", nullable = false)
+    public ArAccount getArAccount() {
+        return arAccount;
     }
 
-    public void setArAccountId(Integer arAccountId) {
-        this.arAccountId = arAccountId;
+    public void setArAccount(ArAccount arAccount) {
+        this.arAccount = arAccount;
     }
 
     @Column(name = "reference_ar_account_id")
@@ -54,13 +64,14 @@ public class Payment extends BaseEntity implements IPostable {
         this.referenceArAccountId = referenceArAccountId;
     }
 
-    @Column(name = "payment_type_id")
-    public Integer getPaymentTypeId() {
-        return paymentTypeId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "payment_type_id", referencedColumnName = "id", nullable = false)
+    public PaymentType getPaymentType() {
+        return paymentType;
     }
 
-    public void setPaymentTypeId(Integer paymentTypeId) {
-        this.paymentTypeId = paymentTypeId;
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
     }
 
     @Column(name = "payment_amount")
@@ -186,6 +197,11 @@ public class Payment extends BaseEntity implements IPostable {
     }
 
     @Transient
+    public Integer getArAccountId() {
+        return this.getArAccount().getId().intValue();
+    }
+
+    @Transient
     public Long getArTransactionReferenceId() {
         return this.getId();
     }
@@ -199,7 +215,6 @@ public class Payment extends BaseEntity implements IPostable {
     public Date getArTransactionDate() {
         return this.paymentDate;
     }
-
 
 
     @Transient
@@ -229,7 +244,7 @@ public class Payment extends BaseEntity implements IPostable {
 
     @Transient
     public int getGlAccountId() {
-        return this.getPaymentTypeId();
+        return this.getPaymentType().getGlAccount().getId().intValue();
     }
 
     @Transient
@@ -244,5 +259,71 @@ public class Payment extends BaseEntity implements IPostable {
 
     public void setReferenceId(Integer referenceId) {
         this.referenceId = referenceId;
+    }
+
+    @Transient
+    public int getJournalType() {
+        return ARUtility.getJournalTypeByTransactionType(TransactionType.PAYMENT_TR_ID.getCode());
+    }
+
+    @Transient
+    public int getJournalSourceType() {
+        return ARUtility.getJournalSourceTypeByTransactionType(TransactionType.PAYMENT_TR_ID.getCode());
+    }
+
+    @Transient
+    public int getJournalSourceId() {
+        return this.getId().intValue();
+    }
+
+    @Transient
+    public int getSubLedgerAccountId() {
+        return this.getArAccount().getCustomer().getId().intValue();
+    }
+
+    @Transient
+    public String getSubLedgerAccountName() {
+        return this.arAccount.getCustomer().getCustomerFullName();
+    }
+
+    @Transient
+    public Date getJournalTransactionDate() {
+        return this.getPaymentDate();
+    }
+
+    @Transient
+    public int getEntryTotalNature() {
+        int i = 1;
+        if (new BigDecimal(0).compareTo(this.getPaymentAmount()) == 0) {
+            i = 1;
+        } else {
+            i = (int) (this.getPaymentAmount().doubleValue() / Math.abs(this.getPaymentAmount().doubleValue()));
+        }
+        return i * -1;
+    }
+
+    @Transient
+    public GlAccount getAccountDetail() {
+        return this.paymentType.getGlAccount();
+    }
+
+    @Transient
+    public IJournalizeableItem getJournalizeableControlItem() {
+        return this.getArAccount().getArAccountType();
+    }
+
+    @Transient
+    public IJournalizeableItem getJournalizeableMainItem() {
+        return this.getPaymentType();
+    }
+
+    @Transient
+    public BigDecimal getJournalizeableMainItemAmount() {
+        return this.getPaymentAmount().multiply(new BigDecimal(-1));
+    }
+
+    @Transient
+    public BigDecimal getJournalizeableMainItemQuantity() {
+        return new BigDecimal(0.00);
     }
 }

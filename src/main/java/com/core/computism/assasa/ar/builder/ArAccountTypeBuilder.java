@@ -1,6 +1,7 @@
 package com.core.computism.assasa.ar.builder;
 
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
 /**
  * Created by VD on 2/21/2016.
@@ -9,7 +10,7 @@ public class ArAccountTypeBuilder {
 
     private String accountTypeName;
     private String accountTypeDesc;
-    private Integer glAccountId;
+    private GlAccount glAccount;
     private Integer status;
     private Integer companyId;
     private String accountTypeCode;
@@ -32,8 +33,8 @@ public class ArAccountTypeBuilder {
         return this;
     }
 
-    public ArAccountTypeBuilder setGlAccountId(Integer glAccountId) {
-        this.glAccountId = glAccountId;
+    public ArAccountTypeBuilder setGlAccount(GlAccount glAccount) {
+        this.glAccount = glAccount;
         return this;
     }
 
@@ -100,8 +101,8 @@ public class ArAccountTypeBuilder {
         return accountTypeDesc;
     }
 
-    public Integer getGlAccountId() {
-        return glAccountId;
+    public GlAccount getGlAccount() {
+        return glAccount;
     }
 
     public Integer getStatus() {
@@ -153,7 +154,7 @@ public class ArAccountTypeBuilder {
         ArAccountType arAccountType = new ArAccountType();
         arAccountType.setAccountTypeName(this.accountTypeName);
         arAccountType.setAccountTypeDesc(this.accountTypeDesc);
-        arAccountType.setGlAccountId(this.glAccountId);
+        arAccountType.setGlAccount(this.glAccount);
         arAccountType.setStatus(this.status);
         arAccountType.setCompanyId(this.companyId);
         arAccountType.setAccountTypeCode(this.accountTypeCode);
