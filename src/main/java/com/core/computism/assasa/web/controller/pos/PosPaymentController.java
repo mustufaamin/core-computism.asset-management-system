@@ -1,6 +1,5 @@
 package com.core.computism.assasa.web.controller.pos;
 
-import com.core.computism.assasa.ar.dto.PaymentDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.pos.domain.PosPaymentDto;
 import com.core.computism.assasa.pos.service.PosPaymentService;
