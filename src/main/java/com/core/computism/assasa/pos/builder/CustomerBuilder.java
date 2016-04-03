@@ -39,6 +39,7 @@ public class CustomerBuilder {
 
         CustomerDto customerDto = new CustomerDto();
 
+        customerDto.setId(customer.getId());
         customerDto.setFirstName(customer.getFirstName());
         customerDto.setLastName(customer.getLastName());
         customerDto.setLocationAddress(customer.getAddress().getLocationAddress());
@@ -48,7 +49,9 @@ public class CustomerBuilder {
 
         City city = customer.getAddress().getCity();
         customerDto.setCityId(city.getId());
-        customerDto.setCity(city.getName());
+        customerDto.setCityName(city.getName());
+        customerDto.setCountryId(city.getCountry().getId());
+        customerDto.setCountryName(city.getCountry().getName());
 
         return customerDto;
     }

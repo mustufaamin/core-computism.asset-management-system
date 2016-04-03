@@ -1,7 +1,7 @@
 package com.core.computism.assasa.pos.service.impl;
 
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.pos.domain.ItemDto;
+import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.persistence.entity.pos.PosItem;
 import com.core.computism.assasa.persistence.entity.pos.PosItemType;
@@ -32,56 +32,56 @@ public class PosItemServiceImpl implements PosItemService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
-    public Long add(ItemDto itemDto) throws PosBusinessException {
+    public PosItemDto add(PosItemDto posItemDto) throws PosBusinessException {
 
         try {
-            if (itemDto == null) {
+            if (posItemDto == null) {
                 throw new PosBusinessException("No DTO Found");
             }
 
-            PosItemType posItemType = posItemTypeRepository.findOne(itemDto.getItemType());
-            Supplier supplier = supplierRepository.findOne(itemDto.getSupplerId());
+            PosItemType posItemType = posItemTypeRepository.findOne(posItemDto.getItemType());
+            Supplier supplier = supplierRepository.findOne(posItemDto.getSupplerId());
 
             PosItem posItem = new PosItem();
-            posItem = posItemBuilder.buildItemEntity(posItem, itemDto);
+            posItem = posItemBuilder.buildItemEntity(posItem, posItemDto);
 
             posItem.setSupplier(supplier);
             posItem.setPosItemType(posItemType);
 
             posItem = posItemRepository.save(posItem);
-            return posItem.getId();
-        } catch(PersistenceException e){
+            return posItemBuilder.buildItemDto(posItem);
+        } catch(PersistenceException | BuilderException e){
             throw new PosBusinessException(e);
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
-    public Long update(ItemDto itemDto) throws PosBusinessException {
+    public PosItemDto update(PosItemDto posItemDto) throws PosBusinessException {
         try {
-            if (itemDto == null) {
+            if (posItemDto == null) {
                 throw new PosBusinessException("No DTO Found");
             }
 
-            PosItemType posItemType = posItemTypeRepository.findOne(itemDto.getItemType());
-            Supplier supplier = supplierRepository.findOne(itemDto.getSupplerId());
+            PosItemType posItemType = posItemTypeRepository.findOne(posItemDto.getItemType());
+            Supplier supplier = supplierRepository.findOne(posItemDto.getSupplerId());
 
-            PosItem posItem = posItemRepository.findOne(itemDto.getId());
-            posItem = posItemBuilder.buildItemEntity(posItem, itemDto);
+            PosItem posItem = posItemRepository.findOne(posItemDto.getId());
+            posItem = posItemBuilder.buildItemEntity(posItem, posItemDto);
 
             posItem.setSupplier(supplier);
             posItem.setPosItemType(posItemType);
 
             posItem = posItemRepository.save(posItem);
-            return posItem.getId();
-        } catch(PersistenceException e){
+            return posItemBuilder.buildItemDto(posItem);
+        } catch(PersistenceException | BuilderException e){
             throw new PosBusinessException(e);
         }
     }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public ItemDto get(Long itemId) throws PosBusinessException {
+    public PosItemDto get(Long itemId) throws PosBusinessException {
         try {
             PosItem posItem = posItemRepository.findOne(itemId);
             if (posItem == null) {
@@ -95,7 +95,7 @@ public class PosItemServiceImpl implements PosItemService {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public List<ItemDto> list() throws PosBusinessException{
+    public List<PosItemDto> list() throws PosBusinessException{
         try{
             List<PosItem> posItems = posItemRepository.findAll();
             return posItemBuilder.buildItemDtoList(posItems);

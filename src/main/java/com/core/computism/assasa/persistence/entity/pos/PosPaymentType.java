@@ -16,6 +16,8 @@ public class PosPaymentType extends BaseEntity{
 
     private String paymentTypeName;
     private String paymentTypeDesc;
+
+    //TODO: Need to replace it by AccountGL Entity
     private Integer glAccountId;
 
     @Basic

@@ -50,6 +50,7 @@ public class BillCodeServiceImpl implements BillCodeService{
             throw new ArBusinessException("Error Occurred In BillCode service Update",e);
         }
     }
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<BillCodeDto> list() throws ArBusinessException {
         try {
             List<BillCode> billCodes = billCodeRepository.findAll();
