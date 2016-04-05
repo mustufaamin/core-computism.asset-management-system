@@ -1,0 +1,41 @@
+
+insert into `ac_account_type` ( `description`, `name`, `normal_balance_flag`,creation_date,last_modified_date,version) values('Asset Type','Asset','0',NOW(),NOW(),1);
+insert into `ac_account_type` ( `description`, `name`, `normal_balance_flag`,creation_date,last_modified_date,version) values('Liability Type','Liability','1',NOW(),NOW(),1);
+insert into `ac_account_type` ( `description`, `name`, `normal_balance_flag`,creation_date,last_modified_date,version) values('Equity/Capital Type','Capital','1',NOW(),NOW(),1);
+insert into `ac_account_type` ( `description`, `name`, `normal_balance_flag`,creation_date,last_modified_date,version) values('Revenue/Income Type','Income','1',NOW(),NOW(),1);
+insert into `ac_account_type` ( `description`, `name`, `normal_balance_flag`,creation_date,last_modified_date,version) values('Expense Type','Expense','0',NOW(),NOW(),1);
+
+
+
+insert into `ac_gl_account` (`company_id`, `dept_id`, `major_acct_num`, `account_type_id`, `acct_usage_type`, `short_desc`, `long_desc`, `activation_date`, `termination_date`, `ext_acct_num`, `changed_by`, `status`, `is_transferred`, `detailed_view_on_posting`, `allow_manual_JE_entries_against_CA`, `is_multi_currency`, `account_nature`) values('1','0','1001','1','0','Cash On Hand','Cash On Hand','2008-07-01',NULL,NULL,NULL,'1','0','0','0','0','1');
+insert into `ac_gl_account` (`company_id`, `dept_id`, `major_acct_num`, `account_type_id`, `acct_usage_type`, `short_desc`, `long_desc`, `activation_date`, `termination_date`, `ext_acct_num`, `changed_by`, `status`, `is_transferred`, `detailed_view_on_posting`, `allow_manual_JE_entries_against_CA`, `is_multi_currency`, `account_nature`) values('1','0','2001','2','0','Demand Loan','Demand Loan','2008-07-01',NULL,NULL,NULL,'1','0','0','0','0','1');
+insert into `ac_gl_account` (`company_id`, `dept_id`, `major_acct_num`, `account_type_id`, `acct_usage_type`, `short_desc`, `long_desc`, `activation_date`, `termination_date`, `ext_acct_num`, `changed_by`, `status`, `is_transferred`, `detailed_view_on_posting`, `allow_manual_JE_entries_against_CA`, `is_multi_currency`, `account_nature`) values('1','0','3001','3','0','Share Capital','Share Capital','2008-07-01',NULL,NULL,NULL,'1','0','0','0','0','1');
+insert into `ac_gl_account` (`company_id`, `dept_id`, `major_acct_num`, `account_type_id`, `acct_usage_type`, `short_desc`, `long_desc`, `activation_date`, `termination_date`, `ext_acct_num`, `changed_by`, `status`, `is_transferred`, `detailed_view_on_posting`, `allow_manual_JE_entries_against_CA`, `is_multi_currency`, `account_nature`) values('1','0','4001','4','0','Membership Transfer ','Membership Transfer Fee','2008-07-01',NULL,NULL,NULL,'1','0','0','0','0','1');
+insert into `ac_gl_account` (`company_id`, `dept_id`, `major_acct_num`, `account_type_id`, `acct_usage_type`, `short_desc`, `long_desc`, `activation_date`, `termination_date`, `ext_acct_num`, `changed_by`, `status`, `is_transferred`, `detailed_view_on_posting`, `allow_manual_JE_entries_against_CA`, `is_multi_currency`, `account_nature`) values('1','1','5001','5','0','Decorations','Decorations','2008-07-01',NULL,NULL,NULL,'1','0','0','0','0','1');
+
+
+insert into `ar_account_type` (`account_type_name`, `account_type_desc`, `gl_account_id`, `status`, `company_id`, `account_type_code`, `priority`, `is_left_over_amount`, `required_status`, `over30_message`, `over60_message`, `over90_message`, `over120_message`, `show_aging_message`,creation_date,last_modified_date,version)
+values('GC - GENCOM','GC - GENCOM','1','1','1','01','0','0','1','Just to remind you that your account balance is over 30 days.','Please contact accounting to arrange payment as your account balance is over 60 days.','','','1',NOW(),NOW(),1);
+
+
+ALTER TABLE `assasa`.`bi_bill_code` ADD COLUMN `gl_account_id` INT(11) NOT NULL  AFTER `bill_code_type_id`;
+
+ALTER TABLE `assasa`.`bi_bill_code`
+  ADD CONSTRAINT `fk_ac_gl_account_id1`
+  FOREIGN KEY (`gl_account_id` )
+  REFERENCES `assasa`.`ac_gl_account` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_ac_gl_account_id1_idx` (`gl_account_id` ASC) ;
+
+
+insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group_id`, `name`, `description`, `activation_date`, `deactivation_date`, `status`,creation_date,last_modified_date,version) values('1','1','0','GC - Asset Type','GC - Asset Type',NOW(),NULL,'1',NOW(),NOW(),1);
+insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group_id`, `name`, `description`, `activation_date`, `deactivation_date`, `status`,creation_date,last_modified_date,version) values('2','2','0','GC - Liability Type','GC - Liability Type',NOW(),NULL,'1',NOW(),NOW(),1);
+insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group_id`, `name`, `description`, `activation_date`, `deactivation_date`, `status`,creation_date,last_modified_date,version) values('3','3','0','GC - Equity/Capital Type','GC - Equity/Capital Type',NOW(),NULL,'1',NOW(),NOW(),1);
+insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group_id`, `name`, `description`, `activation_date`, `deactivation_date`, `status`,creation_date,last_modified_date,version) values('4','4','0','GC - Revenue/Income Type','GC - Revenue/Income Type',NOW(),NULL,'1',NOW(),NOW(),1);
+insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group_id`, `name`, `description`, `activation_date`, `deactivation_date`, `status`,creation_date,last_modified_date,version) values('5','5','0','GC - Expense Type','GC - Expense Type',NOW(),NULL,'1',NOW(),NOW(),1);
+
+
+
+
+
