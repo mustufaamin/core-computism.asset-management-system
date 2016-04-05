@@ -1,0 +1,88 @@
+ALTER TABLE `assasa`.`ac_gl_account`
+  ADD CONSTRAINT `fk_ac_account_type`
+  FOREIGN KEY (`account_type_id` )
+  REFERENCES `assasa`.`ac_account_type` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_ac_account_type_idx` (`account_type_id` ASC) ;
+
+
+ALTER TABLE `assasa`.`ar_account`
+  ADD CONSTRAINT `fk_cc_customer_id`
+  FOREIGN KEY (`customer_id` )
+  REFERENCES `assasa`.`cc_customer` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_cc_customer_id_idx` (`customer_id` ASC) ;
+
+
+ALTER TABLE `assasa`.`ar_account`
+  ADD CONSTRAINT `fk_ar_account_type_id`
+  FOREIGN KEY (`account_type_id` )
+  REFERENCES `assasa`.`ar_account_type` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_ar_account_type_id_idx` (`account_type_id` ASC) ;
+
+
+ALTER TABLE `assasa`.`ar_account_type`
+  ADD CONSTRAINT `fk_ac_gl_account`
+  FOREIGN KEY (`gl_account_id` )
+  REFERENCES `assasa`.`ac_gl_account` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_ac_gl_account_idx` (`gl_account_id` ASC) ;
+
+
+ALTER TABLE `assasa`.`ar_account_type` DROP FOREIGN KEY `fk_ac_gl_account` ;
+ALTER TABLE `assasa`.`ar_account_type` CHANGE COLUMN `gl_account_id` `gl_account_id` INT(11) NOT NULL DEFAULT '0'  ,
+  ADD CONSTRAINT `fk_ac_gl_account`
+  FOREIGN KEY (`gl_account_id` )
+  REFERENCES `assasa`.`ac_gl_account` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+ALTER TABLE `assasa`.`ar_payment`
+  ADD CONSTRAINT `fk_ar_account_id`
+  FOREIGN KEY (`ar_account_id` )
+  REFERENCES `assasa`.`ar_account` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_cmn_payment_type_id`
+  FOREIGN KEY (`payment_type_id` )
+  REFERENCES `assasa`.`cmn_payment_type` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_cmn_payment_type_id_idx` (`payment_type_id` ASC) ;
+
+ALTER TABLE `assasa`.`cmn_payment_type`
+  ADD CONSTRAINT `fk_ac_gl_account_id`
+  FOREIGN KEY (`gl_account_id` )
+  REFERENCES `assasa`.`ac_gl_account` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION
+, ADD INDEX `fk_ac_gl_account_id_idx` (`gl_account_id` ASC) ;
+
+ALTER TABLE `assasa`.`pos_item_group` DROP FOREIGN KEY `pos_item_group_ibfk_1` ;
+ALTER TABLE `assasa`.`pos_item_group` CHANGE COLUMN `bill_code_id` `bill_code_id` INT(11) NOT NULL  ,
+  ADD CONSTRAINT `pos_item_group_ibfk_1`
+  FOREIGN KEY (`bill_code_id` )
+  REFERENCES `assasa`.`bi_bill_code` (`id` );
+
+
+  ALTER TABLE `assasa`.`pos_payment` DROP FOREIGN KEY `pos_payment_ibfk_2` ;
+ALTER TABLE `assasa`.`pos_payment` CHANGE COLUMN `payment_type_id` `payment_type_id` INT(11) NOT NULL  ,
+  ADD CONSTRAINT `pos_payment_ibfk_2`
+  FOREIGN KEY (`payment_type_id` )
+  REFERENCES `assasa`.`pos_payment_type` (`id` );
+
+
+  ALTER TABLE `assasa`.`pos_payment` DROP FOREIGN KEY `pos_payment_ibfk_1` ;
+ALTER TABLE `assasa`.`pos_payment` CHANGE COLUMN `order_id` `order_id` INT(11) NOT NULL  ,
+  ADD CONSTRAINT `pos_payment_ibfk_1`
+  FOREIGN KEY (`order_id` )
+  REFERENCES `assasa`.`pos_order` (`id` );
+
+
+
