@@ -3,6 +3,7 @@ package com.core.computism.assasa.web.controller.pos;
 import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.pos.service.PosItemService;
+import com.core.computism.assasa.util.ServerResponse;
 import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +25,23 @@ public class ItemController extends BaseController {
     @Autowired private PosItemService posItemService;
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public Long add(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
+    public ServerResponse<PosItemDto> add(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
 
         LOGGER.info("Adding item ...");
-        return posItemService.add(posItemDto);
+        ServerResponse<PosItemDto> response = toResponse(posItemService.add(posItemDto));
+        return response;
     }
     @RequestMapping(value = "addType/{typeName}", method = RequestMethod.POST)
-    public Long addType(@PathVariable String typeName) throws PosBusinessException {
+    public ServerResponse<PosItemDto> addType(@PathVariable String typeName) throws PosBusinessException {
         LOGGER.info("Adding item ...");
-        return posItemService.addItemType(typeName);
+//        ServerResponse<PosItemDto> response = toResponse(posItemService.addItemType(typeName));
+        return null;
     }
 
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public Long addType(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
+    public ServerResponse<PosItemDto> addType(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
         LOGGER.info("Adding item ...");
-        return posItemService.update(posItemDto);
+        ServerResponse<PosItemDto> response = toResponse(posItemService.update(posItemDto));
+        return response;
     }
 }
