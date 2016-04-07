@@ -1,1 +1,0 @@
-ALTER TABLE ar_payment ADD COLUMN charge_customer_id INT(11) UNSIGNED NOT NULL DEFAULT 0;
