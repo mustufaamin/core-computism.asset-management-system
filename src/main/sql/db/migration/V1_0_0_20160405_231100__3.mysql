@@ -39,4 +39,10 @@ insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group
 ALTER TABLE `assasa`.`cmn_payment_type`
   CHANGE `last_modified_date` `last_modified_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NOT NULL;
 
+  ALTER TABLE `assasa`.`ac_gl_account`
+    CHANGE `termination_date` `termination_date` TIMESTAMP NULL,
+    CHANGE `creation_date` `creation_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NOT NULL,
+    CHANGE `last_modified_date` `last_modified_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NULL;
+
+
 
