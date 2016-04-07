@@ -36,6 +36,7 @@ insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group
 insert into `bi_bill_code` ( `bill_code_type_id`, `gl_account_id`, `add_on_group_id`, `name`, `description`, `activation_date`, `deactivation_date`, `status`,creation_date,last_modified_date,version) values('5','5','0','GC - Expense Type','GC - Expense Type',NOW(),NULL,'1',NOW(),NOW(),1);
 
 
-
+ALTER TABLE `assasa`.`cmn_payment_type`
+  CHANGE `last_modified_date` `last_modified_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP  NOT NULL;
 
 
