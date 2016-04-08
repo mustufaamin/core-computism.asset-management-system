@@ -16,7 +16,7 @@ import com.core.computism.assasa.persistence.repository.ar.PaymentRepository;
 import com.core.computism.assasa.persistence.repository.ar.PaymentTypeRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by VD on 3/6/2016.
  */
-@Service(value = "arPaymentServiceImpl")
+@Component(value = "arPaymentServiceImpl")
 public class PaymentServiceImpl extends BaseService implements PaymentService, IMemberCharge {
 
     @Autowired
@@ -67,10 +67,11 @@ public class PaymentServiceImpl extends BaseService implements PaymentService, I
         }
     }
 
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     private void post(List<? extends IPostable> postingList) throws ArBusinessException {
         /*Posting posting = new Posting(TransactionServiceDto.PAYMENT_TR_ID, 1, 1);
         posting.setPostingList(postingList);*/
-        posting.doPosting(postingList);
+        posting.doPosting(postingList, TransactionServiceDto.PAYMENT_TR_ID, 1, 1);
     }
 
     private Payment paymentBuilder(PaymentDto paymentDto) throws ArBusinessException{
@@ -107,6 +108,7 @@ public class PaymentServiceImpl extends BaseService implements PaymentService, I
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public void doPost(Posting posting, List<? extends IPostable> postingList, String transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
         List<Payment> payments = (ArrayList<Payment>) (postingList);
         transactionServiceDto.basicPosting(posting, postingList, transactionDate, transactionTypeId, userId, companyId);

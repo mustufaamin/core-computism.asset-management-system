@@ -1,11 +1,19 @@
 package com.core.computism.assasa.ar.transaction;
 
+import com.core.computism.assasa.ar.IJournalizeableItem;
 import com.core.computism.assasa.ar.dto.service.IJournalizeable;
+import com.core.computism.assasa.ar.dto.service.JournalEntryItem;
+import com.core.computism.assasa.ar.dto.service.JournalizeableItem;
+import com.core.computism.assasa.ar.dto.service.JournalizeableItemDetail;
 import com.core.computism.assasa.ar.dto.service.TransactionServiceDto;
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,52 +23,13 @@ import java.util.List;
 @Component
 public class Posting {
 
-    private int transactionTypeId = 3;
-    private int companyId;
-    private int createdBy;
     private List<? extends IPostable> postingList;
-
-    public Posting() {
-    }
 
     @Autowired
     TransactionServiceDto transactionServiceDto;
 
-    public Posting(int companyId) {
-        postingList = new ArrayList<IPostable>();
-        transactionTypeId = 0;
-        this.companyId = companyId;
-    }
 
-    public Posting(int transactionTypeId, int createdBy, int companyId) {
-        this(companyId);
-        this.transactionTypeId = transactionTypeId;
-        this.createdBy = createdBy;
-    }
 
-    public int getTransactionTypeId() {
-        return transactionTypeId;
-    }
-
-    public void setTransactionTypeId(int transactionTypeId) {
-        this.transactionTypeId = transactionTypeId;
-    }
-
-    public int getCompanyId() {
-        return companyId;
-    }
-
-    public void setCompanyId(int companyId) {
-        this.companyId = companyId;
-    }
-
-    public int getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(int createdBy) {
-        this.createdBy = createdBy;
-    }
 
     public List<? extends IPostable> getPostingList() {
         return postingList;
@@ -70,26 +39,65 @@ public class Posting {
         this.postingList = postingList;
     }
 
-    public void doPosting(List<? extends IPostable> postingList) throws ArBusinessException {
-        doPosting(postingList, this.transactionTypeId);
-    }
-
-    public void doPosting(List<? extends IPostable> postingObjectsSubList, int transactionTypeId) throws ArBusinessException {
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
+    public void doPosting(List<? extends IPostable> postingList, int transactionTypeId, int createdBy, int companyId) throws ArBusinessException {
         IMemberCharge transactionService = transactionServiceDto.getInstance(transactionTypeId);
         switch (transactionTypeId) {
 
             case TransactionServiceDto.PERIODIC_TR_ID:
             case (TransactionServiceDto.ADJUSTMENT_TR_ID):
             case (TransactionServiceDto.PAYMENT_TR_ID): {
-                transactionService.doPost(this, postingObjectsSubList, "", transactionTypeId, this.getCreatedBy(), companyId);
+                transactionService.doPost(this, postingList, "", transactionTypeId, createdBy, companyId);
                 break;
             }
         }
     }
 
     public void journalTransactions(List<? extends IJournalizeable> journalizeables) throws ArBusinessException {
-        for(IJournalizeable journalizeable : journalizeables) {
+        for (IJournalizeable journalizeable : journalizeables) {
             journalizeable.getJournalizeableControlItem();
+
+            String journalEntryItemComments = journalizeable.getSubLedgerAccountName();
+
+            //Bill-code or Payment type
+            IJournalizeableItem journalizeableItem = journalizeable.getJournalizeableMainItem();
+            String mainItemDescription = journalizeableItem.getJournalizeableItemName();
+
+            IJournalizeableItem ijournalizeableControlItem = journalizeable.getJournalizeableControlItem();
+            JournalizeableItemDetail journalizeableControlItemDetail = new JournalizeableItemDetail(new BigDecimal(0.00), new BigDecimal(0.00));
+            JournalizeableItem journalizeableControlItem = new JournalizeableItem(ijournalizeableControlItem, journalizeableControlItemDetail);
+
+            List<JournalEntryItem> journalizeableItemsControl = getJournalizeableItems(journalizeableControlItem, journalizeable.getAccountDetail(),
+                    (mainItemDescription + " / " + journalEntryItemComments));
+            JournalEntryItem journalizeableItemControl = journalizeableItemsControl.get(0);
+
+            GlAccount glAccount = journalizeableItemControl.getAccountDetail();
+            int primaryCompanyForJournalEntry = glAccount.getCompanyId(); //AR Account Company
+            ArrayList<JournalEntryItem> totalJournalizeableItems = new ArrayList<JournalEntryItem>();
+
+            BigDecimal mainItemAmount = journalizeable.getJournalizeableMainItemAmount();
+            BigDecimal mainItemQuantity = journalizeable.getJournalizeableMainItemQuantity();
+            JournalizeableItemDetail journalizeableItemDetail = new JournalizeableItemDetail(mainItemAmount, mainItemQuantity);
+            JournalizeableItem journalizeableMainItem = new JournalizeableItem(journalizeableItem, journalizeableItemDetail);
+
+            List<JournalEntryItem> journalizeableItemsBillCodeORPaymentTypeAll = new ArrayList<JournalEntryItem>();
+            List<JournalEntryItem> journalizeableItemsBillCodeORPaymentType = getJournalizeableItems(journalizeableMainItem, journalizeable.getAccountDetail(), journalEntryItemComments);
+            journalizeableItemsBillCodeORPaymentTypeAll.addAll(journalizeableItemsBillCodeORPaymentType);
+            //ArrayList<JournalEntryItem> clearingJournalizeableItemsBillCodeORPaymentType=PostingUtility.getClearingJournalizeableItem(journalizeableItemsBillCodeORPaymentType,primaryCompanyForJournalEntry);
+            //journalizeableItemsBillCodeORPaymentTypeAll.addAll(clearingJournalizeableItemsBillCodeORPaymentType);
+            //journalizeable.decorateJournalEntryMainItem(totalJournalizeableItems);
+
+            totalJournalizeableItems.addAll(journalizeableItemsBillCodeORPaymentTypeAll);
+
+            totalJournalizeableItems.get(0);
+
         }
+    }
+
+    public List<JournalEntryItem> getJournalizeableItems(JournalizeableItem journalizeableItem, GlAccount accountDetail, String journalEntryComments) {
+        IJournalizeableItem thisJournalizeableItem = journalizeableItem.getJournalizeableItem();
+        List<JournalEntryItem> journalizeableEntryItems = thisJournalizeableItem.getJournalizeableItems(accountDetail, journalizeableItem.getJournalizeableItemDetail(), journalEntryComments);
+
+        return journalizeableEntryItems;
     }
 }

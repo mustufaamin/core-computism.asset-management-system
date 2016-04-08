@@ -13,64 +13,36 @@ import java.util.Date;
 @Table(name = "ar_transaction")
 public class Transaction extends BaseEntity {
 
-
-    @Column(name = "ar_account_id")
     private Integer arAccountId;
-
-    @Column(name = "statement_id")
     private Integer statementId;
-
-    @Column(name = "reference_id")
     private Integer referenceId;
-
-    @Column(name = "source_id")
     private Integer sourceId;
-
-    @Column(name = "transaction_date")
     private Date transactionDate;
-
-    @Column(name = "transaction_type")
     private Integer transactionType;
-
-    @Column(name = "amount")
     private BigDecimal amount;
-
-    @Column(name = "status")
     private Integer status;
-
-    @Column(name = "stmt_desc_1")
     private String statementDescription1;
-
-    @Column(name = "stmt_desc_2")
     private String statementDescription2;
-
-    @Column(name = "description")
     private String description;
-
-    @Column(name = "posting_date")
     private Date postingDate;
-
-    @Column(name = "charge_customerId")
     private Integer chargeCustomerId;
-
-    @Column(name = "created_by")
     private Integer createdBy;
-
-    @Column(name = "glaccount_id")
     private Integer glAccountId;
-
-    @Column(name = "journal_entry_id")
     private Integer journalEntryId;
-
-    @Column(name = "transaction_sub_type")
     private Integer transactionSubType;
-
-    @Column(name = "total_amount")
     private BigDecimal totalAmount;
-
-    @Column(name = "suppress_on_statement")
     private Boolean suppressOnStatement;
 
+    @Column(name = "ar_account_id")
+    public Integer getArAccountId() {
+        return arAccountId;
+    }
+
+    public void setArAccountId(Integer arAccountId) {
+        this.arAccountId = arAccountId;
+    }
+
+    @Column(name = "statement_id")
     public Integer getStatementId() {
         return statementId;
     }
@@ -79,6 +51,7 @@ public class Transaction extends BaseEntity {
         this.statementId = statementId;
     }
 
+    @Column(name = "reference_id")
     public Integer getReferenceId() {
         return referenceId;
     }
@@ -87,6 +60,7 @@ public class Transaction extends BaseEntity {
         this.referenceId = referenceId;
     }
 
+    @Column(name = "source_id")
     public Integer getSourceId() {
         return sourceId;
     }
@@ -95,6 +69,7 @@ public class Transaction extends BaseEntity {
         this.sourceId = sourceId;
     }
 
+    @Column(name = "transaction_date")
     public Date getTransactionDate() {
         return transactionDate;
     }
@@ -103,6 +78,7 @@ public class Transaction extends BaseEntity {
         this.transactionDate = transactionDate;
     }
 
+    @Column(name = "transaction_type")
     public Integer getTransactionType() {
         return transactionType;
     }
@@ -111,6 +87,7 @@ public class Transaction extends BaseEntity {
         this.transactionType = transactionType;
     }
 
+    @Column(name = "amount")
     public BigDecimal getAmount() {
         return amount;
     }
@@ -119,6 +96,7 @@ public class Transaction extends BaseEntity {
         this.amount = amount;
     }
 
+    @Column(name = "status")
     public Integer getStatus() {
         return status;
     }
@@ -127,6 +105,7 @@ public class Transaction extends BaseEntity {
         this.status = status;
     }
 
+    @Column(name = "stmt_desc_1")
     public String getStatementDescription1() {
         return statementDescription1;
     }
@@ -135,6 +114,7 @@ public class Transaction extends BaseEntity {
         this.statementDescription1 = statementDescription1;
     }
 
+    @Column(name = "stmt_desc_2")
     public String getStatementDescription2() {
         return statementDescription2;
     }
@@ -143,6 +123,7 @@ public class Transaction extends BaseEntity {
         this.statementDescription2 = statementDescription2;
     }
 
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }
@@ -151,6 +132,7 @@ public class Transaction extends BaseEntity {
         this.description = description;
     }
 
+    @Column(name = "posting_date")
     public Date getPostingDate() {
         return postingDate;
     }
@@ -159,6 +141,7 @@ public class Transaction extends BaseEntity {
         this.postingDate = postingDate;
     }
 
+    @Column(name = "charge_customer_id")
     public Integer getChargeCustomerId() {
         return chargeCustomerId;
     }
@@ -167,6 +150,7 @@ public class Transaction extends BaseEntity {
         this.chargeCustomerId = chargeCustomerId;
     }
 
+    @Column(name = "created_by")
     public Integer getCreatedBy() {
         return createdBy;
     }
@@ -175,6 +159,7 @@ public class Transaction extends BaseEntity {
         this.createdBy = createdBy;
     }
 
+    @Column(name = "glaccount_id")
     public Integer getGlAccountId() {
         return glAccountId;
     }
@@ -183,6 +168,7 @@ public class Transaction extends BaseEntity {
         this.glAccountId = glaccountId;
     }
 
+    @Column(name = "journal_entry_id")
     public Integer getJournalEntryId() {
         return journalEntryId;
     }
@@ -191,6 +177,7 @@ public class Transaction extends BaseEntity {
         this.journalEntryId = journalEntryId;
     }
 
+    @Column(name = "transaction_sub_type")
     public Integer getTransactionSubType() {
         return transactionSubType;
     }
@@ -199,6 +186,7 @@ public class Transaction extends BaseEntity {
         this.transactionSubType = transactionSubType;
     }
 
+    @Column(name = "total_amount")
     public BigDecimal getTotalAmount() {
         return totalAmount;
     }
@@ -207,19 +195,12 @@ public class Transaction extends BaseEntity {
         this.totalAmount = totalAmount;
     }
 
+    @Column(name = "suppress_on_statement")
     public Boolean getSuppressOnStatement() {
         return suppressOnStatement;
     }
 
     public void setSuppressOnStatement(Boolean suppressOnStatement) {
         this.suppressOnStatement = suppressOnStatement;
-    }
-
-    public Integer getArAccountId() {
-        return arAccountId;
-    }
-
-    public void setArAccountId(Integer arAccountId) {
-        this.arAccountId = arAccountId;
     }
 }

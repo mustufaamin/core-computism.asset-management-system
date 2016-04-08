@@ -55,7 +55,7 @@ public class TransactionServiceImpl implements TransactionService {
                 Transaction trans = new Transaction();
                 recordCount++;
 
-                ArAccount baseAcc = arAccountRepository.findOne(trans.getArAccountId().longValue());
+                ArAccount baseAcc = arAccountRepository.findOne(po.getArAccountId().longValue());
                 if (baseAcc == null) {
                     throw new ArBusinessException("Unable to find Ar Account.");
                 }
