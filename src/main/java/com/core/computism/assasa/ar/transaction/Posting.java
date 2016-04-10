@@ -7,14 +7,19 @@ import com.core.computism.assasa.ar.dto.service.JournalizeableItem;
 import com.core.computism.assasa.ar.dto.service.JournalizeableItemDetail;
 import com.core.computism.assasa.ar.dto.service.TransactionServiceDto;
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
+import com.core.computism.assasa.persistence.entity.gl.JournalEntryDetail;
 import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
+import com.core.computism.assasa.persistence.repository.gl.JournalEntryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,7 +33,8 @@ public class Posting {
     @Autowired
     TransactionServiceDto transactionServiceDto;
 
-
+    @Autowired
+    JournalEntryRepository journalEntryRepository;
 
 
     public List<? extends IPostable> getPostingList() {
@@ -47,13 +53,15 @@ public class Posting {
             case TransactionServiceDto.PERIODIC_TR_ID:
             case (TransactionServiceDto.ADJUSTMENT_TR_ID):
             case (TransactionServiceDto.PAYMENT_TR_ID): {
-                transactionService.doPost(this, postingList, "", transactionTypeId, createdBy, companyId);
+                transactionService.doPost(this, postingList, new Date(), transactionTypeId, createdBy, companyId);
                 break;
             }
         }
     }
 
-    public void journalTransactions(List<? extends IJournalizeable> journalizeables) throws ArBusinessException {
+    /*public void journalTransactions(List<? extends IJournalizeable> journalizeables, String transactionDate) throws ArBusinessException {
+        Date journalTransactionDate= null;
+        ArrayList<JournalEntry> JEs=new ArrayList<JournalEntry>();
         for (IJournalizeable journalizeable : journalizeables) {
             journalizeable.getJournalizeableControlItem();
 
@@ -89,9 +97,54 @@ public class Posting {
 
             totalJournalizeableItems.addAll(journalizeableItemsBillCodeORPaymentTypeAll);
 
-            totalJournalizeableItems.get(0);
+            JournalEntry primaryCompanyJournalEntry= getJournalEntry(journalizeable, journalTransactionDate, primaryCompanyForJournalEntry,totalJournalizeableItems);
+            primaryCompanyJournalEntry.setTotal(journalizeable.getJournalizeableMainItemAmount());
+            //journalizeable.decorateJournalEntry(primaryCompanyJournalEntry);
+            journalizeable.setJournalEntry(primaryCompanyJournalEntry);
+            JEs.add(primaryCompanyJournalEntry);
 
         }
+    }*/
+
+    public void journalTransactions(List<? extends IJournalizeable> journalizeables, Date transactionDate, int companyId) throws ArBusinessException {
+        ArrayList<JournalEntry> JEs = new ArrayList<JournalEntry>();
+        for (IJournalizeable journalizeable : journalizeables) {
+            List<JournalEntryItem> totalJournalizeableItems = new ArrayList<>();
+            String journalEntryItemComments = journalizeable.getSubLedgerAccountName();
+
+            BigDecimal mainItemAmount = journalizeable.getJournalizeableMainItemAmount();
+            BigDecimal mainItemQuantity = journalizeable.getJournalizeableMainItemQuantity();
+
+            //Bill-code or Payment type
+            IJournalizeableItem journalizeableItem = journalizeable.getJournalizeableMainItem();
+            JournalizeableItemDetail journalizeableMainItemDetail = new JournalizeableItemDetail(mainItemAmount, mainItemQuantity);
+            JournalizeableItem journalizeableMainItem = new JournalizeableItem(journalizeableItem, journalizeableMainItemDetail);
+            String mainItemDescription = journalizeableItem.getJournalizeableItemName();
+            List<JournalEntryItem> journalEntryMainItems = getJournalizeableItems(journalizeableMainItem, journalizeableItem.getAccountDetail(), (mainItemDescription + " / " + journalEntryItemComments));
+
+            //Ar Account Type / Control Account
+            IJournalizeableItem ijournalizeableControlItem = journalizeable.getJournalizeableControlItem();
+            JournalizeableItemDetail journalizeableControlItemDetail = new JournalizeableItemDetail(new BigDecimal(0.00), new BigDecimal(0.00));
+            JournalizeableItem journalizeableControlItem = new JournalizeableItem(journalizeableItem, journalizeableControlItemDetail);
+            String controlItemDescription = ijournalizeableControlItem.getJournalizeableItemName();
+            List<JournalEntryItem> journalEntryControlItems = getJournalizeableItems(journalizeableControlItem, ijournalizeableControlItem.getAccountDetail(), (controlItemDescription + " / " + journalEntryItemComments));
+
+            totalJournalizeableItems.addAll(journalEntryMainItems);
+            totalJournalizeableItems.addAll(journalEntryControlItems);
+
+            JournalEntry journalEntry = getJournalEntry(journalizeable, transactionDate, companyId, totalJournalizeableItems);
+            //journalEntry.setEntryTotalNature(journalizeable.getEntryTotalNature());
+            journalizeable.setJournalEntry(journalEntry);
+            JEs.add(journalEntry);
+        }
+        journalEntryRepository.save(JEs);
+    }
+
+    private JournalEntry getJournalEntry(IJournalizeable journalizeable, Date journalDate, int companyId, List<JournalEntryItem> totalJournalizeableItems) {
+        JournalEntry journalEntry =
+                getFactoryJournalEntry(journalizeable.getJournalType(), journalDate, journalizeable.getJournalTransactionDate(),
+                        journalizeable.getJournalSourceId(), journalizeable.getJournalSourceType(), journalizeable.getSubLedgerAccountId(), companyId, totalJournalizeableItems);
+        return journalEntry;
     }
 
     public List<JournalEntryItem> getJournalizeableItems(JournalizeableItem journalizeableItem, GlAccount accountDetail, String journalEntryComments) {
@@ -99,5 +152,38 @@ public class Posting {
         List<JournalEntryItem> journalizeableEntryItems = thisJournalizeableItem.getJournalizeableItems(accountDetail, journalizeableItem.getJournalizeableItemDetail(), journalEntryComments);
 
         return journalizeableEntryItems;
+    }
+
+    public JournalEntry getFactoryJournalEntry(int journalType, Date journalDate, Date journalTransactionDate, int journalSourceId,
+                                               int journalSourceType, int subledgerAcctountId, int companyId, List<JournalEntryItem> journalEntryItems) {
+        JournalEntry journalEntry = new JournalEntry();
+        journalEntry.setCompanyId(companyId);
+        journalEntry.setJournalType(journalType);
+        journalEntry.setJournalizationDate(journalDate);
+        journalEntry.setTransactionDate(journalTransactionDate);
+        journalEntry.setSourceId(journalSourceId);
+        journalEntry.setSourceType(journalSourceType);
+        journalEntry.setSubledgerAcctId(subledgerAcctountId);
+        journalEntry.setSubLedgerAccountType();
+        List<JournalEntryDetail> journalEntryDetails = getJournalEntryDetails(journalEntry, journalEntryItems);
+        journalEntry.setJournalEntryDetails(journalEntryDetails);
+        return journalEntry;
+    }
+
+    private List<JournalEntryDetail> getJournalEntryDetails(JournalEntry journalEntry, List<JournalEntryItem> journalEntryItems) {
+        List<JournalEntryDetail> journalEntryDetails = new ArrayList<>();
+        for (JournalEntryItem journalEntryItem : journalEntryItems) {
+            JournalEntryDetail journalEntryDetail = new JournalEntryDetail();
+            journalEntryDetail.setAmount(journalEntryItem.getAmount());
+            journalEntryDetail.setComment(journalEntryItem.getComment());
+            journalEntryDetail.setGlAccountId(journalEntryItem.getAccountDetail().getId().intValue());
+            journalEntryDetail.setJournalEntry(journalEntry);
+            journalEntryDetail.setQuantity(journalEntryItem.getQuantity());
+            if(journalEntryItem.isDebit()) {
+                journalEntry.setTotal(journalEntryItem.getAmount());
+            }
+            journalEntryDetails.add(journalEntryDetail);
+        }
+        return journalEntryDetails;
     }
 }

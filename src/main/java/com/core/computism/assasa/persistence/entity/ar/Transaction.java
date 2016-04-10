@@ -1,7 +1,12 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -28,7 +33,7 @@ public class Transaction extends BaseEntity {
     private Integer chargeCustomerId;
     private Integer createdBy;
     private Integer glAccountId;
-    private Integer journalEntryId;
+    private JournalEntry journalEntry;
     private Integer transactionSubType;
     private BigDecimal totalAmount;
     private Boolean suppressOnStatement;
@@ -168,13 +173,15 @@ public class Transaction extends BaseEntity {
         this.glAccountId = glaccountId;
     }
 
-    @Column(name = "journal_entry_id")
-    public Integer getJournalEntryId() {
-        return journalEntryId;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "journal_entry_id", referencedColumnName = "id", nullable = false)
+    public JournalEntry getJournalEntry() {
+        return journalEntry;
     }
 
-    public void setJournalEntryId(Integer journalEntryId) {
-        this.journalEntryId = journalEntryId;
+    public void setJournalEntry(JournalEntry journalEntry) {
+        this.journalEntry = journalEntry;
     }
 
     @Column(name = "transaction_sub_type")

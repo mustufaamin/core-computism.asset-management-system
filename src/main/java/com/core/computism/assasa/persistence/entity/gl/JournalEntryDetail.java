@@ -4,6 +4,9 @@ import com.core.computism.assasa.persistence.entity.ar.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
 
@@ -14,19 +17,20 @@ import java.math.BigDecimal;
 @Table(name = "ac_journal_detail")
 public class JournalEntryDetail extends BaseEntity {
 
-    private Integer journalId;
     private Integer glAccountId;
     private BigDecimal amount;
     private String comment;
     private BigDecimal quantity;
+    private JournalEntry journalEntry;
 
-    @Column(name = "journal_id")
-    public Integer getJournalId() {
-        return journalId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "journal_id")
+    public JournalEntry getJournalEntry() {
+        return journalEntry;
     }
 
-    public void setJournalId(Integer journalId) {
-        this.journalId = journalId;
+    public void setJournalEntry(JournalEntry journalEntry) {
+        this.journalEntry = journalEntry;
     }
 
     @Column(name = "gl_account_id")

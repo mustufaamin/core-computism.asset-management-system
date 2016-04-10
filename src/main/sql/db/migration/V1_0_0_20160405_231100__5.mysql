@@ -1,0 +1,7 @@
+ALTER TABLE `assasa`.`ar_transaction`  
+  ADD CONSTRAINT `fk_ac_journal_entry_id` FOREIGN KEY (`journal_entry_id`)
+  REFERENCES `assasa`.`ac_journal`(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE `assasa`.`ac_journal_detail`
+  ADD CONSTRAINT `fk_ac_journal_id` FOREIGN KEY (`journal_id`) REFERENCES `assasa`.`ac_journal`(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+

@@ -189,7 +189,7 @@ public class ArAccountType extends BaseEntity implements IJournalizeableItem {
             journalizeableItemDetail.setAmount(new BigDecimal(0.00));
             journalizeableItemDetail.setQuantity(new BigDecimal(0.00));
 
-            JournalEntryItem mainARAccountJournalizeableItemDebitREV = new JournalEntryItem(getAccountDetail(), (JournalizeableItemDetail) journalizeableItemDetail.clone(), journalEntryItemComments);
+           /*JournalEntryItem mainARAccountJournalizeableItemDebitREV = new JournalEntryItem(getAccountDetail(), (JournalizeableItemDetail) journalizeableItemDetail.clone(), journalEntryItemComments);
             mainARAccountJournalizeableItemDebitREV.setDebit(true);
             JournalEntryItem mainARAccountJournalizeableItemCreditREV = (JournalEntryItem) mainARAccountJournalizeableItemDebitREV.clone();
             mainARAccountJournalizeableItemCreditREV.setDebit(false);
@@ -201,7 +201,9 @@ public class ArAccountType extends BaseEntity implements IJournalizeableItem {
             journalizeableItems.add(mainARAccountJournalizeableItemDebitREV);
             journalizeableItems.add(mainARAccountJournalizeableItemCreditREV);
             journalizeableItems.add(mainARAccountJournalizeableItemDebitEXP);
-            journalizeableItems.add(mainARAccountJournalizeableItemCreditEXP);
+            journalizeableItems.add(mainARAccountJournalizeableItemCreditEXP);*/
+
+            journalizeableItems.add(ji);
 
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();

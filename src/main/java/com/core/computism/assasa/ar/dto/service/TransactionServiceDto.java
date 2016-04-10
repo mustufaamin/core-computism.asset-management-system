@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ import java.util.Map;
  * Created by VD on 3/13/2016.
  */
 @Component(value = "transactionServiceDto")
-public class TransactionServiceDto  {
+public class TransactionServiceDto {
 
     public final static int PERIODIC_TR_ID = 1;
     public final static int ADJUSTMENT_TR_ID = 2;
@@ -71,10 +72,10 @@ public class TransactionServiceDto  {
     }*/
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
-    public void basicPosting(Posting posting, List<? extends IPostable> postingList, String transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
+    public void basicPosting(Posting posting, List<? extends IPostable> postingList, Date transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
         List<? extends IJournalizeable> journalizeables = (List<? extends IJournalizeable>) (postingList);
 
-        posting.journalTransactions(journalizeables);
+        posting.journalTransactions(journalizeables, transactionDate, companyId);
 
         List<Transaction> transactions = transactionService.populateTransaction(postingList, transactionDate, transactionTypeId, userId);
         transactionRepository.save(transactions);

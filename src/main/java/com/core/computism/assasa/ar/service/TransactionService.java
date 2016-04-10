@@ -4,6 +4,7 @@ import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Transaction;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -11,6 +12,6 @@ import java.util.List;
  */
 public interface TransactionService {
 
-    public List<Transaction> populateTransaction(List<? extends IPostable> postingObjectsSubList, String transactionDate,
+    public List<Transaction> populateTransaction(List<? extends IPostable> postingObjectsSubList, Date transactionDate,
                                                  int transactionTypeId, int createdBy) throws ArBusinessException;
 }

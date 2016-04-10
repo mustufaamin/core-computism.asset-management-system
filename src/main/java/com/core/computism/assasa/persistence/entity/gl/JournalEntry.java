@@ -1,10 +1,19 @@
 package com.core.computism.assasa.persistence.entity.gl;
 
+import com.core.computism.assasa.ar.transaction.JournalType;
+import com.core.computism.assasa.constant.IJournalEntry;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by VD on 3/9/2016.
@@ -12,6 +21,8 @@ import java.util.Date;
 @Entity
 @Table(name = "ac_journal")
 public class JournalEntry extends BaseEntity {
+
+    Logger LOG = LoggerFactory.getLogger(JournalEntry.class);
 
     private Integer journalType;
     private Integer companyId;
@@ -23,6 +34,7 @@ public class JournalEntry extends BaseEntity {
     private Integer subledgerAcctType;
     private BigDecimal total;
     private Integer postId;
+    private List<JournalEntryDetail> journalEntryDetails;
 
     @Column(name = "journal_type")
     public Integer getJournalType() {
@@ -113,4 +125,44 @@ public class JournalEntry extends BaseEntity {
     public void setPostId(Integer postId) {
         this.postId = postId;
     }
+
+    @OneToMany(mappedBy = "journalEntry", cascade = CascadeType.ALL)
+    public List<JournalEntryDetail> getJournalEntryDetails() {
+        return journalEntryDetails;
+    }
+
+    public void setJournalEntryDetails(List<JournalEntryDetail> journalEntryDetails) {
+        this.journalEntryDetails = journalEntryDetails;
+    }
+
+    @Transient
+    public void setSubLedgerAccountType() {
+        if(this.getJournalType() == IJournalEntry.JOURNAL_TYPE_AP_PAYMENTS ||
+                this.getJournalType() == IJournalEntry.JOURNAL_TYPE_AP_PURCHASES) {
+            this.subledgerAcctType = IJournalEntry.SUB_LEDGER_ACCT_TYPE_VENDOR;
+        }
+        else if(this.getJournalType() == IJournalEntry.JOURNAL_TYPE_AR_SALES ||
+                this.getJournalType() == IJournalEntry.JOURNAL_TYPE_AR_RECEIPTS) {
+            this.subledgerAcctType = IJournalEntry.SUB_LEDGER_ACCT_TYPE_CUSTOMER;
+        }
+        else {
+            LOG.error("the journal type is not defined. Cannot set a subledger account type ");
+        }
+    }
+
+    /*public void setEntryTotalNature(int sign)
+    {
+        try {
+            BigDecimal total = new BigDecimal(0.00);
+            if(this.getTotal() == null) {
+                this.setTotal(new BigDecimal(this.getTotal().doubleValue() * sign));
+            } else {
+                for(JournalEntryDetail journalEntryDetail : this.getJournalEntryDetails()) {
+                    journalEntryDetail.getAmount();
+                }
+            }
+        } catch (Exception e) {
+            LOG.error(e.getMessage(),e);
+        }
+    }*/
 }

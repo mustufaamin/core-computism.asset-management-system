@@ -28,7 +28,7 @@ public interface IPostable {
 
     public int getGlAccountId();
 
-   /* public JournalEntry getJournalEntry();*/
+    public JournalEntry getJournalEntry();
 
     public int getArTransactionSubType();
 

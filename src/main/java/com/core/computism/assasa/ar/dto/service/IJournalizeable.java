@@ -1,6 +1,7 @@
 package com.core.computism.assasa.ar.dto.service;
 
 import com.core.computism.assasa.ar.IJournalizeableItem;
+import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
 import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
 import java.math.BigDecimal;
@@ -44,4 +45,6 @@ public interface IJournalizeable {
      * Quantity in Adjustment for statistical accounting
      */
     public BigDecimal getJournalizeableMainItemQuantity();
+
+    public void setJournalEntry(JournalEntry journalEntry);
 }

@@ -8,6 +8,7 @@ import com.core.computism.assasa.exception.ArBusinessException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
 @Component(value = "arAdjustmentServiceImpl")
 public class AdjustmentServiceImpl implements AdjustmentService, IMemberCharge {
     @Override
-    public void doPost(Posting posting, List<? extends IPostable> postingList, String transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
+    public void doPost(Posting posting, List<? extends IPostable> postingList, Date transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
 
     }
 }

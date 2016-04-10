@@ -44,6 +44,7 @@ public class Payment extends BaseEntity implements IPostable, IJournalizeable {
     private Boolean suppressOnStatement;
     private String statementDescription2;
     private Integer referenceId;
+    private JournalEntry journalEntry;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ar_account_id", referencedColumnName = "id", nullable = false)
@@ -249,7 +250,11 @@ public class Payment extends BaseEntity implements IPostable, IJournalizeable {
 
     @Transient
     public JournalEntry getJournalEntry() {
-        return null;
+        return journalEntry;
+    }
+
+    public void setJournalEntry(JournalEntry journalEntry) {
+        this.journalEntry = journalEntry;
     }
 
     @Transient

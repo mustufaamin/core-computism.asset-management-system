@@ -43,7 +43,7 @@ public class TransactionServiceImpl implements TransactionService {
     ArAccountRepository arAccountRepository;
 
     @Override
-    public List<Transaction> populateTransaction(List<? extends IPostable> postingObjectsSubList, String transactionDate,
+    public List<Transaction> populateTransaction(List<? extends IPostable> postingObjectsSubList, Date transactionDate,
                                                  int transactionTypeId, int createdBy) throws ArBusinessException {
         List<Transaction> transactions = new ArrayList<>();
         try {
@@ -67,7 +67,9 @@ public class TransactionServiceImpl implements TransactionService {
 
                 LOG.debug("po.getCustomerId():" + customer.getId());
 
-                if (baseAcc.getCustomer().getId().equals(0)) {
+                trans.setChargeCustomerId(baseAcc.getCustomer().getId().intValue());
+                trans.setStatementId(0);
+                if (trans.getChargeCustomerId().equals(0)) {
                     throw new ArBusinessException("Charge customer id is not set.");
                 }
                 if (baseAcc != null && po.getArAccountId() == 0) {
@@ -100,7 +102,7 @@ public class TransactionServiceImpl implements TransactionService {
                 trans.setStatementDescription2(po.getArTransactionStatementDescription2());
                 trans.setDescription(po.getArTransactionInternalDescription());
                 trans.setGlAccountId(po.getGlAccountId());
-                //trans.setJournalEntry(po.getJournalEntry()); TODO need to fix in Payment Persistence Class
+                trans.setJournalEntry(po.getJournalEntry());
                 trans.setCreatedBy(createdBy);
                 trans.setSuppressOnStatement(po.getSuppressOnStatement());
 
