@@ -3,6 +3,7 @@ package com.core.computism.assasa.persistence.entity.pos;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,6 +25,7 @@ public class PosPayment extends BaseEntity {
     private Integer terminalId;
     private Integer transactionId;
 
+    private PosOrder posOrder;
     private PosPaymentType posPaymentType;
 
     @Basic
@@ -66,7 +68,7 @@ public class PosPayment extends BaseEntity {
         this.transactionId = transactionId;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_type_id", referencedColumnName = "id", nullable = false)
     public PosPaymentType getPosPaymentType() {
         return posPaymentType;
@@ -74,5 +76,15 @@ public class PosPayment extends BaseEntity {
 
     public void setPosPaymentType(PosPaymentType posPaymentType) {
         this.posPaymentType = posPaymentType;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false)
+    public PosOrder getPosOrder() {
+        return posOrder;
+    }
+
+    public void setPosOrder(PosOrder posOrder) {
+        this.posOrder = posOrder;
     }
 }

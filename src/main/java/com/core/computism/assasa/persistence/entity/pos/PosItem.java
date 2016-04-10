@@ -3,12 +3,13 @@ package com.core.computism.assasa.persistence.entity.pos;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
- * Created by VD on 2/9/2016.
+ * Created by M.Mustafa Amin Shah on 2/9/2016.
  */
 @Entity
 @Table(name = "pos_item")
@@ -22,7 +23,7 @@ public class PosItem extends BaseEntity {
     private String location;
     private String itemDescription;
     private String color;
-    private Integer size;
+    private String size;
     private PosItemType posItemType;
     private Supplier supplier;
     private PosItemGroup posItemGroup;
@@ -117,11 +118,11 @@ public class PosItem extends BaseEntity {
     }
 
     @Column(name = "size", nullable = true, insertable = true, updatable = true)
-    public Integer getSize() {
+    public String getSize() {
         return size;
     }
 
-    public void setSize(Integer size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
@@ -135,7 +136,7 @@ public class PosItem extends BaseEntity {
         this.posItemType = posItemType;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_ref", referencedColumnName = "id", nullable = false)
     public Supplier getSupplier() {
         return supplier;
@@ -145,7 +146,7 @@ public class PosItem extends BaseEntity {
         this.supplier = supplier;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_group_id", referencedColumnName = "id", nullable = false)
     public PosItemGroup getPosItemGroup() {
         return posItemGroup;

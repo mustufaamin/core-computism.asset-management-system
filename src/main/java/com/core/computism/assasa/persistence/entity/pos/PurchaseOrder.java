@@ -3,6 +3,7 @@ package com.core.computism.assasa.persistence.entity.pos;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -63,7 +64,7 @@ public class PurchaseOrder extends BaseEntity {
         this.totalAmount = totalAmount;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "supplier_id", referencedColumnName = "id", nullable = false)
     public Supplier getSupplier() {
         return supplier;
@@ -73,7 +74,7 @@ public class PurchaseOrder extends BaseEntity {
         this.supplier = supplier;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "currency_id", nullable = false)
 
     public Currency getCurrency() {

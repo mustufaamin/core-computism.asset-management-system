@@ -33,7 +33,6 @@ public class PosItemServiceImpl implements PosItemService {
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
     public PosItemDto add(PosItemDto posItemDto) throws PosBusinessException {
-
         try {
             if (posItemDto == null) {
                 throw new PosBusinessException("No DTO Found");

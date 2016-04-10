@@ -22,10 +22,10 @@ public class PosOrder extends BaseEntity{
     private Integer batchNumber;
     private Integer totalAmount;
     private Integer numberOfItems;
+
     private Customer customer;
     private Currency currency;
-
-
+    private List<PosPayment>  posPayments;
     private List<PosOrderItem> posOrderItems;
 
     @Basic
@@ -69,7 +69,7 @@ public class PosOrder extends BaseEntity{
         this.numberOfItems = numberOfItems;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_Id", referencedColumnName = "id", nullable = false)
     public Customer getCustomer() {
         return customer;
@@ -79,7 +79,7 @@ public class PosOrder extends BaseEntity{
         this.customer = customer;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "currency_id",  nullable = false)
 
     public Currency getCurrency() {
@@ -97,5 +97,14 @@ public class PosOrder extends BaseEntity{
 
     public void setPosOrderItems(List<PosOrderItem> posOrderItems) {
         this.posOrderItems = posOrderItems;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "posOrder")
+    public List<PosPayment> getPosPayments() {
+        return posPayments;
+    }
+
+    public void setPosPayments(List<PosPayment> posPayments) {
+        this.posPayments = posPayments;
     }
 }

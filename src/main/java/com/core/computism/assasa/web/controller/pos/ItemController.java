@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by VD on 2/20/2016.
+ * Created by M.Mustufa Amin Shah on 2/20/2016.
  */
 @RestController
-@RequestMapping(value = "item/")
+@RequestMapping(value = "/item/")
 public class ItemController extends BaseController {
 
     private static final Logger LOGGER = Logger.getLogger(ItemController.class);
@@ -44,4 +44,11 @@ public class ItemController extends BaseController {
         ServerResponse<PosItemDto> response = toResponse(posItemService.update(posItemDto));
         return response;
     }
+    @RequestMapping(value = "/get/{itemId}", method = RequestMethod.GET)
+    public ServerResponse<PosItemDto> getItem(@PathVariable(value = "itemId") Long itemId) throws PosBusinessException {
+        LOGGER.info("Get Item....");
+        ServerResponse<PosItemDto> response = toResponse(posItemService.get(itemId));
+        return response;
+    }
+
 }

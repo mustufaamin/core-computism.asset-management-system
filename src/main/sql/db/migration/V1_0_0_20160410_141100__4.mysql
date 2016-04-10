@@ -1,0 +1,17 @@
+INSERT INTO assasa.pos_item_group (group_name, group_description, bill_code_id, item_group_status, creation_date, last_modified_date, version) VALUES ('Garments', 'This group is related to the garments', 1, 1, '2016-04-10 14:31:34', '2016-04-10 14:31:38', 1);
+
+INSERT INTO assasa.pos_item_type (name, creation_date, last_modified_date, version)
+VALUES ( 'Kurta', '2016-04-10 14:35:05', '2016-04-10 14:35:08', 1);
+
+ALTER TABLE `assasa`.`pos_item` DROP FOREIGN KEY `pos_item_ibfk_2` ;
+ALTER TABLE `assasa`.`pos_item` CHANGE COLUMN `supplier_ref` `supplier_ref` INT(11) NULL  ,
+  ADD CONSTRAINT `pos_item_ibfk_2`
+  FOREIGN KEY (`supplier_ref` )
+  REFERENCES `assasa`.`supplier` (`id` );
+
+
+  INSERT INTO assasa.pos_item (item_number, item_unit, stock_level, min_stock_level, cost_price, sales_price, location, item_description, supplier_ref, item_type, size, color, item_group_id, creation_date, last_modified_date, version)
+VALUES
+  ( 'ab124584M12 ', 'number', 30, 20, '1200.20', '1500', '', 'THis is the test Item   ', NULL, 1, 'Small', 'Blue', 1,
+   '2016-04-10 14:39:10', '2016-04-10 14:37:26', 1);
+
