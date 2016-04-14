@@ -20,36 +20,40 @@ import java.util.List;
  * Created by M.Mustufa Amin Shah on 3/23/2016.
  */
 @Service(value = "billCodeService")
-public class BillCodeServiceImpl implements BillCodeService{
+public class BillCodeServiceImpl implements BillCodeService {
 
-    @Autowired private BillCodeRepository billCodeRepository;
-    @Autowired private BillCodeBuilder billCodeBuilder;
+    @Autowired
+    private BillCodeRepository billCodeRepository;
+    @Autowired
+    private BillCodeBuilder billCodeBuilder;
 
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public BillCodeDto add(BillCodeDto billCodeDto) throws ArBusinessException {
-        try{
+        try {
             BillCode billCode = new BillCode();
 
-            billCode = billCodeBuilder.buildBillCodeEntity(billCodeDto,billCode);
+            billCode = billCodeBuilder.buildBillCodeEntity(billCodeDto, billCode);
             billCode = billCodeRepository.save(billCode);
             return billCodeBuilder.buildBillCodeDto(billCode);
-        }catch (PersistenceException | BuilderException e){
-            throw new ArBusinessException("Error Occurred In BillCode service Add",e);
+        } catch (PersistenceException | BuilderException e) {
+            throw new ArBusinessException("Error Occurred In BillCode service Add", e);
         }
     }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public BillCodeDto update(BillCodeDto billCodeDto) throws ArBusinessException {
-        try{
+        try {
             BillCode billCode = billCodeRepository.getOne(billCodeDto.getId());
-            billCode = billCodeBuilder.buildBillCodeEntity(billCodeDto,billCode);
+            billCode = billCodeBuilder.buildBillCodeEntity(billCodeDto, billCode);
 
             billCode = billCodeRepository.save(billCode);
             return billCodeBuilder.buildBillCodeDto(billCode);
 
-        }catch (PersistenceException | BuilderException e){
-            throw new ArBusinessException("Error Occurred In BillCode service Update",e);
+        } catch (PersistenceException | BuilderException e) {
+            throw new ArBusinessException("Error Occurred In BillCode service Update", e);
         }
     }
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<BillCodeDto> list() throws ArBusinessException {
         try {

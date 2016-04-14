@@ -20,28 +20,31 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "billCodes/")
-public class BillCodeController extends BaseController{
+public class BillCodeController extends BaseController {
 
     private static final Logger LOGGER = Logger.getLogger(BillCodeController.class);
 
-    @Autowired private BillCodeService billCodeService;
+    @Autowired
+    private BillCodeService billCodeService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ServerResponse<BillCodeDto> add(@RequestBody BillCodeDto billCodeDto) throws ArBusinessException {
         LOGGER.info("Adding BillCode..");
-        ServerResponse<BillCodeDto> response  = toResponse(billCodeService.add(billCodeDto));
+        ServerResponse<BillCodeDto> response = toResponse(billCodeService.add(billCodeDto));
         return response;
     }
+
     @RequestMapping(value = "update", method = RequestMethod.POST)
     public ServerResponse<BillCodeDto> update(@RequestBody BillCodeDto billCodeDto) throws ArBusinessException {
         LOGGER.info("update BillCode..");
-        ServerResponse<BillCodeDto> response  = toResponse(billCodeService.update(billCodeDto));
+        ServerResponse<BillCodeDto> response = toResponse(billCodeService.update(billCodeDto));
         return response;
     }
+
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public ServerResponse<List<BillCodeDto>> list() throws ArBusinessException {
         LOGGER.info("List BillCode..");
-        ServerResponse<List<BillCodeDto>> response  = toResponse(billCodeService.list());
+        ServerResponse<List<BillCodeDto>> response = toResponse(billCodeService.list());
         return response;
     }
 }

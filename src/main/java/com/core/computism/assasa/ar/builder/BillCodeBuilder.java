@@ -18,7 +18,7 @@ public class BillCodeBuilder {
     public BillCode buildBillCodeEntity(BillCodeDto billCodeDto,BillCode billCode) throws BuilderException {
 
         if(billCodeDto == null){
-            throw new BuilderException("city Dto not present");
+            throw new BuilderException("billCode Dto not present");
         }
 
         billCode.setName(billCodeDto.getName());

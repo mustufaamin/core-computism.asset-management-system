@@ -1,6 +1,7 @@
 package com.core.computism.assasa.ar.dto;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
  * Created by VD on 2/19/2016.
  */
 @JsonAutoDetect
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ArAccountDto {
 
     private Long customerId;
