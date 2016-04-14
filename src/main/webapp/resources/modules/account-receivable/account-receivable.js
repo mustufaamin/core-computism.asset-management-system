@@ -15,6 +15,7 @@
             var arCtrl = this;
             arCtrl.showPaymentsTypePanel = false;
             arCtrl.showArTypesPanel = false;
+            arCtrl.showBillCodesPanel = false;
 
         }]);
 
