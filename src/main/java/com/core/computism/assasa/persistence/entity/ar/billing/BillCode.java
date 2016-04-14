@@ -1,11 +1,15 @@
 package com.core.computism.assasa.persistence.entity.ar.billing;
 
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,6 +24,7 @@ import java.util.Date;
 public class BillCode extends BaseEntity{
     private Integer billCodeTypeId;
     private Integer addOnGroupId;
+    private GlAccount glAccount;
     private String name;
     private String description;
     private Date activationDate;
@@ -44,6 +49,16 @@ public class BillCode extends BaseEntity{
 
     public void setAddOnGroupId(Integer addOnGroupId) {
         this.addOnGroupId = addOnGroupId;
+    }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "gl_account_id", referencedColumnName = "id", nullable = false)
+    public GlAccount getGlAccount() {
+        return glAccount;
+    }
+
+    public void setGlAccount(GlAccount glAccount) {
+        this.glAccount = glAccount;
     }
 
     @Basic

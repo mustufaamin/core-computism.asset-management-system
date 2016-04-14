@@ -14,6 +14,7 @@ public class BillCodeDto {
     private Long id;
     private BillCodeType billCodeType;
     private Integer addOnGroupId;
+    private Long glAccountId;
     private String name;
     private String description;
     private Date activationDate;
@@ -42,6 +43,14 @@ public class BillCodeDto {
 
     public void setAddOnGroupId(Integer addOnGroupId) {
         this.addOnGroupId = addOnGroupId;
+    }
+
+    public Long getGlAccountId() {
+        return glAccountId;
+    }
+
+    public void setGlAccountId(Long glAccountId) {
+        this.glAccountId = glAccountId;
     }
 
     public String getName() {

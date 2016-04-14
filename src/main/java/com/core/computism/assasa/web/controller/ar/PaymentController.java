@@ -36,7 +36,7 @@ public class PaymentController {
 
     @RequestMapping(value = "addPayment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addPayment(@RequestBody PaymentDto paymentDto) throws Exception {
+    public void addPayment(@RequestBody PaymentDto paymentDto) throws ArBusinessException {
         try {
             paymentService.savePayment(paymentDto);
         } catch (ArBusinessException e) {
@@ -46,7 +46,7 @@ public class PaymentController {
 
     @RequestMapping(value = "saveNPostPayment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void saveNPostPayment(@RequestBody PaymentDto paymentDto) throws Exception {
+    public void saveNPostPayment(@RequestBody PaymentDto paymentDto) throws ArBusinessException {
         try {
             paymentService.saveNPostPayment(paymentDto);
         } catch (ArBusinessException e) {
@@ -56,7 +56,7 @@ public class PaymentController {
 
     @RequestMapping(value = "addPaymentType", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addPaymentType(@RequestBody PaymentTypeDto paymentTypeDto) throws Exception {
+    public void addPaymentType(@RequestBody PaymentTypeDto paymentTypeDto) throws ArBusinessException {
         try {
             paymentTypeService.savePaymentType(paymentTypeDto);
         } catch (ArBusinessException e) {

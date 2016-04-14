@@ -28,7 +28,7 @@ public class AdjustmentController {
 
     @RequestMapping(value = "addPayment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addPayment(@RequestBody AdjustmentDto adjustmentDto) throws Exception {
+    public void addPayment(@RequestBody AdjustmentDto adjustmentDto) throws ArBusinessException {
         try {
             adjustmentService.saveAdjustment(adjustmentDto);
         } catch (ArBusinessException e) {

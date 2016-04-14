@@ -1,7 +1,10 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.ar.enumtype.TransactionType;
+import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
+import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -17,7 +21,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "ar_adjustment")
-public class Adjustment extends BaseEntity {
+public class Adjustment extends BaseEntity implements IPostable {
     private ArAccount arAccount;
     private BillCode billCode;
     private Date adjustmentDate;
@@ -32,6 +36,7 @@ public class Adjustment extends BaseEntity {
     private Boolean excludeValueAdded;
     private Integer createdBy;
     private Integer modifiedBy;
+    private JournalEntry journalEntry;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ar_account_id", referencedColumnName = "id", nullable = false)
@@ -160,4 +165,70 @@ public class Adjustment extends BaseEntity {
     public void setModifiedBy(Integer modifiedBy) {
         this.modifiedBy = modifiedBy;
     }
+
+    @Transient
+    public Integer getArAccountId() {
+        return this.getArAccount().getId().intValue();
+    }
+
+    @Transient
+    public Long getArTransactionReferenceId() {
+        return this.getId();
+    }
+
+    @Transient
+    public int getArTransactionSourceId() {
+        return 0;
+    }
+
+    @Transient
+    public Date getArTransactionDate() {
+        return this.adjustmentDate;
+    }
+
+
+    @Transient
+    public int getArTransactionType() {
+        return TransactionType.PAYMENT_TR_ID.getCode();
+    }
+
+    @Transient
+    public BigDecimal getArTransactionAmount() {
+        return this.getAmount();
+    }
+
+    @Transient
+    public String getArTransactionStatementDescription1() {
+        return this.getDescription();
+    }
+
+    @Transient
+    public String getArTransactionStatementDescription2() {
+        return this.getStatementDescription2();
+    }
+
+    @Transient
+    public String getArTransactionInternalDescription() {
+        return "";
+    }
+
+    @Transient
+    public int getGlAccountId() {
+        return this.getBillCode().getGlAccount().getId().intValue();
+    }
+
+    @Transient
+    public JournalEntry getJournalEntry() {
+        return journalEntry;
+    }
+
+    public void setJournalEntry(JournalEntry journalEntry) {
+        this.journalEntry = journalEntry;
+    }
+
+    @Transient
+    public int getArTransactionSubType() {
+        return TransactionType.PAYMENT_TR_ID.getCode();
+    }
+
 }
