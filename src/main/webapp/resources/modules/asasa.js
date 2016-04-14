@@ -1,7 +1,7 @@
 /**
  * Created by Muhammad Umer on 3/12/2016.
  */
-var app = angular.module('Asasa', ['ngTable', 'ngRoute', 'ngResource', 'ui.router']);
+var app = angular.module('Asasa', ['ngTable', 'ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap']);
 
 app.controller('MainModulesController', ['$http', '$window', '$location',  function ($http, $window, $location){
     var mainMdlsCtrl = this;
@@ -46,6 +46,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
         .state('arTypes', {
             url: '/arTypes',
             templateUrl: 'resources/modules/account-receivable/sub-modules/admin/ar-types/templates/ar-types-panel.jsp'
+        })
+
+        .state('billCodes', {
+            url: '/billCodes',
+            templateUrl: 'resources/modules/account-receivable/sub-modules/admin/billcodes/templates/bill-codes-panel.jsp'
         })
 
         .state('paymentTypes', {

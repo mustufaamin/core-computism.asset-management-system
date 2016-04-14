@@ -16,6 +16,7 @@
     <link href="resources/modules/account-receivable/css/account-receivable.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/payments/payment-type/css/payment-type.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/admin/ar-types/css/ar-types.css" rel="stylesheet">
+    <link href="resources/modules/account-receivable/sub-modules/admin/billcodes/css/billcodes.css" rel="stylesheet">
     <link href="resources/css/asasa/asasa.css" rel="stylesheet">
 
 
@@ -431,12 +432,16 @@
     <script src="resources/libraries/counter.js"></script>
     <script src="resources/libraries/retina.js"></script>
     <script src="resources/libraries/custom.js"></script>
+    <script src="resources/libraries/ui-bootstrap-tpls-0.14.3.js"></script>
+
+
     <script src="resources/modules/asasa.js"></script>
     <script src="resources/modules/home/home.js"></script>
     <script src="resources/modules/customer/customer.js"></script>
     <script src="resources/modules/account-receivable/account-receivable.js"></script>
     <script src="resources/modules/account-receivable/sub-modules/payments/payment-type/payment-type.js"></script>
     <script src="resources/modules/account-receivable/sub-modules/admin/ar-types/ar-types.js"></script>
+    <script src="resources/modules/account-receivable/sub-modules/admin/billcodes/billcodes.js"></script>
     <script src="resources/libraries/bower-components/ng-table/dist/ng-table.js"></script>
     <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
     <script src="resources/libraries/bower-components/angular-ui-router/release/angular-ui-router.min.js"></script>

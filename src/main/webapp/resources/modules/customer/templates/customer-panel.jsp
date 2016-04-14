@@ -38,8 +38,8 @@
       <table ng-table="custList" class="table" show-filter="true">
         <tr ng-repeat="customer in custCtrl.listCustomer">
           <td title="'#'">
-            <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(2)">View: <i class="fa fa-eye"></i><br></div>
-            <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(3)">Edit: <i class="fa fa-scissors"></i></div>
+            <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(2, customer)">View: <i class="fa fa-eye"></i><br></div>
+            <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(3, customer)">Edit: <i class="fa fa-scissors"></i></div>
           </td>
           <td title="'ID'">
             {{customer.id}}</td>

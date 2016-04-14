@@ -69,7 +69,7 @@
                             <li class="ar-option"><label class=""><i class="fa fa-arrow-right"></i> Add On Group</label></li>
                             <li class="ar-option" ui-sref="arTypes" ng-click="arCtrl.showArTypesPanel = !arCtrl.showArTypesPanel"><label class=""><i class="fa fa-arrow-right"></i> AR Types</label></li>
                             <li class="ar-option"><label class=""><i class="fa fa-arrow-right"></i> Batches</label></li>
-                            <li class="ar-option"><label class=""><i class="fa fa-arrow-right"></i> Bill Code</label></li>
+                            <li class="ar-option" ui-sref="billCodes" ng-click="arCtrl.showBillCodesPanel = !arCtrl.showBillCodesPanel"><label class=""><i class="fa fa-arrow-right"></i> Bill Code</label></li>
                         </ul>
                     </div>
                 </div>

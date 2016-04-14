@@ -1,9 +1,7 @@
 package com.core.computism.assasa.ar.service.impl;
 
 import com.core.computism.assasa.ar.builder.AdjustmentBuilder;
-import com.core.computism.assasa.ar.builder.PaymentBuilder;
 import com.core.computism.assasa.ar.dto.AdjustmentDto;
-import com.core.computism.assasa.ar.dto.PaymentDto;
 import com.core.computism.assasa.ar.dto.service.TransactionServiceDto;
 import com.core.computism.assasa.ar.service.AdjustmentService;
 import com.core.computism.assasa.ar.transaction.IMemberCharge;
@@ -11,8 +9,6 @@ import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.ar.transaction.Posting;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Adjustment;
-import com.core.computism.assasa.persistence.entity.ar.Payment;
-import com.core.computism.assasa.persistence.entity.ar.PaymentType;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.repository.ar.AdjustmentRepository;
@@ -21,7 +17,6 @@ import com.core.computism.assasa.persistence.repository.ar.BillCodeRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,6 +38,9 @@ public class AdjustmentServiceImpl implements AdjustmentService, IMemberCharge {
 
     @Autowired
     BillCodeRepository billCodeRepository;
+
+    @Autowired
+    TransactionServiceDto transactionServiceDto;
 
     @Autowired
     Posting posting;
@@ -78,8 +76,15 @@ public class AdjustmentServiceImpl implements AdjustmentService, IMemberCharge {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public void doPost(Posting posting, List<? extends IPostable> postingList, Date transactionDate, int transactionTypeId, int userId, int companyId) throws ArBusinessException {
+        List<Adjustment> adjustments = (ArrayList<Adjustment>) (postingList);
+        transactionServiceDto.basicPosting(posting, postingList, transactionDate, transactionTypeId, userId, companyId);
+        updateAdjustments(adjustments);
+    }
 
+    private void updateAdjustments(List<Adjustment> adjustments) {
+        adjustmentRepository.save(adjustments);
     }
 
     private Adjustment adjustmentBuilder(AdjustmentDto adjustmentDto) throws ArBusinessException{

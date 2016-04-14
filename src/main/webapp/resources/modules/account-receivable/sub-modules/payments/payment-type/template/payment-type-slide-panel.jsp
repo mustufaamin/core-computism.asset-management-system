@@ -11,39 +11,39 @@
     <div class="cust-panel-content">
       <div class="pt-name cust-panel-field-div">
         <label class="cust-panel-lbl">Payment Type Name:</label>
-        <input class="cust-panel-input" placeholder="Enter payment type name..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.paymentTypeName" placeholder="Enter payment type name..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="pt-desc cust-panel-field-div">
         <label class="cust-panel-lbl">Payment Type Description:</label>
-        <input class="cust-panel-input" placeholder="Enter payment type description..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.paymentTypeDesc" placeholder="Enter payment type description..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="acc-id cust-panel-field-div">
         <label class="cust-panel-lbl">GL Account Id:</label>
-        <input class="cust-panel-input" placeholder="Enter GL A/C Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.glAccountId" placeholder="Enter GL A/C Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="status cust-panel-field-div">
         <label class="cust-panel-lbl">Status:</label>
-        <input class="cust-panel-input" placeholder="Enter status..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.status" placeholder="Enter status..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="module-id cust-panel-field-div">
         <label class="cust-panel-lbl">Module Id:</label>
-        <input class="cust-panel-input" placeholder="Enter module Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.moduleId" placeholder="Enter module Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="company-id cust-panel-field-div">
         <label class="cust-panel-lbl">Company Id:</label>
-        <input class="cust-panel-input" placeholder="Enter company Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.companyId" placeholder="Enter company Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="addon cust-panel-field-div">
         <label class="cust-panel-lbl">AddOn Group Id:</label>
-        <input class="cust-panel-input" placeholder="Enter addon group Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.addOnGroupId" placeholder="Enter addon group Id..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="display-priority cust-panel-field-div">
         <label class="cust-panel-lbl">Display Priority:</label>
-        <input class="cust-panel-input" placeholder="Enter display priority ..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.displayPriority" placeholder="Enter display priority ..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
       <div class="description cust-panel-field-div">
         <label class="cust-panel-lbl">Description:</label>
-        <input class="cust-panel-input" placeholder="Enter description..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="paymentTypeCtrl.description" placeholder="Enter description..." ng-class="{disabled: paymentTypeCtrl.isView}"/>
       </div>
     </div>
     <div class="cust-panel-foot">

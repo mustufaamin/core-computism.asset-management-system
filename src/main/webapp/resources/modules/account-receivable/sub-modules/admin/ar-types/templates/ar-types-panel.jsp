@@ -26,22 +26,22 @@
     <div class="cap-adj-cycle">
       <div class="cap-adj-cyc-head">List of Current Account Receivable Types</div>
 
-      <table ng-table="paymentTypeList" class="table" show-filter="true">
-        <tr <%--ng-repeat="payment in paymentTypeCtrl.listPaymentList"--%>>
+      <table ng-table="arTypeList" class="table" show-filter="true">
+        <tr ng-repeat="arType in arTypesCtrl.listArTypes">
           <td title="'#'">
-            <div class="grid-func" ng-click="arTypesCtrl.openARTypeSlidePanel(2)">View: <i class="fa fa-eye"></i><br></div>
-            <div class="grid-func" ng-click="arTypesCtrl.openARTypeSlidePanel(3)">Edit: <i class="fa fa-scissors"></i></div>
+            <div class="grid-func" ng-click="arTypesCtrl.openARTypeSlidePanel(2, arType)">View: <i class="fa fa-eye"></i><br></div>
+            <div class="grid-func" ng-click="arTypesCtrl.openARTypeSlidePanel(3, arType)">Edit: <i class="fa fa-scissors"></i></div>
           </td>
           <td title="'Account Type Name'">
-            {{customer.id}}</td>
+            {{arType.accountTypeName}}</td>
           <td title="'Account Type Description'">
-            {{customer.firstName}} {{customer.lastName}}</td>
+            {{arType.accountTypeDesc}}</td>
           <td title="'GL Account Id'">
-            {{customer.gender}}</td>
+            {{arType.glAccountId}}</td>
           <td title="'Status'">
-            {{customer.locationAddress}}</td>
+            {{arType.status}}</td>
           <td title="'Account Type Code'">
-            {{customer.mobileNumber}}</td>
+            {{arType.accountTypeCode}}</td>
 
         </tr>
       </table>
