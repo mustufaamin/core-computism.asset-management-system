@@ -43,6 +43,7 @@ public class BillCodeBuilder {
         billCodeDto.setName(billCode.getName());
         billCodeDto.setBillCodeType(BillCodeType.getBillCodeType(billCode.getBillCodeTypeId()));
         billCodeDto.setAddOnGroupId(billCode.getAddOnGroupId());
+        billCodeDto.setGlAccountId(billCode.getGlAccount().getId());
         billCodeDto.setDescription(billCode.getDescription());
         billCodeDto.setActivationDate(billCode.getActivationDate());
         billCodeDto.setDeactivationDate(billCode.getDeactivationDate());

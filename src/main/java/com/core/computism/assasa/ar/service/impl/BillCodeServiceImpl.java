@@ -7,7 +7,9 @@ import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.ar.dto.BillCodeDto;
 import com.core.computism.assasa.ar.service.BillCodeService;
 import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.repository.ar.BillCodeRepository;
+import com.core.computism.assasa.persistence.repository.gl.GlAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -27,12 +29,19 @@ public class BillCodeServiceImpl implements BillCodeService {
     @Autowired
     private BillCodeBuilder billCodeBuilder;
 
+    @Autowired
+    GlAccountRepository glAccountRepository;
+
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public BillCodeDto add(BillCodeDto billCodeDto) throws ArBusinessException {
         try {
             BillCode billCode = new BillCode();
 
             billCode = billCodeBuilder.buildBillCodeEntity(billCodeDto, billCode);
+
+            GlAccount glAccount = glAccountRepository.findOne(billCodeDto.getGlAccountId());
+            billCode.setGlAccount(glAccount);
+
             billCode = billCodeRepository.save(billCode);
             return billCodeBuilder.buildBillCodeDto(billCode);
         } catch (PersistenceException | BuilderException e) {

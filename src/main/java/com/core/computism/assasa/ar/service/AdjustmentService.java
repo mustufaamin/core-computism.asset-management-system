@@ -10,4 +10,6 @@ import com.core.computism.assasa.exception.ArBusinessException;
 public interface AdjustmentService {
 
     public void saveAdjustment(AdjustmentDto adjustmentDto) throws ArBusinessException;
+
+    public void saveNPostAdjustment(AdjustmentDto adjustmentDto) throws ArBusinessException;
 }
