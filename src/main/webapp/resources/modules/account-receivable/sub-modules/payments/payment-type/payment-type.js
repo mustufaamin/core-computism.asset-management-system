@@ -19,12 +19,53 @@
         });
 
     angular.module('Asasa')
-        .controller('PaymentTypeController', ['$http', function($http){
+        .controller('PaymentTypeController', ['$http', 'PaymentTypeGatewayService', function($http, paymentTypeGWSrv){
             var paymentTypeCtrl = this;
             paymentTypeCtrl.showPanel = false;
             paymentTypeCtrl.isView = false;
             paymentTypeCtrl.slidePanelHeading = '';
             paymentTypeCtrl.listPaymentTypes = [];
+
+            paymentTypeCtrl.getPaymentTypeList = function(){
+                paymentTypeCtrl.listPaymentTypes = [];
+                paymentTypeGWSrv.listPaymentTypes().$promise.then(function(response){
+                    if(response != null){
+                        for(var i = 0; i < response.data.length; i++){
+                            var paymentType = {};
+                            /*customer.id = response.data[i].id;
+                            customer.firstName = response.data[i].firstName;
+                            customer.lastName = response.data[i].lastName;
+                            customer.locationAddress = response.data[i].locationAddress;
+                            customer.phoneNumber = response.data[i].phoneNumber;
+                            customer.mobileNumber = response.data[i].mobileNumber;
+                            customer.email = response.data[i].email;
+                            customer.cityId = response.data[i].cityId;*/
+
+                            paymentTypeCtrl.listPaymentTypes.push(paymentType);
+                        }
+                    }
+                });
+            };
+            paymentTypeCtrl.getPaymentTypeList();
+
+            paymentTypeCtrl.addPaymentType = function(){
+                var paymentType = {};
+                paymentType.paymentTypeName = paymentTypeCtrl.paymentTypeName;
+                paymentType.paymentTypeDesc = paymentTypeCtrl.paymentTypeDesc;
+                paymentType.glAccountId = paymentTypeCtrl.glAccountId;
+                paymentType.status = paymentTypeCtrl.status;
+                paymentType.moduleId = paymentTypeCtrl.moduleId;
+                paymentType.companyId = paymentTypeCtrl.companyId;
+                paymentType.addOnGroupId = paymentTypeCtrl.addOnGroupId;
+                paymentType.displayPriority = paymentTypeCtrl.displayPriority;
+                paymentType.description = paymentTypeCtrl.description;
+
+                paymentTypeGWSrv.addPaymentType(paymentType).$promise.then(function(response){
+                    if(response){
+
+                    }
+                });
+            };
 
             paymentTypeCtrl.openPaymentTypeSlidePanel = function(type){
                 paymentTypeCtrl.showPanel = true;
@@ -47,17 +88,10 @@
             var paymentTypeGWSrv = this;
             return $resource('',{},
                 {
-                    listCustomer: {method: 'GET', isArray: false, url: '/customer/list'},
+                    listPaymentTypes: {method: 'GET', isArray: false, url: '/payments/paymenttypes'},
 
-                    addCustomer: {method: 'POST', isArray: false, url: '/customer/add'}
-                    /*addItem: {method: 'POST',isArray: false,url:'item/:add'},
-                     addItemType: {method: 'POST',isArray: false,url:'/item/addType/:typeName'},
+                    addPaymentType: {method: 'POST', isArray: false, url: '/payments/addPaymentType'}
 
-                     *//*Supplier Methods*//*
-                 addSupplier:{method: 'POST',isArray: false,url:'/supplier/add'},
-
-                 *//*Customer Methods*//*
-                 addCustomer:{method: 'POST',isArray: false,url:'/customer/add'}*/
                 });
         }]);
 })();
