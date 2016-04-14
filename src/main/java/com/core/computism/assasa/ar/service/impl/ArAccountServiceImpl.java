@@ -6,7 +6,7 @@ import com.core.computism.assasa.ar.service.ArAccountService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
-import com.core.computism.assasa.persistence.entity.pos.Customer;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 
 import com.core.computism.assasa.persistence.repository.ar.ArAccountTypeRepository;

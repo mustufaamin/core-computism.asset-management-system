@@ -1,4 +1,6 @@
-package com.core.computism.assasa.persistence.entity.pos;
+package com.core.computism.assasa.persistence.entity.cmn;
+
+import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cmn_country")
-public class Country extends BaseEntity{
+public class Country extends BaseEntity {
     private String name;
 
     @Basic

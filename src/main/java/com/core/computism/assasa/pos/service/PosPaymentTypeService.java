@@ -1,6 +1,7 @@
 package com.core.computism.assasa.pos.service;
 
 import com.core.computism.assasa.exception.PosBusinessException;
+import com.core.computism.assasa.persistence.entity.pos.PosPaymentType;
 import com.core.computism.assasa.pos.domain.PosPaymentTypeDto;
 
 import java.util.List;
@@ -13,4 +14,5 @@ public interface PosPaymentTypeService {
     List<PosPaymentTypeDto> list() throws PosBusinessException;
     PosPaymentTypeDto update(PosPaymentTypeDto posPaymentTypeDto) throws PosBusinessException;
     PosPaymentTypeDto add(PosPaymentTypeDto posPaymentTypeDto) throws PosBusinessException;
+    PosPaymentType findPaymentType(Long posPaymentTypeId) throws PosBusinessException;
 }

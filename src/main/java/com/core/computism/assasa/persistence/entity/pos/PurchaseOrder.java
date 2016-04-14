@@ -1,5 +1,7 @@
 package com.core.computism.assasa.persistence.entity.pos;
 
+import com.core.computism.assasa.persistence.entity.cmn.Currency;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;

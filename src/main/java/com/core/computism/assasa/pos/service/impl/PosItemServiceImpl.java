@@ -121,5 +121,16 @@ public class PosItemServiceImpl implements PosItemService {
         }
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public PosItem findPosItemById(Long itemId) throws PosBusinessException{
+        try{
+            PosItem posItem = posItemRepository.findOne(itemId);
+            return posItem;
+        }catch (Exception e){
+            throw new PosBusinessException("Error occurred while findPosItemById ",e);
+        }
+    }
+
 
 }

@@ -1,5 +1,8 @@
 package com.core.computism.assasa.persistence.entity.pos;
 
+import com.core.computism.assasa.persistence.entity.cmn.Currency;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,6 +23,7 @@ public class PosOrder extends BaseEntity{
 
     private Integer invoiceNumber;
     private Integer batchNumber;
+    //TODO: Remove the total Amount field from this Table
     private Integer totalAmount;
     private Integer numberOfItems;
 

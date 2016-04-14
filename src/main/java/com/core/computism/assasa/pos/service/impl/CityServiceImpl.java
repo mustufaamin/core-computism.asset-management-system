@@ -5,7 +5,7 @@ import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.pos.builder.CityBuilder;
 import com.core.computism.assasa.pos.domain.CityDto;
 import com.core.computism.assasa.pos.service.CityService;
-import com.core.computism.assasa.persistence.entity.pos.City;
+import com.core.computism.assasa.persistence.entity.cmn.City;
 import com.core.computism.assasa.persistence.repository.pos.CityRepository;
 import com.core.computism.assasa.persistence.repository.pos.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

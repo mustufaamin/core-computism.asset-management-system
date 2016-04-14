@@ -1,6 +1,6 @@
 package com.core.computism.assasa.persistence.repository.pos;
 
-import com.core.computism.assasa.persistence.entity.pos.Country;
+import com.core.computism.assasa.persistence.entity.cmn.Country;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

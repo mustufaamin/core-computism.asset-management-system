@@ -1,5 +1,6 @@
 package com.core.computism.assasa.pos.service;
 
+import com.core.computism.assasa.persistence.entity.pos.PosItem;
 import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 
@@ -14,5 +15,5 @@ public interface PosItemService {
     PosItemDto get(Long itemId) throws PosBusinessException;
     Long addItemType(String typeName) throws PosBusinessException;
     List<PosItemDto> list() throws PosBusinessException;
-
+    PosItem findPosItemById(Long itemId) throws PosBusinessException;
 }

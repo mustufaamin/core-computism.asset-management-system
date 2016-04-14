@@ -68,6 +68,20 @@ public class PosPaymentTypeServiceImpl implements PosPaymentTypeService {
         }
     }
 
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public PosPaymentType findPaymentType(Long posPaymentTypeId) throws PosBusinessException {
+        try {
+            PosPaymentType posPaymentType = posPaymentTypeRepository.findOne(posPaymentTypeId);
+            return posPaymentType;
+
+        } catch (PersistenceException e){
+            throw new PosBusinessException("Error Occurred While Listing the Pos Payment Type",e);
+        }
+    }
+
+
+
 
 
 }

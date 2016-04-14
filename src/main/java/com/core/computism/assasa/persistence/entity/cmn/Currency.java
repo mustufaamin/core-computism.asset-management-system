@@ -1,4 +1,8 @@
-package com.core.computism.assasa.persistence.entity.pos;
+package com.core.computism.assasa.persistence.entity.cmn;
+
+import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
+import com.core.computism.assasa.persistence.entity.pos.PosOrder;
+import com.core.computism.assasa.persistence.entity.pos.PurchaseOrder;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;

@@ -5,7 +5,7 @@ import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Transaction;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
-import com.core.computism.assasa.persistence.entity.pos.Customer;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 import com.core.computism.assasa.persistence.repository.ar.TransactionRepository;
 import org.slf4j.Logger;
@@ -14,10 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 /**
