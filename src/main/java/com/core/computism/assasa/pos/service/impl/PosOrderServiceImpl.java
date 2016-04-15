@@ -2,7 +2,6 @@ package com.core.computism.assasa.pos.service.impl;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.persistence.entity.pos.PosItem;
 import com.core.computism.assasa.persistence.entity.pos.PosOrder;
 import com.core.computism.assasa.persistence.entity.pos.PosOrderItem;
 import com.core.computism.assasa.persistence.entity.pos.PosPayment;
@@ -12,12 +11,13 @@ import com.core.computism.assasa.pos.builder.PosPaymentBuilder;
 import com.core.computism.assasa.pos.domain.PosOrderDto;
 import com.core.computism.assasa.pos.domain.PosOrderItemDto;
 import com.core.computism.assasa.pos.domain.PosPaymentDto;
-import com.core.computism.assasa.pos.domain.PosPaymentTypeDto;
 import com.core.computism.assasa.pos.service.CustomerService;
 import com.core.computism.assasa.pos.service.PosItemService;
 import com.core.computism.assasa.pos.service.PosOrderService;
 import com.core.computism.assasa.pos.service.PosPaymentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.PersistenceException;
 import java.util.ArrayList;
@@ -26,15 +26,26 @@ import java.util.List;
 /**
  * Created by M.Mustafa Amin Shah on 4/13/2016.
  */
+@Service(value = "posOrderService")
 public class PosOrderServiceImpl implements PosOrderService {
 
     @Autowired private PosOrderRepository posOrderRepository;
-    @Autowired private PosPaymentBuilder posPaymentBuilder;
     @Autowired private PosItemService posItemService;
     @Autowired private PosOrderBuilder posOrderBuilder;
     @Autowired private CustomerService customerService;
-    @Autowired private PosPaymentTypeService posPaymentTypeService;
 
+
+    @Override
+    @Transactional(readOnly = true)
+    public PosOrder getPosOrder(Long posOrderId) throws PosBusinessException {
+        PosOrder posOrder = posOrderRepository.findOne(posOrderId);
+
+        if(posOrder == null){
+            throw new PosBusinessException("Unable to find the Pos Order with ID:"+posOrderId);
+        }
+        return posOrder;
+
+    }
 
     @Override
     public PosOrder save(PosOrderDto posOrderDto) throws PosBusinessException {
@@ -46,7 +57,6 @@ public class PosOrderServiceImpl implements PosOrderService {
             posOrder.setCustomer(customerService.getCustomer(posOrderDto.getCustomerId()));
             List<PosOrderItem> posOrderItems = createPosOrderItemsForOrder(posOrderDto.getItems(),posOrder);
             posOrder.setPosOrderItems(posOrderItems);
-            posOrder.setPosPayments(createPosPayment(posOrderDto.getPosPaymentDtos(),posOrder));
 
             return posOrderRepository.save(posOrder);
 
@@ -68,18 +78,5 @@ public class PosOrderServiceImpl implements PosOrderService {
         }
         return posOrderItems;
     }
-    private List<PosPayment> createPosPayment(List<PosPaymentDto> posPaymentDtos,PosOrder posOrder) throws BuilderException, PosBusinessException {
 
-        List<PosPayment> posPayments = new ArrayList<>();
-        for(PosPaymentDto posPaymentDto : posPaymentDtos ){
-            PosPayment posPayment = new PosPayment();
-
-            posPayment = posPaymentBuilder.buildPosPaymentEntity(posPayment,posPaymentDto);
-            posPayment.setPosOrder(posOrder);
-            posPayment.setPosPaymentType(posPaymentTypeService.findPaymentType(posPaymentDto.getPosPaymentTypeId()));
-
-            posPayments.add(posPayment);
-        }
-        return posPayments;
-    }
 }

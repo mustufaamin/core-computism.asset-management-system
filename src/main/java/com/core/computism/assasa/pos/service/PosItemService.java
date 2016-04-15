@@ -1,8 +1,9 @@
 package com.core.computism.assasa.pos.service;
 
-import com.core.computism.assasa.persistence.entity.pos.PosItem;
-import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
+import com.core.computism.assasa.persistence.entity.pos.PosItem;
+import com.core.computism.assasa.persistence.entity.pos.PosOrder;
+import com.core.computism.assasa.pos.domain.PosItemDto;
 
 import java.util.List;
 
@@ -16,4 +17,5 @@ public interface PosItemService {
     Long addItemType(String typeName) throws PosBusinessException;
     List<PosItemDto> list() throws PosBusinessException;
     PosItem findPosItemById(Long itemId) throws PosBusinessException;
+    void removeItemStock(PosOrder posOrder ) throws PosBusinessException;
 }

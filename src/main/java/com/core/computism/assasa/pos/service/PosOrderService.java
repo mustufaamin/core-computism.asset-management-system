@@ -9,5 +9,6 @@ import com.core.computism.assasa.pos.domain.PosOrderDto;
  */
 public interface PosOrderService {
 
+    PosOrder getPosOrder(Long posOrderId) throws PosBusinessException;
     PosOrder save(PosOrderDto posOrderDto) throws PosBusinessException;
 }

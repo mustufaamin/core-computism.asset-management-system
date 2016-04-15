@@ -13,5 +13,5 @@ public interface CustomerService {
     CustomerDto add(CustomerDto customerDto) throws PosBusinessException;
     CustomerDto getCustomerById(Long customerId) throws PosBusinessException;
     List<CustomerDto> getCustomers() throws PosBusinessException;
-    Customer getCustomer(Long customerId) throws PosBusinessException
+    Customer getCustomer(Long customerId) throws PosBusinessException;
 }

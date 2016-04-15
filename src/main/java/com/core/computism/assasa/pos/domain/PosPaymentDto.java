@@ -17,6 +17,7 @@ public class PosPaymentDto {
     private Integer transactionId;
     private Long posPaymentTypeId;
     private String posPaymentTypeName;
+    private Long posOrderId;
 
     public Long getId() {
         return id;
@@ -72,5 +73,13 @@ public class PosPaymentDto {
 
     public void setPosPaymentTypeName(String posPaymentTypeName) {
         this.posPaymentTypeName = posPaymentTypeName;
+    }
+
+    public Long getPosOrderId() {
+        return posOrderId;
+    }
+
+    public void setPosOrderId(Long posOrderId) {
+        this.posOrderId = posOrderId;
     }
 }

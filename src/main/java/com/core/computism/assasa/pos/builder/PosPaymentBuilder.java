@@ -28,6 +28,7 @@ public class PosPaymentBuilder {
         posPaymentDto.setPosPaymentTypeName(posPayment.getPosPaymentType().getPaymentTypeName());
         posPaymentDto.setTerminalId(posPayment.getTerminalId());
         posPaymentDto.setTransactionId(posPayment.getTransactionId());
+        posPaymentDto.setPosOrderId(posPayment.getPosOrder().getId());
 
         return  posPaymentDto;
     }

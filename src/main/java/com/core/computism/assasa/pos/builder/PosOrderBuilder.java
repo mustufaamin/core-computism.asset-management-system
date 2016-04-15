@@ -3,6 +3,7 @@ package com.core.computism.assasa.pos.builder;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.pos.PosOrder;
 import com.core.computism.assasa.pos.domain.PosOrderDto;
+import com.core.computism.assasa.pos.domain.type.PosOrderStatus;
 
 /**
  * Created by M.Mustafa Amin Shah
@@ -19,6 +20,7 @@ public class PosOrderBuilder {
         posOrder.setInvoiceNumber(posOrderDto.getInvoiceNumber());
         posOrder.setBatchNumber(posOrderDto.getBatchNumber());
         posOrder.setNumberOfItems(posOrderDto.getNumberOfItems());
+        posOrder.setPosOrderStatus(PosOrderStatus.PENDING);
 
         return posOrder;
     }
