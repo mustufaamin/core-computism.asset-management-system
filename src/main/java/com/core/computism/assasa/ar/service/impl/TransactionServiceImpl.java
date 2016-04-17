@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * Created by VD on 3/19/2016.
  */
-@Service(value = "transactionServiceImpl")
+@Service(value = "transactionService")
 public class TransactionServiceImpl implements TransactionService {
 
     public final static int INT_ACTIVE = 1;

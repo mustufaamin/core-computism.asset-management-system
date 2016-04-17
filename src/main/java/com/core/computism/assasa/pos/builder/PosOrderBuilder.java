@@ -4,11 +4,13 @@ import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.pos.PosOrder;
 import com.core.computism.assasa.pos.domain.PosOrderDto;
 import com.core.computism.assasa.pos.domain.type.PosOrderStatus;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by M.Mustafa Amin Shah
  * on 4/13/2016.
  */
+@Component(value = "posOrderBuilder")
 public class PosOrderBuilder {
 
     public PosOrder buildPosOrderEntity(PosOrder posOrder,PosOrderDto posOrderDto) throws BuilderException {

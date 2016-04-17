@@ -75,6 +75,8 @@ public class PosOrder extends BaseEntity{
         this.numberOfItems = numberOfItems;
     }
 
+    @Basic
+    @Column(name = "status", nullable = true, insertable = true, updatable = true)
     public Integer getStatus() {
         return status;
     }
@@ -92,8 +94,7 @@ public class PosOrder extends BaseEntity{
         this.status = posOrderStatus.getCode();
     }
 
-    @Basic
-    @Column(name = "number_of_items", nullable = true, insertable = true, updatable = true)
+
 
 
 
