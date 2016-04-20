@@ -1,6 +1,6 @@
 package com.core.computism.assasa.persistence.repository.pos;
 
-import com.core.computism.assasa.persistence.entity.pos.Customer;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

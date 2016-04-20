@@ -1,4 +1,6 @@
-package com.core.computism.assasa.persistence.entity.pos;
+package com.core.computism.assasa.persistence.entity.cmn;
+
+import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
 
 import javax.persistence.Basic;
 import javax.persistence.Column;

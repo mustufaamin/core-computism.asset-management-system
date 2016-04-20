@@ -1,16 +1,18 @@
 package com.core.computism.assasa.pos.service.impl;
 
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.persistence.entity.pos.PosItem;
 import com.core.computism.assasa.persistence.entity.pos.PosItemType;
+import com.core.computism.assasa.persistence.entity.pos.PosOrder;
+import com.core.computism.assasa.persistence.entity.pos.PosOrderItem;
 import com.core.computism.assasa.persistence.entity.pos.Supplier;
 import com.core.computism.assasa.persistence.repository.pos.PosItemRepository;
 import com.core.computism.assasa.persistence.repository.pos.PosItemTypeRepository;
 import com.core.computism.assasa.persistence.repository.pos.SupplierRepository;
-import com.core.computism.assasa.pos.service.PosItemService;
 import com.core.computism.assasa.pos.builder.PosItemBuilder;
+import com.core.computism.assasa.pos.domain.PosItemDto;
+import com.core.computism.assasa.pos.service.PosItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -115,8 +117,34 @@ public class PosItemServiceImpl implements PosItemService {
             posItemTypeRepository.save(posItemType);
 
             return posItemType.getId();
+        } catch (PersistenceException e){
+            throw new PosBusinessException(e);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public PosItem findPosItemById(Long itemId) throws PosBusinessException{
+        try{
+            PosItem posItem = posItemRepository.findOne(itemId);
+            return posItem;
+        }catch (Exception e){
+            throw new PosBusinessException("Error occurred while findPosItemById ",e);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
+    public void removeItemStock(PosOrder posOrder) throws PosBusinessException {
+        try{
+            for(PosOrderItem posOrderItem : posOrder.getPosOrderItems()){
+                PosItem posItem = posItemRepository.findOne(posOrderItem.getPosItem().getId());
+                Integer itemStockLevel = posItem.getStockLevel() - posOrderItem.getQuantity();
+
+                posItem.setStockLevel(itemStockLevel);
+                posItemRepository.save(posItem);
+            }
         }catch (PersistenceException e){
-            e.printStackTrace();
             throw new PosBusinessException(e);
         }
     }

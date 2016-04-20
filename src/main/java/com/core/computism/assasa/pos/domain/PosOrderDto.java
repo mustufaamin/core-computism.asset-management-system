@@ -3,18 +3,27 @@ package com.core.computism.assasa.pos.domain;
 import java.util.List;
 
 /**
- * Created by M.Mustafa Amin Shah on 3/10/2016.
+ * Created by VD on 4/10/2016.
  */
 public class PosOrderDto {
-
+    private Long id;
     private Integer invoiceNumber;
     private Integer batchNumber;
     private Integer totalAmount;
     private Integer numberOfItems;
+
     private Long customerId;
     private Long currencyId;
+    List<PosOrderItemDto> items;
+    List<PosPaymentDto> posPaymentDtos;
 
-    List<PosItemDto> orderItems;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Integer getInvoiceNumber() {
         return invoiceNumber;
@@ -64,11 +73,19 @@ public class PosOrderDto {
         this.currencyId = currencyId;
     }
 
-    public List<PosItemDto> getOrderItems() {
-        return orderItems;
+    public List<PosOrderItemDto> getItems() {
+        return items;
     }
 
-    public void setOrderItems(List<PosItemDto> orderItems) {
-        this.orderItems = orderItems;
+    public void setItems(List<PosOrderItemDto> items) {
+        this.items = items;
+    }
+
+    public List<PosPaymentDto> getPosPaymentDtos() {
+        return posPaymentDtos;
+    }
+
+    public void setPosPaymentDtos(List<PosPaymentDto> posPaymentDtos) {
+        this.posPaymentDtos = posPaymentDtos;
     }
 }

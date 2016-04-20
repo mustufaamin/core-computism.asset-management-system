@@ -1,0 +1,1 @@
+ALTER TABLE `assasa`.`pos_order` ADD COLUMN `status` INT NULL  AFTER `total_amount` ;

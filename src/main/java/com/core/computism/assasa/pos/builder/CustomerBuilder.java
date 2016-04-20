@@ -2,8 +2,8 @@ package com.core.computism.assasa.pos.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.pos.domain.CustomerDto;
-import com.core.computism.assasa.persistence.entity.pos.City;
-import com.core.computism.assasa.persistence.entity.pos.Customer;
+import com.core.computism.assasa.persistence.entity.cmn.City;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

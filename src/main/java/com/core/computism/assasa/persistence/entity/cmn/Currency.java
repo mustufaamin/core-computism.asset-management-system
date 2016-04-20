@@ -1,4 +1,8 @@
-package com.core.computism.assasa.persistence.entity.pos;
+package com.core.computism.assasa.persistence.entity.cmn;
+
+import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
+import com.core.computism.assasa.persistence.entity.pos.PosOrder;
+import com.core.computism.assasa.persistence.entity.pos.PurchaseOrder;
 
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -18,7 +22,7 @@ public class Currency extends BaseEntity {
 
     private String name;
     private String symbol;
-    private List<PosOrder> posOrders;
+//    private List<PosOrder> posOrders;
     private List<PurchaseOrder> purchaseOrders;
 
     @Basic
@@ -50,12 +54,12 @@ public class Currency extends BaseEntity {
         this.purchaseOrders = purchaseOrders;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "currency")
-    public List<PosOrder> getPosOrders() {
-        return posOrders;
-    }
-
-    public void setPosOrders(List<PosOrder> posOrders) {
-        this.posOrders = posOrders;
-    }
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "currency")
+//    public List<PosOrder> getPosOrders() {
+//        return posOrders;
+//    }
+//
+//    public void setPosOrders(List<PosOrder> posOrders) {
+//        this.posOrders = posOrders;
+//    }
 }

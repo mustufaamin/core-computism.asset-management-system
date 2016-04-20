@@ -1,5 +1,9 @@
 package com.core.computism.assasa.persistence.entity.pos;
 
+import com.core.computism.assasa.persistence.entity.cmn.Currency;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.pos.domain.type.PosOrderStatus;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.List;
 
 /**
@@ -22,10 +27,11 @@ public class PosOrder extends BaseEntity{
     private Integer batchNumber;
     private Integer totalAmount;
     private Integer numberOfItems;
+    private Integer status;
+
+    private PosOrderStatus posOrderStatus;
 
     private Customer customer;
-    private Currency currency;
-    private List<PosPayment>  posPayments;
     private List<PosOrderItem> posOrderItems;
 
     @Basic
@@ -69,6 +75,30 @@ public class PosOrder extends BaseEntity{
         this.numberOfItems = numberOfItems;
     }
 
+    @Basic
+    @Column(name = "status", nullable = true, insertable = true, updatable = true)
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    @Transient
+    public PosOrderStatus getPosOrderStatus() {
+        return PosOrderStatus.getPosOrderStatus(getStatus());
+    }
+
+    public void setPosOrderStatus(PosOrderStatus posOrderStatus) {
+        this.status = posOrderStatus.getCode();
+    }
+
+
+
+
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_Id", referencedColumnName = "id", nullable = false)
     public Customer getCustomer() {
@@ -77,17 +107,6 @@ public class PosOrder extends BaseEntity{
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "currency_id",  nullable = false)
-
-    public Currency getCurrency() {
-        return currency;
-    }
-
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
     }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "posOrder")
@@ -99,12 +118,4 @@ public class PosOrder extends BaseEntity{
         this.posOrderItems = posOrderItems;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "posOrder")
-    public List<PosPayment> getPosPayments() {
-        return posPayments;
-    }
-
-    public void setPosPayments(List<PosPayment> posPayments) {
-        this.posPayments = posPayments;
-    }
 }

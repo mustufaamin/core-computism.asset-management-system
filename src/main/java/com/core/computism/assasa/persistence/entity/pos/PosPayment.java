@@ -19,7 +19,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "pos_payment")
-public class PosPayment extends BaseEntity {
+public class PosPayment extends BaseEntity  {
     private Date paymentDate;
     private BigDecimal amount;
     private Integer terminalId;

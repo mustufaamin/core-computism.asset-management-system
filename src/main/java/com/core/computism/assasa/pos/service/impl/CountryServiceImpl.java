@@ -5,7 +5,7 @@ import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.pos.builder.CountryBuilder;
 import com.core.computism.assasa.pos.domain.CountryDto;
 import com.core.computism.assasa.pos.service.CountryService;
-import com.core.computism.assasa.persistence.entity.pos.Country;
+import com.core.computism.assasa.persistence.entity.cmn.Country;
 import com.core.computism.assasa.persistence.repository.pos.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -4,8 +4,8 @@ import com.core.computism.assasa.persistence.repository.pos.CountryRepository;
 import com.core.computism.assasa.pos.domain.CustomerDto;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.persistence.entity.pos.Address;
-import com.core.computism.assasa.persistence.entity.pos.Customer;
+import com.core.computism.assasa.persistence.entity.cmn.Address;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
 import com.core.computism.assasa.persistence.repository.pos.CityRepository;
 import com.core.computism.assasa.persistence.repository.pos.CustomerRepository;
 import com.core.computism.assasa.pos.service.CustomerService;
@@ -49,11 +49,11 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-    public CustomerDto getCustomer(Long customerId) throws PosBusinessException {
+    public CustomerDto getCustomerById(Long customerId) throws PosBusinessException {
         try{
             return customerBuilder.buildCustomerDto(customerRepository.findOne(customerId));
         }catch (BuilderException| PersistenceException e){
-            throw new PosBusinessException("Error occurred getCustomer",e);
+            throw new PosBusinessException("Error occurred getCustomerById",e);
         }
     }
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
@@ -63,6 +63,15 @@ public class CustomerServiceImpl implements CustomerService {
             return customerBuilder.buildCustomerDtoList(customers);
         }catch (BuilderException | PersistenceException e){
             throw new PosBusinessException("Error executing get customers",e);
+        }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public Customer getCustomer(Long customerId) throws PosBusinessException {
+        try{
+            return customerRepository.findOne(customerId);
+        }catch (PersistenceException e){
+            throw new PosBusinessException("Error occurred getCustomer",e);
         }
     }
 
