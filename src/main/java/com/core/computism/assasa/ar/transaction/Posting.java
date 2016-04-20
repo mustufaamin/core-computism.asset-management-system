@@ -122,6 +122,8 @@ public class Posting {
             String mainItemDescription = journalizeableItem.getJournalizeableItemName();
             List<JournalEntryItem> journalEntryMainItems = getJournalizeableItems(journalizeableMainItem, journalizeableItem.getAccountDetail(), (mainItemDescription + " / " + journalEntryItemComments));
 
+            BigDecimal entryTotalAmount = PostingUtility.entryTotalAmount(totalJournalizeableItems);
+
             //Ar Account Type / Control Account
             IJournalizeableItem ijournalizeableControlItem = journalizeable.getJournalizeableControlItem();
             JournalizeableItemDetail journalizeableControlItemDetail = new JournalizeableItemDetail(new BigDecimal(0.00), new BigDecimal(0.00));
@@ -129,11 +131,13 @@ public class Posting {
             String controlItemDescription = ijournalizeableControlItem.getJournalizeableItemName();
             List<JournalEntryItem> journalEntryControlItems = getJournalizeableItems(journalizeableControlItem, ijournalizeableControlItem.getAccountDetail(), (controlItemDescription + " / " + journalEntryItemComments));
 
+            PostingUtility.offSetJournalEntryItem(journalEntryMainItems, journalEntryControlItems.get(0));
+
             totalJournalizeableItems.addAll(journalEntryMainItems);
             totalJournalizeableItems.addAll(journalEntryControlItems);
 
             JournalEntry journalEntry = getJournalEntry(journalizeable, transactionDate, companyId, totalJournalizeableItems);
-            //journalEntry.setEntryTotalNature(journalizeable.getEntryTotalNature());
+            journalEntry.setTotal(entryTotalAmount);
             journalizeable.setJournalEntry(journalEntry);
             JEs.add(journalEntry);
         }
@@ -179,9 +183,9 @@ public class Posting {
             journalEntryDetail.setGlAccountId(journalEntryItem.getAccountDetail().getId().intValue());
             journalEntryDetail.setJournalEntry(journalEntry);
             journalEntryDetail.setQuantity(journalEntryItem.getQuantity());
-            if(journalEntryItem.isDebit()) {
+            /*if(journalEntryItem.isDebit()) {
                 journalEntry.setTotal(journalEntryItem.getAmount());
-            }
+            }*/
             journalEntryDetails.add(journalEntryDetail);
         }
         return journalEntryDetails;

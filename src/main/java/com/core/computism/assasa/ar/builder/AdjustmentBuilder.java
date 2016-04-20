@@ -160,6 +160,7 @@ public class AdjustmentBuilder {
         adjustment.setArAccount(this.getArAccount());
         adjustment.setBillCode(this.getBillCode());
         adjustment.setAmount(this.getAmount());
+        adjustment.setAdjustmentType(this.getAdjustmentType());
         adjustment.setAdjustmentDate(this.getAdjustmentDate());
         adjustment.setDescription(this.getDescription());
         adjustment.setNote(this.getNote());

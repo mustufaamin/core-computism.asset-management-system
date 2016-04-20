@@ -26,11 +26,21 @@ public class AdjustmentController {
     @Autowired
     AdjustmentService adjustmentService;
 
-    @RequestMapping(value = "addPayment", method = RequestMethod.POST)
+    @RequestMapping(value = "addAdjustment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void addPayment(@RequestBody AdjustmentDto adjustmentDto) throws ArBusinessException {
         try {
             adjustmentService.saveAdjustment(adjustmentDto);
+        } catch (ArBusinessException e) {
+            LOGGER.error(e);
+        }
+    }
+
+    @RequestMapping(value = "saveNPostAdjustment", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void saveNPostAdjustment(@RequestBody AdjustmentDto adjustmentDto) throws ArBusinessException {
+        try {
+            adjustmentService.saveNPostAdjustment(adjustmentDto);
         } catch (ArBusinessException e) {
             LOGGER.error(e);
         }

@@ -1,10 +1,14 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.ar.IJournalizeableItem;
+import com.core.computism.assasa.ar.dto.service.IJournalizeable;
 import com.core.computism.assasa.ar.enumtype.TransactionType;
 import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
+import com.core.computism.assasa.utilities.ARUtility;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -21,7 +25,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "ar_adjustment")
-public class Adjustment extends BaseEntity implements IPostable {
+public class Adjustment extends BaseEntity implements IPostable, IJournalizeable {
     private ArAccount arAccount;
     private BillCode billCode;
     private Date adjustmentDate;
@@ -228,7 +232,71 @@ public class Adjustment extends BaseEntity implements IPostable {
 
     @Transient
     public int getArTransactionSubType() {
-        return TransactionType.PAYMENT_TR_ID.getCode();
+        return this.getAdjustmentType();
+    }
+
+    @Transient
+    public int getJournalType() {
+        return ARUtility.getJournalTypeByTransactionType(TransactionType.ADJUSTMENT_TR_ID.getCode());
+    }
+
+    @Transient
+    public int getJournalSourceType() {
+        return ARUtility.getJournalSourceTypeByTransactionType(TransactionType.ADJUSTMENT_TR_ID.getCode());
+    }
+
+    @Transient
+    public int getJournalSourceId() {
+        return this.getId().intValue();
+    }
+
+    @Transient
+    public int getSubLedgerAccountId() {
+        return this.getArAccount().getCustomer().getId().intValue();
+    }
+
+    @Transient
+    public String getSubLedgerAccountName() {
+        return this.arAccount.getCustomer().getCustomerFullName();
+    }
+
+    @Transient
+    public Date getJournalTransactionDate() {
+        return this.getAdjustmentDate();
+    }
+
+    @Transient
+    public int getEntryTotalNature() {
+        if (new BigDecimal(0).compareTo(this.getAmount()) == 0) {
+            return 1;
+        } else {
+            return (int) (this.getAmount().doubleValue() / Math.abs(this.getAmount().doubleValue()));
+        }
+    }
+
+    @Transient
+    public GlAccount getAccountDetail() {
+        return this.billCode.getGlAccount();
+    }
+
+    @Transient
+    public IJournalizeableItem getJournalizeableControlItem() {
+        return this.getArAccount().getArAccountType();
+    }
+
+    @Transient
+    public IJournalizeableItem getJournalizeableMainItem() {
+        return this.getBillCode();
+    }
+
+    @Transient
+    public BigDecimal getJournalizeableMainItemAmount() {
+        return this.getAmount();
+    }
+
+    @Transient
+    public BigDecimal getJournalizeableMainItemQuantity() {
+        return new BigDecimal(0.00);
     }
 
 }
