@@ -19,7 +19,7 @@
         });
 
     angular.module('Asasa')
-        .controller('BillCodesController', ['BillCodesGatewayService', '$http', function($http, billCodesSrv){
+        .controller('BillCodesController', ['BillCodesGatewayService', '$http', function(billCodesSrv, $http){
             var billCodesCtrl = this;
 
             billCodesCtrl.openBillCodesSlidePanel = function(type, billCode){
@@ -48,7 +48,7 @@
 
             billCodesCtrl.getBillCodesList = function(){
                 billCodesCtrl.listBillCodes = [];
-                billCodesSrv.listBillCodes().$promise.then(function(response){
+                billCodesSrv.listOfBillCodes().$promise.then(function(response){
                     if(response != null){
                         for(var i = 0; i < response.data.length; i++){
                             var billCode = {};
@@ -68,6 +68,9 @@
                 });
             };
 
+            billCodesCtrl.getBillCodesList();
+
+
             billCodesCtrl.addBillCode = function (){
                 var billCode = {};
 
@@ -79,8 +82,9 @@
                 billCode.activationDate = billCodesCtrl.activationDate;
                 billCode.deactivationDate = billCodesCtrl.deactivationDate;
                 billCode.status = billCodesCtrl.status;
+                billCode.glAccountId = 1;
 
-                billCodesSrv.addArType(arType).$promise.then(function(response){
+                billCodesSrv.addBillCode(billCode).$promise.then(function(response){
                     if(response){
                         billCodesCtrl.getBillCodesList();
                     }
@@ -95,7 +99,7 @@
             var billCodesSrv = this;
             return $resource('',{},
                 {
-                    listBillCodes :{method: 'GET', isArray: false, url:"/billCodes/list"},
+                    listOfBillCodes :{method: 'GET', isArray: false, url:"/billCodes/list"},
 
                     addBillCode :{method: 'POST', isArray: false, url:"/billCodes/add"}
 

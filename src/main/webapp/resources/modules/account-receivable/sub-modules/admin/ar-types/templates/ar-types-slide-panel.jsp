@@ -35,7 +35,7 @@
       </div>
       <div class="priority cust-panel-field-div">
         <label class="cust-panel-lbl">Priority:</label>
-        <input class="cust-panel-input" ng-model="" placeholder="Enter priority..." ng-class="{disabled: arTypesCtrl.isView}"/>
+        <input class="cust-panel-input" ng-model="arTypesCtrl.priority" placeholder="Enter priority..." ng-class="{disabled: arTypesCtrl.isView}"/>
       </div>
       <div class="over30Message cust-panel-field-div">
         <label class="cust-panel-lbl">Over 30 Message:</label>

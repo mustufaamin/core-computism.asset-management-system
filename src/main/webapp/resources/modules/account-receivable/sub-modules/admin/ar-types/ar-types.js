@@ -87,6 +87,8 @@
                 });
             };
 
+            arTypesCtrl.getArTypesList();
+
             arTypesCtrl.addArTypes = function (){
                 var arType = {};
 

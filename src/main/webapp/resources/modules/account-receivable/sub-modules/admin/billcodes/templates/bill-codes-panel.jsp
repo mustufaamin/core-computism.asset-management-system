@@ -9,7 +9,7 @@
               <input <%--typeahead-click-open typeahead-min-length="0" ng-model="" ng-required="true"
                    uib-typeahead="driver as driver.label for driver in getDrivers($viewValue)"
                    typeahead-on-select="onSelectDriver($item)" typeahead-no-results="noDrivers" typeahead-wait-ms=1500--%>
-                      class="c-form-inpt custSearch" type="text" class="c-form-inpt" ng-disabled="" placeholder="Search AR Types.."/>
+                      class="c-form-inpt custSearch" type="text" class="c-form-inpt" ng-disabled="" placeholder="Search Bill Codes.."/>
               <%--<span class="ccload loadtca adjCaptLoader" ng-show="drivAdjustCtrl.adjCaptLoader"></span>--%>
               <button class="c-btn c-btn-action cust-add-btn"
                       ng-class=""

@@ -21,6 +21,10 @@
         <label class="cust-panel-lbl">Bill Code Name:</label>
         <input class="cust-panel-input" ng-model="billCodesCtrl.name" placeholder="Enter name..." ng-class="{disabled: billCodesCtrl.isView}"/>
       </div>
+      <div class="priority cust-panel-field-div">
+        <label class="cust-panel-lbl"> GL Account:</label>
+        <input class="cust-panel-input" ng-model="billCodesCtrl.glAccount" placeholder="Enter gl account..." ng-class="{disabled: billCodesCtrl.isView}"/>
+      </div>
       <div class="status cust-panel-field-div">
         <label class="cust-panel-lbl">Status:</label>
         <input class="cust-panel-input" ng-model="billCodesCtrl.status" placeholder="Enter status..." ng-class="{disabled: billCodesCtrl.isView}"/>
@@ -42,7 +46,7 @@
       <button class="c-btn c-btn-action cust-add-btn"
               ng-class=""
               ng-show="!billCodesCtrl.isView"
-              ng-click="">{{billCodesCtrl.slidePanelHeading}}</button>
+              ng-click="billCodesCtrl.addBillCode()">{{billCodesCtrl.slidePanelHeading}}</button>
       <button class="c-btn cust-add-btn"
               ng-class=""
               ng-disabled=""
