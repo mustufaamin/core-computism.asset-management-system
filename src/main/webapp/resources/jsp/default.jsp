@@ -442,6 +442,7 @@
     <script src="resources/modules/account-receivable/sub-modules/payments/payment-type/payment-type.js"></script>
     <script src="resources/modules/account-receivable/sub-modules/admin/ar-types/ar-types.js"></script>
     <script src="resources/modules/account-receivable/sub-modules/admin/billcodes/billcodes.js"></script>
+    <script src="resources/modules/general-ledger/admin/account-type/account_type.js"></script>
     <script src="resources/libraries/bower-components/ng-table/dist/ng-table.js"></script>
     <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
     <script src="resources/libraries/bower-components/angular-ui-router/release/angular-ui-router.min.js"></script>

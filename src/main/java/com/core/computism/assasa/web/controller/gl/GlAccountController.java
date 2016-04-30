@@ -1,6 +1,7 @@
 package com.core.computism.assasa.web.controller.gl;
 
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.gl.Response;
 import com.core.computism.assasa.gl.dto.AccountTypeDto;
 import com.core.computism.assasa.gl.dto.GlAccountDto;
 import com.core.computism.assasa.gl.service.AccountTypeService;
@@ -15,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by VD on 2/21/2016.
  */
-@Controller(value = "glAccountController")
+@RestController(value = "glAccountController")
 @RequestMapping(value = "/glAccount/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
 public class GlAccountController extends BaseController {
 
@@ -39,6 +43,27 @@ public class GlAccountController extends BaseController {
         } catch (ArBusinessException e) {
             LOGGER.error(e);
         }
+    }
+
+    @RequestMapping(value = "updateAccountType", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateArAccountType(@RequestBody AccountTypeDto accountTypeDto) throws Exception {
+        try {
+            accountTypeService.updateAccountType(accountTypeDto);
+        } catch (ArBusinessException e) {
+            LOGGER.error(e);
+        }
+    }
+
+    @RequestMapping(value = "glAccountTypes", method = RequestMethod.GET)
+    public Response<List<AccountTypeDto>> getGLAccountTypes() throws Exception {
+        List<AccountTypeDto> accountTypeDtos = null;
+        try {
+            accountTypeDtos =  accountTypeService.getGLAccountTypes();
+        } catch (ArBusinessException e) {
+            LOGGER.error(e);
+        }
+        return new Response<>(accountTypeDtos);
     }
 
     @RequestMapping(value = "AddGlAccount", method = RequestMethod.POST)

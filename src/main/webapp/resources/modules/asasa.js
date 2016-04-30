@@ -58,6 +58,11 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
             templateUrl: 'resources/modules/account-receivable/sub-modules/payments/payment-type/template/payment-type-panel.jsp'
         })
 
+        .state('GlAccountType', {
+            url: '/GlAccountType',
+            templateUrl: 'resources/modules/general-ledger/admin/account-type/templates/gl-account-type-panel.jsp'
+        })
+
     ;
 
 

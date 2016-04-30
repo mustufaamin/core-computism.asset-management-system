@@ -28,7 +28,7 @@
 
             arTypesCtrl.openARTypeSlidePanel = function(type ,arType){
                 if(arType != null){
-                    arTypesCtrl.arAccountTypeId = arTypearAccountTypeId;
+                    arTypesCtrl.arAccountTypeId = arType.arAccountTypeId;
                     arTypesCtrl.accountTypeName = arType.accountTypeName;
                     arTypesCtrl.accountTypeDesc = arType.accountTypeDesc;
                     arTypesCtrl.glAccountId = arType.glAccountId;
