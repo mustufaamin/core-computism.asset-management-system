@@ -60,7 +60,7 @@ public class PosOrderServiceImpl implements PosOrderService {
 
             return posOrderRepository.save(posOrder);
 
-        } catch (PersistenceException | BuilderException e){
+        } catch (PersistenceException | BuilderException e) {
             throw new PosBusinessException("Error Occurred While saving the Pos Order ",e);
         }
     }
@@ -78,5 +78,6 @@ public class PosOrderServiceImpl implements PosOrderService {
         }
         return posOrderItems;
     }
+
 
 }

@@ -6,7 +6,7 @@ import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * Created by Venturedive on 8/18/2015.
+ * Created by Mustufa Amin on 8/18/2015.
  */
 public abstract class BaseService {
 

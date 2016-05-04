@@ -22,8 +22,6 @@ public class Currency extends BaseEntity {
 
     private String name;
     private String symbol;
-//    private List<PosOrder> posOrders;
-    private List<PurchaseOrder> purchaseOrders;
 
     @Basic
     @Column(name = "name", nullable = false, insertable = true, updatable = true, length = 255)
@@ -44,22 +42,4 @@ public class Currency extends BaseEntity {
     public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
-
-    @OneToMany(mappedBy = "currency",fetch = FetchType.LAZY)
-    public List<PurchaseOrder> getPurchaseOrders() {
-        return purchaseOrders;
-    }
-
-    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
-        this.purchaseOrders = purchaseOrders;
-    }
-
-//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,mappedBy = "currency")
-//    public List<PosOrder> getPosOrders() {
-//        return posOrders;
-//    }
-//
-//    public void setPosOrders(List<PosOrder> posOrders) {
-//        this.posOrders = posOrders;
-//    }
 }

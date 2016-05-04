@@ -18,9 +18,9 @@ public class PosItemGroupBuilder {
         if(posItemGroup == null){
             throw new BuilderException("Unable to find PosItemGroupEntity");
         }
-
         PosItemGroupDto posItemGroupDto = new PosItemGroupDto();
 
+        posItemGroupDto.setId(posItemGroup.getId());
         posItemGroupDto.setGroupName(posItemGroup.getGroupName());
         posItemGroupDto.setGroupDescription(posItemGroup.getGroupDescription());
         posItemGroupDto.setItemGroupStatus(posItemGroup.getItemGroupStatus());

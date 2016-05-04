@@ -8,7 +8,7 @@ import javax.annotation.PostConstruct;
 
 /**
  * Hold all the properties from VM Options.
- * Created by Venturedive on 7/28/2015.
+ * Created by Mustufa Amin on 7/28/2015.
  */
 @Component
 public class ApplicationProperties {

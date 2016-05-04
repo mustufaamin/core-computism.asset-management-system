@@ -286,7 +286,8 @@ public class Adjustment extends BaseEntity implements IPostable, IJournalizeable
 
     @Transient
     public IJournalizeableItem getJournalizeableMainItem() {
-        return this.getBillCode();
+//        return this.getBillCode();
+        return null;
     }
 
     @Transient

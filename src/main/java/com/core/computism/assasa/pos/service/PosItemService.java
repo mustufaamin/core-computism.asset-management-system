@@ -18,4 +18,5 @@ public interface PosItemService {
     List<PosItemDto> list() throws PosBusinessException;
     PosItem findPosItemById(Long itemId) throws PosBusinessException;
     void removeItemStock(PosOrder posOrder ) throws PosBusinessException;
+    PosItemDto getItemByCode(String itemCode) throws PosBusinessException;
 }

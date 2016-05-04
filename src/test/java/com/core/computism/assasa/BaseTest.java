@@ -7,7 +7,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 
 /**
- * Created by Venturedive on 9/7/2015.
+ * Created by Mustufa Amin on 9/7/2015.
  */
 public abstract class BaseTest {
 

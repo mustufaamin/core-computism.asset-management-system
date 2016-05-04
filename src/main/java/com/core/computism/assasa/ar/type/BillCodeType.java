@@ -12,7 +12,7 @@ public enum BillCodeType {
     private static HashMap<Integer, BillCodeType> billCodeTypes = new HashMap<>();
 
     static {
-        for(BillCodeType billCodeType:billCodeTypes.values()){
+        for(BillCodeType billCodeType:BillCodeType.values()){
             billCodeTypes.put(billCodeType.getCode(),billCodeType);
         }
     }

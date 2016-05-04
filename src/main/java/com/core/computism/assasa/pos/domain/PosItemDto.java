@@ -5,7 +5,7 @@ package com.core.computism.assasa.pos.domain;
  */
 public class PosItemDto {
     private Long id;
-    private String itemNumber;
+    private String itemCode;
     private String itemUnit;
     private Integer stockLevel;
     private Integer minStockLevel;
@@ -25,12 +25,12 @@ public class PosItemDto {
         this.id = id;
     }
 
-    public String getItemNumber() {
-        return itemNumber;
+    public String getItemCode() {
+        return itemCode;
     }
 
-    public void setItemNumber(String itemNumber) {
-        this.itemNumber = itemNumber;
+    public void setItemCode(String itemCode) {
+        this.itemCode = itemCode;
     }
 
     public String getItemUnit() {

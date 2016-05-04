@@ -38,17 +38,19 @@ public class ItemController extends BaseController {
         return null;
     }
 
-    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @RequestMapping(value = "update", method = RequestMethod.GET)
     public ServerResponse<PosItemDto> addType(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
         LOGGER.info("Adding item ...");
         ServerResponse<PosItemDto> response = toResponse(posItemService.update(posItemDto));
         return response;
     }
-    @RequestMapping(value = "/get/{itemId}", method = RequestMethod.GET)
-    public ServerResponse<PosItemDto> getItem(@PathVariable(value = "itemId") Long itemId) throws PosBusinessException {
+    @RequestMapping(value = "get/{itemCode}", method = RequestMethod.GET)
+    public ServerResponse<PosItemDto> getItem(@PathVariable(value = "itemCode") String itemCode) throws PosBusinessException {
         LOGGER.info("Get Item....");
-        ServerResponse<PosItemDto> response = toResponse(posItemService.get(itemId));
+        ServerResponse<PosItemDto> response = toResponse(posItemService.getItemByCode(itemCode));
         return response;
     }
+
+
 
 }

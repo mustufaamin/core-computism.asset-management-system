@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * Created by Venturedive on 8/5/2015.
+ * Created by Mustufa Amin on 8/5/2015.
  */
 @Configuration
 @Import(AppConfig.class)

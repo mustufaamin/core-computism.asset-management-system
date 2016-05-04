@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "pos_item")
 public class PosItem extends BaseEntity {
-    private String itemNumber;
+    private String itemCode;
     private String itemUnit;
     private Integer stockLevel;
     private Integer minStockLevel;
@@ -29,13 +29,13 @@ public class PosItem extends BaseEntity {
     private PosItemGroup posItemGroup;
 
     @Basic
-    @Column(name = "item_number", nullable = false, insertable = true, updatable = true, length = 255)
-    public String getItemNumber() {
-        return itemNumber;
+    @Column(name = "item_code", nullable = false, insertable = true, updatable = true, length = 255)
+    public String getItemCode() {
+        return itemCode;
     }
 
-    public void setItemNumber(String itemNumber) {
-        this.itemNumber = itemNumber;
+    public void setItemCode(String itemNumber) {
+        this.itemCode = itemNumber;
     }
 
     @Basic

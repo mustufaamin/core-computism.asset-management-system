@@ -1,5 +1,7 @@
 package com.core.computism.assasa.persistence.entity.pos;
 
+import com.core.computism.assasa.ar.IJournalizeableItem;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,7 +14,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "pos_payment_type")
-public class PosPaymentType extends BaseEntity{
+public class PosPaymentType extends BaseEntity {
 
     private String paymentTypeName;
     private String paymentTypeDesc;

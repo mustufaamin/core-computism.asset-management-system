@@ -1,14 +1,14 @@
 /**
  * Created by Muhammad Umer on 3/12/2016.
  */
-var app = angular.module('Asasa', ['ngTable', 'ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap']);
+var app = angular.module('Asasa', ['ngMaterial','ngTable', 'ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap']);
 
 app.controller('MainModulesController', ['$http', '$window', '$location',  function ($http, $window, $location){
     var mainMdlsCtrl = this;
     mainMdlsCtrl.showMainModules = true;
 
-    mainMdlsCtrl.showCustomerPanel = false;
-    mainMdlsCtrl.showArPanel = false;
+    mainMdlsCtrl.showCustomerPanel = true;
+    mainMdlsCtrl.showArPanel = true;
 
     mainMdlsCtrl.openCustomerPanel =  function(){
         mainMdlsCtrl.showMainModules = false;

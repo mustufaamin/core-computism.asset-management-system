@@ -1,1 +1,9 @@
 ALTER TABLE `assasa`.`pos_order` ADD COLUMN `status` INT NULL  AFTER `total_amount` ;
+
+update ac_gl_account
+set creation_date = now(),
+  last_modified_date = now(),
+version = 1;
+
+ALTER TABLE `assasa`.`pos_item` CHANGE COLUMN `item_number` `item_code` VARCHAR(255) NOT NULL  ;
+

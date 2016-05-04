@@ -1,8 +1,6 @@
 package com.core.computism.assasa.persistence.entity.ar.billing;
 
-import com.core.computism.assasa.ar.IJournalizeableItem;
-import com.core.computism.assasa.ar.dto.service.JournalEntryItem;
-import com.core.computism.assasa.ar.dto.service.JournalizeableItemDetail;
+import com.core.computism.assasa.ar.type.BillCodeType;
 import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
 
@@ -18,16 +16,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by VD on 3/23/2016.
  */
 @Entity
 @Table(name = "bi_bill_code")
-public class BillCode extends BaseEntity implements IJournalizeableItem {
+public class BillCode extends BaseEntity{
     private Integer billCodeTypeId;
     private Integer addOnGroupId;
     private GlAccount glAccount;
@@ -120,23 +116,14 @@ public class BillCode extends BaseEntity implements IJournalizeableItem {
     }
 
     @Transient
-    public String getJournalizeableItemName() {
-        return this.getName();
+    public BillCodeType getBillCodeType(){
+       return BillCodeType.getBillCodeType(getBillCodeTypeId());
+    }
+    public void setBillCodeType(BillCodeType billCodeType){
+        this.billCodeTypeId = billCodeType.getCode();
     }
 
-    @Transient
-    public GlAccount getAccountDetail() {
-        return this.getGlAccount();
-    }
 
-    @Transient
-    public List<JournalEntryItem> getJournalizeableItems(GlAccount accountDetail, JournalizeableItemDetail journalizeableItemDetail, String journalEntryItemComments) {
-        String journalEntryItemComment = this.getName() + journalEntryItemComments;
 
-        List<JournalEntryItem> journalizeableItems = new ArrayList<JournalEntryItem>();
-        JournalEntryItem ji = new JournalEntryItem(accountDetail, journalizeableItemDetail, journalEntryItemComment, (journalizeableItemDetail.getAmount().doubleValue() < 0));
-        journalizeableItems.add(ji);
 
-        return journalizeableItems;
-    }
-}
+   }

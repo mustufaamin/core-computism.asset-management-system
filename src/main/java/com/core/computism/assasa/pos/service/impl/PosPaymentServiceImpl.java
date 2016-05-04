@@ -40,7 +40,7 @@ public class PosPaymentServiceImpl implements PosPaymentService {
             posPayment = posPaymentBuilder.buildPosPaymentEntity(posPayment,posPaymentDto);
             PosOrder posOrder = posOrderService.getPosOrder(posPaymentDto.getPosOrderId());
 
-            //TODO: Need to look at it must create the criteria to set the
+            //TODO: Need to look at it must create the criteria to set the paid
             posOrder.setPosOrderStatus(PosOrderStatus.PAID);
 
             posPayment.setPosOrder(posOrderService.getPosOrder(posPaymentDto.getPosOrderId()));
@@ -56,8 +56,9 @@ public class PosPaymentServiceImpl implements PosPaymentService {
         }
     }
 
+    //TODO : Need to work on it
     @Override
-     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
      public PosPaymentDto update(PosPaymentDto posPaymentDto) throws PosBusinessException {
         try{
             PosPayment posPayment = posPaymentRepository.findOne(posPaymentDto.getId());

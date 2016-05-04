@@ -14,4 +14,8 @@ public interface PosItemRepository extends JpaRepository<PosItem,Long> {
 
     @Query(" from PosItem pi where pi.id in :itemIds")
     List<PosItem> findItemsByIds(@Param("itemIds")List<Long> itemIds);
+
+    @Query(" from PosItem pi where pi.itemCode = :itemCode" )
+    PosItem findItemByCode(@Param("itemCode")String itemCode);
 }
+

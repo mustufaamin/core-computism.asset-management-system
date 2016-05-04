@@ -21,7 +21,7 @@ public class PosItemBuilder {
         PosItemDto posItemDto = new PosItemDto();
 
         posItemDto.setId(posItem.getId());
-        posItemDto.setItemNumber(posItem.getItemNumber());
+        posItemDto.setItemCode(posItem.getItemCode());
         posItemDto.setItemUnit(posItem.getItemUnit());
         posItemDto.setStockLevel(posItem.getStockLevel());
         posItemDto.setMinStockLevel(posItem.getMinStockLevel());
@@ -34,7 +34,7 @@ public class PosItemBuilder {
     }
     public PosItem buildItemEntity( PosItem posItem, PosItemDto posItemDto) {
 
-        posItem.setItemNumber(posItemDto.getItemNumber());
+        posItem.setItemCode(posItemDto.getItemCode());
         posItem.setItemUnit(posItemDto.getItemUnit());
         posItem.setStockLevel(posItemDto.getStockLevel());
         posItem.setMinStockLevel(posItemDto.getMinStockLevel());

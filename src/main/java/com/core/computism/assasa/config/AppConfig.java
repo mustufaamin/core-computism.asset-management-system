@@ -12,7 +12,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import java.io.IOException;
 
 /**
- * Created by Venturedive on 8/5/2015.
+ * Created by Mustufa Amin on 8/5/2015.
  */
 @Configuration
 @ComponentScan(value = "com.core.computism.assasa",

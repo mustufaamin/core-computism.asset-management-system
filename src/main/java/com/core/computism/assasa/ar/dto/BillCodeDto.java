@@ -12,7 +12,7 @@ import java.util.Date;
 public class BillCodeDto {
 
     private Long id;
-    private BillCodeType billCodeType;
+    private Integer billCodeTypeId;
     private Integer addOnGroupId;
     private Long glAccountId;
     private String name;
@@ -29,12 +29,12 @@ public class BillCodeDto {
         this.id = id;
     }
 
-    public BillCodeType getBillCodeType() {
-        return billCodeType;
+    public Integer getBillCodeTypeId() {
+        return billCodeTypeId;
     }
 
-    public void setBillCodeType(BillCodeType billCodeType) {
-        this.billCodeType = billCodeType;
+    public void setBillCodeTypeId(Integer billCodeTypeId) {
+        this.billCodeTypeId = billCodeTypeId;
     }
 
     public Integer getAddOnGroupId() {

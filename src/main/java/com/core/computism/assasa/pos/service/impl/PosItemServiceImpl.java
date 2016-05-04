@@ -93,6 +93,19 @@ public class PosItemServiceImpl implements PosItemService {
             throw new PosBusinessException("Error occurred while fetching Item",e);
         }
     }
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public PosItemDto getItemByCode(String itemCode) throws PosBusinessException {
+        try {
+            PosItem posItem = posItemRepository.findItemByCode(itemCode);
+            if (posItem == null) {
+                throw new PosBusinessException("No Item found having Code " + itemCode);
+            }
+            return posItemBuilder.buildItemDto(posItem);
+        }catch (BuilderException e){
+            throw new PosBusinessException("Error occurred while fetching Item",e);
+        }
+    }
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)

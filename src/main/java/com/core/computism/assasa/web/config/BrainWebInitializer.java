@@ -4,7 +4,7 @@ import com.core.computism.assasa.config.AppConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
- * Created by Venturedive on 8/5/2015.
+ * Created by Mustufa Amin on 8/5/2015.
  */
 public class BrainWebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override

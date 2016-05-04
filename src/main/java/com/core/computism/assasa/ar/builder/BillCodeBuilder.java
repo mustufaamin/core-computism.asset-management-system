@@ -22,7 +22,7 @@ public class BillCodeBuilder {
         }
 
         billCode.setName(billCodeDto.getName());
-        billCode.setBillCodeTypeId(billCodeDto.getBillCodeType().getCode());
+        billCode.setBillCodeType(BillCodeType.getBillCodeType(billCodeDto.getBillCodeTypeId()));
         billCode.setAddOnGroupId(billCodeDto.getAddOnGroupId());
         billCode.setDescription(billCodeDto.getDescription());
         billCode.setActivationDate(billCodeDto.getActivationDate());
@@ -41,7 +41,7 @@ public class BillCodeBuilder {
         BillCodeDto billCodeDto = new BillCodeDto();
 
         billCodeDto.setName(billCode.getName());
-        billCodeDto.setBillCodeType(BillCodeType.getBillCodeType(billCode.getBillCodeTypeId()));
+        billCodeDto.setBillCodeTypeId(billCode.getBillCodeType().getCode());
         billCodeDto.setAddOnGroupId(billCode.getAddOnGroupId());
         billCodeDto.setGlAccountId(billCode.getGlAccount().getId());
         billCodeDto.setDescription(billCode.getDescription());
