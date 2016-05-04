@@ -6,7 +6,7 @@
   "main": "",
   "authors": [
     "Muhammad Umer <umermuhammadkhan@gmail.com>",
-    "mustafa.amin <mustafa.amin@venturedive.com>"
+    "mustafa.amin <mustufa.amin@yahoo.com>"
   ],
   "license": "MIT",
   "moduleType": [
@@ -28,6 +28,7 @@
     "bootstrap": "3.3.6",
     "jquery": "2.1.4",
     "angular-material":"1.x",
+    "lodash":"4.11.2",
     "ng-table":""
   },
   "resolutions": {
