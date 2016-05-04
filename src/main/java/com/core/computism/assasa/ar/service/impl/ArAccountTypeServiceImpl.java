@@ -7,7 +7,6 @@ import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
 import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountTypeRepository;
-
 import com.core.computism.assasa.persistence.repository.gl.GlAccountRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;

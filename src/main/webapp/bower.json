@@ -29,5 +29,8 @@
     "jquery": "2.1.4",
     "angular-material":"1.x",
     "ng-table":""
+  },
+  "resolutions": {
+    "angular": "~1.4.x"
   }
 }

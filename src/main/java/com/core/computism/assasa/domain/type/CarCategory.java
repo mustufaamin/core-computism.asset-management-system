@@ -3,7 +3,7 @@ package com.core.computism.assasa.domain.type;
 import java.util.HashMap;
 
 /**
- * Created by Venturedive on 7/20/2015.
+ * Created by Salman on 7/20/2015.
  */
 public enum CarCategory {
     BUSINESS (1),

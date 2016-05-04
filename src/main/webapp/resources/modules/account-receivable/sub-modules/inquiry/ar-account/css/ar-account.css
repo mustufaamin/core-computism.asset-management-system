@@ -1,0 +1,28 @@
+.listArAccountControls {
+    /* Add some right padding so that the text doesn't overlap the buttons */ }
+
+/*Comment out these CSS for now* START/
+/*.listArAccountControls md-divider {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+.listArAccountControls md-list-item > p,
+.listArAccountControls md-list-item > .md-list-item-inner > p,
+.listArAccountControls md-list-item .md-list-item-inner > p,
+.listArAccountControls md-list-item .md-list-item-inner > .md-list-item-inner > p {
+    -webkit-user-select: none;
+    /!* Chrome all / Safari all *!/
+    -moz-user-select: none;
+    /!* Firefox all *!/
+    -ms-user-select: none;
+    /!* IE 10+ *!/
+    user-select: none;
+    /!* Likely future *!/ }
+ END*/
+.listArAccountControls .secondary-button-padding p {
+    padding-right: 100px; }
+
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+*/

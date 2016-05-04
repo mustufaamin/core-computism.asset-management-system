@@ -3,7 +3,7 @@ package com.core.computism.assasa.domain;
 
 /**
  * A domain model, used to fetch problems from Queue.
- * Created by Venturedive on 7/8/2015.
+ * Created by Salman on 7/8/2015.
  */
 public class IssueDTO {
 

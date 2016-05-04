@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by Venturedive on 8/5/2015.
+ * Created by Salman on 8/5/2015.
  */
 @Controller
 @RequestMapping(value = "/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})

@@ -18,6 +18,7 @@
     <link href="resources/modules/account-receivable/sub-modules/admin/ar-types/css/ar-types.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/admin/billcodes/css/billcodes.css" rel="stylesheet">
     <link href="resources/css/asasa/asasa.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/libraries/bower-components/angular-material/angular-material.min.css">
 
 
 </head>
@@ -438,6 +439,8 @@
     <script src="resources/modules/asasa.js"></script>
     <script src="resources/modules/home/home.js"></script>
     <script src="resources/modules/customer/customer.js"></script>
+    <script src="resources/modules/account-receivable/sub-modules/adjustments/adjustment/ar-adjustment.js"></script>
+    <script src="resources/modules/account-receivable/sub-modules/inquiry/ar-account/ar-account.js"></script>
     <script src="resources/modules/account-receivable/account-receivable.js"></script>
     <script src="resources/modules/account-receivable/sub-modules/payments/payment-type/payment-type.js"></script>
     <script src="resources/modules/account-receivable/sub-modules/admin/ar-types/ar-types.js"></script>
@@ -447,5 +450,9 @@
     <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
     <script src="resources/libraries/bower-components/angular-ui-router/release/angular-ui-router.min.js"></script>
 
+    <script src="resources/libraries/bower-components/angular-animate/angular-animate.min.js"></script>
+    <script src="resources/libraries/bower-components/angular-aria/angular-aria.min.js"></script>
+    <script src="resources/libraries/bower-components/angular-messages/angular-messages.min.js"></script>
+    <script src="resources/libraries/bower-components/angular-material/angular-material.min.js"></script>
 </body>
 </html>

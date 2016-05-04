@@ -3,7 +3,7 @@ package com.core.computism.assasa.domain.type;
 import java.util.HashMap;
 
 /**
- * Created by Venturedive on 8/24/2015.
+ * Created by Salman on 8/24/2015.
  */
 public enum TicketStatus {
     NEW(1),
