@@ -1,5 +1,6 @@
 package com.core.computism.assasa.ar.dto;
 
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -7,14 +8,16 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by VD on 2/19/2016.
+ * Created by VD on 5/3/2016.
  */
 @JsonAutoDetect
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ArAccountDto {
+public class ArAccountSearchResponseDto {
 
     private Long customerId;
+    private String customerName;
     private Long accountTypeId;
+    private String accountTypeName;
     private BigDecimal currentBalance;
     private Integer accountStatus;
     private Integer companyId;
@@ -24,7 +27,24 @@ public class ArAccountDto {
     private Date activationDate;
     private Date deactivationDate;
 
-    public ArAccountDto() {}
+    public ArAccountSearchResponseDto() {
+
+    }
+
+    public ArAccountSearchResponseDto(ArAccount arAccount) {
+        this.customerId = arAccount.getCustomer().getId();
+        this.customerName = arAccount.getCustomer().getCustomerFullName();
+        this.accountTypeId = arAccount.getArAccountType().getId();
+        this.accountTypeName = arAccount.getArAccountType().getAccountTypeName();
+        this.currentBalance = arAccount.getCurrentBalance();
+        this.accountStatus = arAccount.getAccountStatus();
+        this.companyId = arAccount.getCompanyId();
+        this.createdBy = arAccount.getCreatedBy();
+        this.modifiedDate = arAccount.getLastModifiedDate();
+        this.modifiedBy = arAccount.getModifiedBy();
+        this.activationDate = arAccount.getActivationDate();
+        this.deactivationDate = arAccount.getDeactivationDate();
+    }
 
     public Long getCustomerId() {
         return customerId;
@@ -34,12 +54,28 @@ public class ArAccountDto {
         this.customerId = customerId;
     }
 
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
     public Long getAccountTypeId() {
         return accountTypeId;
     }
 
     public void setAccountTypeId(Long accountTypeId) {
         this.accountTypeId = accountTypeId;
+    }
+
+    public String getAccountTypeName() {
+        return accountTypeName;
+    }
+
+    public void setAccountTypeName(String accountTypeName) {
+        this.accountTypeName = accountTypeName;
     }
 
     public BigDecimal getCurrentBalance() {

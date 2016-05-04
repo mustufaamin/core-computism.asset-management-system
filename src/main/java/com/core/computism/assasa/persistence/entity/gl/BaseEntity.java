@@ -17,7 +17,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 /**
- * Created by Mustufa Amin on 8/17/2015.
+ * Created by Salman on 8/17/2015.
  */
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)

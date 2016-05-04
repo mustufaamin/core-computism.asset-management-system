@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Mustufa Amin on 8/24/2015.
+ * Created by Salman on 8/24/2015.
  */
 public class BrainUtil {
 

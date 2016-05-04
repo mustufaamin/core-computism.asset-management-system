@@ -1,10 +1,13 @@
 package com.core.computism.assasa.web.controller.ar;
 
 import com.core.computism.assasa.ar.dto.ArAccountDto;
+import com.core.computism.assasa.ar.dto.ArAccountSearchResponseDto;
 import com.core.computism.assasa.ar.dto.ArAccountTypeDto;
 import com.core.computism.assasa.ar.service.ArAccountService;
 import com.core.computism.assasa.ar.service.ArAccountTypeService;
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.pos.domain.CityDto;
+import com.core.computism.assasa.util.ServerResponse;
 import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +55,13 @@ public class ArAccountController extends BaseController {
         } catch (ArBusinessException e) {
             LOGGER.error(e);
         }
+    }
+
+    @RequestMapping(value = "arAccountList", method = RequestMethod.GET)
+    public @ResponseBody
+    ServerResponse<List<ArAccountSearchResponseDto>>  getArAccountList() throws ArBusinessException {
+        ServerResponse<List<ArAccountSearchResponseDto>> response = toResponse(arAccountService.getArAccounts());
+        return response;
     }
 
     @RequestMapping(value = "arAccountTypes", method = RequestMethod.GET)

@@ -1,7 +1,7 @@
 package com.core.computism.assasa.exception;
 
 /**
- * Created by Mustufa Amin on 8/18/2015.
+ * Created by Salman on 8/18/2015.
  */
 public class BuilderException extends Exception {
     private static final long serialVersionUID = 7576659201874502992L;

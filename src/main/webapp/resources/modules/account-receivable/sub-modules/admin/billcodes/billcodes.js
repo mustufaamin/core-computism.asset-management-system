@@ -47,7 +47,7 @@
             };
 
             billCodesCtrl.getBillCodesList = function(){
-                billCodesCtrl.listBillCodes = [];
+                billCodesCtrl.listArAccountCtrl = [];
                 billCodesSrv.listOfBillCodes().$promise.then(function(response){
                     if(response != null){
                         for(var i = 0; i < response.data.length; i++){
@@ -62,7 +62,7 @@
                             billCode.deactivationDate = response.data[i].deactivationDate;
                             billCode.status = response.data[i].status;
 
-                            billCodesCtrl.listBillCodes.push(billCode);
+                            billCodesCtrl.listArAccountCtrl.push(billCode);
                         }
                     }
                 });

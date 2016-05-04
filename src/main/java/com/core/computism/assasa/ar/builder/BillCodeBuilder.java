@@ -39,7 +39,7 @@ public class BillCodeBuilder {
         }
 
         BillCodeDto billCodeDto = new BillCodeDto();
-
+        billCodeDto.setId(billCode.getId());
         billCodeDto.setName(billCode.getName());
         billCodeDto.setBillCodeTypeId(billCode.getBillCodeType().getCode());
         billCodeDto.setAddOnGroupId(billCode.getAddOnGroupId());
