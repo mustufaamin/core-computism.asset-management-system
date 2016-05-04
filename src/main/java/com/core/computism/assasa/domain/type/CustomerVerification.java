@@ -3,7 +3,7 @@ package com.core.computism.assasa.domain.type;
 import java.util.HashMap;
 
 /**
- * Created by Venture Dive on 9/15/2015.
+ * Created by Salman on 9/15/2015.
  */
 public enum CustomerVerification {
     VERIFIED(1),

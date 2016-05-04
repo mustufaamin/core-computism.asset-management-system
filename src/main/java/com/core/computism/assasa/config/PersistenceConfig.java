@@ -11,7 +11,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * Created by Venturedive on 8/11/2015.
+ * Created by Salman on 8/11/2015.
  */
 @Configuration
 @ComponentScan

@@ -3,7 +3,7 @@ package com.core.computism.assasa.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
- * Created by Venture Dive on 9/15/2015.
+ * Created by Salman on 9/15/2015.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
