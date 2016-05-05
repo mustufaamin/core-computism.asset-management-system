@@ -31,6 +31,29 @@
             };
             arAdjustmentCtrl.getBillCodeList();
 
+            arAdjustmentCtrl.addArAdjustment = function (){
+                var adjustment = {};
+                adjustment.arAccountId = 1;//arAdjustmentCtrl.arAccountId;
+                adjustment.billCodeId = arAdjustmentCtrl.billCodeId;
+                adjustment.adjustmentDate = arAdjustmentCtrl.adjustmentDate;
+                adjustment.amount = arAdjustmentCtrl.amount;
+                adjustment.adjustmentType = 1;//arAdjustmentCtrl.adjustmentType;
+                adjustment.status = 1;//arAdjustmentCtrl.status;
+                adjustment.batchId = arAdjustmentCtrl.batchId;
+                adjustment.description = arAdjustmentCtrl.description;
+                adjustment.statementDescription2 = arAdjustmentCtrl.statementDescription2;
+                adjustment.note = arAdjustmentCtrl.note;
+                adjustment.suppressOnStatement = arAdjustmentCtrl.suppressOnStatement;
+                adjustment.excludeValueAdded = arAdjustmentCtrl.excludeValueAdded;
+                adjustment.createdBy = 1;//arAdjustmentCtrl.createdBy; TODO : Hardcoded value for UserId.
+
+                adjustmentGatewayService.addArAdjustment(adjustment).$promise.then(function(response){
+                    if(response){
+
+                    }
+                });
+            };
+
         }]).config(function($mdThemingProvider) {
 
             // Configure a dark theme with primary foreground yellow
@@ -52,7 +75,7 @@
 
                     listOfBillCodes : {method: 'GET', isArray: false, url: "/billCodes/list"},
 
-                    addArAdjustment :{method: 'POST', isArray: false, url:"/glAccount/addAccountType"}
+                    addArAdjustment :{method: 'POST', isArray: false, url:"/adjustments/addAdjustment"}
 
                 });
         }]);
