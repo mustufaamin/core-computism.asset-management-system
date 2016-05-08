@@ -12,6 +12,7 @@ import com.core.computism.assasa.pos.domain.type.PosOrderStatus;
 import com.core.computism.assasa.pos.service.PosItemService;
 import com.core.computism.assasa.pos.service.PosOrderService;
 import com.core.computism.assasa.pos.service.PosPaymentService;
+import com.core.computism.assasa.pos.service.PosPaymentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,6 +31,7 @@ public class PosPaymentServiceImpl implements PosPaymentService {
     @Autowired private PosPaymentBuilder posPaymentBuilder;
     @Autowired private PosOrderService posOrderService;
     @Autowired private PosItemService posItemService;
+    @Autowired private PosPaymentTypeService posPaymentTypeService;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
@@ -44,6 +46,7 @@ public class PosPaymentServiceImpl implements PosPaymentService {
             posOrder.setPosOrderStatus(PosOrderStatus.PAID);
 
             posPayment.setPosOrder(posOrderService.getPosOrder(posPaymentDto.getPosOrderId()));
+            posPayment.setPosPaymentType(posPaymentTypeService.findPaymentType(posPaymentDto.getPosPaymentTypeId()));
 
             posPayment = posPaymentRepository.save(posPayment);
 

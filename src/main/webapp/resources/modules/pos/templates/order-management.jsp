@@ -72,40 +72,19 @@
                 <p>Number of Items: <span class="radioValue">{{ orderCtrl.items.length }}</span> </p>
             </div>
         </div>
+        <div class="row">
+            <div class="row">
+                <div class="col-xs-4"></div>
+                <div class="col-xs-4">
+                    <button type="button" class="btn btn-primary" ng-click="orderCtrl.saveOrder()"><span class="glyphicon glyphicon-floppy-save"></span></button>
+                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button type="button" class="btn btn-success" ng-click="orderCtrl.doPayment()"><span class="glyphicon glyphicon-usd" ></span></button>
+
+
+                </div>
+        </div>
+
     </div>
 
 </div>
 
-
-<%--div ng-app="myApp" class="container-fluid">--%>
-<%--<div class="row">--%>
-<%--<div class="col-xs-12">--%>
-<%--<h2 class="page-header">Base runnable demo (TODO)</h2>--%>
-<%--<div class="bs-callout bs-callout-info">--%>
-<%--<h4>Overview</h4>--%>
-<%--<p>One or two sentances explaining the demo <strong>(TODO)</strong></p>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--</div>--%>
-<%--<div class="row">--%>
-<%--<div class="col-md-6" ng-controller="demoController as demo">--%>
-<%--<h3>ngTable directive</h3>--%>
-<%--<table ng-table="demo.tableParams" class="table table-condensed table-bordered table-striped">--%>
-<%--<tr ng-repeat="row in $data">--%>
-<%--<td title="'Name'" filter="{name: 'text'}" sortable="'name'">{{row.name}}</td>--%>
-<%--<td title="'Age'" filter="{age: 'number'}" sortable="'age'">{{row.age}}</td>--%>
-<%--<td title="'Money'" filter="{money: 'number'}" sortable="'money'">{{row.money}}</td>--%>
-<%--</tr>--%>
-<%--</table>--%>
-<%--</div>--%>
-<%--<div class="col-md-6" ng-controller="dynamicDemoController as demo">--%>
-<%--<h3>ngTableDynamic directive</h3>--%>
-<%--<table ng-table-dynamic="demo.tableParams with demo.cols" class="table table-condensed table-bordered table-striped">--%>
-<%--<tr ng-repeat="row in $data">--%>
-<%--<td ng-repeat="col in $columns">{{row[col.field]}}</td>--%>
-<%--</tr>--%>
-<%--</table>--%>
-<%--</div>--%>
-<%--</div>--%>
-
-<%--</div>--%>

@@ -49,4 +49,14 @@ public class CurrencyServiceImpl implements CurrencyService {
             throw new AssasaBusinessException("Error Occurred in getting currency List");
         }
     }
+
+    @Transactional(readOnly = true)
+    public Currency getCurrency(Long currencyId) throws AssasaBusinessException {
+        try{
+            return currencyRepository.findOne(currencyId);
+
+        } catch (PersistenceException e){
+            throw new AssasaBusinessException("Error Occurred in getCurrency");
+        }
+    }
 }

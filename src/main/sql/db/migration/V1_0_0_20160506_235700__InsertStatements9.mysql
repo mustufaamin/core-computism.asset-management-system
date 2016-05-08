@@ -1,0 +1,117 @@
+INSERT INTO `assasa`.`cmn_country`
+(
+  `name`,
+  `last_modified_date`,
+  `creation_date`,
+  `version`)
+VALUES
+  (
+    'Pakistan',
+    NOW(),
+    NOW(),
+    1
+  );
+
+
+
+
+INSERT INTO `assasa`.`cmn_city`
+(
+  `name`,
+  `state`,
+  `country_id`,
+  `last_modified_date`,
+  `creation_date`,
+  `version`)
+VALUES
+  (
+    'Karachi',
+    '',
+    1,
+    now(),
+    now(),
+    1
+  );
+INSERT INTO `assasa`.`cmn_city`
+(
+  `name`,
+  `state`,
+  `country_id`,
+  `last_modified_date`,
+  `creation_date`,
+  `version`)
+VALUES
+  (
+    'Lahore',
+    '',
+    1,
+    now(),
+    now(),
+    1
+  );
+
+INSERT INTO `assasa`.`cmn_city`
+(
+  `name`,
+  `state`,
+  `country_id`,
+  `last_modified_date`,
+  `creation_date`,
+  `version`)
+VALUES
+  (
+    'Islamabad',
+    '',
+    1,
+    now(),
+    now(),
+    1
+  );
+
+INSERT INTO `assasa`.`cmn_city`
+(
+  `name`,
+  `state`,
+  `country_id`,
+  `last_modified_date`,
+  `creation_date`,
+  `version`)
+VALUES
+  (
+    'Quetta',
+    '',
+    1,
+    now(),
+    now(),
+    1
+  );
+
+INSERT INTO `assasa`.`cmn_city`
+(
+  `name`,
+  `state`,
+  `country_id`,
+  `last_modified_date`,
+  `creation_date`,
+  `version`)
+VALUES
+  (
+    'Peshawer',
+    '',
+    1,
+    now(),
+    now(),
+    1
+  );
+
+
+  insert INTO cmn_currency( name, symbol, creation_date, last_modified_date, version) VALUES ('American Dollar','USD',now(),now(),1);
+INSERT INTO cc_customer (first_name, last_name, mailing_address_id, phone_number, mobile_number, email, creation_date, last_modified_date, version)
+VALUES ('Mustufa','Amin',1,'02139457155','+923142544156','mamin@abc.com',NOW(),NOW(),1);
+
+
+insert into cmn_address( location_address, city_id, creation_date, last_modified_date, version)
+    VALUES ('C-121 Block  W',1,NOW(),now(),1);
+
+    insert into pos_payment_type( payment_type_name, payment_type_desc, gl_account_id, creation_date, last_modified_date, version)
+    values('CASH_PAYMENT','Complete payment using cash',1,now(),now(),0);

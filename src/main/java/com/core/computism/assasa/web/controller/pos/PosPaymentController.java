@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -17,7 +18,8 @@ import java.util.List;
  * Created by M.Mustafa Amin Shah on 4/2/2016.
  */
 
-@RequestMapping(value = "posPayment/")
+@RestController
+@RequestMapping(value = "/posPayment/")
 public class PosPaymentController extends BaseController {
     private static final Logger LOGGER = Logger.getLogger(PosPaymentController.class);
 
@@ -25,7 +27,7 @@ public class PosPaymentController extends BaseController {
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ServerResponse<PosPaymentDto> add(@RequestBody PosPaymentDto posPaymentDto) throws PosBusinessException {
-        LOGGER.info("Adding item ...");
+        LOGGER.info("Adding payment ...");
         ServerResponse<PosPaymentDto> response = toResponse(posPaymentService.add(posPaymentDto));
         return response;
     }

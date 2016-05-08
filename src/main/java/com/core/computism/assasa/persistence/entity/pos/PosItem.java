@@ -137,7 +137,7 @@ public class PosItem extends BaseEntity {
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "supplier_ref", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "supplier_ref", referencedColumnName = "id")
     public Supplier getSupplier() {
         return supplier;
     }

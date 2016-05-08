@@ -23,47 +23,47 @@ import java.util.List;
 @Table(name = "pos_order")
 public class PosOrder extends BaseEntity{
 
-    private Integer invoiceNumber;
-    private Integer batchNumber;
-    private Integer totalAmount;
+    private Long invoiceNumber;
+    private Long batchNumber;
+    private Double totalAmount;
     private Integer numberOfItems;
     private Integer status;
 
     private PosOrderStatus posOrderStatus;
 
     private Customer customer;
+    private Currency currency;
     private List<PosOrderItem> posOrderItems;
 
     @Basic
     @Column(name = "invoice_number", nullable = true, insertable = true, updatable = true)
-    public Integer getInvoiceNumber() {
+    public Long getInvoiceNumber() {
         return invoiceNumber;
     }
 
-    public void setInvoiceNumber(Integer invoiceNumber) {
+    public void setInvoiceNumber(Long invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
     }
 
     @Basic
     @Column(name = "batch_number", nullable = true, insertable = true, updatable = true)
-    public Integer getBatchNumber() {
+    public Long getBatchNumber() {
         return batchNumber;
     }
 
-    public void setBatchNumber(Integer batchNumber) {
+    public void setBatchNumber(Long batchNumber) {
         this.batchNumber = batchNumber;
     }
 
     @Basic
     @Column(name = "total_amount", nullable = true, insertable = true, updatable = true)
-    public Integer getTotalAmount() {
+    public Double getTotalAmount() {
         return totalAmount;
     }
 
-    public void setTotalAmount(Integer totalAmount) {
+    public void setTotalAmount(Double totalAmount) {
         this.totalAmount = totalAmount;
     }
-
 
     @Basic
     @Column(name = "number_of_items", nullable = true, insertable = true, updatable = true)
@@ -95,10 +95,6 @@ public class PosOrder extends BaseEntity{
     }
 
 
-
-
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_Id", referencedColumnName = "id", nullable = false)
     public Customer getCustomer() {
@@ -109,6 +105,16 @@ public class PosOrder extends BaseEntity{
         this.customer = customer;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "currency_id", referencedColumnName = "id", nullable = false)
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "posOrder")
     public List<PosOrderItem> getPosOrderItems() {
         return posOrderItems;
@@ -117,5 +123,6 @@ public class PosOrder extends BaseEntity{
     public void setPosOrderItems(List<PosOrderItem> posOrderItems) {
         this.posOrderItems = posOrderItems;
     }
+
 
 }
