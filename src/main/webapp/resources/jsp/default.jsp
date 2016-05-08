@@ -18,6 +18,7 @@
     <link href="resources/modules/account-receivable/sub-modules/admin/ar-types/css/ar-types.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/admin/billcodes/css/billcodes.css" rel="stylesheet">
     <link href="resources/css/asasa/asasa.css" rel="stylesheet">
+    <link href="resources/modules/account-receivable/sub-modules/adjustments/adjustment/css/ar-adjustment.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/libraries/bower-components/angular-material/angular-material.min.css">
 
 

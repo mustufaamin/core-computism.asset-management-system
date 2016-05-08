@@ -1,18 +1,14 @@
 package com.core.computism.assasa.ar.dto;
 
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by VD on 5/3/2016.
+ * Created by VD on 5/8/2016.
  */
-@JsonAutoDetect
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ArAccountSearchResponseDto {
+public class ArAccountSearchDto {
 
     private Long arAccountId;
     private Long customerId;
@@ -28,15 +24,14 @@ public class ArAccountSearchResponseDto {
     private Date activationDate;
     private Date deactivationDate;
 
-    public ArAccountSearchResponseDto() {
-
+    public ArAccountSearchDto() {
     }
 
-    public ArAccountSearchResponseDto(ArAccount arAccount) {
+    public ArAccountSearchDto(ArAccount arAccount) {
         this.arAccountId = arAccount.getId();
         this.customerId = arAccount.getCustomer().getId();
-        this.customerName = arAccount.getCustomer().getCustomerFullName();
-        this.accountTypeId = arAccount.getArAccountType().getId();
+        this.customerName =  arAccount.getCustomer().getCustomerFullName();
+        this.accountTypeId  = arAccount.getArAccountType().getId();
         this.accountTypeName = arAccount.getArAccountType().getAccountTypeName();
         this.currentBalance = arAccount.getCurrentBalance();
         this.accountStatus = arAccount.getAccountStatus();

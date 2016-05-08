@@ -2,6 +2,7 @@ package com.core.computism.assasa.ar.service.impl;
 
 import com.core.computism.assasa.ar.builder.ArAccountBuilder;
 import com.core.computism.assasa.ar.dto.ArAccountDto;
+import com.core.computism.assasa.ar.dto.ArAccountSearchDto;
 import com.core.computism.assasa.ar.dto.ArAccountSearchResponseDto;
 import com.core.computism.assasa.ar.service.ArAccountService;
 import com.core.computism.assasa.exception.ArBusinessException;
@@ -78,7 +79,7 @@ public class ArAccountServiceImpl extends BaseService implements ArAccountServic
         List<ArAccount> arAccounts = arAccountRepository.findAll();
 
         if (CollectionUtils.isEmpty(arAccounts)) {
-            throw new ArBusinessException("Ar Account Types does not exist.");
+            throw new ArBusinessException("Ar Accounts does not exist.");
         }
 
         for (ArAccount arAccount : arAccounts) {
@@ -86,5 +87,16 @@ public class ArAccountServiceImpl extends BaseService implements ArAccountServic
             arAccountSearchResponseDtos.add(arAccountSearchResponseDto);
         }
         return arAccountSearchResponseDtos;
+    }
+
+    @Override
+    public List<ArAccountSearchDto> getArAccountBySearchKey(String searchKey) throws ArBusinessException {
+        List<ArAccountSearchDto> arAccountSearchDtos = new ArrayList<>();
+        List<ArAccount> arAccounts = arAccountRepository.getArAccountBySearchKey(searchKey);
+        for (ArAccount arAccount : arAccounts) {
+            ArAccountSearchDto arAccountSearchDto = new ArAccountSearchDto(arAccount);
+            arAccountSearchDtos.add(arAccountSearchDto);
+        }
+        return arAccountSearchDtos;
     }
 }
