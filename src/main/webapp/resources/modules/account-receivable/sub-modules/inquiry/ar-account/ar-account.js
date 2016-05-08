@@ -22,6 +22,7 @@
                         console.log(response);
                         for(var i = 0; i < response.data.length; i++){
                             var arAccount = {};
+                            arAccount.arAccountId = response.data[i].arAccountId;
                             arAccount.customerId = response.data[i].customerId;
                             arAccount.customerName = response.data[i].customerName;
                             arAccount.accountTypeId = response.data[i].accountTypeId;

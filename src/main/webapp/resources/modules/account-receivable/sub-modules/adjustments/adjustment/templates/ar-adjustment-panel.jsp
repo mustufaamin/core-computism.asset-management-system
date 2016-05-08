@@ -6,17 +6,17 @@
           <div style="width: 100%">
             <md-input-container>
               <label>Batch #</label>
-              <input ng-model="adjustment.batchId">
+              <input ng-model="arAdjustmentCtrl.batchId">
             </md-input-container>
 
             <md-input-container>
               <label>Total</label>
-              <input ng-model="adjustment.total" type="email">
+              <input ng-model="arAdjustmentCtrl.total" type="email">
             </md-input-container>
 
             <md-input-container>
               <label>Used</label>
-              <input ng-model="adjustment.used" type="email">
+              <input ng-model="arAdjustmentCtrl.used" type="email">
             </md-input-container>
           </div>
         </md-content>
@@ -52,17 +52,17 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Customer</label>
-            <input ng-model="adjustment.customer" <%--disabled=""--%>>
+            <input ng-model="arAdjustmentCtrl.customer" <%--disabled=""--%>>
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Customer Type</label>
-            <input ng-model="adjustment.customerType" <%--disabled=""--%>>
+            <input ng-model="arAdjustmentCtrl.customerType" <%--disabled=""--%>>
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Customer Status</label>
-            <input ng-model="adjustment.customerStatus" <%--disabled=""--%>>
+            <input ng-model="arAdjustmentCtrl.customerStatus" <%--disabled=""--%>>
           </md-input-container>
 
           <%--<md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date">
@@ -74,7 +74,7 @@
                   <td>
                       <md-input-container class="md-block" flex-gt-sm="" >
                           <label>BillCodes</label>
-                          <md-select ng-model="adjustment.billCodeId">
+                          <md-select ng-model="arAdjustmentCtrl.billCodeId">
                               <md-option ng-repeat="billCode in arAdjustmentCtrl.listBillCodes" value="{{billCode.billCodeId}}">
                                   {{billCode.name}}
                               </md-option>
@@ -82,7 +82,7 @@
                       </md-input-container>
                   </td>
                   <td>
-                      <md-datepicker ng-model="adjustment.adjustmentDate" md-placeholder="Enter date">
+                      <md-datepicker ng-model="arAdjustmentCtrl.adjustmentDate" md-placeholder="Enter date">
                       </md-datepicker>
                   </td>
               </tr>
@@ -90,7 +90,7 @@
                   <td colspan="2">
                       <md-input-container class="md-block" >
                           <label>Adjustment notes</label>
-                          <textarea ng-model="adjustment.note" md-maxlength="255" rows="5" md-select-on-focus=""></textarea>
+                          <textarea ng-model="arAdjustmentCtrl.note" md-maxlength="255" rows="5" md-select-on-focus=""></textarea>
                       </md-input-container>
                   </td>
               </tr>
@@ -103,7 +103,7 @@
                               <td style="width: 30%">
                                   <md-input-container class="md-block" flex-gt-sm="">
                                       <label>Statement Description Line1</label>
-                                      <input ng-model="adjustment.description" md-maxlength="255">
+                                      <input ng-model="arAdjustmentCtrl.description" md-maxlength="255">
                                   </md-input-container>
                               </td>
                           </tr>
@@ -111,7 +111,7 @@
                               <td style="width: 30%">
                                   <md-input-container class="md-block" flex-gt-sm="">
                                       <label>Statement Description Line2</label>
-                                      <input ng-model="adjustment.statementDescription2" md-maxlength="255">
+                                      <input ng-model="arAdjustmentCtrl.statementDescription2" md-maxlength="255">
                                   </md-input-container>
                               </td>
                           </tr>
@@ -132,7 +132,7 @@
                                       <td colspan="2">
                                           <md-input-container class="md-block">
                                               <label>Adjustment Amount</label>
-                                              <input ng-model="adjustment.amount" type="number">
+                                              <input ng-model="arAdjustmentCtrl.amount" type="number">
                                           </md-input-container>
                                       </td>
                                   </tr>
@@ -144,7 +144,7 @@
                                       </td>
                                       <td>
                                           <md-input-container class="md-block">
-                                              <label>{{adjustment.amount}}</label>
+                                              <label>{{arAdjustmentCtrl.amount}}</label>
                                           </md-input-container>
                                       </td>
                                   </tr>
@@ -159,9 +159,15 @@
     </div>
   </md-content>
 
-</div>
+    <div class="cust-panel-foot" layout-align="left" >
+        <button class="c-btn c-btn-action cust-add-btn"
+                ng-class=""
+                ng-click="arAdjustmentCtrl.addArAdjustment()">Add Adjustment</button>
+        <button class="c-btn cust-add-btn"
+                ng-class=""
+                ng-disabled=""
+                ng-click="">Cancel</button>
+    </div>
 
-<!--
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
--->
+
+</div>

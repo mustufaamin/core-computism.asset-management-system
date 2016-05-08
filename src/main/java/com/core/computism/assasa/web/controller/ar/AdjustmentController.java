@@ -1,9 +1,7 @@
 package com.core.computism.assasa.web.controller.ar;
 
 import com.core.computism.assasa.ar.dto.AdjustmentDto;
-import com.core.computism.assasa.ar.dto.PaymentDto;
 import com.core.computism.assasa.ar.service.AdjustmentService;
-import com.core.computism.assasa.ar.service.PaymentService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,7 @@ public class AdjustmentController {
 
     @RequestMapping(value = "addAdjustment", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addPayment(@RequestBody AdjustmentDto adjustmentDto) throws ArBusinessException {
+    public void addAdjustmnet(@RequestBody AdjustmentDto adjustmentDto) throws ArBusinessException {
         try {
             adjustmentService.saveAdjustment(adjustmentDto);
         } catch (ArBusinessException e) {
