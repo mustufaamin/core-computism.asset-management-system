@@ -3,7 +3,7 @@
 <head>
     <title>Assasa</title>
     <%--<base href="/home">--%>
-
+    <link  href="resources/libraries/bower-components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link id="bootstrap-style" href="resources/css/bootstrap.min.css" rel="stylesheet">
     <link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet">
     <link id="base-style" href="resources/css/style.css" rel="stylesheet">
@@ -370,35 +370,35 @@
                 <home-panel></home-panel>
             </div>
 
-        <!--/.fluid-container-->
+            <!--/.fluid-container-->
 
-        <!-- end: Content -->
-    </div><!--/#content.span10-->
-</div><!--/fluid-row-->
+            <!-- end: Content -->
+        </div><!--/#content.span10-->
+    </div><!--/fluid-row-->
 
-<div class="modal hide fade" id="myModal">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Settings</h3>
+    <div class="modal hide fade" id="myModal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h3>Settings</h3>
+        </div>
+        <div class="modal-body">
+            <p>Here settings can be configured...</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#" class="btn" data-dismiss="modal">Close</a>
+            <a href="#" class="btn btn-primary">Save changes</a>
+        </div>
     </div>
-    <div class="modal-body">
-        <p>Here settings can be configured...</p>
-    </div>
-    <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Close</a>
-        <a href="#" class="btn btn-primary">Save changes</a>
-    </div>
-</div>
 
-<div class="clearfix"></div>
+    <div class="clearfix"></div>
 
-<footer>
+    <footer>
 
-    <p>
-        <span style="text-align:left;float:left">&copy; 2016 <a href="#" alt="">Core Computism</a></span>
-    </p>
+        <p>
+            <span style="text-align:left;float:left">&copy; 2016 <a href="#" alt="">Core Computism</a></span>
+        </p>
 
-</footer>
+    </footer>
 
     <%--Custom JS files--%>
 
@@ -450,10 +450,15 @@
     <script src="resources/libraries/bower-components/ng-table/dist/ng-table.js"></script>
     <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
     <script src="resources/libraries/bower-components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="resources/modules/pos/order-management.js"></script>
+    <script src="resources/modules/pos/services/pos-services.js"></script>
+
 
     <script src="resources/libraries/bower-components/angular-animate/angular-animate.min.js"></script>
     <script src="resources/libraries/bower-components/angular-aria/angular-aria.min.js"></script>
     <script src="resources/libraries/bower-components/angular-messages/angular-messages.min.js"></script>
     <script src="resources/libraries/bower-components/angular-material/angular-material.min.js"></script>
+    <script  src="resources/libraries/bower-components/lodash/dist/lodash.min.js"></script>
+</div>
 </body>
 </html>

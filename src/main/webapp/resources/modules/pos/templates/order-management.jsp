@@ -1,7 +1,4 @@
 <div class="col-xs-12"  ng-cloak="" class="md-inline-form inputdemoBasicUsage" id="orderManagementPanel" ng-controller="OrderManagementController as orderCtrl">
-
-
-
     <div id="posdemoparent" ng-style="{'overflow': (parentScrollable && 'scroll'), 'position': (parentRelative && 'relative')}"
          style="border: 1px solid #ccc; padding: 15px;">
         <div class="row">
@@ -35,7 +32,6 @@
                 </md-content>
             </div>
         </div>
-
 
         <div class="row">
 
@@ -80,11 +76,10 @@
                     <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
                     <button type="button" class="btn btn-success" ng-click="orderCtrl.doPayment()"><span class="glyphicon glyphicon-usd" ></span></button>
 
-
                 </div>
         </div>
 
     </div>
 
 </div>
-
+    </div>
