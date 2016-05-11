@@ -72,12 +72,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
             url: '/inquiry/arAccount',
             templateUrl: 'resources/modules/account-receivable/sub-modules/inquiry/ar-account/template/ar-account-panel.jsp'
         })
+        .state('pos/order', {
+            url: '/pos/order',
+            templateUrl: '/resources/modules/pos/templates/order-management.jsp'
+        });
 
         .state('inquiry/arTransaction', {
             url: '/inquiry/arTransaction',
             templateUrl: 'resources/modules/account-receivable/sub-modules/inquiry/ar-transaction/template/ar-transaction-panel.jsp'
         })
-
     ;
 
 
