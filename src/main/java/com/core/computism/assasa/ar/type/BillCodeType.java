@@ -7,7 +7,7 @@ import java.util.HashMap;
  */
 public enum BillCodeType {
 
-    TYPE1(1), TYPE2(2);
+    TYPE1(1), TYPE2(2),TYPE3(3),TYPE4(4),TYPE5(5);
     Integer code;
     private static HashMap<Integer, BillCodeType> billCodeTypes = new HashMap<>();
 

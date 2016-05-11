@@ -26,29 +26,22 @@
     <div class="cap-adj-cycle">
       <div class="cap-adj-cyc-head">List of Current Bill Codes</div>
 
-      <table ng-table="billCodeList" class="table" show-filter="true">
-        <tr ng-repeat="billCode in billCodesCtrl.listBillCodes">
-          <td title="'#'">
-            <div class="grid-func" ng-click="billCodesCtrl.openBillCodesSlidePanel(2, billCode)">View: <i class="fa fa-eye"></i><br></div>
-            <div class="grid-func" ng-click="billCodesCtrl.openBillCodesSlidePanel(3, billCode)">Edit: <i class="fa fa-scissors"></i></div>
-          </td>
-          <td title="'Bill Code Type'">
-            {{billCode.billCodeType}}</td>
-          <td title="'Bill Code Name'">
-            {{billCode.name}}</td>
-          <td title="'AddOn Group Id'">
-            {{billCode.addOnGroupId}}</td>
-          <td title="'Status'">
-            {{billCode.status}}</td>
-          <td title="'Description'">
-            {{billCode.description}}</td>
-          <td title="'Activation Date'">
-            {{billCode.activationDate}}</td>
-          <td title="'Deactivation Date'">
-            {{billCode.deactivationDate}}</td>
-
-        </tr>
-      </table>
+      <div>
+        <table ng-table-dynamic="billCodesCtrl.billCodeListTable with billCodesCtrl.cols"
+               class="table table-condensed table-bordered table-striped">
+          <%--<colgroup>--%>
+            <%--<col width="20%" />--%>
+            <%--<col width="60%" />--%>
+            <%--<col width="10%" />--%>
+            <%--<col width="10%" />--%>
+          <%--</colgroup>--%>
+          <tr ng-repeat="row in $data">
+            <td ng-repeat="col in $columns">
+              <span>{{row[col.field]}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </div>

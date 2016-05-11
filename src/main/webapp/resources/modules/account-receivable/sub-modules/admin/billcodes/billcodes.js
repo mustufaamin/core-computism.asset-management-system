@@ -19,8 +19,34 @@
         });
 
     angular.module('Asasa')
-        .controller('BillCodesController', ['BillCodesGatewayService', '$http', function(billCodesSrv, $http){
+        .controller('BillCodesController', ['ngTableParams','BillCodesGatewayService', '$http', function(ngTableParams,billCodesSrv, $http){
             var billCodesCtrl = this;
+
+
+            billCodesCtrl.billCodes= [];
+
+
+            billCodesCtrl.cols = [
+                {field: "id",title: "Bill Code ID:",sortable: "id",filter: {id: "number"},show: true,dataType: "number"},
+                {field: "glAccountId",title: "GlAccount ",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
+                {field: "name",title: "Name ",sortable: "costPrice",filter: {name: "text"},show: true,dataType: "text"},
+                {field: "description",title: "Description",sortable: "description",filter: {action: "number"},show: true,dataType: "text"},
+                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "text"}
+
+            ];
+
+            billCodesCtrl.billCodeListTable = new ngTableParams({
+                page: 1,
+                count: 10
+            }, {
+                total: billCodesCtrl.billCodes.length,
+                getData: function ($defer, params) {
+                    console.log(billCodesCtrl.billCodes);
+                    billCodesCtrl.data = billCodesCtrl.billCodes.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(billCodesCtrl.data);
+                }
+            });
+
 
             billCodesCtrl.openBillCodesSlidePanel = function(type, billCode){
                 if(billCode != null){
@@ -62,9 +88,11 @@
                             billCode.deactivationDate = response.data[i].deactivationDate;
                             billCode.status = response.data[i].status;
 
-                            billCodesCtrl.listArAccountCtrl.push(billCode);
+                            billCodesCtrl.billCodes.push(billCode);
                         }
                     }
+                    billCodesCtrl.billCodeListTable.reload();
+
                 });
             };
 

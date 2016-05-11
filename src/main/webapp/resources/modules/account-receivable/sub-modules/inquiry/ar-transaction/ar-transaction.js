@@ -67,7 +67,7 @@
                 ];
 
 
-                transactionCtrl.itemTable = new ngTableParams({
+                transactionCtrl.billCodeList = new ngTableParams({
                     page: 1,
                     count: 10
                 }, {
@@ -106,7 +106,7 @@
                                 arTransaction.customerId = response.data[i].customerId;
                                 arTransaction.customerName = response.data[i].customerFullName;
                                 transactionCtrl.items.push(arTransaction);
-                                transactionCtrl.itemTable.reload();
+                                transactionCtrl.billCodeList.reload();
                             }
                         }
                     });
