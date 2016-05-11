@@ -1,5 +1,7 @@
 package com.core.computism.assasa.ar.service.impl;
 
+import com.core.computism.assasa.ar.dto.ArTransactionSearchResponseDto;
+import com.core.computism.assasa.ar.service.ArAccountService;
 import com.core.computism.assasa.ar.service.TransactionService;
 import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.exception.ArBusinessException;
@@ -8,10 +10,13 @@ import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.cmn.Customer;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 import com.core.computism.assasa.persistence.repository.ar.TransactionRepository;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -39,6 +44,9 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Autowired
     ArAccountRepository arAccountRepository;
+
+    @Autowired
+    ArAccountService arAccountService;
 
     @Override
     public List<Transaction> populateTransaction(List<? extends IPostable> postingObjectsSubList, Date transactionDate,
@@ -113,5 +121,22 @@ public class TransactionServiceImpl implements TransactionService {
             LOG.error(ex.getMessage(), ex);
         }
         return transactions;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
+    public List<ArTransactionSearchResponseDto> getArTransactions() throws ArBusinessException {
+        List<ArTransactionSearchResponseDto> arTransactionSearchResponseDtos = new ArrayList<>();
+        List<Transaction> transactions = transactionRepository.findAll();
+        if (CollectionUtils.isEmpty(transactions)) {
+            throw new ArBusinessException("Ar Transactions does not exist.");
+        }
+
+        for (Transaction transaction : transactions) {
+            ArAccount arAccount = arAccountService.getArAccountById(transaction.getArAccountId().longValue());
+            ArTransactionSearchResponseDto arAccountSearchResponseDto = new ArTransactionSearchResponseDto(transaction, arAccount);
+            arTransactionSearchResponseDtos.add(arAccountSearchResponseDto);
+        }
+        return arTransactionSearchResponseDtos;
     }
 }

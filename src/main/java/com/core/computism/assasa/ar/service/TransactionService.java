@@ -1,5 +1,6 @@
 package com.core.computism.assasa.ar.service;
 
+import com.core.computism.assasa.ar.dto.ArTransactionSearchResponseDto;
 import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Transaction;
@@ -14,4 +15,6 @@ public interface TransactionService {
 
     public List<Transaction> populateTransaction(List<? extends IPostable> postingObjectsSubList, Date transactionDate,
                                                  int transactionTypeId, int createdBy) throws ArBusinessException;
+
+    public List<ArTransactionSearchResponseDto> getArTransactions() throws ArBusinessException;
 }

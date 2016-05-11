@@ -99,4 +99,10 @@ public class ArAccountServiceImpl extends BaseService implements ArAccountServic
         }
         return arAccountSearchDtos;
     }
+
+    @Override
+    public ArAccount getArAccountById(Long arAccountId) throws ArBusinessException {
+        ArAccount arAccount = arAccountRepository.getOne(arAccountId);
+        return arAccount;
+    }
 }

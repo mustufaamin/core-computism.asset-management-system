@@ -4,6 +4,7 @@ import com.core.computism.assasa.ar.dto.ArAccountDto;
 import com.core.computism.assasa.ar.dto.ArAccountSearchDto;
 import com.core.computism.assasa.ar.dto.ArAccountSearchResponseDto;
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface ArAccountService {
     List<ArAccountSearchResponseDto> getArAccounts() throws ArBusinessException;
 
     List<ArAccountSearchDto> getArAccountBySearchKey(String searchKey) throws ArBusinessException;
+
+    ArAccount getArAccountById(Long arAccountId) throws ArBusinessException;
 }
