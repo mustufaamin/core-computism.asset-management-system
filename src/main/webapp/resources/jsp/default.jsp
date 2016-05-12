@@ -17,8 +17,10 @@
     <link href="resources/modules/account-receivable/sub-modules/payments/payment-type/css/payment-type.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/admin/ar-types/css/ar-types.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/admin/billcodes/css/billcodes.css" rel="stylesheet">
+    <link href="resources/modules/general-ledger/admin/account-type/css/account_type.css" rel="stylesheet">
     <link href="resources/css/asasa/asasa.css" rel="stylesheet">
     <link href="resources/modules/account-receivable/sub-modules/adjustments/adjustment/css/ar-adjustment.css" rel="stylesheet">
+    <link href="resources/modules/pos/item/css/pos-item.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/libraries/bower-components/angular-material/angular-material.min.css">
 
 
@@ -453,6 +455,7 @@
     <script src="resources/libraries/bower-components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="resources/modules/pos/order-management.js"></script>
     <script src="resources/modules/pos/services/pos-services.js"></script>
+    <script src="resources/modules/pos/item/pos-item.js"></script>
 
 
     <script src="resources/libraries/bower-components/angular-animate/angular-animate.min.js"></script>

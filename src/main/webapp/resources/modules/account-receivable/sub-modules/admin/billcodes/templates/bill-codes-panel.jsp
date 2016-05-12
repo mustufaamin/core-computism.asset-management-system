@@ -1,4 +1,4 @@
-<span ui-view id="billCodesPanel" ng-controller="BillCodesController as billCodesCtrl">
+<span ui-view id="posItemPanel" ng-controller="BillCodesController as billCodesCtrl">
   <div class="row">
     <div class="col-xs-12">
       <div class="srch-box">

@@ -161,6 +161,4 @@ public class PosItemServiceImpl implements PosItemService {
             throw new PosBusinessException(e);
         }
     }
-
-
 }

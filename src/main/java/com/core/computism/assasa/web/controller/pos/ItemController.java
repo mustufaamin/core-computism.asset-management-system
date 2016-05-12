@@ -1,5 +1,7 @@
 package com.core.computism.assasa.web.controller.pos;
 
+import com.core.computism.assasa.ar.dto.BillCodeDto;
+import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.pos.domain.PosItemDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.pos.service.PosItemService;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by M.Mustufa Amin Shah on 2/20/2016.
@@ -31,6 +35,14 @@ public class ItemController extends BaseController {
         ServerResponse<PosItemDto> response = toResponse(posItemService.add(posItemDto));
         return response;
     }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ServerResponse<List<PosItemDto>> list() throws PosBusinessException {
+        LOGGER.info("List PosItemDto..");
+        ServerResponse<List<PosItemDto>> response = toResponse(posItemService.list());
+        return response;
+    }
+
     @RequestMapping(value = "addType/{typeName}", method = RequestMethod.POST)
     public ServerResponse<PosItemDto> addType(@PathVariable String typeName) throws PosBusinessException {
         LOGGER.info("Adding item ...");

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by VD on 2/21/2016.
@@ -36,22 +37,24 @@ public class GlAccountController extends BaseController {
     GlAccountService glAccountService;
 
     @RequestMapping(value = "addAccountType", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addArAccountType(@RequestBody AccountTypeDto accountTypeDto) throws Exception {
+    public Map<String, Object> addArAccountType(@RequestBody AccountTypeDto accountTypeDto) throws Exception {
         try {
             accountTypeService.saveAccountType(accountTypeDto);
+            return createSuccessModelMap();
         } catch (ArBusinessException e) {
             LOGGER.error(e);
+            throw new Exception(e.getMessage());
         }
     }
 
     @RequestMapping(value = "updateAccountType", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void updateArAccountType(@RequestBody AccountTypeDto accountTypeDto) throws Exception {
+    public Map<String, Object> updateArAccountType(@RequestBody AccountTypeDto accountTypeDto) throws Exception {
         try {
             accountTypeService.updateAccountType(accountTypeDto);
+            return createSuccessModelMap();
         } catch (ArBusinessException e) {
             LOGGER.error(e);
+            throw new Exception(e.getMessage());
         }
     }
 

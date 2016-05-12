@@ -80,7 +80,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
         .state('inquiry/arTransaction', {
             url: '/inquiry/arTransaction',
             templateUrl: 'resources/modules/account-receivable/sub-modules/inquiry/ar-transaction/template/ar-transaction-panel.jsp'
-        });
+        })
+
+        .state('pos/admin/item', {
+            url: '/pos/admin/item',
+            templateUrl: 'resources/modules/pos/item/template/pos-item-panel.jsp'
+        })
     ;
 
 

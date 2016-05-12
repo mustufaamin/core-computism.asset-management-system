@@ -25,18 +25,21 @@
             glAccountTypeCtrl.isView = false;
             glAccountTypeCtrl.slidePanelHeading = '';
             glAccountTypeCtrl.listGlAccountType = [];
+            glAccountTypeCtrl.type = 0;
 
             glAccountTypeCtrl.openAccountTypeSlidePanel = function(type ,accountType){
+                glAccountTypeCtrl.type = type;
                 if(accountType != null){
                     glAccountTypeCtrl.glAccountId = accountType.glAccountId;
                     glAccountTypeCtrl.description = accountType.description;
                     glAccountTypeCtrl.name = accountType.name;
-                    glAccountTypeCtrl.normalBalanceFlag = accountType.normalBalanceFlag;
+                    glAccountTypeCtrl.normalBalanceFlag = accountType.normalBalanceFlag == 0 ? false : true;
                 }
 
                 glAccountTypeCtrl.showPanel = true;
                 glAccountTypeCtrl.isView = false;
                 if(type == 1){
+                    glAccountTypeCtrl.clearSlidePanel();
                     glAccountTypeCtrl.slidePanelHeading = "Add GL Account Type";
                 }else if(type == 2){
                     glAccountTypeCtrl.slidePanelHeading = "View GL Account Type";
@@ -66,19 +69,35 @@
 
             glAccountTypeCtrl.getAccountTypeList();
 
+            glAccountTypeCtrl.clearSlidePanel = function(){
+                glAccountTypeCtrl.description = '';
+                glAccountTypeCtrl.name = '';
+                glAccountTypeCtrl.normalBalanceFlag = false;
+            };
+
             glAccountTypeCtrl.addGlAccountType = function (){
                 var glAccountType = {};
 
                 glAccountType.glAccountId = glAccountTypeCtrl.glAccountId;
                 glAccountType.description = glAccountTypeCtrl.description;
                 glAccountType.name = glAccountTypeCtrl.name;
-                glAccountType.normalBalanceFlag = glAccountTypeCtrl.normalBalanceFlag;
+                glAccountType.normalBalanceFlag = glAccountTypeCtrl.normalBalanceFlag == true ? 1 : 0;
 
-                accountTypeGatewayService.addGlAccountType(glAccountType).$promise.then(function(response){
-                    if(response){
-                        glAccountTypeCtrl.getAccountTypeList();
-                    }
-                });
+                if(glAccountTypeCtrl.type == 1){
+                    accountTypeGatewayService.addGlAccountType(glAccountType).$promise.then(function(response){
+                        if(response.success){
+                            glAccountTypeCtrl.showPanel = false;
+                            glAccountTypeCtrl.getAccountTypeList();
+                        }
+                    });
+                }else{
+                    accountTypeGatewayService.updateGlAccountType(glAccountType).$promise.then(function(response){
+                        if(response.success){
+                            glAccountTypeCtrl.showPanel = false;
+                            glAccountTypeCtrl.getAccountTypeList();
+                        }
+                    });
+                }
             };
 
         }]);
@@ -91,7 +110,9 @@
                 {
                     listOfGlAccountType :{method: 'GET', isArray: false, url:"/glAccount/glAccountTypes"},
 
-                    addGlAccountType :{method: 'POST', isArray: false, url:"/glAccount/addAccountType"}
+                    addGlAccountType :{method: 'POST', isArray: false, url:"/glAccount/addAccountType"},
+
+                    updateGlAccountType :{method: 'POST', isArray: false, url:"/glAccount/updateAccountType"}
                 });
         }]);
 })();

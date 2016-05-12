@@ -13,10 +13,10 @@
     angular.module('Asasa')
         .controller('ArAccountController', ['ArAccountGatewayService', '$http', function(accountGatewayService, $http){
             var arAccountCtrl = this;
-            arAccountCtrl.listArAccountCtrl = [];
+            arAccountCtrl.listPosItemCtrl = [];
 
             arAccountCtrl.getArAccountList = function(){
-                arAccountCtrl.listArAccountCtrl = [];
+                arAccountCtrl.listPosItemCtrl = [];
                 accountGatewayService.listOfArAccount().$promise.then(function(response){
                     if(response != null){
                         console.log(response);
@@ -35,7 +35,7 @@
                             arAccount.modifiedBy = response.data[i].modifiedBy;
                             arAccount.activationDate = response.data[i].activationDate;
                             arAccount.deactivationDate = response.data[i].deactivationDate;
-                            arAccountCtrl.listArAccountCtrl.push(arAccount);
+                            arAccountCtrl.listPosItemCtrl.push(arAccount);
                         }
                     }
                 });
