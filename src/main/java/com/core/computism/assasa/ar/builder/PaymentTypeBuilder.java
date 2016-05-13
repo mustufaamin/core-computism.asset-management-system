@@ -1,5 +1,6 @@
 package com.core.computism.assasa.ar.builder;
 
+import com.core.computism.assasa.ar.dto.PaymentTypeDto;
 import com.core.computism.assasa.persistence.entity.ar.PaymentType;
 import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 
@@ -113,5 +114,17 @@ public class PaymentTypeBuilder {
         paymentType.setThankyouDescription(this.getDescription());
 
         return paymentType;
+    }
+
+    public void populatePaymentTypes(PaymentType paymentType, PaymentTypeDto paymentTypeDto) {
+
+        paymentType.setPaymentTypeName(paymentTypeDto.getPaymentTypeName());
+        paymentType.setPaymentTypeDesc(paymentTypeDto.getPaymentTypeDesc());
+        paymentType.setStatus(paymentTypeDto.getStatus());
+        paymentType.setModuleId(paymentTypeDto.getModuleId());
+        paymentType.setCompanyId(paymentTypeDto.getCompanyId());
+        paymentType.setAddOnGroupId(paymentTypeDto.getAddOnGroupId());
+        paymentType.setDisplayPriority(paymentTypeDto.getDisplayPriority());
+        paymentType.setThankyouDescription(paymentTypeDto.getDescription());
     }
 }

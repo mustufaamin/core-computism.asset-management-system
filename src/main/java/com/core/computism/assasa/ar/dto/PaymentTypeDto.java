@@ -15,7 +15,8 @@ public class PaymentTypeDto {
     private Long paymentTypeId;
     private String paymentTypeName;
     private String paymentTypeDesc;
-    private GlAccountDto glAccountDto;
+    private Integer glAccountNumber;
+    private Long glAccountId;
     private Integer status;
     private Integer moduleId;
     private Integer companyId;
@@ -28,8 +29,8 @@ public class PaymentTypeDto {
     public PaymentTypeDto(PaymentType paymentType) {
         this.paymentTypeId = paymentType.getId();
         this.paymentTypeName = paymentType.getPaymentTypeName();
-        this.paymentTypeDesc = paymentType.getPaymentTypeDesc() ;
-        this.glAccountDto= new GlAccountDto(paymentType.getGlAccount());
+        this.paymentTypeDesc = paymentType.getPaymentTypeDesc();
+        this.glAccountNumber = paymentType.getGlAccount().getMajorAccountNumber();
         this.status= paymentType.getStatus();
         this.moduleId= paymentType.getModuleId();
         this.companyId= paymentType.getCompanyId();
@@ -54,12 +55,20 @@ public class PaymentTypeDto {
         this.paymentTypeDesc = paymentTypeDesc;
     }
 
-    public GlAccountDto getGlAccountDto() {
-        return glAccountDto;
+    public Integer getGlAccountNumber() {
+        return glAccountNumber;
     }
 
-    public void setGlAccountDto(GlAccountDto glAccountDto) {
-        this.glAccountDto = glAccountDto;
+    public void setGlAccountNumber(Integer glAccountNumber) {
+        this.glAccountNumber = glAccountNumber;
+    }
+
+    public Long getGlAccountId() {
+        return glAccountId;
+    }
+
+    public void setGlAccountId(Long glAccountId) {
+        this.glAccountId = glAccountId;
     }
 
     public Integer getStatus() {

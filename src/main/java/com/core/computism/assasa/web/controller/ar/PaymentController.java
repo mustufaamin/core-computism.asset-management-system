@@ -67,6 +67,16 @@ public class PaymentController extends BaseController {
         }
     }
 
+    @RequestMapping(value = "updatePaymentType", method = RequestMethod.POST)
+    public Map<String, Object> updatePaymentType(@RequestBody PaymentTypeDto paymentTypeDto) throws ArBusinessException {
+        try {
+            paymentTypeService.updatePaymentType(paymentTypeDto);
+            return createSuccessModelMap();
+        } catch (ArBusinessException e) {
+            throw new ArBusinessException(e);
+        }
+    }
+
     @RequestMapping(value = "paymenttypes", method = RequestMethod.GET)
     public @ResponseBody
     ServerResponse<List<PaymentTypeDto>> getPaymentTypes() throws ArBusinessException {
