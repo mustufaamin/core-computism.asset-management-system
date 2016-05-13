@@ -52,7 +52,11 @@
         <div layout-gt-xs="row">
           <md-input-container class="md-block" flex-gt-xs="">
             <label>Customer</label>
-            <input ng-model="arAdjustmentCtrl.customer" <%--disabled=""--%>>
+              <input typeahead-click-open typeahead-min-length="0" ng-required="true"
+                     uib-typeahead="customer as customer.label for customer in arAdjustmentCtrl.getCustomer($viewValue)"
+                     typeahead-on-select="arAdjustmentCtrl.onSelectCustoemr($item)" typeahead-no-results="noDrivers" typeahead-wait-ms=1500
+                     ng-model="arAdjustmentCtrl.customer"  <%--disabled=""--%>>
+            <%--<input ng-model="arAdjustmentCtrl.customer" &lt;%&ndash;disabled=""&ndash;%&gt;>--%>
           </md-input-container>
 
           <md-input-container class="md-block" flex-gt-xs="">
