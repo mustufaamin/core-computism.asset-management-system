@@ -1,12 +1,19 @@
 package com.core.computism.assasa.ar.builder;
 
+import com.core.computism.assasa.ar.dto.AdjustmentDto;
+import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.ar.Adjustment;
 import com.core.computism.assasa.persistence.entity.ar.Payment;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
+import com.core.computism.assasa.persistence.entity.cmn.City;
+import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.pos.domain.CustomerDto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by VD on 4/14/2016.
@@ -172,5 +179,44 @@ public class AdjustmentBuilder {
         adjustment.setStatementDescription2(this.getStatementDescription2());
 
         return adjustment;
+    }
+
+    public List<AdjustmentDto> buildAdjustmentDtoList(List<Adjustment> adjustments) throws BuilderException {
+        if(adjustments == null || adjustments.size() < 1){
+            throw new BuilderException("Unable to build Item DTO List for [null] Item or empty.");
+        }
+
+        List<AdjustmentDto> adjustmentDtos = new ArrayList<>();
+
+        for(Adjustment adjustment : adjustments){
+            adjustmentDtos.add( buildAdjustmentDto(adjustment));
+        }
+        return adjustmentDtos;
+    }
+
+    public AdjustmentDto buildAdjustmentDto(Adjustment adjustment) throws BuilderException {
+
+        if(adjustment == null){
+            throw new BuilderException("Customer Entity not found");
+        }
+
+        AdjustmentDto adjustmentDto = new AdjustmentDto();
+
+        adjustmentDto.setArAccountId(adjustment.getArAccount().getId());
+        adjustmentDto.setBillCodeId(adjustment.getBillCode().getId());
+        adjustmentDto.setAdjustmentDate(adjustment.getAdjustmentDate());
+        adjustmentDto.setAmount(adjustment.getAmount());
+        adjustmentDto.setAdjustmentType(adjustment.getAdjustmentType());
+        adjustmentDto.setStatus(adjustment.getStatus());
+        adjustmentDto.setBatchId(adjustment.getBatchId());
+        adjustmentDto.setDescription(adjustment.getDescription());
+        adjustmentDto.setStatementDescription2(adjustment.getStatementDescription2());
+        adjustmentDto.setNote(adjustment.getNote());
+        adjustmentDto.setSuppressOnStatement(adjustment.getSuppressOnStatement());
+        adjustmentDto.setExcludeValueAdded(adjustment.getExcludeValueAdded());
+        adjustmentDto.setCreatedBy(adjustment.getCreatedBy());
+        adjustmentDto.setModifiedBy(adjustment.getModifiedBy());
+
+        return adjustmentDto;
     }
 }

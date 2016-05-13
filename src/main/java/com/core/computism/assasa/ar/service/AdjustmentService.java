@@ -4,6 +4,8 @@ import com.core.computism.assasa.ar.dto.AdjustmentDto;
 import com.core.computism.assasa.ar.dto.PaymentDto;
 import com.core.computism.assasa.exception.ArBusinessException;
 
+import java.util.List;
+
 /**
  * Created by VD on 3/23/2016.
  */
@@ -12,4 +14,6 @@ public interface AdjustmentService {
     public void saveAdjustment(AdjustmentDto adjustmentDto) throws ArBusinessException;
 
     public void saveNPostAdjustment(AdjustmentDto adjustmentDto) throws ArBusinessException;
+
+    public List<AdjustmentDto> getAdjustmentsByArAccountId(Integer arAccountId) throws ArBusinessException;
 }
