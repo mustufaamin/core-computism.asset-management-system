@@ -15,5 +15,6 @@ public interface CustomerService {
     CustomerDto update(CustomerDto customerDto) throws AssasaBusinessException;
     CustomerDto getCustomerById(Long customerId) throws PosBusinessException;
     List<CustomerDto> getCustomers() throws PosBusinessException;
+    List<CustomerDto> search(String searchKey) throws AssasaBusinessException;
     Customer getCustomer(Long customerId) throws PosBusinessException;
 }
