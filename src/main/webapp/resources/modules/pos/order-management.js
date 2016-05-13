@@ -29,7 +29,7 @@
                 ];
 
 
-                orderCtrl.billCodeList = new ngTableParams({
+                orderCtrl.itemTable = new ngTableParams({
                     page: 1,
                     count: 10
                 }, {
@@ -74,7 +74,7 @@
                         itemElement.quantity = 1;
                     }
                     orderCtrl.items.push(angular.copy(itemElement));
-                    orderCtrl.billCodeList.reload();
+                    orderCtrl.itemTable.reload();
                 }
 
                 /**
@@ -85,10 +85,10 @@
                     _.remove(orderCtrl.items, function (item) {
                         return row === item;
                     });
-                    orderCtrl.billCodeList.reload().then(function (data) {
-                        if (data.length === 0 && orderCtrl.billCodeList.total() > 0) {
-                            orderCtrl.items.page(orderCtrl.billCodeList.page() - 1);
-                            orderCtrl.billCodeList.reload();
+                    orderCtrl.itemTable.reload().then(function (data) {
+                        if (data.length === 0 && orderCtrl.itemTable.total() > 0) {
+                            orderCtrl.items.page(orderCtrl.itemTable.page() - 1);
+                            orderCtrl.itemTable.reload();
                         }
                         orderCtrl.calculateTotalAmount();
                     });
