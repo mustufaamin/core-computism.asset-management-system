@@ -1,5 +1,7 @@
 package com.core.computism.assasa.web.controller.pos;
 
+import com.core.computism.assasa.ar.dto.BillCodeDto;
+import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.AssasaBusinessException;
 import com.core.computism.assasa.pos.domain.CustomerDto;
 import com.core.computism.assasa.exception.PosBusinessException;
@@ -8,10 +10,7 @@ import com.core.computism.assasa.util.ServerResponse;
 import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,4 +47,12 @@ public class CustomerController extends BaseController {
         return response;
 
     }
+
+    @RequestMapping(value = "search/{searchKey}", method = RequestMethod.GET)
+    public ServerResponse<List<CustomerDto>> search(@PathVariable String searchKey) throws AssasaBusinessException {
+        LOGGER.info("search Customer..");
+        ServerResponse<List<CustomerDto>> response = toResponse(customerService.search(searchKey));
+        return response;
+    }
+
 }
