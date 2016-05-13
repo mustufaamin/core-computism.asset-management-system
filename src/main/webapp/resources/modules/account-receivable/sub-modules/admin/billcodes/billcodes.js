@@ -75,7 +75,7 @@
 
 
             billCodesCtrl.getBillCodesList = function(){
-                billCodesCtrl.listArAccountCtrl = [];
+                billCodesCtrl.billCodes=[];
                 billCodesSrv.listOfBillCodes().$promise.then(function(response){
                     if(response != null){
                         for(var i = 0; i < response.data.length; i++){
@@ -121,17 +121,16 @@
                 });
             };
             billCodesCtrl.searchBillCode = function (typeSearchKey) {
-                if(typeSearchKey == null){
-                        typeSearchKey = '';
-                    }
-
+                if(typeSearchKey == null || typeSearchKey == ''){
+                    billCodesCtrl.getBillCodesList();
+                } else {
                     var params = {
-                        searchKey:typeSearchKey
+                        searchKey: typeSearchKey
                     };
-                    billCodesSrv.searchBillCodes(params).$promise.then(function(response){
-                        if(response != null){
+                    billCodesSrv.searchBillCodes(params).$promise.then(function (response) {
+                        if (response != null) {
                             billCodesCtrl.billCodes = [];
-                            for(var i = 0; i < response.data.length; i++){
+                            for (var i = 0; i < response.data.length; i++) {
                                 var billCode = {};
 
                                 billCode.id = response.data[i].id;
@@ -147,30 +146,33 @@
                             }
                         }
                         billCodesCtrl.billCodeListTable.reload();
-                });
-
-                billCodesCtrl.getBillCodeTypes = function(typeSearchKey){
-                    var _url = 'billCodes/search/';
-                    _url = _url + billCodeSearchKey;
-                    return $http.get(_url, {
-                        params: {
-                        }
-                    }).then(function(response){
-                        billCodesCtrl.hasResponse = true;
-                        billCodesCtrl.adjCaptLoader = false;
-                        return response.data.map(function(item){
-                            return {
-                                label: ((item.providerDriverId != "NA" && item.providerDriverId != "") ? item.providerDriverId + " - " : '') + item.name + " - " + item.limoCompanyName + " - " + item.phoneNumber,
-                                value: item.driverId,
-                                phoneNumber: item.phoneNumber,
-                                dedicatedCarId: item.dedicatedCarId,
-                                carId: item.carId,
-                                car: item.car,
-                                currencyCode: item.currencyCode
-                            }
-                        });
                     });
                 }
+
+
+
+            };
+            billCodesCtrl.getBillCodeTypes = function(typeSearchKey){
+                var _url = 'billCodes/search/';
+                _url = _url + billCodeSearchKey;
+                return $http.get(_url, {
+                    params: {
+                    }
+                }).then(function(response){
+                    billCodesCtrl.hasResponse = true;
+                    billCodesCtrl.adjCaptLoader = false;
+                    return response.data.map(function(item){
+                        return {
+                            label: ((item.providerDriverId != "NA" && item.providerDriverId != "") ? item.providerDriverId + " - " : '') + item.name + " - " + item.limoCompanyName + " - " + item.phoneNumber,
+                            value: item.driverId,
+                            phoneNumber: item.phoneNumber,
+                            dedicatedCarId: item.dedicatedCarId,
+                            carId: item.carId,
+                            car: item.car,
+                            currencyCode: item.currencyCode
+                        }
+                    });
+                });
             };
 
             billCodesCtrl.open = function ($event, opened) {

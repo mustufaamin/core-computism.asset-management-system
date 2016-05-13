@@ -8,7 +8,7 @@
               <label class="c-form-lbl">Search</label>
               <input  typeahead-min-length="0"
                       uib-typeahead="billCode for billCode in billCodesCtrl.searchBillCode($viewValue)"
-                      ng-model="billCodesCtrl.billCode" ng-required="true"
+                      ng-model="billCodesCtrl.search" ng-required="true"
                       typeahead-no-results="noItems" typeahead-wait-ms=500
                       class="c-form-inpt custSearch" type="text" class="c-form-input" ng-disabled="" placeholder="Search Bill Codes.."/>
               <%--<span class="ccload loadtca adjCaptLoader" ng-show="drivAdjustCtrl.adjCaptLoader"></span>--%>
