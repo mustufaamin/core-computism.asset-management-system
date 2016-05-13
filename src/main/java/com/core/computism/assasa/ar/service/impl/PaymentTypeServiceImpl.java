@@ -33,11 +33,11 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public void savePaymentType(PaymentTypeDto paymentTypeDto) throws ArBusinessException {
 
-        if (paymentTypeDto.getGlAccountDto() == null || paymentTypeDto.getGlAccountDto().getGlAccountId() == null) {
+        if (paymentTypeDto.getGlAccountId() == null || paymentTypeDto.getGlAccountNumber() == null) {
             throw new ArBusinessException("Invalid Gl Account.");
         }
 
-        GlAccount glAccount = glAccountRepository.findOne(paymentTypeDto.getGlAccountDto().getGlAccountId());
+        GlAccount glAccount = glAccountRepository.findOne(paymentTypeDto.getGlAccountId());
 
         PaymentType paymentType = new PaymentTypeBuilder().
                 setPaymentTypeName(paymentTypeDto.getPaymentTypeName()).setPaymentTypeDesc(paymentTypeDto.getPaymentTypeDesc()).
@@ -46,6 +46,16 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
                 setAddOnGroupId(paymentTypeDto.getAddOnGroupId()).setDisplayPriority(paymentTypeDto.getDisplayPriority()).
                 setDescription(paymentTypeDto.getDescription()).build();
         paymentTypeRepository.save(paymentType);
+    }
+
+    @Override
+    public void updatePaymentType(PaymentTypeDto paymentTypeDto) throws ArBusinessException {
+        PaymentType paymentType = paymentTypeRepository.findOne(paymentTypeDto.getPaymentTypeId());
+        GlAccount glAccount = glAccountRepository.findOne(paymentTypeDto.getGlAccountId());
+        new PaymentTypeBuilder().populatePaymentTypes(paymentType, paymentTypeDto);
+        paymentType.setGlAccount(glAccount);
+        paymentTypeRepository.save(paymentType);
+
     }
 
     @Override

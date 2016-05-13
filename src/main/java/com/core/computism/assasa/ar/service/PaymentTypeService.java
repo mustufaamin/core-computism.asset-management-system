@@ -12,5 +12,7 @@ import java.util.List;
 public interface PaymentTypeService {
     void savePaymentType(PaymentTypeDto paymentTypeDto) throws ArBusinessException;
 
+    void updatePaymentType(PaymentTypeDto paymentTypeDto) throws ArBusinessException;
+
     List<PaymentTypeDto> getPaymentTypes() throws ArBusinessException;
 }
