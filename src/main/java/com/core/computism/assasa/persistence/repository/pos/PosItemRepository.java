@@ -1,5 +1,6 @@
 package com.core.computism.assasa.persistence.repository.pos;
 
+import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.entity.pos.PosItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,5 +18,8 @@ public interface PosItemRepository extends JpaRepository<PosItem,Long> {
 
     @Query(" from PosItem pi where pi.itemCode = :itemCode" )
     PosItem findItemByCode(@Param("itemCode")String itemCode);
+
+    @Query("from PosItem pi where pi.itemCode like :searchKey")
+    List<PosItem> searchPosItem(@Param("searchKey") String searchKey);
 }
 

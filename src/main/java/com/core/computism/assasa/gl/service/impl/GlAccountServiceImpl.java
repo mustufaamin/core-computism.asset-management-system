@@ -1,5 +1,6 @@
 package com.core.computism.assasa.gl.service.impl;
 
+import com.core.computism.assasa.common.domain.LookupDataDto;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.gl.builder.GlAccountBuilder;
 import com.core.computism.assasa.gl.dto.GlAccountDto;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * Created by Mustufa Amin Shah on 2/27/2016.
@@ -44,5 +47,16 @@ public class GlAccountServiceImpl implements GlAccountService {
                 .setAccountNature(glAccountDto.getAccountNature()).build();
 
        /* glAccountRepository.save(glAccount);*/
+    }
+
+    @Transactional(readOnly = true)
+    public List<LookupDataDto> getLookupData(String searchKey){
+        try{
+            return null;
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+        }
+
+        return null;
     }
 }

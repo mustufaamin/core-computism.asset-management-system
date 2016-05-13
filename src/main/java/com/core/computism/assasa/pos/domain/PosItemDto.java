@@ -16,6 +16,7 @@ public class PosItemDto {
     private Long supplerId;
     private Long itemType;
     private Integer quantity;
+    private Long posItemGroupId;
 
     public Long getId() {
         return id;
@@ -111,5 +112,13 @@ public class PosItemDto {
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getPosItemGroupId() {
+        return posItemGroupId;
+    }
+
+    public void setPosItemGroupId(Long posItemGroupId) {
+        this.posItemGroupId = posItemGroupId;
     }
 }

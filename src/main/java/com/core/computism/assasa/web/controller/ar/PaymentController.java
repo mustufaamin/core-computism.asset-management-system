@@ -67,12 +67,13 @@ public class PaymentController {
     @RequestMapping(value = "paymenttypes", method = RequestMethod.GET)
     public @ResponseBody
     List<PaymentTypeDto> getPaymentTypes() throws ArBusinessException {
-        List<PaymentTypeDto> paymentTypeDtos = null;
-        try {
-            paymentTypeDtos = paymentTypeService.getPaymentTypes();
-        } catch (ArBusinessException e) {
-            LOGGER.error(e);
-        }
-        return paymentTypeDtos;
+//        List<PaymentTypeDto> paymentTypeDtos = null;
+//        try {
+//            paymentTypeDtos = paymentTypeService.getPaymentTypes();
+//        } catch (ArBusinessException e) {
+//            LOGGER.error(e);
+//        }
+//        return paymentTypeDtos;
+        return null;
     }
 }

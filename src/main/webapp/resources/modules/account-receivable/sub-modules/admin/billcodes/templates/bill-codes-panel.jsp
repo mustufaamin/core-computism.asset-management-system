@@ -5,13 +5,14 @@
         <div class="row">
           <div class="col-xs-4">
             <div class="c-form-gp pos-rel">
-              <label class="c-form-lbl">Bill Codes</label>
-              <input <%--typeahead-click-open typeahead-min-length="0" ng-model="" ng-required="true"
-                   uib-typeahead="driver as driver.label for driver in getDrivers($viewValue)"
-                   typeahead-on-select="onSelectDriver($item)" typeahead-no-results="noDrivers" typeahead-wait-ms=1500--%>
-                      class="c-form-inpt custSearch" type="text" class="c-form-inpt" ng-disabled="" placeholder="Search Bill Codes.."/>
+              <label class="c-form-lbl">Search</label>
+              <input  typeahead-min-length="0"
+                      uib-typeahead="billCode for billCode in billCodesCtrl.searchBillCode($viewValue)"
+                      ng-model="billCodesCtrl.billCode" ng-required="true"
+                      typeahead-no-results="noItems" typeahead-wait-ms=500
+                      class="c-form-inpt custSearch" type="text" class="c-form-input" ng-disabled="" placeholder="Search Bill Codes.."/>
               <%--<span class="ccload loadtca adjCaptLoader" ng-show="drivAdjustCtrl.adjCaptLoader"></span>--%>
-              <button class="c-btn c-btn-action cust-add-btn"
+              <button class="c-btn c-btn-action cust-add-btn open-billCode-btn"
                       ng-class=""
                       ng-disabled=""
                       ng-click="billCodesCtrl.openBillCodesSlidePanel(1)">Add Bill Codes</button>

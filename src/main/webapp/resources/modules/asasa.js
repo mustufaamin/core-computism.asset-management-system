@@ -1,7 +1,7 @@
 /**
  * Created by Muhammad Umer on 3/12/2016.
  */
-var app = angular.module('Asasa', ['ngMessages','ngMaterial','ngTable', 'ngRoute', 'ngResource', 'ui.router', 'ui.bootstrap']);
+var app = angular.module('Asasa', ['ngMessages','ngMaterial','ngTable', 'ngRoute', 'ngResource', 'ui.router','ngAnimate', 'ui.bootstrap','ui.bootstrap.datetimepicker']);
 
 app.controller('MainModulesController', ['$http', '$window', '$location',  function ($http, $window, $location){
     var mainMdlsCtrl = this;

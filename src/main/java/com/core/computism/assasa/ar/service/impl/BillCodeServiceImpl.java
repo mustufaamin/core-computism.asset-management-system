@@ -73,6 +73,17 @@ public class BillCodeServiceImpl implements BillCodeService {
             throw new ArBusinessException("Error Occurred In BillCode service Update", e);
         }
     }
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<BillCodeDto> search(String searchKey) throws ArBusinessException {
+        try {
+            searchKey = "%"+searchKey+"%";
+            List<BillCode> billCodes = billCodeRepository.searchBillCodes(searchKey);
+            return billCodeBuilder.buildBillCodeDtoList(billCodes);
+
+        } catch (PersistenceException | BuilderException e) {
+            throw new ArBusinessException("Error Occurred In BillCode service Update", e);
+        }
+    }
 
 
 }
