@@ -28,6 +28,8 @@ public class CustomerBuilder {
         customer.setEmail(customerDto.getEmail());
         customer.setPhoneNumber(customerDto.getPhoneNumber());
         customer.setMobileNumber(customerDto.getMobileNumber());
+        customer.setCustomerStatus(customerDto.getCustomerStatus());
+        customer.setCustomerTypeId(customerDto.getCustomerTypeId());
 
         return customer;
     }
@@ -42,6 +44,8 @@ public class CustomerBuilder {
         customer.setEmail(customerDto.getEmail());
         customer.setPhoneNumber(customerDto.getPhoneNumber());
         customer.setMobileNumber(customerDto.getMobileNumber());
+        customer.setCustomerStatus(customerDto.getCustomerStatus());
+        customer.setCustomerTypeId(customerDto.getCustomerTypeId());
 
     }
     public CustomerDto buildCustomerDto(Customer customer) throws BuilderException {
@@ -59,6 +63,8 @@ public class CustomerBuilder {
         customerDto.setEmail(customer.getEmail());
         customerDto.setMobileNumber(customer.getMobileNumber());
         customerDto.setPhoneNumber(customer.getPhoneNumber());
+        customerDto.setCustomerStatus(customer.getCustomerStatus());
+        customerDto.setCustomerTypeId(customer.getCustomerTypeId());
 
         City city = customer.getAddress().getCity();
         customerDto.setCityId(city.getId());

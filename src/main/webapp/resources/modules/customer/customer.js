@@ -48,6 +48,7 @@
                     }
                 });
             };
+            custCtrl.getCustomerList();
 
             custCtrl.getCountries = function(){
                 custCtrl.listCountry = [];

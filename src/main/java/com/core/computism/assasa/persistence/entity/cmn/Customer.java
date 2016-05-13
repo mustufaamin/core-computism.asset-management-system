@@ -25,8 +25,11 @@ public class Customer extends BaseEntity {
     private String phoneNumber;
     private String mobileNumber;
     private String email;
+    private Integer customerStatus;
+    private Integer customerTypeId;
     private Address address;
     private List<PosOrder> posOrders;
+
 
     @Basic
     @Column(name = "first_name", nullable = false, insertable = true, updatable = true, length = 255)
@@ -67,6 +70,27 @@ public class Customer extends BaseEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Basic
+    @Column(name = "status", nullable = true, insertable = true, updatable = true, length = 255)
+    public Integer getCustomerStatus() {
+        return customerStatus;
+    }
+
+    public void setCustomerStatus(Integer customerStatus) {
+        this.customerStatus = customerStatus;
+    }
+
+    @Basic
+    @Column(name = "customer_type_id", nullable = false, insertable = true, updatable = true, length = 255)
+    public Integer getCustomerTypeId() {
+        return customerTypeId;
+    }
+
+    public void setCustomerTypeId(Integer customerTypeId) {
+        this.customerTypeId = customerTypeId;
+    }
+
 
     @Basic
     @Column(name = "mobile_number", nullable = false, insertable = true, updatable = true, length = 45)

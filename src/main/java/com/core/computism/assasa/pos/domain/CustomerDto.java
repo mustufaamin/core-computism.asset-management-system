@@ -21,6 +21,9 @@ public class CustomerDto {
     private String cityName;
     private Long countryId;
     private String countryName;
+    private Integer customerStatus;
+    private Integer customerTypeId;
+    private String customerTypeName;
 
     public Long getId() {
         return id;
@@ -108,5 +111,29 @@ public class CustomerDto {
 
     public void setCountryName(String countryName) {
         this.countryName = countryName;
+    }
+
+    public Integer getCustomerStatus() {
+        return customerStatus;
+    }
+
+    public void setCustomerStatus(Integer customerStatus) {
+        this.customerStatus = customerStatus;
+    }
+
+    public Integer getCustomerTypeId() {
+        return customerTypeId;
+    }
+
+    public void setCustomerTypeId(Integer customerTypeId) {
+        this.customerTypeId = customerTypeId;
+    }
+
+    public String getCustomerTypeName() {
+        return "Corporate Type";
+    }
+
+    public void setCustomerTypeName(String customerTypeName) {
+        this.customerTypeName = "Corporate Type";
     }
 }

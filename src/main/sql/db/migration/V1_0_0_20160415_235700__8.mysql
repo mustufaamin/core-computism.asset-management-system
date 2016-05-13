@@ -6,4 +6,7 @@ set creation_date = now(),
 version = 1;
 
 ALTER TABLE `assasa`.`pos_item` CHANGE COLUMN `item_number` `item_code` VARCHAR(255) NOT NULL  ;
+ALTER TABLE `cc_customer` ADD COLUMN `status` INT(11) DEFAULT 0;
+ALTER TABLE `cc_customer` ADD COLUMN `customer_type_id` INT(11) NOT NULL DEFAULT 0;
+
 

@@ -14,6 +14,7 @@
         .controller('ArAdjustmentController', ['ArAdjustmentGatewayService', '$http', function(adjustmentGatewayService, $http){
             var arAdjustmentCtrl = this;
             arAdjustmentCtrl.listBillCodes = [];
+            arAdjustmentCtrl.customerName = "Customer's Name";
 
             arAdjustmentCtrl.getBillCodeList = function(){
                 arAdjustmentCtrl.listBillCodes = [];
@@ -34,17 +35,42 @@
             arAdjustmentCtrl.getCustomer = function(val){
                 var _url = "/customer/search/" + val;
                 return $http.get(_url).then(function(response){
-                    return response.data.map(function(item){
+                    return response.data.data.map(function(item){
                         return {
-                            label: ((item.providerDriverId != "NA" && item.providerDriverId != "") ? item.providerDriverId + " - " : '') + item.name + " - " + item.limoCompanyName + " - " + item.phoneNumber,
-                            value: item.driverId,
-                            phoneNumber: item.phoneNumber,
-                            dedicatedCarId: item.dedicatedCarId,
-                            carId: item.carId,
-                            car: item.car,
-                            currencyCode: item.currencyCode
+                            label: item.firstName + " " +item.lastName,
+                            value: item.id,
+                            customerStatus: item.customerStatus,
+                            customerTypeId: item.customerTypeId
                         }
                     });
+                });
+            };
+
+            arAdjustmentCtrl.onSelectCustomer = function(customer){
+                arAdjustmentCtrl.customerType = customer.customerTypeId;
+                arAdjustmentCtrl.customerStatus = customer.customerStatus;
+                arAdjustmentCtrl.customerName = arAdjustmentCtrl.customer.label;
+            };
+
+            //TODO: AR Adjustment list
+            arAdjustmentCtrl.getArList = function(){
+                arAdjustmentCtrl.listAr = [];
+                adjustmentGatewayService.listOfArAdjustment().$promise.then(function(response){
+                    if(response != null){
+                        for(var i = 0; i < response.data.length; i++){
+                            var customer = {};
+                            customer.id = response.data[i].id;
+                            customer.firstName = response.data[i].firstName;
+                            customer.lastName = response.data[i].lastName;
+                            customer.locationAddress = response.data[i].locationAddress;
+                            customer.phoneNumber = response.data[i].phoneNumber;
+                            customer.mobileNumber = response.data[i].mobileNumber;
+                            customer.email = response.data[i].email;
+                            customer.cityId = response.data[i].cityId;
+
+                            arAdjustmentCtrl.listAr.push(customer);
+                        }
+                    }
                 });
             };
 

@@ -28,7 +28,7 @@
             <md-card-title>
               <md-card-title-text>
                 <span class="md-headline">Customer image</span>
-                <span class="md-subhead">Muhammad Salman</span>
+                <span class="md-subhead">{{arAdjustmentCtrl.customerName}}</span>
               </md-card-title-text>
               <md-card-title-media>
                 <div class="md-media-sm card-media"></div>
@@ -54,7 +54,7 @@
             <label>Customer</label>
               <input typeahead-click-open typeahead-min-length="0" ng-required="true"
                      uib-typeahead="customer as customer.label for customer in arAdjustmentCtrl.getCustomer($viewValue)"
-                     typeahead-on-select="arAdjustmentCtrl.onSelectCustoemr($item)" typeahead-no-results="noDrivers" typeahead-wait-ms=1500
+                     typeahead-on-select="arAdjustmentCtrl.onSelectCustomer($item)" typeahead-no-results="noDrivers" typeahead-wait-ms=1500
                      ng-model="arAdjustmentCtrl.customer"  <%--disabled=""--%>>
             <%--<input ng-model="arAdjustmentCtrl.customer" &lt;%&ndash;disabled=""&ndash;%&gt;>--%>
           </md-input-container>
@@ -172,6 +172,26 @@
                 ng-disabled=""
                 ng-click="">Cancel</button>
     </div>
+
+    <table ng-table="arList" class="table" show-filter="true">
+        <tr ng-repeat="adjustment in arAdjustmentCtrl.listAr">
+            <%--<td title="'#'">
+                <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(2, customer)">View: <i class="fa fa-eye"></i><br></div>
+                <div class="grid-func" ng-click="custCtrl.openCustomerSlidePanel(3, customer)">Edit: <i class="fa fa-scissors"></i></div>
+            </td>--%>
+            <td title="'ID'">
+                {{customer.id}}</td>
+            <td title="'Name'">
+                {{customer.firstName}} {{customer.lastName}}</td>
+            <td title="'Gender'">
+                {{customer.gender}}</td>
+            <td title="'Address'">
+                {{customer.locationAddress}}</td>
+            <td title="'Mobile #'">
+                {{customer.mobileNumber}}</td>
+
+        </tr>
+    </table>
 
 
 </div>
