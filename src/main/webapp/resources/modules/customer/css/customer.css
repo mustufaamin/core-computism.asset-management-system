@@ -281,3 +281,5 @@ textarea.c-form-inpt{max-width:100%;min-width:100%;-webkit-transition:0.1s all l
     background: none !important;
     pointer-events: none;
 }
+.open-cust-btn{    margin-top: -21px !important;
+    margin-right: -644px !important;}

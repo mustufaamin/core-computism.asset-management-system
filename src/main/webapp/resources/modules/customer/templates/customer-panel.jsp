@@ -11,7 +11,7 @@
                    typeahead-on-select="onSelectDriver($item)" typeahead-no-results="noDrivers" typeahead-wait-ms=1500--%>
                       class="c-form-inpt custSearch" type="text" class="c-form-inpt" ng-disabled="" placeholder="Search customer.."/>
               <%--<span class="ccload loadtca adjCaptLoader" ng-show="drivAdjustCtrl.adjCaptLoader"></span>--%>
-              <button class="c-btn c-btn-action cust-add-btn"
+              <button class="c-btn c-btn-action cust-add-btn open-cust-btn"
                       ng-class=""
                       ng-disabled=""
                       ng-click="custCtrl.openCustomerSlidePanel(1)">Add Customer</button>

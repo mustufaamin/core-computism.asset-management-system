@@ -32,14 +32,16 @@
                     if(response != null){
                         for(var i = 0; i < response.data.length; i++){
                             var paymentType = {};
-                            /*customer.id = response.data[i].id;
-                            customer.firstName = response.data[i].firstName;
-                            customer.lastName = response.data[i].lastName;
-                            customer.locationAddress = response.data[i].locationAddress;
-                            customer.phoneNumber = response.data[i].phoneNumber;
-                            customer.mobileNumber = response.data[i].mobileNumber;
-                            customer.email = response.data[i].email;
-                            customer.cityId = response.data[i].cityId;*/
+                            paymentType.addOnGroupId = response.data[i].addOnGroupId;
+                            paymentType.companyId = response.data[i].companyId;
+                            paymentType.description = response.data[i].description;
+                            paymentType.displayPriority = response.data[i].displayPriority;
+                            paymentType.moduleId = response.data[i].moduleId;
+                            paymentType.paymentTypeDesc = response.data[i].paymentTypeDesc;
+                            paymentType.paymentTypeId = response.data[i].paymentTypeId;
+                            paymentType.paymentTypeName = response.data[i].paymentTypeName;
+                            paymentType.glAccountId = response.data[i].glAccountDto.glAccountId;
+                            paymentType.majorAccountNumber = response.data[i].glAccountDto.majorAccountNumber;
 
                             paymentTypeCtrl.listPaymentTypes.push(paymentType);
                         }
