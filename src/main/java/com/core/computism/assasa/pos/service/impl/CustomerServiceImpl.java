@@ -1,5 +1,7 @@
 package com.core.computism.assasa.pos.service.impl;
 
+import com.core.computism.assasa.exception.AssasaBusinessException;
+import com.core.computism.assasa.persistence.entity.cmn.City;
 import com.core.computism.assasa.persistence.repository.pos.CountryRepository;
 import com.core.computism.assasa.pos.domain.CustomerDto;
 import com.core.computism.assasa.exception.BuilderException;
@@ -46,6 +48,26 @@ public class CustomerServiceImpl implements CustomerService {
         }
         catch (BuilderException | PersistenceException e){
             throw new PosBusinessException(e);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
+    public CustomerDto update(CustomerDto customerDto) throws AssasaBusinessException {
+        try{
+
+            Customer customer = customerRepository.findOne(customerDto.getId());
+            customerBuilder.buildCustomerEntity(customerDto, customer);
+            Address  address = customer.getAddress();
+            address.setLocationAddress(customerDto.getLocationAddress());
+            address.setCity(cityRepository.findOne(customerDto.getCityId()));
+            customer.setAddress(address);
+
+            customer = customerRepository.save(customer);
+            return customerBuilder.buildCustomerDto(customer);
+        }
+        catch (BuilderException | PersistenceException e){
+            throw new AssasaBusinessException(e);
         }
     }
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
