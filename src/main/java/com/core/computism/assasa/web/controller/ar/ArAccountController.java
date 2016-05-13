@@ -1,14 +1,12 @@
 package com.core.computism.assasa.web.controller.ar;
 
-import com.core.computism.assasa.ar.dto.ArAccountDto;
-import com.core.computism.assasa.ar.dto.ArAccountSearchDto;
-import com.core.computism.assasa.ar.dto.ArAccountSearchResponseDto;
-import com.core.computism.assasa.ar.dto.ArAccountTypeDto;
+import com.core.computism.assasa.ar.dto.*;
 import com.core.computism.assasa.ar.service.ArAccountService;
 import com.core.computism.assasa.ar.service.ArAccountTypeService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.util.ServerResponse;
 import com.core.computism.assasa.web.controller.BaseController;
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by VD on 2/20/2016.
@@ -39,22 +38,22 @@ public class ArAccountController extends BaseController {
     ArAccountTypeService arAccountTypeService;
 
     @RequestMapping(value = "addAccount", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addAccount(@RequestBody ArAccountDto arAccountDto) throws Exception {
+    public Map<String, Object> addAccount(@RequestBody ArAccountDto arAccountDto) throws Exception {
         try {
             arAccountService.saveArAccount(arAccountDto);
+            return createSuccessModelMap();
         } catch (ArBusinessException e) {
-            LOGGER.error(e);
+            throw new Exception(e);
         }
     }
 
     @RequestMapping(value = "addAccountType", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addArAccountType(@RequestBody ArAccountTypeDto arAccountTypeDto) throws Exception {
+    public Map<String, Object> addArAccountType(@RequestBody ArAccountTypeDto arAccountTypeDto) throws Exception {
         try {
             arAccountTypeService.saveArAccountType(arAccountTypeDto);
+            return createSuccessModelMap();
         } catch (ArBusinessException e) {
-            LOGGER.error(e);
+            throw new ArBusinessException(e);
         }
     }
 
@@ -76,15 +75,15 @@ public class ArAccountController extends BaseController {
     }
 
     @RequestMapping(value = "arAccountTypes", method = RequestMethod.GET)
-    public @ResponseBody
-    List<ArAccountTypeDto> getArAccountTypes() throws ArBusinessException {
+    public @ResponseBody ServerResponse<List<ArAccountTypeDto>> getArAccountTypes() throws ArBusinessException {
         List<ArAccountTypeDto> arAccountTypeDtos = null;
         try {
             arAccountTypeDtos = arAccountTypeService.getArAccountTypes();
+            ServerResponse<List< ArAccountTypeDto >> response = toResponse(arAccountTypeDtos);
+            return response;
         } catch (ArBusinessException e) {
-            LOGGER.error(e);
+            throw new ArBusinessException(e);
         }
-        return arAccountTypeDtos;
     }
 
     @RequestMapping(value = "heartbeat", method = {RequestMethod.GET})
