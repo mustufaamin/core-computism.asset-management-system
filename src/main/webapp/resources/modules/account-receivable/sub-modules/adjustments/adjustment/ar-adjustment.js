@@ -31,6 +31,23 @@
             };
             arAdjustmentCtrl.getBillCodeList();
 
+            arAdjustmentCtrl.getCustomer = function(val){
+                var _url = "/customer/search/" + val;
+                return $http.get(_url).then(function(response){
+                    return response.data.map(function(item){
+                        return {
+                            label: ((item.providerDriverId != "NA" && item.providerDriverId != "") ? item.providerDriverId + " - " : '') + item.name + " - " + item.limoCompanyName + " - " + item.phoneNumber,
+                            value: item.driverId,
+                            phoneNumber: item.phoneNumber,
+                            dedicatedCarId: item.dedicatedCarId,
+                            carId: item.carId,
+                            car: item.car,
+                            currencyCode: item.currencyCode
+                        }
+                    });
+                });
+            };
+
             arAdjustmentCtrl.addArAdjustment = function (){
                 var adjustment = {};
                 adjustment.arAccountId = 1;//arAdjustmentCtrl.arAccountId;
