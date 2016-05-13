@@ -8,7 +8,6 @@
         <i class="fa fa-close close-cur" ng-click="posItemCtrl.showPanel = false"></i>
       </div>
     </div>
-    {{posItemCtrl.posItem}}
     <div class="ar-panel-content">
       <div class="at-name cust-panel-field-div">
         <label class="cust-panel-lbl">Item Code</label>

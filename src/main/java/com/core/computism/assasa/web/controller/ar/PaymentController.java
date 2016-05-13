@@ -6,6 +6,8 @@ import com.core.computism.assasa.ar.dto.PaymentTypeDto;
 import com.core.computism.assasa.ar.service.PaymentService;
 import com.core.computism.assasa.ar.service.PaymentTypeService;
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.util.ServerResponse;
+import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,13 +20,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by VD on 3/6/2016.
  */
 @Controller(value = "paymentController")
 @RequestMapping(value = "/payments/", produces = {MediaType.APPLICATION_JSON_VALUE + "; charset=utf-8"})
-public class PaymentController {
+public class PaymentController extends BaseController {
 
     private static final Logger LOGGER = Logger.getLogger(PaymentController.class);
 

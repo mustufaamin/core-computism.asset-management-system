@@ -75,6 +75,7 @@
             });
 
             posItemCtrl.getPosItemList = function () {
+                posItemCtrl.items = [];
                 posItemSrv.listOfPosItem().$promise.then(function (response) {
                     if (response != null) {
                         for (var i = 0; i < response.data.length; i++) {
@@ -103,37 +104,39 @@
 
 
             posItemCtrl.searchPosItem = function (typeSearchKey) {
-                if (typeSearchKey == null) {
-                    typeSearchKey = '';
-                }
+                if (typeSearchKey == null || typeSearchKey == '') {
+                    posItemCtrl.getPosItemList();
+                }else {
 
-                var params = {
-                    searchKey: typeSearchKey
-                };
-                posItemSrv.searchPosItem(params).$promise.then(function (response) {
-                    if (response != null) {
-                        posItemCtrl.items = [];
-                        for (var i = 0; i < response.data.length; i++) {
-                            var posItem = {};
+                    var params = {
+                        searchKey: typeSearchKey
+                    };
+                    posItemSrv.searchPosItem(params).$promise.then(function (response) {
+                        if (response != null) {
+                            posItemCtrl.items = [];
+                            for (var i = 0; i < response.data.length; i++) {
+                                var posItem = {};
 
-                            posItem.id = response.data[i].id;
-                            posItem.itemCode = response.data[i].itemCode;
-                            posItem.itemUnit = response.data[i].itemUnit;
-                            posItem.stockLevel = response.data[i].stockLevel;
-                            posItem.minStockLevel = response.data[i].minStockLevel;
-                            posItem.costPrice = response.data[i].costPrice;
-                            posItem.salesPrice = response.data[i].salesPrice;
-                            posItem.location = response.data[i].location;
-                            posItem.itemDescription = response.data[i].itemDescription;
-                            posItem.supplerId = response.data[i].supplerId;
-                            posItem.itemType = response.data[i].itemType;
-                            posItem.quantity = response.data[i].quantity;
+                                posItem.id = response.data[i].id;
+                                posItem.itemCode = response.data[i].itemCode;
+                                posItem.itemUnit = response.data[i].itemUnit;
+                                posItem.stockLevel = response.data[i].stockLevel;
+                                posItem.minStockLevel = response.data[i].minStockLevel;
+                                posItem.costPrice = response.data[i].costPrice;
+                                posItem.salesPrice = response.data[i].salesPrice;
+                                posItem.location = response.data[i].location;
+                                posItem.itemDescription = response.data[i].itemDescription;
+                                posItem.supplerId = response.data[i].supplerId;
+                                posItem.itemType = response.data[i].itemType;
+                                posItem.quantity = response.data[i].quantity;
 
-                            posItemCtrl.items.push(posItem);
+                                posItemCtrl.items.push(posItem);
+                            }
                         }
-                    }
-                    posItemCtrl.posItemTable.reload();
-                });
+                        posItemCtrl.posItemTable.reload();
+
+                    });
+                }
             };
 
 
