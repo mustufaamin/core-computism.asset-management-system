@@ -57,14 +57,14 @@ public class ArAccountController extends BaseController {
         }
     }
 
-    @RequestMapping(value = "arAccountList", method = RequestMethod.GET)
+    @RequestMapping(value = "list", method = RequestMethod.GET)
     public @ResponseBody
     ServerResponse<List<ArAccountSearchResponseDto>>  getArAccountList() throws ArBusinessException {
         ServerResponse<List<ArAccountSearchResponseDto>> response = toResponse(arAccountService.getArAccounts());
         return response;
     }
 
-    @RequestMapping(value = "accountList/{searchKey}", method = RequestMethod.GET)
+    @RequestMapping(value = "search/{searchKey}", method = RequestMethod.GET)
     public
     @ResponseBody
     ServerResponse<List<ArAccountSearchDto>> getArAccountBySearchKey(

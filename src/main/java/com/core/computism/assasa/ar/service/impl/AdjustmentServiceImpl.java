@@ -2,12 +2,14 @@ package com.core.computism.assasa.ar.service.impl;
 
 import com.core.computism.assasa.ar.builder.AdjustmentBuilder;
 import com.core.computism.assasa.ar.dto.AdjustmentDto;
+import com.core.computism.assasa.ar.dto.BillCodeDto;
 import com.core.computism.assasa.ar.dto.service.TransactionServiceDto;
 import com.core.computism.assasa.ar.service.AdjustmentService;
 import com.core.computism.assasa.ar.transaction.IMemberCharge;
 import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.ar.transaction.Posting;
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.ar.Adjustment;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -124,6 +127,17 @@ public class AdjustmentServiceImpl implements AdjustmentService, IMemberCharge {
                 .setModifiedBy(adjustmentDto.getModifiedBy())
                 .build();
         return adjustment;
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<AdjustmentDto> getAdjustmentsByArAccountId(Integer arAccountId) throws ArBusinessException {
+        try {
+            List<Adjustment> adjustments = adjustmentRepository.searchAdjustment(arAccountId);
+            return new AdjustmentBuilder().buildAdjustmentDtoList(adjustments);
+
+        } catch (PersistenceException | BuilderException e) {
+            throw new ArBusinessException("Error Occurred In BillCode service Update", e);
+        }
     }
 }
 

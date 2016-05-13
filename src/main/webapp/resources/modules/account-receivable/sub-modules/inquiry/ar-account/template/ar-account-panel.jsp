@@ -1,11 +1,44 @@
-<md-list ng-controller="ArAccountController as arAccountCtrl" ng-cloak="" class="listArAccountControls" ng-app="MyApp">
+<span ui-view id="arAccountPanel" ng-controller="ArAccountController as arAccountCtrl">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="srch-box">
+        <div class="row">
+          <div class="col-xs-4">
+            <div class="c-form-gp pos-rel">
+              <label class="c-form-lbl">Search</label>
+              <input  typeahead-min-length="0"
+                      uib-typeahead="arAccount for arAccount in arAccountCtrl.searchArAccounts($viewValue)"
+                      ng-model="arAccountCtrl.search" ng-required="true"
+                      typeahead-no-results="noItems" typeahead-wait-ms=500
+                      class="c-form-inpt custSearch" type="text" class="c-form-input" ng-disabled="" placeholder="Search Ar Accounts.."/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="cap-adj-cycle">
+      <div class="cap-adj-cyc-head">Ar Accounts</div>
 
-<md-subheader class="md-no-sticky">Ar Accounts</md-subheader>
-  <md-list-item ng-repeat="person in arAccountCtrl.listArAccountCtrl" ng-click="goToPerson(person.customerName, $event)">
-    <img alt="{{ person.customerName }}" ng-src="{{ person.accountTypeName }}" class="md-avatar">
-    <p>{{ person.customerName }}</p>
-    <md-icon md-svg-icon="communication:messenger" ng-click="doSecondaryAction($event)" aria-label="Open Chat" class="md-secondary md-hue-3" ng-class="{'md-primary': person.accountTypeName}"></md-icon>
-    <md-divider></md-divider>
-  </md-list-item>
-</md-list>
-
+      <div>
+        <table ng-table-dynamic="arAccountCtrl.arAccountTable with arAccountCtrl.cols"
+               class="table table-condensed table-bordered table-striped">
+          <%--<colgroup>--%>
+          <%--<col width="20%" />--%>
+          <%--<col width="60%" />--%>
+          <%--<col width="10%" />--%>
+          <%--<col width="10%" />--%>
+          <%--</colgroup>--%>
+          <tr ng-repeat="row in $data">
+            <td ng-repeat="col in $columns">
+              <span>{{row[col.field]}}</span>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</span>
