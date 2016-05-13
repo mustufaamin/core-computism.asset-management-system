@@ -48,7 +48,8 @@
                     }
                 });
             };
-            paymentTypeCtrl.getPaymentTypeList();
+            //TODO:
+            //paymentTypeCtrl.getPaymentTypeList();
 
             paymentTypeCtrl.addPaymentType = function(){
                 var paymentType = {};
