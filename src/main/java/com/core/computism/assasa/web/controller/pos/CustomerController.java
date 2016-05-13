@@ -1,5 +1,6 @@
 package com.core.computism.assasa.web.controller.pos;
 
+import com.core.computism.assasa.exception.AssasaBusinessException;
 import com.core.computism.assasa.pos.domain.CustomerDto;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.pos.service.CustomerService;
@@ -30,6 +31,13 @@ public class CustomerController extends BaseController {
     public ServerResponse<CustomerDto> add(@RequestBody CustomerDto customerDto) throws PosBusinessException {
         LOGGER.info("Adding Customer..");
         ServerResponse<CustomerDto> response = toResponse(customerService.add(customerDto));
+        return response;
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public ServerResponse<CustomerDto> update(@RequestBody CustomerDto customerDto) throws AssasaBusinessException {
+        LOGGER.info("Adding Customer..");
+        ServerResponse<CustomerDto> response = toResponse(customerService.update(customerDto));
         return response;
     }
 

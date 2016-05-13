@@ -35,45 +35,45 @@ public class PaymentController {
     PaymentTypeService paymentTypeService;
 
     @RequestMapping(value = "addPayment", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addPayment(@RequestBody PaymentDto paymentDto) throws ArBusinessException {
+    public Map<String, Object> addPayment(@RequestBody PaymentDto paymentDto) throws ArBusinessException {
         try {
             paymentService.savePayment(paymentDto);
+            return createSuccessModelMap();
         } catch (ArBusinessException e) {
-            LOGGER.error(e);
+            throw new ArBusinessException(e);
         }
     }
 
     @RequestMapping(value = "saveNPostPayment", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void saveNPostPayment(@RequestBody PaymentDto paymentDto) throws ArBusinessException {
+    public Map<String, Object> saveNPostPayment(@RequestBody PaymentDto paymentDto) throws ArBusinessException {
         try {
             paymentService.saveNPostPayment(paymentDto);
+            return createSuccessModelMap();
         } catch (ArBusinessException e) {
-            LOGGER.error(e);
+            throw new ArBusinessException(e);
         }
     }
 
     @RequestMapping(value = "addPaymentType", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    public void addPaymentType(@RequestBody PaymentTypeDto paymentTypeDto) throws ArBusinessException {
+    public Map<String, Object> addPaymentType(@RequestBody PaymentTypeDto paymentTypeDto) throws ArBusinessException {
         try {
             paymentTypeService.savePaymentType(paymentTypeDto);
+            return createSuccessModelMap();
         } catch (ArBusinessException e) {
-            LOGGER.error(e);
+            throw new ArBusinessException(e);
         }
     }
 
     @RequestMapping(value = "paymenttypes", method = RequestMethod.GET)
     public @ResponseBody
-    List<PaymentTypeDto> getPaymentTypes() throws ArBusinessException {
-//        List<PaymentTypeDto> paymentTypeDtos = null;
-//        try {
-//            paymentTypeDtos = paymentTypeService.getPaymentTypes();
-//        } catch (ArBusinessException e) {
-//            LOGGER.error(e);
-//        }
-//        return paymentTypeDtos;
-        return null;
+    ServerResponse<List<PaymentTypeDto>> getPaymentTypes() throws ArBusinessException {
+        List<PaymentTypeDto> paymentTypeDtos = null;
+        try {
+            paymentTypeDtos = paymentTypeService.getPaymentTypes();
+            ServerResponse<List<PaymentTypeDto>> response = toResponse(paymentTypeDtos);
+            return response;
+        } catch (ArBusinessException e) {
+            throw new ArBusinessException(e);
+        }
     }
 }

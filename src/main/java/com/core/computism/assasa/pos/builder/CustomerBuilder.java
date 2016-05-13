@@ -31,6 +31,19 @@ public class CustomerBuilder {
 
         return customer;
     }
+
+    public void buildCustomerEntity(CustomerDto customerDto,Customer customer) throws BuilderException {
+
+        if(customerDto == null){
+            throw new BuilderException("customer Dto not present");
+        }
+        customer.setFirstName(customerDto.getFirstName());
+        customer.setLastName(customerDto.getLastName());
+        customer.setEmail(customerDto.getEmail());
+        customer.setPhoneNumber(customerDto.getPhoneNumber());
+        customer.setMobileNumber(customerDto.getMobileNumber());
+
+    }
     public CustomerDto buildCustomerDto(Customer customer) throws BuilderException {
 
         if(customer == null){
