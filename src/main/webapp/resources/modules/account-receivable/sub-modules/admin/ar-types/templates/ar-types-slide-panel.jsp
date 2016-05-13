@@ -11,7 +11,7 @@
     <div class="ar-panel-content">
       <div class="at-name cust-panel-field-div">
         <label class="cust-panel-lbl">Account Type Name:</label>
-        <input class="cust-panel-input" ng-model="arTypesCtrl.accountTypeName" placeholder="Enter Account Type name..." ng-class="{disabled: arTypesCtrl.isView}"/>
+        <input type=number class="cust-panel-input" ng-model="arTypesCtrl.accountTypeName" placeholder="Enter Account Type name..." ng-class="{disabled: arTypesCtrl.isView}"/>
       </div>
       <div class="at-desc cust-panel-field-div">
         <label class="cust-panel-lbl">Account Type Description:</label>
@@ -19,11 +19,11 @@
       </div>
       <div class="acc-id cust-panel-field-div">
         <label class="cust-panel-lbl">GL Account Id:</label>
-        <input class="cust-panel-input" ng-model="arTypesCtrl.glAccountId" placeholder="Enter GL A/C Id..." ng-class="{disabled: arTypesCtrl.isView}"/>
+        <input type=number class="cust-panel-input" ng-model="arTypesCtrl.glAccountId" placeholder="Enter GL A/C Id..." ng-class="{disabled: arTypesCtrl.isView}"/>
       </div>
       <div class="status cust-panel-field-div">
         <label class="cust-panel-lbl">Status:</label>
-        <input class="cust-panel-input" ng-model="arTypesCtrl.status" placeholder="Enter status..." ng-class="{disabled: arTypesCtrl.isView}"/>
+        <input type=number class="cust-panel-input" ng-model="arTypesCtrl.status" placeholder="Enter status..." ng-class="{disabled: arTypesCtrl.isView}"/>
       </div>
       <div class="at-code cust-panel-field-div">
         <label class="cust-panel-lbl">Account Type Code:</label>
@@ -35,7 +35,7 @@
       </div>
       <div class="priority cust-panel-field-div">
         <label class="cust-panel-lbl">Priority:</label>
-        <input class="cust-panel-input" ng-model="arTypesCtrl.priority" placeholder="Enter priority..." ng-class="{disabled: arTypesCtrl.isView}"/>
+        <input type=number class="cust-panel-input" ng-model="arTypesCtrl.priority" placeholder="Enter priority..." ng-class="{disabled: arTypesCtrl.isView}"/>
       </div>
       <div class="over30Message cust-panel-field-div">
         <label class="cust-panel-lbl">Over 30 Message:</label>
@@ -66,7 +66,7 @@
       <button class="c-btn c-btn-action cust-add-btn"
               ng-class=""
               ng-show="!arTypesCtrl.isView"
-              ng-click="">{{arTypesCtrl.slidePanelHeading}}</button>
+              ng-click="arTypesCtrl.addUpdateArTypes()">{{arTypesCtrl.slidePanelHeading}}</button>
       <button class="c-btn cust-add-btn"
               ng-class=""
               ng-disabled=""

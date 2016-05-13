@@ -27,6 +27,7 @@
             arTypesCtrl.listPaymentTypes = [];
 
             arTypesCtrl.openARTypeSlidePanel = function(type ,arType){
+                arTypesCtrl.type = type;
                 if(arType != null){
                     arTypesCtrl.arAccountTypeId = arType.arAccountTypeId;
                     arTypesCtrl.accountTypeName = arType.accountTypeName;
@@ -89,7 +90,7 @@
 
             arTypesCtrl.getArTypesList();
 
-            arTypesCtrl.addArTypes = function (){
+            arTypesCtrl.addUpdateArTypes = function (){
                 var arType = {};
 
                 arType.arAccountTypeId = arTypesCtrl.arAccountTypeId;
@@ -106,13 +107,24 @@
                 arType.over60Message = arTypesCtrl.over60Message;
                 arType.over90Message = arTypesCtrl.over90Message;
                 arType.over120Message = arTypesCtrl.over120Message;
-                arType.showAgingMessage = arTypesCtrl.showAgingMessage;
+                arType.showAgingMessage = 1;
 
-                arTypesGWSrv.addArType(arType).$promise.then(function(response){
-                    if(response){
-                        arTypesCtrl.getArTypesList();
-                    }
-                });
+                if(arTypesCtrl.type){
+                    arTypesGWSrv.addArType(arType).$promise.then(function(response){
+                        if(response.success){
+                            arTypesCtrl.showPanel = false;
+                            arTypesCtrl.getArTypesList();
+                        }
+                    });
+                }else{
+                    arTypesGWSrv.updateArType(arType).$promise.then(function(response){
+                        if(response.success){
+                            arTypesCtrl.showPanel = false;
+                            arTypesCtrl.getArTypesList();
+                        }
+                    });
+                }
+
             };
 
         }]);
@@ -125,7 +137,9 @@
                 {
                     listArTypes :{method: 'GET', isArray: false, url:"/arAccount/arAccountTypes"},
 
-                    addArType :{method: 'POST', isArray: false, url:"/arAccount/addAccountType"}
+                    addArType :{method: 'POST', isArray: false, url:"/arAccount/addAccountType"},
+
+                    updateArType :{method: 'POST', isArray: false, url:"/arAccount/updateAccountType"}
                 });
         }]);
 })();

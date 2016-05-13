@@ -87,7 +87,7 @@
                 }
             };
 
-            custCtrl.addCustomer = function (){
+            custCtrl.addUpdateCustomer = function (){
                 var customer = {};
                 customer.firstName = custCtrl.firstName;
                 customer.lastName = custCtrl.lastName;
@@ -97,14 +97,26 @@
                 customer.locationAddress = custCtrl.address;
                 customer.cityId = custCtrl.city.id;
                 customer.city = custCtrl.city.name;
-                custGatewaySrv.addCustomer(customer).$promise.then(function(response){
-                    if(response){
+                if(custCtrl.type == 1){
+                    custGatewaySrv.addCustomer(customer).$promise.then(function(response){
+                        if(response.success){
+                            custCtrl.showPanel = false;
+                            custCtrl.getCustomerList();
+                        }
+                    });
+                }else{
+                    custGatewaySrv.updateCustomer(customer).$promise.then(function(response){
+                        if(response.success){
+                            custCtrl.showPanel = false;
+                            custCtrl.getCustomerList();
+                        }
+                    });
+                }
 
-                    }
-                });
             };
 
             custCtrl.openCustomerSlidePanel = function(type, customer){
+                custCtrl.type = type;
                 if(customer != null){
                     custCtrl.firstName = customer.firstName;
                     custCtrl.lastName = customer.lastName;
@@ -153,7 +165,9 @@
             {
                 listCustomer: {method: 'GET', isArray: false, url: '/customer/list'},
 
-                addCustomer: {method: 'POST', isArray: false, url: '/customer/add'}
+                addCustomer: {method: 'POST', isArray: false, url: '/customer/add'},
+
+                updateCustomer: {method: 'POST', isArray: false, url: '/customer/update'}
             });
     }]);
 

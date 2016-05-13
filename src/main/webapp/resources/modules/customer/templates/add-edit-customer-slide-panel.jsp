@@ -52,7 +52,7 @@
       <button class="c-btn c-btn-action cust-add-btn"
               ng-class=""
               ng-show="!custCtrl.isView"
-              ng-click="custCtrl.addCustomer()">{{custCtrl.slidePanelHeading}}</button>
+              ng-click="custCtrl.addUpdateCustomer()">{{custCtrl.slidePanelHeading}}</button>
       <button class="c-btn cust-add-btn"
               ng-class=""
               ng-disabled=""
