@@ -1,5 +1,6 @@
 package com.core.computism.assasa.pos.service;
 
+import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.persistence.entity.pos.PosItem;
 import com.core.computism.assasa.persistence.entity.pos.PosOrder;
@@ -19,4 +20,5 @@ public interface PosItemService {
     PosItem findPosItemById(Long itemId) throws PosBusinessException;
     void removeItemStock(PosOrder posOrder ) throws PosBusinessException;
     PosItemDto getItemByCode(String itemCode) throws PosBusinessException;
+    List<PosItemDto> search(String searchKey) throws PosBusinessException;
 }

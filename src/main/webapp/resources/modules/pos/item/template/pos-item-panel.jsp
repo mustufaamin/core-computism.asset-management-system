@@ -5,9 +5,14 @@
         <div class="row">
           <div class="col-xs-4">
             <div class="c-form-gp pos-rel">
-              <label class="c-form-lbl">Bill Codes</label>
-              <input class="c-form-inpt custSearch" type="text" class="c-form-inpt" ng-disabled="" placeholder="Search Items.."/>
-              <button class="c-btn c-btn-action cust-add-btn"
+              <label class="c-form-lbl">Search</label>
+              <input  typeahead-min-length="0"
+                      uib-typeahead="posItem for posItem in posItemCtrl.searchPosItem($viewValue)"
+                      ng-model="billCodesCtrl.search" ng-required="true"
+                      typeahead-no-results="noItems" typeahead-wait-ms=500
+                      class="c-form-inpt custSearch" type="text" class="c-form-input" ng-disabled="" placeholder="Search Pos Item.."/>
+
+              <button class="c-btn c-btn-action cust-add-btn open-pos-btn"
                       ng-class=""
                       ng-disabled=""
                       ng-click="posItemCtrl.openPosItemSlidePanel(1)">Add ITem</button>
@@ -38,6 +43,7 @@
     </div>
   </div>
 </div>
-  <bill-codes-slide-panel></bill-codes-slide-panel>
+  <pos-item-slide-panel></pos-item-slide-panel>
+
 </span>
 

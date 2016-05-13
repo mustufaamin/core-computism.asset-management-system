@@ -8,6 +8,8 @@ import com.core.computism.assasa.web.controller.BaseController;
 import com.mysql.fabric.Server;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,6 +47,13 @@ public class BillCodeController extends BaseController {
     public ServerResponse<List<BillCodeDto>> list() throws ArBusinessException {
         LOGGER.info("List BillCode..");
         ServerResponse<List<BillCodeDto>> response = toResponse(billCodeService.list());
+        return response;
+    }
+
+    @RequestMapping(value = "search/{searchKey}", method = RequestMethod.GET)
+    public ServerResponse<List<BillCodeDto>> search(@PathVariable String searchKey) throws ArBusinessException {
+        LOGGER.info("search BillCode..");
+        ServerResponse<List<BillCodeDto>> response = toResponse(billCodeService.search(searchKey));
         return response;
     }
 }

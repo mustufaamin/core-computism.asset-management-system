@@ -28,7 +28,7 @@ public class ItemController extends BaseController {
 
     @Autowired private PosItemService posItemService;
 
-    @RequestMapping(value = "add", method = RequestMethod.GET)
+    @RequestMapping(value = "add", method = RequestMethod.POST)
     public ServerResponse<PosItemDto> add(@RequestBody PosItemDto posItemDto) throws PosBusinessException {
 
         LOGGER.info("Adding item ...");
@@ -60,6 +60,13 @@ public class ItemController extends BaseController {
     public ServerResponse<PosItemDto> getItem(@PathVariable(value = "itemCode") String itemCode) throws PosBusinessException {
         LOGGER.info("Get Item....");
         ServerResponse<PosItemDto> response = toResponse(posItemService.getItemByCode(itemCode));
+        return response;
+    }
+
+    @RequestMapping(value = "search/{searchKey}", method = RequestMethod.GET)
+    public ServerResponse<List<PosItemDto>> search(@PathVariable String searchKey) throws PosBusinessException {
+        LOGGER.info("search BillCode..");
+        ServerResponse<List<PosItemDto>> response = toResponse(posItemService.search(searchKey));
         return response;
     }
 

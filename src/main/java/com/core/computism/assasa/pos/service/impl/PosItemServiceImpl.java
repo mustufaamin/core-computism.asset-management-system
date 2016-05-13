@@ -1,12 +1,17 @@
 package com.core.computism.assasa.pos.service.impl;
 
+import com.core.computism.assasa.ar.dto.BillCodeDto;
+import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
+import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.entity.pos.PosItem;
+import com.core.computism.assasa.persistence.entity.pos.PosItemGroup;
 import com.core.computism.assasa.persistence.entity.pos.PosItemType;
 import com.core.computism.assasa.persistence.entity.pos.PosOrder;
 import com.core.computism.assasa.persistence.entity.pos.PosOrderItem;
 import com.core.computism.assasa.persistence.entity.pos.Supplier;
+import com.core.computism.assasa.persistence.repository.pos.PosItemGroupRepository;
 import com.core.computism.assasa.persistence.repository.pos.PosItemRepository;
 import com.core.computism.assasa.persistence.repository.pos.PosItemTypeRepository;
 import com.core.computism.assasa.persistence.repository.pos.SupplierRepository;
@@ -30,6 +35,7 @@ public class PosItemServiceImpl implements PosItemService {
     @Autowired private PosItemBuilder posItemBuilder;
     @Autowired private PosItemTypeRepository posItemTypeRepository;
     @Autowired private SupplierRepository supplierRepository;
+    @Autowired private PosItemGroupRepository posItemGroupRepository;
 
 
     @Override
@@ -41,17 +47,21 @@ public class PosItemServiceImpl implements PosItemService {
             }
 
             PosItemType posItemType = posItemTypeRepository.findOne(posItemDto.getItemType());
-            Supplier supplier = supplierRepository.findOne(posItemDto.getSupplerId());
+            PosItemGroup posItemGroup = posItemGroupRepository.findOne(posItemDto.getPosItemGroupId());
+//            Supplier supplier = supplierRepository.findOne(posItemDto.getSupplerId());
 
             PosItem posItem = new PosItem();
             posItem = posItemBuilder.buildItemEntity(posItem, posItemDto);
 
-            posItem.setSupplier(supplier);
+//            posItem.setSupplier(supplier);
+
             posItem.setPosItemType(posItemType);
+            posItem.setPosItemGroup(posItemGroup);
 
             posItem = posItemRepository.save(posItem);
             return posItemBuilder.buildItemDto(posItem);
         } catch(PersistenceException | BuilderException e){
+            e.printStackTrace();
             throw new PosBusinessException(e);
         }
     }
@@ -159,6 +169,19 @@ public class PosItemServiceImpl implements PosItemService {
             }
         }catch (PersistenceException e){
             throw new PosBusinessException(e);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<PosItemDto> search(String searchKey) throws PosBusinessException {
+        try {
+            searchKey = "%"+searchKey+"%";
+            List<PosItem> posItems = posItemRepository.searchPosItem(searchKey);
+            return posItemBuilder.buildItemDtoList(posItems);
+
+        } catch (PersistenceException | BuilderException e) {
+            throw new PosBusinessException("Error Occurred In BillCode service Update", e);
         }
     }
 }

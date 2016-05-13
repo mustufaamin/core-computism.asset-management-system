@@ -29,7 +29,8 @@
     "jquery": "2.1.4",
     "angular-material":"1.x",
     "lodash":"4.11.2",
-    "ng-table":""
+    "ng-table":"",
+    "angular-bootstrap":""
   },
   "resolutions": {
     "angular": "~1.4.x"

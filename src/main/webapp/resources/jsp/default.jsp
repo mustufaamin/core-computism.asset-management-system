@@ -22,6 +22,9 @@
     <link href="resources/modules/account-receivable/sub-modules/adjustments/adjustment/css/ar-adjustment.css" rel="stylesheet">
     <link href="resources/modules/pos/item/css/pos-item.css" rel="stylesheet">
     <link rel="stylesheet" href="resources/libraries/bower-components/angular-material/angular-material.min.css">
+    <link href="resources/css/asasa/datetimepicker.css" rel="stylesheet">
+
+
 
 
 </head>
@@ -436,7 +439,16 @@
     <script src="resources/libraries/counter.js"></script>
     <script src="resources/libraries/retina.js"></script>
     <script src="resources/libraries/custom.js"></script>
-    <script src="resources/libraries/ui-bootstrap-tpls-0.14.3.js"></script>
+    <%--<script src="resources/libraries/ui-bootstrap-tpls-0.14.3.js"></script>--%>
+
+
+    <script src="resources/libraries/bower-components/angular-animate/angular-animate.min.js"></script>
+    <script src="resources/libraries/bower-components/angular-aria/angular-aria.min.js"></script>
+    <script src="resources/libraries/bower-components/angular-messages/angular-messages.min.js"></script>
+    <script src="resources/libraries/bower-components/angular-material/angular-material.min.js"></script>
+    <script src="resources/libraries/bower-components/lodash/dist/lodash.min.js"></script>
+    <script src="resources/libraries/bower-components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
 
 
     <script src="resources/modules/asasa.js"></script>
@@ -453,16 +465,13 @@
     <script src="resources/libraries/bower-components/ng-table/dist/ng-table.js"></script>
     <script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
     <script src="resources/libraries/bower-components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="resources/libraries/datetimepicker.js"></script>
     <script src="resources/modules/pos/order-management.js"></script>
     <script src="resources/modules/pos/services/pos-services.js"></script>
     <script src="resources/modules/pos/item/pos-item.js"></script>
 
 
-    <script src="resources/libraries/bower-components/angular-animate/angular-animate.min.js"></script>
-    <script src="resources/libraries/bower-components/angular-aria/angular-aria.min.js"></script>
-    <script src="resources/libraries/bower-components/angular-messages/angular-messages.min.js"></script>
-    <script src="resources/libraries/bower-components/angular-material/angular-material.min.js"></script>
-    <script  src="resources/libraries/bower-components/lodash/dist/lodash.min.js"></script>
+
 </div>
 </body>
 </html>

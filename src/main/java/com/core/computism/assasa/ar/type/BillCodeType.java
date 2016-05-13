@@ -1,6 +1,11 @@
 package com.core.computism.assasa.ar.type;
 
+import com.core.computism.assasa.common.domain.LookupDataDto;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by VD on 3/23/2016.
@@ -28,4 +33,19 @@ public enum BillCodeType {
     public Integer getCode() {
         return this.code;
     }
+
+    public static List<LookupDataDto> getList(){
+        List<LookupDataDto> lookupDataDtos = new ArrayList<>();
+        for (Map.Entry<Integer, BillCodeType> entry : billCodeTypes.entrySet())
+        {
+            LookupDataDto lookupDataDto = new LookupDataDto();
+            lookupDataDto.setId(entry.getKey());
+            lookupDataDto.setLabel(""+entry.getValue());
+
+            lookupDataDtos.add(lookupDataDto);
+        }
+
+        return lookupDataDtos;
+    }
+
 }

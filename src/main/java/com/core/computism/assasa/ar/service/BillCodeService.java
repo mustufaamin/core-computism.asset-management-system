@@ -12,4 +12,5 @@ public interface BillCodeService {
     BillCodeDto add(BillCodeDto billCodeDto) throws ArBusinessException;
     BillCodeDto update(BillCodeDto billCodeDto) throws ArBusinessException;
     List<BillCodeDto> list() throws ArBusinessException;
+    List<BillCodeDto> search(String searchKey) throws ArBusinessException;
 }

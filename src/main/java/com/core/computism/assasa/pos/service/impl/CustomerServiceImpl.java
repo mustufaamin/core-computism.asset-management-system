@@ -96,7 +96,17 @@ public class CustomerServiceImpl implements CustomerService {
             throw new PosBusinessException("Error occurred getCustomer",e);
         }
     }
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<CustomerDto> search(String searchKey) throws AssasaBusinessException {
+        try {
+            searchKey = "%"+searchKey+"%";
+            List<Customer> customers = customerRepository.searchCustomers(searchKey);
+            return customerBuilder.buildCustomerDtoList(customers);
 
+        } catch (PersistenceException | BuilderException e) {
+            throw new AssasaBusinessException("Error Occurred In BillCode service Update", e);
+        }
+    }
 
 
 }

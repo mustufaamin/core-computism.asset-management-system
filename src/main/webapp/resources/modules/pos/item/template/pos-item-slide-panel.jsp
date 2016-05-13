@@ -10,43 +10,59 @@
     </div>
     <div class="ar-panel-content">
       <div class="at-name cust-panel-field-div">
-        <label class="cust-panel-lbl">Bill Code Type:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.billCodeType" placeholder="Enter Bill Code Type..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl">Item Code</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.itemCode" placeholder="Item Code..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
       <div class="at-desc cust-panel-field-div">
-        <label class="cust-panel-lbl">AddOn Group Id:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.addOnGroupId" placeholder="Enter addon group Id..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl">Item Unit:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.itemUnit" placeholder="Item Unit..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
       <div class="acc-id cust-panel-field-div">
-        <label class="cust-panel-lbl">Bill Code Name:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.name" placeholder="Enter name..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl">Stock Level:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.stockLevel" placeholder="Stock Level..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
       <div class="priority cust-panel-field-div">
-        <label class="cust-panel-lbl"> GL Account:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.glAccount" placeholder="Enter gl account..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl"> Minimum Stock Level:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.minStockLevel" placeholder="Minimum Stock Level..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
       <div class="status cust-panel-field-div">
-        <label class="cust-panel-lbl">Status:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.status" placeholder="Enter status..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl">Cost Price:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.costPrice" placeholder="Cost Price..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
       <div class="at-code cust-panel-field-div">
-        <label class="cust-panel-lbl">Description:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.description" placeholder="Enter description..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl">Sales Price:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.salesPrice" placeholder="Sales Price..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
       <div class="company-id cust-panel-field-div">
-        <label class="cust-panel-lbl">Activation Date:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.activationDate" placeholder="Enter activation date..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl">Location:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.location" placeholder="Location..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
       <div class="priority cust-panel-field-div">
-        <label class="cust-panel-lbl">Deactivation Date:</label>
-        <input class="cust-panel-input" ng-model="posItemCtrl.deactivationDate" placeholder="Enter deactivation date..." ng-class="{disabled: posItemCtrl.isView}"/>
+        <label class="cust-panel-lbl">Description:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.itemDescription" placeholder="Description..." ng-class="{disabled: posItemCtrl.isView}"/>
+      </div>
+      <div class="priority cust-panel-field-div">
+        <label class="cust-panel-lbl">Supplier:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.supplerId" placeholder="Supplier..." ng-class="{disabled: posItemCtrl.isView}"/>
+      </div>
+      <div class="priority cust-panel-field-div">
+      <label class="cust-panel-lbl">Item Type:</label>
+      <input class="cust-panel-input" ng-model="posItemCtrl.posItem.itemType" placeholder="Item Type:..." ng-class="{disabled: posItemCtrl.isView}"/>
+     </div>
+      <div class="priority cust-panel-field-div">
+        <label class="cust-panel-lbl">Item Group:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.posItemGroupId" placeholder="Item Group:..." ng-class="{disabled: posItemCtrl.isView}"/>
+      </div>
+      <div class="priority cust-panel-field-div">
+        <label class="cust-panel-lbl">Quantity:</label>
+        <input class="cust-panel-input" ng-model="posItemCtrl.posItem.quantity" placeholder="Quantity..." ng-class="{disabled: posItemCtrl.isView}"/>
       </div>
     </div>
     <div class="cust-panel-foot">
       <button class="c-btn c-btn-action cust-add-btn"
               ng-class=""
               ng-show="!posItemCtrl.isView"
-              ng-click="posItemCtrl.addBillCode()">{{posItemCtrl.slidePanelHeading}}</button>
+              ng-click="posItemCtrl.addPosItem()">{{posItemCtrl.slidePanelHeading}}</button>
       <button class="c-btn cust-add-btn"
               ng-class=""
               ng-disabled=""

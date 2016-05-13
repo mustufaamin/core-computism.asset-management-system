@@ -19,10 +19,11 @@
         });
 
     angular.module('Asasa')
-        .controller('BillCodesController', ['ngTableParams','BillCodesGatewayService', '$http', function(ngTableParams,billCodesSrv, $http){
+        .controller('BillCodesController', ['$scope','ngTableParams','BillCodesGatewayService', '$http', function($scope,ngTableParams,billCodesSrv, $http){
             var billCodesCtrl = this;
 
 
+            billCodesCtrl.billCode = {};
             billCodesCtrl.billCodes= [];
 
 
@@ -59,7 +60,7 @@
                     billCodesCtrl.deactivationDate = billCode.deactivationDate;
                     billCodesCtrl.status = billCode.status;
                 }
-                
+
                 billCodesCtrl.showPanel = true;
                 billCodesCtrl.isView = false;
                 if(type == 1){
@@ -71,6 +72,7 @@
                     billCodesCtrl.slidePanelHeading = "Edit Bill Code";
                 }
             };
+
 
             billCodesCtrl.getBillCodesList = function(){
                 billCodesCtrl.listArAccountCtrl = [];
@@ -118,6 +120,69 @@
                     }
                 });
             };
+            billCodesCtrl.searchBillCode = function (typeSearchKey) {
+                if(typeSearchKey == null){
+                        typeSearchKey = '';
+                    }
+
+                    var params = {
+                        searchKey:typeSearchKey
+                    };
+                    billCodesSrv.searchBillCodes(params).$promise.then(function(response){
+                        if(response != null){
+                            billCodesCtrl.billCodes = [];
+                            for(var i = 0; i < response.data.length; i++){
+                                var billCode = {};
+
+                                billCode.id = response.data[i].id;
+                                billCode.billCodeType = response.data[i].billCodeType;
+                                billCode.addOnGroupId = response.data[i].addOnGroupId;
+                                billCode.name = response.data[i].name;
+                                billCode.description = response.data[i].description;
+                                billCode.activationDate = response.data[i].activationDate;
+                                billCode.deactivationDate = response.data[i].deactivationDate;
+                                billCode.status = response.data[i].status;
+
+                                billCodesCtrl.billCodes.push(billCode);
+                            }
+                        }
+                        billCodesCtrl.billCodeListTable.reload();
+                });
+
+                billCodesCtrl.getBillCodeTypes = function(typeSearchKey){
+                    var _url = 'billCodes/search/';
+                    _url = _url + billCodeSearchKey;
+                    return $http.get(_url, {
+                        params: {
+                        }
+                    }).then(function(response){
+                        billCodesCtrl.hasResponse = true;
+                        billCodesCtrl.adjCaptLoader = false;
+                        return response.data.map(function(item){
+                            return {
+                                label: ((item.providerDriverId != "NA" && item.providerDriverId != "") ? item.providerDriverId + " - " : '') + item.name + " - " + item.limoCompanyName + " - " + item.phoneNumber,
+                                value: item.driverId,
+                                phoneNumber: item.phoneNumber,
+                                dedicatedCarId: item.dedicatedCarId,
+                                carId: item.carId,
+                                car: item.car,
+                                currencyCode: item.currencyCode
+                            }
+                        });
+                    });
+                }
+            };
+
+            billCodesCtrl.open = function ($event, opened) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                billCodesCtrl.dateOpened = true;
+            };
+
+            billCodesCtrl.format = "dd-MMM-yyyy";
+
+            $scope.$watch("billCodesCtrl.pickupStartDate", function (date) {
+            }, true);
 
         }]);
 
@@ -128,8 +193,10 @@
             return $resource('',{},
                 {
                     listOfBillCodes :{method: 'GET', isArray: false, url:"/billCodes/list"},
+                    searchBillCodes:{method: 'GET', isArray: false, url:"/billCodes/search/:searchKey"},
+                    addBillCode :{method: 'POST', isArray: false, url:"/billCodes/add"},
+                    getBillCodeTypeLookupData :{method: 'GET', isArray: false, url:"/billCodes/search/:searchKey"}
 
-                    addBillCode :{method: 'POST', isArray: false, url:"/billCodes/add"}
 
                 });
         }]);
