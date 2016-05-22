@@ -40,16 +40,16 @@
                             paymentType.paymentTypeDesc = response.data[i].paymentTypeDesc;
                             paymentType.paymentTypeId = response.data[i].paymentTypeId;
                             paymentType.paymentTypeName = response.data[i].paymentTypeName;
-                            paymentType.glAccountId = response.data[i].glAccountDto.glAccountId;
-                            paymentType.majorAccountNumber = response.data[i].glAccountDto.majorAccountNumber;
+                            paymentType.glAccountId = response.data[i].glAccountId || 0;
+                            paymentType.glAccountNumber = response.data[i].glAccountNumber;
 
                             paymentTypeCtrl.listPaymentTypes.push(paymentType);
                         }
                     }
                 });
             };
-            //TODO:
-            //paymentTypeCtrl.getPaymentTypeList();
+
+            paymentTypeCtrl.getPaymentTypeList();
 
             paymentTypeCtrl.addPaymentType = function(){
                 var paymentType = {};
@@ -62,6 +62,8 @@
                 paymentType.addOnGroupId = paymentTypeCtrl.addOnGroupId;
                 paymentType.displayPriority = paymentTypeCtrl.displayPriority;
                 paymentType.description = paymentTypeCtrl.description;
+                paymentType.glAccountId = paymentTypeCtrl.glAccountId || 0;
+                paymentType.glAccountNumber = paymentTypeCtrl.glAccountNumber;
 
                 paymentTypeGWSrv.addPaymentType(paymentType).$promise.then(function(response){
                     if(response){

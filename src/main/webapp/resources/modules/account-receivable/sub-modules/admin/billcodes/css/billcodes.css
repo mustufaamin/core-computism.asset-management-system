@@ -284,4 +284,4 @@ textarea.c-form-inpt{max-width:100%;min-width:100%;-webkit-transition:0.1s all l
     pointer-events: none;
 }
 
-.open-billCode-btn{margin-top: -16px; margin-right: -709px;}
+.open-billCode-btn{margin-top: -16px !important; margin-right: -709px !important;}
