@@ -22,7 +22,7 @@ public class CustomerDto {
     private Long countryId;
     private String countryName;
     private Integer customerStatus;
-    private Integer customerTypeId;
+    private Long customerTypeId;
     private String customerTypeName;
 
     public Long getId() {
@@ -121,11 +121,11 @@ public class CustomerDto {
         this.customerStatus = customerStatus;
     }
 
-    public Integer getCustomerTypeId() {
+    public Long getCustomerTypeId() {
         return customerTypeId;
     }
 
-    public void setCustomerTypeId(Integer customerTypeId) {
+    public void setCustomerTypeId(Long customerTypeId) {
         this.customerTypeId = customerTypeId;
     }
 

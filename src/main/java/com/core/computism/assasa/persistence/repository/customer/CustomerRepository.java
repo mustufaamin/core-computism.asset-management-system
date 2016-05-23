@@ -1,7 +1,6 @@
-package com.core.computism.assasa.persistence.repository.pos;
+package com.core.computism.assasa.persistence.repository.customer;
 
-import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -1,4 +1,4 @@
-package com.core.computism.assasa.persistence.entity.cmn;
+package com.core.computism.assasa.persistence.entity.common;
 
 import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
 

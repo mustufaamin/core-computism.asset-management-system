@@ -1,5 +1,6 @@
-package com.core.computism.assasa.persistence.entity.cmn;
+package com.core.computism.assasa.persistence.entity.customer;
 
+import com.core.computism.assasa.persistence.entity.common.Address;
 import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
 import com.core.computism.assasa.persistence.entity.pos.PosOrder;
 
@@ -26,9 +27,8 @@ public class Customer extends BaseEntity {
     private String mobileNumber;
     private String email;
     private Integer customerStatus;
-    private Integer customerTypeId;
+    private CustomerType customerType;
     private Address address;
-    private List<PosOrder> posOrders;
 
 
     @Basic
@@ -81,16 +81,15 @@ public class Customer extends BaseEntity {
         this.customerStatus = customerStatus;
     }
 
-    @Basic
-    @Column(name = "customer_type_id", nullable = false, insertable = true, updatable = true, length = 255)
-    public Integer getCustomerTypeId() {
-        return customerTypeId;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_type_id", referencedColumnName = "id", nullable = false)
+    public CustomerType getCustomerType() {
+        return customerType;
     }
 
-    public void setCustomerTypeId(Integer customerTypeId) {
-        this.customerTypeId = customerTypeId;
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
     }
-
 
     @Basic
     @Column(name = "mobile_number", nullable = false, insertable = true, updatable = true, length = 45)
@@ -110,15 +109,6 @@ public class Customer extends BaseEntity {
 
     public void setAddress(Address address) {
         this.address = address;
-    }
-
-    @OneToMany(mappedBy = "customer")
-    public List<PosOrder> getPosOrders() {
-        return posOrders;
-    }
-
-    public void setPosOrders(List<PosOrder> posOrders) {
-        this.posOrders = posOrders;
     }
 
     @Transient

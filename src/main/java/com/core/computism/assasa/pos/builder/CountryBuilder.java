@@ -2,7 +2,7 @@ package com.core.computism.assasa.pos.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.pos.domain.CountryDto;
-import com.core.computism.assasa.persistence.entity.cmn.Country;
+import com.core.computism.assasa.persistence.entity.common.Country;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

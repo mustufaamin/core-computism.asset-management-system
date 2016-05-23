@@ -27,7 +27,7 @@ public class CustomerController extends BaseController {
     CustomerService customerService;
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public ServerResponse<CustomerDto> add(@RequestBody CustomerDto customerDto) throws PosBusinessException {
+    public ServerResponse<CustomerDto> add(@RequestBody CustomerDto customerDto) throws AssasaBusinessException {
         LOGGER.info("Adding Customer..");
         ServerResponse<CustomerDto> response = toResponse(customerService.add(customerDto));
         return response;
@@ -41,7 +41,7 @@ public class CustomerController extends BaseController {
     }
 
     @RequestMapping(value = "list",method = RequestMethod.GET)
-    public ServerResponse<List<CustomerDto>> listCustomers() throws PosBusinessException {
+    public ServerResponse<List<CustomerDto>> listCustomers() throws AssasaBusinessException {
         LOGGER.info("List Customers ...");
         ServerResponse<List<CustomerDto>> response = toResponse(customerService.getCustomers());
         return response;

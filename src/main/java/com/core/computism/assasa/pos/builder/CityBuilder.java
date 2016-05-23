@@ -2,7 +2,7 @@ package com.core.computism.assasa.pos.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.pos.domain.CityDto;
-import com.core.computism.assasa.persistence.entity.cmn.City;
+import com.core.computism.assasa.persistence.entity.common.City;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

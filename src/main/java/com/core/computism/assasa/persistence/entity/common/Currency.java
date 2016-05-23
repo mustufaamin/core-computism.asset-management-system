@@ -1,17 +1,11 @@
-package com.core.computism.assasa.persistence.entity.cmn;
+package com.core.computism.assasa.persistence.entity.common;
 
 import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
-import com.core.computism.assasa.persistence.entity.pos.PosOrder;
-import com.core.computism.assasa.persistence.entity.pos.PurchaseOrder;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.util.List;
 
 /**
  * Created by VD on 2/9/2016.

@@ -3,12 +3,8 @@ package com.core.computism.assasa.ar.builder;
 import com.core.computism.assasa.ar.dto.AdjustmentDto;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.ar.Adjustment;
-import com.core.computism.assasa.persistence.entity.ar.Payment;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
-import com.core.computism.assasa.persistence.entity.cmn.City;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
-import com.core.computism.assasa.pos.domain.CustomerDto;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

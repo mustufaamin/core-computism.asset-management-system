@@ -1,6 +1,6 @@
-package com.core.computism.assasa.persistence.repository.pos;
+package com.core.computism.assasa.persistence.repository.common;
 
-import com.core.computism.assasa.persistence.entity.cmn.City;
+import com.core.computism.assasa.persistence.entity.common.City;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

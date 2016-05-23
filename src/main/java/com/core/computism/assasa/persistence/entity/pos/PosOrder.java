@@ -1,7 +1,7 @@
 package com.core.computism.assasa.persistence.entity.pos;
 
-import com.core.computism.assasa.persistence.entity.cmn.Currency;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.common.Currency;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 import com.core.computism.assasa.pos.domain.type.PosOrderStatus;
 
 import javax.persistence.Basic;

@@ -2,7 +2,7 @@ package com.core.computism.assasa.ar.builder;
 
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 
 import java.math.BigDecimal;
 import java.util.Date;

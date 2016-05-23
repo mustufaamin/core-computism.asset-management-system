@@ -1,7 +1,6 @@
-package com.core.computism.assasa.persistence.entity.cmn;
+package com.core.computism.assasa.persistence.entity.common;
 
-import com.core.computism.assasa.persistence.entity.cmn.City;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 import com.core.computism.assasa.persistence.entity.pos.BaseEntity;
 
 import javax.persistence.Basic;

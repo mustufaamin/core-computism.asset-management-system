@@ -1,21 +1,17 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
-import com.core.computism.assasa.persistence.entity.cmn.Address;
-import com.core.computism.assasa.persistence.entity.cmn.Currency;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.common.Address;
+import com.core.computism.assasa.persistence.entity.common.Currency;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
 
 /**
  * Created by VD on 5/22/2016.

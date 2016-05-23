@@ -2,7 +2,7 @@ package com.core.computism.assasa.pos.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.pos.domain.SupplierDto;
-import com.core.computism.assasa.persistence.entity.cmn.Address;
+import com.core.computism.assasa.persistence.entity.common.Address;
 import com.core.computism.assasa.persistence.entity.pos.Supplier;
 import org.springframework.stereotype.Component;
 

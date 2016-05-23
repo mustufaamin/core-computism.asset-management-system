@@ -2,8 +2,8 @@ package com.core.computism.assasa.pos.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.pos.domain.CustomerDto;
-import com.core.computism.assasa.persistence.entity.cmn.City;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.common.City;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -29,7 +29,6 @@ public class CustomerBuilder {
         customer.setPhoneNumber(customerDto.getPhoneNumber());
         customer.setMobileNumber(customerDto.getMobileNumber());
         customer.setCustomerStatus(customerDto.getCustomerStatus());
-        customer.setCustomerTypeId(customerDto.getCustomerTypeId());
 
         return customer;
     }
@@ -45,7 +44,6 @@ public class CustomerBuilder {
         customer.setPhoneNumber(customerDto.getPhoneNumber());
         customer.setMobileNumber(customerDto.getMobileNumber());
         customer.setCustomerStatus(customerDto.getCustomerStatus());
-        customer.setCustomerTypeId(customerDto.getCustomerTypeId());
 
     }
     public CustomerDto buildCustomerDto(Customer customer) throws BuilderException {
@@ -64,7 +62,8 @@ public class CustomerBuilder {
         customerDto.setMobileNumber(customer.getMobileNumber());
         customerDto.setPhoneNumber(customer.getPhoneNumber());
         customerDto.setCustomerStatus(customer.getCustomerStatus());
-        customerDto.setCustomerTypeId(customer.getCustomerTypeId());
+        customerDto.setCustomerTypeId(customer.getCustomerType().getId());
+        customerDto.setCustomerTypeName(customer.getCustomerType().getName());
 
         City city = customer.getAddress().getCity();
         customerDto.setCityId(city.getId());
