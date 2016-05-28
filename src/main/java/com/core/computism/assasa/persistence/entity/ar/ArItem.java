@@ -1,5 +1,6 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.entity.pos.PosItemGroup;
 import com.core.computism.assasa.persistence.entity.pos.PosItemType;
 import com.core.computism.assasa.persistence.entity.pos.Supplier;
@@ -18,8 +19,8 @@ import java.sql.Timestamp;
  * Created by VD on 5/22/2016.
  */
 @Entity
-@Table(name = "ar_item", schema = "", catalog = "assasa")
-public class ArItem extends BaseEntity{
+@Table(name = "ar_item", schema = "assasa", catalog = "assasa")
+public class ArItem extends BaseEntity {
 
     private String itemCode;
     private String itemUnit;
@@ -34,7 +35,7 @@ public class ArItem extends BaseEntity{
 
     private ArItemType arItemType;
     private Supplier supplier;
-    private ArItemGroup arItemGroup;
+    private BillCode billCode;
 
 
 
@@ -139,9 +140,6 @@ public class ArItem extends BaseEntity{
         this.color = color;
     }
 
-
-
-
     @ManyToOne
     @JoinColumn(name = "item_type", referencedColumnName = "id", nullable = false)
     public ArItemType getArItemType() {
@@ -163,12 +161,12 @@ public class ArItem extends BaseEntity{
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_group_id", referencedColumnName = "id", nullable = false)
-    public ArItemGroup getArItemGroup() {
-        return arItemGroup;
+    @JoinColumn(name = "bill_code_id", referencedColumnName = "id", nullable = false)
+    public BillCode getBillCode() {
+        return billCode;
     }
 
-    public void setArItemGroup(ArItemGroup arItemGroup) {
-        this.arItemGroup = arItemGroup;
+    public void setBillCode(BillCode billCode) {
+        this.billCode = billCode;
     }
 }

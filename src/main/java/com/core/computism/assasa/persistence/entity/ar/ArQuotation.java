@@ -1,5 +1,6 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.ar.enumtype.ArQuotationStatus;
 import com.core.computism.assasa.persistence.entity.cmn.Address;
 import com.core.computism.assasa.persistence.entity.cmn.Currency;
 import com.core.computism.assasa.persistence.entity.cmn.Customer;
@@ -9,19 +10,19 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by VD on 5/22/2016.
  */
 @Entity
-@Table(name = "ar_quotation", schema = "", catalog = "assasa")
+@Table(name = "ar_quotation", schema = "assasa", catalog = "assasa")
 public class ArQuotation extends BaseEntity {
 
     private String subject;
@@ -29,10 +30,16 @@ public class ArQuotation extends BaseEntity {
     private String careOf;
     private Integer numberOfItems;
     private BigDecimal totalAmount;
+    private Integer status;
+    private ArQuotationStatus arQuotationStatus;
+
 
     private Customer customer;
     private Currency currency;
     private Address address;
+
+
+    private List<ArQuotationItem> arQuotationItems;
 
 
     @Basic
@@ -85,6 +92,16 @@ public class ArQuotation extends BaseEntity {
         this.totalAmount = totalAmount;
     }
 
+    @Basic
+    @Column(name = "status")
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_Id", referencedColumnName = "id", nullable = false)
     public Customer getCustomer() {
@@ -114,5 +131,22 @@ public class ArQuotation extends BaseEntity {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "arQuotation")
+    public List<ArQuotationItem> getArQuotationItems() {
+        return arQuotationItems;
+    }
+
+    public void setArQuotationItems(List<ArQuotationItem> arQuotationItems) {
+        this.arQuotationItems = arQuotationItems;
+    }
+    @Transient
+    public ArQuotationStatus getArQuotationStatus() {
+        return arQuotationStatus.getArQuotationType(this.status);
+    }
+
+    public void setArQuotationStatus(ArQuotationStatus arQuotationStatus) {
+        this.status = arQuotationStatus.getCode();
     }
 }
