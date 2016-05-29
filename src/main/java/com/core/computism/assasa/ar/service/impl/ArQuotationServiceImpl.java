@@ -6,6 +6,7 @@ import com.core.computism.assasa.ar.dto.ArQuotationItemDto;
 import com.core.computism.assasa.ar.service.ArQuotationService;
 import com.core.computism.assasa.common.service.CurrencyService;
 import com.core.computism.assasa.customer.service.CustomerService;
+import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.AssasaBusinessException;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,5 +71,13 @@ public class ArQuotationServiceImpl implements ArQuotationService {
             arQuotationItems.add(arQuotationItem);
         }
         return arQuotationItems;
+    }
+
+    public ArQuotation findQuotationById(Long quotationId) throws ArBusinessException {
+        try{
+            return arQuotationRepository.findOne(quotationId);
+        } catch (NoResultException e) {
+            throw new ArBusinessException("No Records Found Against the ID: "+quotationId);
+        }
     }
 }

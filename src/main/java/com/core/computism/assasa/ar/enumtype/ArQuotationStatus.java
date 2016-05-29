@@ -10,15 +10,15 @@ public enum ArQuotationStatus {
     APPROVED(2);
 
     private Integer code;
-    private static HashMap<Integer, ArQuotationStatus> carCategories = new HashMap<>();
+    private static HashMap<Integer, ArQuotationStatus> arQuotationStatuses = new HashMap<>();
 
     static {
         for (ArQuotationStatus arQuotationStatus : ArQuotationStatus.values()) {
-            carCategories.put(arQuotationStatus.getCode(), arQuotationStatus);
+            arQuotationStatuses.put(arQuotationStatus.getCode(), arQuotationStatus);
         }
     }
     public static ArQuotationStatus getArQuotationType(Integer code) {
-        return carCategories.get(code);
+        return arQuotationStatuses.get(code);
     }
 
     private ArQuotationStatus(Integer code) {

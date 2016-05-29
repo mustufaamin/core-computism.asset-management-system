@@ -1,5 +1,7 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
+import com.core.computism.assasa.ar.enumtype.ArOrderStatus;
+
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,6 +13,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -18,13 +21,13 @@ import java.util.Date;
  * Created by VD on 5/22/2016.
  */
 @Entity
-@Table(name = "ar_order", schema = "", catalog = "assasa")
+@Table(name = "ar_order", schema = "assasa", catalog = "assasa")
 public class ArOrder extends BaseEntity {
 
     private String subject;
     private Integer status;
     private Date orderDeliveredDate;
-
+    private ArOrderStatus arOrderStatus;
     private ArQuotation arQuotation;
 
 
@@ -69,5 +72,14 @@ public class ArOrder extends BaseEntity {
 
     public void setArQuotation(ArQuotation arQuotation) {
         this.arQuotation = arQuotation;
+    }
+
+    @Transient
+    public ArOrderStatus getArOrderStatus() {
+        return arOrderStatus.getArQuotationType(this.status);
+    }
+
+    public void setArOrderStatus(ArOrderStatus arOrderStatus) {
+        this.status= arOrderStatus.getCode();
     }
 }
