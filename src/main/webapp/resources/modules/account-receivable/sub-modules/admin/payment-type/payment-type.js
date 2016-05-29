@@ -6,7 +6,7 @@
         .directive('paymentTypePanel', function(){
             return{
                 restrict: "E",
-                templateUrl: 'resources/modules/account-receivable/sub-modules/payments/payment-type/template/payment-type-panel.jsp'
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/payment-type/template/payment-type-panel.jsp'
             }
         });
 
@@ -14,7 +14,8 @@
         .directive('paymentTypeSlidePanel', function(){
             return{
                 restrict: "E",
-                templateUrl: 'resources/modules/account-receivable/sub-modules/payments/payment-type/template/payment-type-slide-panel.jsp'
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/payment-type/template/payment-type-slide-panel.jsp'
+
             }
         });
 

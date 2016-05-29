@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by VD on 2/28/2016.
  */
-@Service(value = "customerService")
+@Service(value = "customerTypeService")
 public class CustomerTypeServiceImpl implements CustomerTypeService {
 
     @Autowired

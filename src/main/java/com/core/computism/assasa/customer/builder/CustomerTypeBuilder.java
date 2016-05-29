@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by VD on 2/28/2016.
  */
-@Component(value = "customerBuilder")
+@Component(value = "customerTypeBuilder")
 public class CustomerTypeBuilder {
 
     public CustomerType buildCustomerTypeEntity(CustomerTypeDto customerTypeDto) throws BuilderException {
