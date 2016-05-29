@@ -1,9 +1,8 @@
-package com.core.computism.assasa.pos.service;
+package com.core.computism.assasa.customer.service;
 
 import com.core.computism.assasa.exception.AssasaBusinessException;
 import com.core.computism.assasa.persistence.entity.customer.Customer;
-import com.core.computism.assasa.pos.domain.CustomerDto;
-import com.core.computism.assasa.exception.PosBusinessException;
+import com.core.computism.assasa.customer.domain.CustomerDto;
 
 import java.util.List;
 

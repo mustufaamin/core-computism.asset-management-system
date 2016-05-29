@@ -1,10 +1,10 @@
-package com.core.computism.assasa.pos.service.impl;
+package com.core.computism.assasa.common.service.impl;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.pos.builder.CountryBuilder;
-import com.core.computism.assasa.pos.domain.CountryDto;
-import com.core.computism.assasa.pos.service.CountryService;
+import com.core.computism.assasa.common.builder.CountryBuilder;
+import com.core.computism.assasa.common.domain.CountryDto;
+import com.core.computism.assasa.common.service.CountryService;
 import com.core.computism.assasa.persistence.entity.common.Country;
 import com.core.computism.assasa.persistence.repository.common.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;

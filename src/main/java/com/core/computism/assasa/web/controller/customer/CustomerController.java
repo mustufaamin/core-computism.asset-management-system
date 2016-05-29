@@ -1,11 +1,8 @@
-package com.core.computism.assasa.web.controller.pos;
+package com.core.computism.assasa.web.controller.customer;
 
-import com.core.computism.assasa.ar.dto.BillCodeDto;
-import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.AssasaBusinessException;
-import com.core.computism.assasa.pos.domain.CustomerDto;
-import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.pos.service.CustomerService;
+import com.core.computism.assasa.customer.domain.CustomerDto;
+import com.core.computism.assasa.customer.service.CustomerService;
 import com.core.computism.assasa.util.ServerResponse;
 import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;

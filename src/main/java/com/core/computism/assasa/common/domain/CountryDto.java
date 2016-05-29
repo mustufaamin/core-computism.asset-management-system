@@ -1,4 +1,4 @@
-package com.core.computism.assasa.pos.domain;
+package com.core.computism.assasa.common.domain;
 
 /**
  * Created by VD on 3/13/2016.

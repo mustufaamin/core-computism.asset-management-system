@@ -1,7 +1,7 @@
-package com.core.computism.assasa.pos.builder;
+package com.core.computism.assasa.customer.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.pos.domain.CustomerDto;
+import com.core.computism.assasa.customer.domain.CustomerDto;
 import com.core.computism.assasa.persistence.entity.common.City;
 import com.core.computism.assasa.persistence.entity.customer.Customer;
 import org.springframework.stereotype.Component;

@@ -1,10 +1,10 @@
-package com.core.computism.assasa.pos.service.impl;
+package com.core.computism.assasa.common.service.impl;
 
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.pos.builder.CityBuilder;
-import com.core.computism.assasa.pos.domain.CityDto;
-import com.core.computism.assasa.pos.service.CityService;
+import com.core.computism.assasa.common.builder.CityBuilder;
+import com.core.computism.assasa.common.domain.CityDto;
+import com.core.computism.assasa.common.service.CityService;
 import com.core.computism.assasa.persistence.entity.common.City;
 import com.core.computism.assasa.persistence.repository.common.CityRepository;
 import com.core.computism.assasa.persistence.repository.common.CountryRepository;

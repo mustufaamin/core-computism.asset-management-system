@@ -1,8 +1,8 @@
-package com.core.computism.assasa.web.controller.pos;
+package com.core.computism.assasa.web.controller.common;
 
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.pos.domain.CityDto;
-import com.core.computism.assasa.pos.service.CityService;
+import com.core.computism.assasa.common.domain.CityDto;
+import com.core.computism.assasa.common.service.CityService;
 import com.core.computism.assasa.util.ServerResponse;
 import com.core.computism.assasa.web.controller.BaseController;
 import org.apache.log4j.Logger;

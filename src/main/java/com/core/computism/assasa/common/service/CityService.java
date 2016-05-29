@@ -1,7 +1,7 @@
-package com.core.computism.assasa.pos.service;
+package com.core.computism.assasa.common.service;
 
 import com.core.computism.assasa.exception.PosBusinessException;
-import com.core.computism.assasa.pos.domain.CityDto;
+import com.core.computism.assasa.common.domain.CityDto;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package com.core.computism.assasa.pos.builder;
+package com.core.computism.assasa.common.builder;
 
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.pos.domain.CountryDto;
+import com.core.computism.assasa.common.domain.CountryDto;
 import com.core.computism.assasa.persistence.entity.common.Country;
 import org.springframework.stereotype.Component;
 

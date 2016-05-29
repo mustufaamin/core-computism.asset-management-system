@@ -1,19 +1,18 @@
-package com.core.computism.assasa.pos.service.impl;
+package com.core.computism.assasa.customer.service.impl;
 
+import com.core.computism.assasa.customer.builder.CustomerBuilder;
+import com.core.computism.assasa.customer.domain.CustomerDto;
+import com.core.computism.assasa.customer.service.CustomerService;
 import com.core.computism.assasa.exception.AssasaBusinessException;
-import com.core.computism.assasa.kernel.error.type.CustomerErrorType;
-import com.core.computism.assasa.persistence.entity.customer.CustomerType;
-import com.core.computism.assasa.persistence.repository.common.CountryRepository;
-import com.core.computism.assasa.persistence.repository.customer.CustomerTypeRepository;
-import com.core.computism.assasa.pos.domain.CustomerDto;
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.exception.PosBusinessException;
+import com.core.computism.assasa.kernel.error.type.CustomerErrorType;
 import com.core.computism.assasa.persistence.entity.common.Address;
 import com.core.computism.assasa.persistence.entity.customer.Customer;
+import com.core.computism.assasa.persistence.entity.customer.CustomerType;
 import com.core.computism.assasa.persistence.repository.common.CityRepository;
+import com.core.computism.assasa.persistence.repository.common.CountryRepository;
 import com.core.computism.assasa.persistence.repository.customer.CustomerRepository;
-import com.core.computism.assasa.pos.service.CustomerService;
-import com.core.computism.assasa.pos.builder.CustomerBuilder;
+import com.core.computism.assasa.persistence.repository.customer.CustomerTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,12 +29,16 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private CustomerRepository customerRepository;
+
     @Autowired
     private CityRepository cityRepository;
+
     @Autowired
     private CustomerBuilder customerBuilder;
+
     @Autowired
     private CountryRepository countryRepository;
+
     @Autowired
     private CustomerTypeRepository customerTypeRepository;
 

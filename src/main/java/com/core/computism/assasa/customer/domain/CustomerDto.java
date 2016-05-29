@@ -1,4 +1,4 @@
-package com.core.computism.assasa.pos.domain;
+package com.core.computism.assasa.customer.domain;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 
