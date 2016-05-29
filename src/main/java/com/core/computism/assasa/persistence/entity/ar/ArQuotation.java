@@ -1,12 +1,11 @@
 package com.core.computism.assasa.persistence.entity.ar;
 
 import com.core.computism.assasa.ar.enumtype.ArQuotationStatus;
-import com.core.computism.assasa.persistence.entity.cmn.Address;
-import com.core.computism.assasa.persistence.entity.cmn.Currency;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.common.Address;
+import com.core.computism.assasa.persistence.entity.common.Currency;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

@@ -1,23 +1,18 @@
 package com.core.computism.assasa.pos.service.impl;
 
 import com.core.computism.assasa.common.service.CurrencyService;
-import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.AssasaBusinessException;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.persistence.entity.pos.PosOrder;
 import com.core.computism.assasa.persistence.entity.pos.PosOrderItem;
-import com.core.computism.assasa.persistence.entity.pos.PosPayment;
 import com.core.computism.assasa.persistence.repository.pos.PosOrderRepository;
 import com.core.computism.assasa.pos.builder.PosOrderBuilder;
-import com.core.computism.assasa.pos.builder.PosPaymentBuilder;
 import com.core.computism.assasa.pos.domain.PosOrderDto;
 import com.core.computism.assasa.pos.domain.PosOrderItemDto;
-import com.core.computism.assasa.pos.domain.PosPaymentDto;
-import com.core.computism.assasa.pos.service.CustomerService;
+import com.core.computism.assasa.customer.service.CustomerService;
 import com.core.computism.assasa.pos.service.PosItemService;
 import com.core.computism.assasa.pos.service.PosOrderService;
-import com.core.computism.assasa.pos.service.PosPaymentTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

@@ -2,7 +2,7 @@ package com.core.computism.assasa.common.service;
 
 import com.core.computism.assasa.common.domain.CurrencyDto;
 import com.core.computism.assasa.exception.AssasaBusinessException;
-import com.core.computism.assasa.persistence.entity.cmn.Currency;
+import com.core.computism.assasa.persistence.entity.common.Currency;
 
 import java.util.List;
 

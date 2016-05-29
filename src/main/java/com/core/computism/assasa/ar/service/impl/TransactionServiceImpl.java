@@ -7,7 +7,7 @@ import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Transaction;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 import com.core.computism.assasa.persistence.repository.ar.TransactionRepository;
 import org.apache.commons.collections.CollectionUtils;
