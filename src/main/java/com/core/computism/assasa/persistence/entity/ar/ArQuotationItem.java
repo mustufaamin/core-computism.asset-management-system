@@ -12,7 +12,7 @@ import javax.persistence.Table;
  * Created by VD on 5/22/2016.
  */
 @Entity
-@Table(name = "ar_quotation_item", schema = "", catalog = "assasa")
+@Table(name = "ar_quotation_item", schema = "assasa", catalog = "assasa")
 public class ArQuotationItem extends BaseEntity{
 
     private ArQuotation arQuotation;

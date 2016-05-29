@@ -76,12 +76,14 @@ CREATE TABLE `ar_item_type` (
 
 
 
+
 CREATE TABLE `ar_quotation` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `subject` varchar(255) DEFAULT NULL,
   `quote_number` varchar(255) DEFAULT NULL,
   `care_of` varchar(255) DEFAULT NULL,
   `customer_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   `address_id` int(11) DEFAULT NULL,
   `currency_id` int(11) DEFAULT NULL,
   `number_of_items` int(11) DEFAULT NULL,
@@ -93,8 +95,8 @@ CREATE TABLE `ar_quotation` (
   KEY `fk_customer_id23_idx` (`customer_id`),
   KEY `fk_address_id23_idx` (`address_id`),
   KEY `fk_currency_id_idx` (`currency_id`),
-  CONSTRAINT `fk_currency_id` FOREIGN KEY (`currency_id`) REFERENCES `cmn_currency` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_address_id23` FOREIGN KEY (`address_id`) REFERENCES `cmn_address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_currency_id` FOREIGN KEY (`currency_id`) REFERENCES `cmn_currency` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_customer_id23` FOREIGN KEY (`customer_id`) REFERENCES `cc_customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -114,5 +116,16 @@ CREATE TABLE `ar_quotation_item` (
   CONSTRAINT `fk_quotation_item_quotation25` FOREIGN KEY (`quotation_id`) REFERENCES `ar_quotation` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_quotation_item_item25` FOREIGN KEY (`item_id`) REFERENCES `ar_item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `assasa`.`ar_item` DROP FOREIGN KEY `fk_item_group24` ;
+ALTER TABLE `assasa`.`ar_item` CHANGE COLUMN `item_group_id` `bill_code_id` INT(11) NOT NULL  ,
+ADD CONSTRAINT `fk_bill_code24`
+FOREIGN KEY (`bill_code_id` )
+REFERENCES `assasa`.`bi_bill_code` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+
 
 
