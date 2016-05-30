@@ -1,26 +1,17 @@
 /**
  * Created by Muhammad Umer on 3/12/2016.
  */
-var app = angular.module('Asasa', ['ngMessages','ngMaterial','ngTable', 'ngRoute', 'ngResource', 'ui.router','ngAnimate', 'ui.bootstrap','ui.bootstrap.datetimepicker']);
+var app = angular.module('Asasa', ['ngTable', 'ngResource', 'ui.router','ngAnimate', 'ui.bootstrap','ui.bootstrap.datetimepicker']);
 
-app.controller('MainModulesController', ['$http', '$window', '$location',  function ($http, $window, $location){
-    var mainMdlsCtrl = this;
-    mainMdlsCtrl.showMainModules = true;
+app.controller('AsasaController', ['$http', '$window', '$location', '$scope',  function ($http, $window, $location, $scope){
+    var asasaCtrl = this;
+    asasaCtrl.openCustomerModule = false;
+    asasaCtrl.openHomePanel = true;
 
-    mainMdlsCtrl.showCustomerPanel = false;
-    mainMdlsCtrl.showArPanel = false;
-
-    mainMdlsCtrl.openCustomerPanel =  function(){
-        mainMdlsCtrl.showMainModules = false;
-        mainMdlsCtrl.showArPanel = false;
-        mainMdlsCtrl.showCustomerPanel = true;
-    };
-
-    mainMdlsCtrl.openArPanel = function(){
-        mainMdlsCtrl.showMainModules = false;
-        mainMdlsCtrl.showCustomerPanel = false;
-        mainMdlsCtrl.showArPanel = true;
-    };
+    $scope.$on("OPEN_CUSTOMER_PANEL", function(events, args){
+        asasaCtrl.openHomePanel = false;
+        asasaCtrl.openCustomerModule = true;
+    });
 
 }]);
 
@@ -28,9 +19,9 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
-        .state('home', {
+        .state('modules', {
             url: '/home',
-            templateUrl: 'resources/modules/home/templates/home-panel.jsp'
+            templateUrl: 'resources/modules/home/templates/module-panel.jsp'
         })
 
         .state('customer', {
@@ -38,7 +29,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
             templateUrl: 'resources/modules/customer/templates/customer-panel.jsp'
         })
 
-        .state('ar', {
+        /*.state('ar', {
             url: '/ar',
             templateUrl: 'resources/modules/account-receivable/templates/account-receivable-panel.jsp'
         })
@@ -85,7 +76,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
         .state('pos/admin/item', {
             url: '/pos/admin/item',
             templateUrl: 'resources/modules/pos/item/template/pos-item-panel.jsp'
-        })
+        })*/
     ;
 
 

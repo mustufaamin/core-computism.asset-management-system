@@ -19,7 +19,7 @@
     });
 
     angular.module('Asasa')
-        .controller('CustomerController', ['CustomerGatewayService', 'CountryService', 'CityService', '$http', function(custGatewaySrv, countrySrv, citySrv, $http){
+        .controller('CustomerController', ['ngTableParams', 'CustomerGatewayService', 'CountryService', 'CityService', '$http', function(ngTableParams, custGatewaySrv, countrySrv, citySrv, $http){
             var custCtrl = this;
             custCtrl.showPanel = false;
             custCtrl.isView = false;
@@ -27,6 +27,49 @@
             custCtrl.listCustomer = [];
             custCtrl.listCountry = [];
             custCtrl.listRelevantCities = [];
+
+            custCtrl.customerListPanel = false;
+            custCtrl.customerAddPanel = false;
+            custCtrl.customerProfilePanel = false;
+
+            custCtrl.openCustomerList = function(){
+                custCtrl.customerListPanel = true;
+                custCtrl.customerAddPanel = false;
+                custCtrl.customerProfilePanel = false;
+                custCtrl.getCustomerList();
+                custCtrl.getCountries();
+            };
+
+            custCtrl.openCustomerAddForm = function(){
+                custCtrl.customerListPanel = false;
+                custCtrl.customerAddPanel = true;
+                custCtrl.customerProfilePanel = false;
+            };
+
+            custCtrl.openCustomerProfile = function(){
+                custCtrl.customerListPanel = false;
+                custCtrl.customerAddPanel = false;
+                custCtrl.customerProfilePanel = true;
+            };
+
+            custCtrl.cols = [
+                {field: "itemCode",title: "Item Code",sortable: "itemCode",filter: {itemCode: "number"},show: true,dataType: "text"},
+                {field: "itemDescription",title: "Description ",sortable: "itemDescription",filter: {itemDescription: "text"},show: true,dataType: "text"},
+                {field: "costPrice",title: "Price ",sortable: "costPrice",filter: {costPrice: "number"},show: true,dataType: "text"},
+                {field: "action",title: "Actions",sortable: "action",filter: {action: "number"},show: true,dataType: "command"}
+            ];
+
+            custCtrl.itemTable = new ngTableParams({
+                page: 1,
+                count: 10
+            }, {
+                total: custCtrl.listCustomer.length,
+                getData: function ($defer, params) {
+                    console.log(custCtrl.listCustomer);
+                    custCtrl.data = custCtrl.listCustomer.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(custCtrl.data);
+                }
+            });
 
             custCtrl.getCustomerList = function(){
                 custCtrl.listCustomer = [];
@@ -48,7 +91,6 @@
                     }
                 });
             };
-            custCtrl.getCustomerList();
 
             custCtrl.getCountries = function(){
                 custCtrl.listCountry = [];
@@ -64,9 +106,6 @@
                     }
                 });
             };
-
-            custCtrl.getCustomerList();
-            custCtrl.getCountries();
 
             custCtrl.onSelectCountry = function(country){
                 if(country != null){

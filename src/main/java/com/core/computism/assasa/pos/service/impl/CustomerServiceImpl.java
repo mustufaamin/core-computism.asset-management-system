@@ -84,6 +84,7 @@ public class CustomerServiceImpl implements CustomerService {
             List<Customer> customers = customerRepository.findAll();
             return customerBuilder.buildCustomerDtoList(customers);
         }catch (BuilderException | PersistenceException e){
+            e.printStackTrace();
             throw new PosBusinessException("Error executing get customers",e);
         }
     }
