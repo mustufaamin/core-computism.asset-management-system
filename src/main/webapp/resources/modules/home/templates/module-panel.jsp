@@ -1,4 +1,4 @@
-            <span class="moduleWrapper" ng-controller="ModuleController as moduleCtrl">
+			<span class="moduleWrapper" ng-controller="ModuleController as moduleCtrl">
 				<span class="col-xs-3">
 					<div class="flip-container mainModule" ontouchstart="this.classList.toggle('hover');">
                         <div class="flipper">
@@ -41,7 +41,7 @@
 									  <span class="boxInfoWrap"><span class="col-xs-12  boxLabel">TOTAL DEBIT AMOUNT</span><span class="col-xs-12  boxCont">$30,300</span></span>
 									  <span class="boxInfoWrap"><span class="col-xs-12  boxLabel">DEBIT %</span><span class="col-xs-12  boxCont">33%</span></span>
 								</span>
-                                <button class="mainModulebtn"><span>Details</span>
+								<a class="mainModulebtn" ui-sref="ar" ng-click="moduleCtrl.openArModule()"><span>Details</span></a>
                             </div>
                         </div>
                     </div>

@@ -19,6 +19,10 @@
             $rootScope.$broadcast("OPEN_CUSTOMER_PANEL", {});
         };
 
+        moduleCtrl.openArModule = function(){
+            $rootScope.$broadcast("OPEN_AR_PANEL", {});
+        };
+
     }]);
 
 })();

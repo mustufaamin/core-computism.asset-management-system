@@ -3,14 +3,22 @@
  */
 var app = angular.module('Asasa', ['ngTable', 'ngResource', 'ui.router','ngAnimate', 'ui.bootstrap','ui.bootstrap.datetimepicker']);
 
-app.controller('AsasaController', ['$http', '$window', '$location', '$scope',  function ($http, $window, $location, $scope){
+app.controller('AsasaController', ['$rootScope', '$http', '$window', '$location', '$scope',  function ($rootScope, $http, $window, $location, $scope){
     var asasaCtrl = this;
     asasaCtrl.openCustomerModule = false;
     asasaCtrl.openHomePanel = true;
+    asasaCtrl.openArModule = false;
 
     $scope.$on("OPEN_CUSTOMER_PANEL", function(events, args){
         asasaCtrl.openHomePanel = false;
         asasaCtrl.openCustomerModule = true;
+        asasaCtrl.openArModule = false
+    });
+
+    $scope.$on("OPEN_AR_PANEL", function(events, args){
+        asasaCtrl.openHomePanel = false;
+        asasaCtrl.openCustomerModule = false;
+        asasaCtrl.openArModule = true;
     });
 
 }]);
@@ -29,12 +37,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
             templateUrl: 'resources/modules/customer/templates/customer-panel.jsp'
         })
 
-        /*.state('ar', {
+        .state('ar', {
             url: '/ar',
             templateUrl: 'resources/modules/account-receivable/templates/account-receivable-panel.jsp'
         })
 
-        .state('arTypes', {
+        /*.state('arTypes', {
             url: '/arTypes',
             templateUrl: 'resources/modules/account-receivable/sub-modules/admin/ar-types/templates/ar-types-panel.jsp'
         })

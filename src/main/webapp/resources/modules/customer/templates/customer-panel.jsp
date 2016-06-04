@@ -2,37 +2,36 @@
   <div class="sub-menu">
     <ul class="menuList">
       <li class=""><a class="anime" ng-class="{active: custCtrl.customerListPanel}" ng-click="custCtrl.openCustomerList()">Customer List</a></li>
-      <li class=""><a class="anime" ng-class="{active: custCtrl.customerAddPanel}" ng-click="custCtrl.openCustomerAddForm()">Add Customer</a></li>
       <li class=""><a class="anime" ng-class="{active: custCtrl.customerProfilePanel}" ng-click="custCtrl.openCustomerProfile()">Customer Profile</a></li>
     </ul>
   </div>
   <div ng-show="custCtrl.customerListPanel">
-    <div class="search-cust list-cust">
-        <h3 class="list-cust-head">Current Customers</h3>
-        <div>
-          <table ng-table-dynamic="orderCtrl.itemTable with orderCtrl.cols"
-                 class="table table-condensed table-bordered table-striped">
-            <colgroup>
-              <col width="20%" />
-              <col width="60%" />
-              <col width="10%" />
-              <col width="10%" />
-            </colgroup>
-            <tr ng-repeat="row in $data">
-              <td ng-repeat="col in $columns">
-                <span ng-if="col.dataType !== 'command'">{{row[col.field]}}</span>
-                <div ng-if="col.dataType === 'command'">
-                  <button class="btn btn-danger btn-sm" ng-click="orderCtrl.deleteItem(row)"><span class="glyphicon glyphicon-trash"></span></button>
-                </div>
-              </td>
-            </tr>
-          </table>
-        </div>
+    <div class="search-bar-panel">
+      <div class="search-bar-wrapper">
+        <span class="search-lbl-wrap">
+          <label class="search-lbl">Customer</label>
+        </span>
+        <span class="search-inpt-wrap">
+          <input type="text" class="search-inpt anime" placeholder="Search Customer">
+        </span>
+      </div>
+      <div class="add-btn-wrap">
+        <a class="mainModulebtn add-btn" ng-click=""><span>Add Customer</span></a>
+      </div>
     </div>
-  </div>
-  <div ng-show="custCtrl.customerAddPanel">
-    <div class="search-cust list-cust">
-      <h3 class="list-cust-head">Current Customers</h3>
+    <div class="tbl-dynamic-div">
+      <span class="tbl-dynamic-head"><h3 class="list-head">Current Customers</h3></span>
+      <table ng-table-dynamic="custCtrl.itemTable with custCtrl.cols"  class="table table-condensed table-bordered table-striped">
+        <tr ng-repeat="row in $data">
+          <td ng-repeat="col in $columns">
+            <span ng-if="col.dataType !== 'command'">{{row[col.field]}}</span>
+            <div ng-if="col.dataType === 'command'">
+              <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+              <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-trash" aria-hidden="true"></i></span>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
   <div ng-show="custCtrl.customerProfilePanel">
@@ -95,12 +94,101 @@
           </div>
         </div>
       </div>
+      <div class="cust-side-items-pnl-wrap">
+        <div ng-show="custCtrl.quotationOpen">
+          <div class="search-bar-panel">
+            <div class="search-bar-wrapper">
+        <span class="search-lbl-wrap">
+          <label class="search-lbl">Quotation</label>
+        </span>
+        <span class="search-inpt-wrap">
+          <input type="text" class="search-inpt anime" placeholder="Search Quotation">
+        </span>
+            </div>
+            <div class="add-btn-wrap">
+              <a class="mainModulebtn add-btn" ng-click=""><span>Add Quotation</span></a>
+            </div>
+          </div>
+          <div class="tbl-dynamic-div">
+            <span class="tbl-dynamic-head"><h3 class="list-head">Current Quotations</h3></span>
+            <table ng-table-dynamic="custCtrl.itemTable with custCtrl.cols"  class="table table-condensed table-bordered table-striped">
+              <tr ng-repeat="row in $data">
+                <td ng-repeat="col in $columns">
+                  <span ng-if="col.dataType !== 'command'">{{row[col.field]}}</span>
+                  <div ng-if="col.dataType === 'command'">
+                    <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div ng-show="custCtrl.pastOrdersOpen">
+          <div class="search-bar-panel">
+            <div class="search-bar-wrapper">
+        <span class="search-lbl-wrap">
+          <label class="search-lbl">Past Orders</label>
+        </span>
+        <span class="search-inpt-wrap">
+          <input type="text" class="search-inpt anime" placeholder="Search Past Orders">
+        </span>
+            </div>
+            <div class="add-btn-wrap">
+              <a class="mainModulebtn add-btn" ng-click=""><span>Add Past Order</span></a>
+            </div>
+          </div>
+          <div class="tbl-dynamic-div">
+            <span class="tbl-dynamic-head"><h3 class="list-head">Current Past Orders</h3></span>
+            <table ng-table-dynamic="custCtrl.itemTable with custCtrl.cols"  class="table table-condensed table-bordered table-striped">
+              <tr ng-repeat="row in $data">
+                <td ng-repeat="col in $columns">
+                  <span ng-if="col.dataType !== 'command'">{{row[col.field]}}</span>
+                  <div ng-if="col.dataType === 'command'">
+                    <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div ng-show="custCtrl.pastPaymentsOpen">
+          <div class="search-bar-panel">
+            <div class="search-bar-wrapper">
+        <span class="search-lbl-wrap">
+          <label class="search-lbl">Past Payments</label>
+        </span>
+        <span class="search-inpt-wrap">
+          <input type="text" class="search-inpt anime" placeholder="Search Past Payments">
+        </span>
+            </div>
+            <div class="add-btn-wrap">
+              <a class="mainModulebtn add-btn" ng-click=""><span>Add Past Payment</span></a>
+            </div>
+          </div>
+          <div class="tbl-dynamic-div">
+            <span class="tbl-dynamic-head"><h3 class="list-head">Current Past Payments</h3></span>
+            <table ng-table-dynamic="custCtrl.itemTable with custCtrl.cols"  class="table table-condensed table-bordered table-striped">
+              <tr ng-repeat="row in $data">
+                <td ng-repeat="col in $columns">
+                  <span ng-if="col.dataType !== 'command'">{{row[col.field]}}</span>
+                  <div ng-if="col.dataType === 'command'">
+                    <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-pencil" aria-hidden="true"></i></span>
+                    <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-trash" aria-hidden="true"></i></span>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="side-menu">
       <ul class="sm-list">
-        <li class=""><a class="anime active">Quotation List</a></li>
-        <li class=""><a class="anime">Past Orders</a></li>
-        <li class=""><a class="anime">Past Payments</a></li>
+        <li class=""><a class="anime" ng-click="custCtrl.openQuotationList()" ng-class="{active: custCtrl.quotationOpen}">Quotation List</a></li>
+        <li class=""><a class="anime" ng-click="custCtrl.openPastOrderList()" ng-class="{active: custCtrl.pastOrdersOpen}">Past Orders</a></li>
+        <li class=""><a class="anime" ng-click="custCtrl.openPastPaymentsList()" ng-class="{active: custCtrl.pastPaymentsOpen}">Past Payments</a></li>
       </ul>
     </div>
   </div>

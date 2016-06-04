@@ -6,6 +6,7 @@
 	<link id="bootstrap-style" href="resources/css/bootstrap.min.css" rel="stylesheet">
 	<link href="resources/css/font-awesome/font-awesome.min.css" rel="stylesheet">
 	<link href="resources/fonts/alex_brushregular/stylesheet.css" rel="stylesheet">
+	<link href="resources/css/ng-slim-scroll.css" rel="stylesheet">
 
 	<%--Custom CSS--%>
 	<link href="resources/css/asasa/asasa.css" rel="stylesheet">
@@ -14,7 +15,7 @@
 </head>
 <body ng-app="Asasa" ng-controller="AsasaController as asasaCtrl">
 <div class="container-fluid">
-	<div class="header row">
+	<div class="headerMain row">
 			<span class=" col-xs-3">
 				<span class="heading">Assasa</span>
 			</span>
@@ -36,11 +37,14 @@
 				
 			</span>
 	</div>
-	<div class="content row">
-		<div ui-view="modules" ng-show="asasaCtrl.openHomePanel">
+	<div class="content row" ui-view>
+		<div ui-sref="modules" ng-show="asasaCtrl.openHomePanel">
 			<module-panel></module-panel>
 		</div>
-		<div ui-view="customer" ng-show="asasaCtrl.openCustomerModule">
+		<div ui-sref="customer" ng-show="asasaCtrl.openCustomerModule">
+			<customer-panel></customer-panel>
+		</div>
+		<div ui-sref="ar" ng-show="asasaCtrl.openArModule">
 			<customer-panel></customer-panel>
 		</div>
 	</div>
@@ -63,11 +67,14 @@
 	<script src="resources/libraries/datetimepicker.js"></script>
 	<script src="resources/libraries/bower-components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="resources/libraries/bower-components/angular-animate/angular-animate.min.js"></script>
+	<script src="resources/libraries/bower-components/jquery/dist/jquery.min.js"></script>
+	<script src="resources/libraries/scroll-script.js"></script>
 
 	<%--Custom JS--%>
 	<script src="resources/modules/asasa.js"></script>
 	<script src="resources/modules/home/modules.js"></script>
 	<script src="resources/modules/customer/customer.js"></script>
+	<script src="resources/modules/account-receivable/account-receivable.js"></script>
 
 </div>
 </body>

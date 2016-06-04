@@ -118,6 +118,7 @@
     padding: 10px 5px;
     margin-bottom: 5px;
     position: relative;
+    margin-top: 5px;
 }
 .srch-wrap{
     display: table;
@@ -154,11 +155,9 @@
     right: 2;
     top: 5;
 }
-.list-cust-head{
-    font-size: 20px;
-    padding: 0px 0px 0px 20px;
-    color: #aaa;
-}
 .list-cust{
     top: 7px;
+}
+.cust-side-items-pnl-wrap{
+    margin-top: 20px;
 }

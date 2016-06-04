@@ -6,7 +6,7 @@ body{
     animation-name: background;
     animation-duration: 4s */
 }
-.header {
+.headerMain {
     position:fixed;
     background-color:#1D61BF;
     color:#fff;
@@ -21,7 +21,7 @@ body{
     float: left;
 }
 .content {
-    margin-top: 54px;
+    /**margin-top: 100px;**/
 }
 .footer {
     height:45px;
@@ -321,12 +321,16 @@ body{
 }
 
 .mainModulebtn span:after {
-    content: '»';
+    content: ">>";
     position: absolute;
     opacity: 0;
     top: 0;
     right: -20px;
     transition: 0.5s;
+}
+
+.mainModulebtn.a:hover {
+    color: #fff;
 }
 
 .mainModulebtn:hover span {
@@ -408,14 +412,20 @@ body{
     background-color: #aaa;
 }
 .moduleWrapper{
-    padding:15px;
-    display:block;
+    padding: 15px;
+    display: table;
+    float: left;
+    width: 100%;
+    margin-top: -20px;
 }
 .sub-menu{
     background-color: #fff;
     display: table;
     width: 100%;
     box-shadow:0px 4px 6px rgba(0,0,0,0.15);
+    position: fixed;
+    margin-top: -47px;
+    z-index: 10;
 }
 .menuList{
     list-style: none;
@@ -453,12 +463,12 @@ body{
 .side-menu{
     height: 100%;
     width: 15%;
-    position: relative;
+    position: fixed;
     border-right: 1px solid #bbb;
     box-shadow: 0px 4px 6px rgba(0,0,0,0.15);
     background: #fff;
     border-top: 1px solid #bbb;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 .sm-list{
@@ -481,7 +491,6 @@ body{
 }
 .sm-list li a:hover{
     color: #333;
-    content: '»';
 }
 .sm-list li a.active{
     color: #2781FF;
@@ -490,6 +499,93 @@ body{
 .cont-wrap{
     width: 85%;
     float: right;
-    padding:5px;
+    padding: 5px;
+    height: 100%;
+    position: relative;
 }
+
+.content {
+    top: 100px;
+    bottom: 44px;
+    position: absolute;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.list-head{
+    font-size: 20px;
+    padding: 0px 0px 5px 55px;
+    color: #333;
+}
+.tbl-dynamic-div{
+    padding: 10px 0px 0px 0px;
+}
+.tbl-dynamic-div table th{
+    background-color: #fff;
+    color: #aaa;
+}
+.tbl-dynamic-div table{
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.3);
+}
+.tbl-dynamic-div button{
+    border-radius: 0%;
+}
+.tbl-dynamic-cmnd-btn{
+    border: 1px solid;
+    padding: 2px 2px 2px 2px;
+}
+.tbl-dynamic-cmnd-btn:hover{
+    outline:none;
+    background-color: #999;
+}
+.tbl-dynamic-head{
+    display: table;
+    width: 100%;
+    background-color: #ccc;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.3);
+    z-index: 3;
+}
+.search-bar-panel{
+    border: 1px solid #bbb;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.3);
+    background: #fff;
+    width: 100%;
+    padding: 10px 5px;
+    margin-bottom: 5px;
+    position: relative;
+    margin-top: 5px;
+}
+.search-bar-wrapper{
+    padding: 0px 0px 0px 50px;
+}
+.search-lbl-wrap{
+    display: table;
+}
+.search-inpt-wrap{
+    display: table;
+}
+.search-inpt{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #bbb;
+}
+.search-inpt:focus{
+    outline: none;
+    border-bottom: 1px solid #333;
+    width: 150%;
+}
+.add-btn-wrap{
+    margin-left: 400px;
+    margin-top: 5px;
+    position: absolute;
+    display: table;
+    width: 100%;
+}
+
+.add-btn{
+    background-color: #1D61BF;
+}
+
 

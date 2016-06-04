@@ -19,7 +19,7 @@
     });
 
     angular.module('Asasa')
-        .controller('CustomerController', ['ngTableParams', 'CustomerGatewayService', 'CountryService', 'CityService', '$http', function(ngTableParams, custGatewaySrv, countrySrv, citySrv, $http){
+        .controller('CustomerController', ['$scope', 'ngTableParams', 'CustomerGatewayService', 'CountryService', 'CityService', '$http', '$timeout', '$document', function($scope, ngTableParams, custGatewaySrv, countrySrv, citySrv, $http, $timeout, $document){
             var custCtrl = this;
             custCtrl.showPanel = false;
             custCtrl.isView = false;
@@ -29,34 +29,60 @@
             custCtrl.listRelevantCities = [];
 
             custCtrl.customerListPanel = false;
-            custCtrl.customerAddPanel = false;
             custCtrl.customerProfilePanel = false;
+
+            custCtrl.quotationOpen = false;
+            custCtrl.pastOrdersOpen = false;
+            custCtrl.pastPaymentsOpen = false;
+
+            angular.element($document).ready(function () {
+                custCtrl.openCustomerList();
+            });
+
+
+            custCtrl.openQuotationList = function(){
+                custCtrl.quotationOpen = true;
+                custCtrl.pastOrdersOpen = false;
+                custCtrl.pastPaymentsOpen = false;
+            };
+
+            custCtrl.openPastOrderList = function(){
+                custCtrl.quotationOpen = false;
+                custCtrl.pastOrdersOpen = true;
+                custCtrl.pastPaymentsOpen = false;
+            };
+
+            custCtrl.openPastPaymentsList = function(){
+                custCtrl.quotationOpen = false;
+                custCtrl.pastOrdersOpen = false;
+                custCtrl.pastPaymentsOpen = true;
+            };
 
             custCtrl.openCustomerList = function(){
                 custCtrl.customerListPanel = true;
-                custCtrl.customerAddPanel = false;
                 custCtrl.customerProfilePanel = false;
                 custCtrl.getCustomerList();
                 custCtrl.getCountries();
             };
 
-            custCtrl.openCustomerAddForm = function(){
-                custCtrl.customerListPanel = false;
-                custCtrl.customerAddPanel = true;
-                custCtrl.customerProfilePanel = false;
-            };
-
             custCtrl.openCustomerProfile = function(){
                 custCtrl.customerListPanel = false;
-                custCtrl.customerAddPanel = false;
                 custCtrl.customerProfilePanel = true;
             };
 
             custCtrl.cols = [
-                {field: "itemCode",title: "Item Code",sortable: "itemCode",filter: {itemCode: "number"},show: true,dataType: "text"},
-                {field: "itemDescription",title: "Description ",sortable: "itemDescription",filter: {itemDescription: "text"},show: true,dataType: "text"},
-                {field: "costPrice",title: "Price ",sortable: "costPrice",filter: {costPrice: "number"},show: true,dataType: "text"},
-                {field: "action",title: "Actions",sortable: "action",filter: {action: "number"},show: true,dataType: "command"}
+                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
+                {field: "firstName",title: "First Name",sortable: "firstName",filter: {firstName: "text"},show: true,dataType: "text"},
+                {field: "lastName",title: "Last Name",sortable: "lastName",filter: {lastName: "text"},show: true,dataType: "text"},
+                {field: "phoneNumber",title: "Phone Number",sortable: "phoneNumber",filter: {phoneNumber: "number"},show: true,dataType: "number"},
+                {field: "mobileNumber",title: "Mobile Number",sortable: "mobileNumber",filter: {mobileNumber: "number"},show: true,dataType: "number"},
+                {field: "email",title: "Email",sortable: "email",filter: {email: "text"},show: true,dataType: "text"},
+                {field: "locationAddress",title: "Address",sortable: "locationAddress",filter: {locationAddress: "text"},show: true,dataType: "text"},
+                {field: "cityId",title: "City Id",sortable: "cityId",filter: {cityId: "number"},show: false,dataType: "number"},
+                {field: "cityName",title: "City Name",sortable: "cityName",filter: {cityName: "text"},show: true,dataType: "text"},
+                {field: "customerStatus",title: "Status",sortable: "customerStatus",filter: {customerStatus: "number"},show: true,dataType: "number"},
+                {field: "customerTypeId",title: "CCT Id",sortable: "customerTypeId",filter: {customerTypeId: "number"},show: false,dataType: "number"},
+                {field: "customerTypeName",title: "Customer Type Name",sortable: "customerTypeName",filter: {customerTypeName: "text"},show: true,dataType: "text"}
             ];
 
             custCtrl.itemTable = new ngTableParams({
@@ -65,7 +91,6 @@
             }, {
                 total: custCtrl.listCustomer.length,
                 getData: function ($defer, params) {
-                    console.log(custCtrl.listCustomer);
                     custCtrl.data = custCtrl.listCustomer.slice((params.page() - 1) * params.count(), params.page() * params.count());
                     $defer.resolve(custCtrl.data);
                 }
@@ -75,19 +100,9 @@
                 custCtrl.listCustomer = [];
                 custGatewaySrv.listCustomer().$promise.then(function(response){
                     if(response != null){
-                        for(var i = 0; i < response.data.length; i++){
-                            var customer = {};
-                            customer.id = response.data[i].id;
-                            customer.firstName = response.data[i].firstName;
-                            customer.lastName = response.data[i].lastName;
-                            customer.locationAddress = response.data[i].locationAddress;
-                            customer.phoneNumber = response.data[i].phoneNumber;
-                            customer.mobileNumber = response.data[i].mobileNumber;
-                            customer.email = response.data[i].email;
-                            customer.cityId = response.data[i].cityId;
-
-                            custCtrl.listCustomer.push(customer);
-                        }
+                        custCtrl.listCustomer = response.data;
+                        custCtrl.itemTable.total(custCtrl.listCustomer.length);
+                        custCtrl.itemTable.reload();
                     }
                 });
             };
@@ -194,6 +209,10 @@
                     }
                 }
             };
+
+            $scope.$on("OPEN_CUSTOMER_PANEL", function(events, args){
+
+            });
     }]);
 
 
