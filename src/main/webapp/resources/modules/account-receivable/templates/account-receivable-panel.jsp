@@ -11,49 +11,49 @@
     <div ng-show="arCtrl.adjustmentSubModule">
         <div class="side-menu">
             <ul class="sm-list">
-                <li class=""><a class="anime active">Import Adjustments</a></li>
-                <li class=""><a class="anime">Adjustment</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openImportAdjustmentPanel()" ng-class="{active: arCtrl.importAdjustmentPanelOpen}">Import Adjustments</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openArAdjustmentPanel()" ng-class="{active: arCtrl.artAdjustmentPanelOpen}">Adjustment</a></li>
             </ul>
         </div>
     </div>
     <div ng-show="arCtrl.processSubModule">
         <div class="side-menu">
             <ul class="sm-list">
-                <li class=""><a class="anime active">Quotation</a></li>
-                <li class=""><a class="anime">Account Creation</a></li>
-                <li class=""><a class="anime">Posting</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openArQuotationPanel()" ng-class="{active: arCtrl.arQuotationOpen}">Quotation</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openAccountCreationPanel()" ng-class="{active: arCtrl.accountCreationOpen}">Account Creation</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openPostingPanel()" ng-class="{active: arCtrl.postingOpen}">Posting</a></li>
             </ul>
         </div>
     </div>
     <div ng-show="arCtrl.paymentsSubModule">
         <div class="side-menu">
             <ul class="sm-list">
-                <li class=""><a class="anime active">Import Payments</a></li>
-                <li class=""><a class="anime">Payments</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openImportPaymentsPanel()" ng-class="{active: arCtrl.importPaymentOpen}">Import Payments</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openPaymentsPanel()" ng-class="{active: arCtrl.paymentOpen}">Payments</a></li>
             </ul>
         </div>
     </div>
     <div ng-show="arCtrl.adminSubModule">
         <div class="side-menu">
             <ul class="sm-list">
-                <li class=""><a class="anime active">Add-on Charge</a></li>
-                <li class=""><a class="anime">Addon Group</a></li>
-                <li class=""><a class="anime">Receivable Types</a></li>
-                <li class=""><a class="anime">Batches</a></li>
-                <li class=""><a class="anime">BillCodes</a></li>
-                <li class=""><a class="anime">Payment Types</a></li>
-                <li class=""><a class="anime">Properties</a></li>
-                <li class=""><a class="anime">StatementProperties</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openAddonChargePanel()" ng-class="{active: arCtrl.addonChargeOpen}">Add-on Charge</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openAddonGroupPanel()" ng-class="{active: arCtrl.addonGroupOpen}">Addon Group</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openRecievableTypesPanel()" ng-class="{active: arCtrl.receivableTypeOpen}">Receivable Types</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openBatchesPanel()" ng-class="{active: arCtrl.batchesOpen}">Batches</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openAdminBillCodesPanel()" ng-class="{active: arCtrl.adminBillCodesOpen}">BillCodes</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openPaymentTypesPanel()" ng-class="{active: arCtrl.paymentTypesOpen}">Payment Types</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openPropertiesPanel()" ng-class="{active: arCtrl.propertiesOpen}">Properties</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openStatementPropertiesPanel()" ng-class="{active: arCtrl.statementPropertiesOpen}">Statement Properties</a></li>
             </ul>
         </div>
     </div>
     <div ng-show="arCtrl.inquirySubModule">
         <div class="side-menu">
             <ul class="sm-list">
-                <li class=""><a class="anime active">Statements</a></li>
-                <li class=""><a class="anime">Transaction</a></li>
-                <li class=""><a class="anime">AR Accounts</a></li>
-                <li class=""><a class="anime">BillCodes</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openStatementPanel()" ng-class="{active: arCtrl.statementOpen}">Statements</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openTransactionPanel()" ng-class="{active: arCtrl.transactionOpen}">Transaction</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openArAccountPanel()" ng-class="{active: arCtrl.arAccountOpen}">AR Accounts</a></li>
+                <li class=""><a class="anime" ng-click="arCtrl.openInquiryBillCodesPanel()" ng-class="{active: arCtrl.inquiryBillCodePanel}">BillCodes</a></li>
             </ul>
         </div>
     </div>
