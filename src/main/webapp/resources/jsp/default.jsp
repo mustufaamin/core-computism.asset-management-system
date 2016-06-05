@@ -75,6 +75,7 @@
 	<script src="resources/modules/home/modules.js"></script>
 	<script src="resources/modules/customer/customer.js"></script>
 	<script src="resources/modules/account-receivable/account-receivable.js"></script>
+	<script src="resources/modules/account-receivable/sub-modules/payments/ar-payment.js"></script>
 
 </div>
 </body>
