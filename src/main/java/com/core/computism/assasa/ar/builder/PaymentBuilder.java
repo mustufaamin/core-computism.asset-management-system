@@ -1,11 +1,17 @@
 package com.core.computism.assasa.ar.builder;
 
+import com.core.computism.assasa.ar.dto.AdjustmentDto;
+import com.core.computism.assasa.ar.dto.PaymentDto;
+import com.core.computism.assasa.exception.BuilderException;
+import com.core.computism.assasa.persistence.entity.ar.Adjustment;
 import com.core.computism.assasa.persistence.entity.ar.Payment;
 import com.core.computism.assasa.persistence.entity.ar.PaymentType;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by VD on 3/6/2016.
@@ -205,5 +211,47 @@ public class PaymentBuilder {
         payment.setReferenceId(this.getReferenceId());
 
         return payment;
+    }
+
+    public List<PaymentDto> buildPaymentDtoList(List<Payment> payments) throws BuilderException {
+        if(payments == null || payments.size() < 1){
+            throw new BuilderException("Unable to build Payment DTO List for [null] payment or empty.");
+        }
+
+        List<PaymentDto> paymentDTOs = new ArrayList<>();
+
+        for(Payment payment : payments){
+            paymentDTOs.add(buildPaymentDto(payment));
+        }
+        return paymentDTOs;
+    }
+
+    public PaymentDto buildPaymentDto(Payment payment) throws BuilderException {
+
+        if(payment == null){
+            throw new BuilderException("Payment Entity not found");
+        }
+
+        PaymentDto paymentDto = new PaymentDto();
+
+        paymentDto.setArAccountId(payment.getArAccount().getId());
+        paymentDto.setReferenceArAccountId(payment.getReferenceArAccountId());
+        paymentDto.setPaymentTypeId(payment.getPaymentType().getId());
+        paymentDto.setPaymentAmount(payment.getPaymentAmount());
+        paymentDto.setPaymentDate(payment.getPaymentDate());
+        paymentDto.setPostedDate(payment.getPostedDate());
+        paymentDto.setProcessedBy(payment.getProcessedBy());
+        paymentDto.setDescription(payment.getDescription());
+        paymentDto.setNote(payment.getNote());
+        paymentDto.setStatus(payment.getStatus());
+        paymentDto.setCreatedBy(payment.getCreatedBy());
+        paymentDto.setModifiedBy(payment.getModifiedBy());
+        paymentDto.setBatchId(payment.getBatchId());
+        paymentDto.setSource(payment.getSource());
+        paymentDto.setSuppressOnStatement(payment.getSuppressOnStatement());
+        paymentDto.setStatementDescription2(payment.getStatementDescription2());
+        paymentDto.setReferenceId(payment.getReferenceId());
+
+        return paymentDto;
     }
 }

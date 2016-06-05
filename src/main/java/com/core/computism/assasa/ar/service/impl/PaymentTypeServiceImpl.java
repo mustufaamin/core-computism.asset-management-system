@@ -74,4 +74,21 @@ public class PaymentTypeServiceImpl implements PaymentTypeService {
 
         return paymentTypeDtos;
     }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
+    public List<PaymentTypeDto> getPaymentTypesByStatus(Integer status) throws ArBusinessException {
+        List<PaymentTypeDto> paymentTypeDTOs = new ArrayList<>();
+        List<PaymentType> paymentTypes = paymentTypeRepository.getPaymentTypesByStatus(status);
+        if (CollectionUtils.isEmpty(paymentTypes)) {
+            throw new ArBusinessException("Unable to find Payment Types");
+        }
+
+        for (PaymentType paymentType : paymentTypes) {
+            PaymentTypeDto paymentTypeDto = new PaymentTypeDto(paymentType);
+            paymentTypeDTOs.add(paymentTypeDto);
+        }
+
+        return paymentTypeDTOs;
+    }
 }

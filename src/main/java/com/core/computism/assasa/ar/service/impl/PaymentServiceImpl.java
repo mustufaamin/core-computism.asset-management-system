@@ -8,6 +8,7 @@ import com.core.computism.assasa.ar.transaction.IMemberCharge;
 import com.core.computism.assasa.ar.transaction.IPostable;
 import com.core.computism.assasa.ar.transaction.Posting;
 import com.core.computism.assasa.exception.ArBusinessException;
+import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.ar.Payment;
 import com.core.computism.assasa.persistence.entity.ar.PaymentType;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -118,5 +120,16 @@ public class PaymentServiceImpl extends BaseService implements PaymentService, I
 
     private void updatePayments(List<Payment> payments) {
         paymentRepository.save(payments);
+    }
+
+    @Override
+    public List<PaymentDto> getPaymentsByCustomerId(Long customerId) throws ArBusinessException {
+        try {
+            List<Payment> payments = paymentRepository.getPaymentByCustomerId(customerId);
+            return new PaymentBuilder().buildPaymentDtoList(payments);
+
+        } catch (PersistenceException | BuilderException e) {
+            throw new ArBusinessException("Error occurred In payment service Update", e);
+        }
     }
 }

@@ -2,7 +2,6 @@ package com.core.computism.assasa.ar.service;
 
 import com.core.computism.assasa.ar.dto.PaymentTypeDto;
 import com.core.computism.assasa.exception.ArBusinessException;
-import com.core.computism.assasa.persistence.entity.ar.PaymentType;
 
 import java.util.List;
 
@@ -15,4 +14,6 @@ public interface PaymentTypeService {
     void updatePaymentType(PaymentTypeDto paymentTypeDto) throws ArBusinessException;
 
     List<PaymentTypeDto> getPaymentTypes() throws ArBusinessException;
+
+    List<PaymentTypeDto> getPaymentTypesByStatus(Integer status) throws ArBusinessException;
 }

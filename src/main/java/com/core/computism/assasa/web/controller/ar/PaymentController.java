@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -84,6 +85,32 @@ public class PaymentController extends BaseController {
         try {
             paymentTypeDtos = paymentTypeService.getPaymentTypes();
             ServerResponse<List<PaymentTypeDto>> response = toResponse(paymentTypeDtos);
+            return response;
+        } catch (ArBusinessException e) {
+            throw new ArBusinessException(e);
+        }
+    }
+
+    @RequestMapping(value = "active/paymentTypes", method = RequestMethod.GET)
+    public @ResponseBody
+    ServerResponse<List<PaymentTypeDto>> getActivePaymentTypes() throws ArBusinessException {
+        List<PaymentTypeDto> paymentTypeDtos = null;
+        try {
+            paymentTypeDtos = paymentTypeService.getPaymentTypes();
+            ServerResponse<List<PaymentTypeDto>> response = toResponse(paymentTypeDtos);
+            return response;
+        } catch (ArBusinessException e) {
+            throw new ArBusinessException(e);
+        }
+    }
+
+    @RequestMapping(value = "/list/{customerId}", method = RequestMethod.GET)
+    public @ResponseBody
+    ServerResponse<List<PaymentDto>> getPaymentsByCustomerId(@PathVariable Long customerId) throws ArBusinessException {
+        List<PaymentDto> paymentDTOs = null;
+        try {
+            paymentDTOs = paymentService.getPaymentsByCustomerId(customerId);
+            ServerResponse<List<PaymentDto>> response = toResponse(paymentDTOs);
             return response;
         } catch (ArBusinessException e) {
             throw new ArBusinessException(e);
