@@ -1,6 +1,6 @@
 package com.core.computism.assasa.persistence.repository.common;
 
-import com.core.computism.assasa.persistence.entity.cmn.Currency;
+import com.core.computism.assasa.persistence.entity.common.Currency;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

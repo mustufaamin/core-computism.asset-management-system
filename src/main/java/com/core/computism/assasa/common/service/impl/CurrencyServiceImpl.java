@@ -5,7 +5,7 @@ import com.core.computism.assasa.common.domain.CurrencyDto;
 import com.core.computism.assasa.common.service.CurrencyService;
 import com.core.computism.assasa.exception.AssasaBusinessException;
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.persistence.entity.cmn.Currency;
+import com.core.computism.assasa.persistence.entity.common.Currency;
 import com.core.computism.assasa.persistence.repository.common.CurrencyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

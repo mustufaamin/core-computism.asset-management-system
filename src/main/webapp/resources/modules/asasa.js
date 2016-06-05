@@ -54,7 +54,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
 
         .state('paymentTypes', {
             url: '/paymentTypes',
-            templateUrl: 'resources/modules/account-receivable/sub-modules/payments/payment-type/template/payment-type-panel.jsp'
+            templateUrl: 'resources/modules/account-receivable/sub-modules/admin/payment-type/template/payment-type-panel.jsp'
         })
 
         .state('GlAccountType', {

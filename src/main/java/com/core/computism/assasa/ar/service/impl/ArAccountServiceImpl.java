@@ -8,11 +8,11 @@ import com.core.computism.assasa.ar.service.ArAccountService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 
 import com.core.computism.assasa.persistence.repository.ar.ArAccountTypeRepository;
-import com.core.computism.assasa.persistence.repository.pos.CustomerRepository;
+import com.core.computism.assasa.persistence.repository.customer.CustomerRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

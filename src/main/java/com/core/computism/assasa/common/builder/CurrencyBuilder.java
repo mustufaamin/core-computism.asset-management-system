@@ -2,8 +2,7 @@ package com.core.computism.assasa.common.builder;
 
 import com.core.computism.assasa.common.domain.CurrencyDto;
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.persistence.entity.cmn.Currency;
-import com.oracle.webservices.internal.api.databinding.Databinding;
+import com.core.computism.assasa.persistence.entity.common.Currency;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

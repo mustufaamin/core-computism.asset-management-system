@@ -267,6 +267,17 @@ CREATE TABLE `bi_bill_code` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+CREATE TABLE `assasa`.`cc_customer_type`(
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(255),
+  `status` INT(1) NOT NULL DEFAULT 0,
+  `creation_date` TIMESTAMP NULL DEFAULT NULL,
+  `last_updated_date` TIMESTAMP NULL DEFAULT NULL,
+  `version` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=INNODB;
+
 /*Table structure for table `cc_customer` */
 
 DROP TABLE IF EXISTS `cc_customer`;
@@ -288,6 +299,10 @@ CREATE TABLE `cc_customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Table structure for table `cmn_address` */
+
+ALTER TABLE `assasa`.`cc_customer`
+  ADD CONSTRAINT `cc_customer_type_ibfk_2` FOREIGN KEY (`customer_type_id`) REFERENCES `assasa`.`cc_customer_type`(`id`) ON UPDATE CASCADE ON DELETE CASCADE;
+
 
 DROP TABLE IF EXISTS `cmn_address`;
 

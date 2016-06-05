@@ -1,0 +1,131 @@
+
+
+CREATE TABLE `ar_order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(255) DEFAULT NULL,
+  `quotation_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `order_delivered_date` timestamp NULL DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_updated_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_ar_order_quotation26_idx` (`quotation_id`),
+  CONSTRAINT `fk_ar_order_quotation26` FOREIGN KEY (`quotation_id`) REFERENCES `ar_quotation` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `ar_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_code` varchar(255) NOT NULL,
+  `item_unit` varchar(255) NOT NULL,
+  `stock_level` int(11) NOT NULL,
+  `min_stock_level` int(11) NOT NULL,
+  `cost_price` varchar(45) DEFAULT NULL,
+  `sales_price` varchar(45) DEFAULT NULL,
+  `location` varchar(45) DEFAULT NULL,
+  `item_description` varchar(45) DEFAULT NULL,
+  `supplier_ref` int(11) DEFAULT NULL,
+  `item_type` int(11) NOT NULL,
+  `size` varchar(45) DEFAULT NULL,
+  `color` varchar(45) DEFAULT NULL,
+  `item_group_id` int(11) NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_item_group24_idx` (`item_group_id`),
+  KEY `fk_iitem_type24_idx` (`item_type`),
+  KEY `fk_item_supplier24_idx` (`supplier_ref`),
+  CONSTRAINT `fk_item_supplier24` FOREIGN KEY (`supplier_ref`) REFERENCES `supplier` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_iitem_type24` FOREIGN KEY (`item_type`) REFERENCES `ar_item_type` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_item_group24` FOREIGN KEY (`item_group_id`) REFERENCES `ar_item_group` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `ar_item_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `group_name` varchar(55) DEFAULT '0',
+  `group_description` varchar(255) DEFAULT '0',
+  `bill_code_id` int(11) NOT NULL,
+  `item_group_status` tinyint(3) unsigned DEFAULT '1',
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_itemtype_billcode25_idx` (`bill_code_id`),
+  CONSTRAINT `fk_itemtype_billcode25` FOREIGN KEY (`bill_code_id`) REFERENCES `bi_bill_code` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `ar_item_type` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) DEFAULT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+
+
+
+
+CREATE TABLE `ar_quotation` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `subject` varchar(255) DEFAULT NULL,
+  `quote_number` varchar(255) DEFAULT NULL,
+  `care_of` varchar(255) DEFAULT NULL,
+  `customer_id` int(11) DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `address_id` int(11) DEFAULT NULL,
+  `currency_id` int(11) DEFAULT NULL,
+  `number_of_items` int(11) DEFAULT NULL,
+  `total_amount` decimal(10,2) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_updated_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_customer_id23_idx` (`customer_id`),
+  KEY `fk_address_id23_idx` (`address_id`),
+  KEY `fk_currency_id_idx` (`currency_id`),
+  CONSTRAINT `fk_address_id23` FOREIGN KEY (`address_id`) REFERENCES `cmn_address` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_currency_id` FOREIGN KEY (`currency_id`) REFERENCES `cmn_currency` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_customer_id23` FOREIGN KEY (`customer_id`) REFERENCES `cc_customer` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+
+CREATE TABLE `ar_quotation_item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `quotation_id` int(11) DEFAULT NULL,
+  `item_id` int(11) DEFAULT NULL,
+  `creation_date` timestamp NULL DEFAULT NULL,
+  `last_updated_date` timestamp NULL DEFAULT NULL,
+  `version` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_quotation_item_quotation25_idx` (`quotation_id`),
+  KEY `fk_quotation_item_item25_idx` (`item_id`),
+  CONSTRAINT `fk_quotation_item_quotation25` FOREIGN KEY (`quotation_id`) REFERENCES `ar_quotation` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_quotation_item_item25` FOREIGN KEY (`item_id`) REFERENCES `ar_item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `assasa`.`ar_item` DROP FOREIGN KEY `fk_item_group24` ;
+ALTER TABLE `assasa`.`ar_item` CHANGE COLUMN `item_group_id` `bill_code_id` INT(11) NOT NULL  ,
+ADD CONSTRAINT `fk_bill_code24`
+FOREIGN KEY (`bill_code_id` )
+REFERENCES `assasa`.`bi_bill_code` (`id` )
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
+
+
+
+

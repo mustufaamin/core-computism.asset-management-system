@@ -1,14 +1,10 @@
 package com.core.computism.assasa.ar.dto;
 
-import com.core.computism.assasa.ar.service.ArAccountService;
-import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.Transaction;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccount;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
-import com.core.computism.assasa.persistence.entity.gl.JournalEntry;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.Date;

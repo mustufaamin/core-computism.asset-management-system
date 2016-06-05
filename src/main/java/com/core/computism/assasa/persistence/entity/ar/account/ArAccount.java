@@ -1,7 +1,7 @@
 package com.core.computism.assasa.persistence.entity.ar.account;
 
 import com.core.computism.assasa.persistence.entity.ar.BaseEntity;
-import com.core.computism.assasa.persistence.entity.cmn.Customer;
+import com.core.computism.assasa.persistence.entity.customer.Customer;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
