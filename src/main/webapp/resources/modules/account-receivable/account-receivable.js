@@ -11,7 +11,7 @@
         });
 
     angular.module('Asasa')
-        .controller('AccountReceivableController', ['$http','$document',  function($http, $document){
+        .controller('AccountReceivableController', ['$http','$document', 'ngTableParams', function($http, $document, ngTableParams){
             var arCtrl = this;
             arCtrl.adjustmentSubModule = false;
             arCtrl.processSubModule = false;
@@ -20,7 +20,7 @@
             arCtrl.inquirySubModule = false;
 
             angular.element($document).ready(function () {
-                arCtrl.openAdjustmentSubModule();
+                //arCtrl.openAdjustmentSubModule();
             });
 
             arCtrl.openImportAdjustmentPanel = function(){
@@ -183,6 +183,7 @@
                 arCtrl.paymentsSubModule = false;
                 arCtrl.adminSubModule = false;
                 arCtrl.inquirySubModule = false;
+                arCtrl.overviewSubModule = false;
             };
 
             arCtrl.openProcessSubModule = function(){
@@ -191,6 +192,7 @@
                 arCtrl.paymentsSubModule = false;
                 arCtrl.adminSubModule = false;
                 arCtrl.inquirySubModule = false;
+                arCtrl.overviewSubModule = false;
             };
 
             arCtrl.openPaymentsSubModule = function(){
@@ -199,6 +201,7 @@
                 arCtrl.paymentsSubModule = true;
                 arCtrl.adminSubModule = false;
                 arCtrl.inquirySubModule = false;
+                arCtrl.overviewSubModule = false;
             };
 
             arCtrl.openAdminSubModule = function(){
@@ -207,6 +210,7 @@
                 arCtrl.paymentsSubModule = false;
                 arCtrl.adminSubModule = true;
                 arCtrl.inquirySubModule = false;
+                arCtrl.overviewSubModule = false;
             };
 
             arCtrl.openInquirySubModule = function(){
@@ -215,7 +219,44 @@
                 arCtrl.paymentsSubModule = false;
                 arCtrl.adminSubModule = false;
                 arCtrl.inquirySubModule = true;
+                arCtrl.overviewSubModule = false;
             };
+
+            arCtrl.openOverviewSubModule = function(){
+                arCtrl.adjustmentSubModule = false;
+                arCtrl.processSubModule = false;
+                arCtrl.paymentsSubModule = false;
+                arCtrl.adminSubModule = false;
+                arCtrl.inquirySubModule = false;
+                arCtrl.overviewSubModule = true;
+            };
+
+
+            arCtrl.paymentCols = [
+                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
+                {field: "firstName",title: "First Name",sortable: "firstName",filter: {firstName: "text"},show: true,dataType: "text"},
+                {field: "lastName",title: "Last Name",sortable: "lastName",filter: {lastName: "text"},show: true,dataType: "text"},
+                {field: "phoneNumber",title: "Phone Number",sortable: "phoneNumber",filter: {phoneNumber: "number"},show: true,dataType: "number"},
+                {field: "mobileNumber",title: "Mobile Number",sortable: "mobileNumber",filter: {mobileNumber: "number"},show: true,dataType: "number"},
+                {field: "email",title: "Email",sortable: "email",filter: {email: "text"},show: true,dataType: "text"},
+                {field: "locationAddress",title: "Address",sortable: "locationAddress",filter: {locationAddress: "text"},show: true,dataType: "text"},
+                {field: "cityId",title: "City Id",sortable: "cityId",filter: {cityId: "number"},show: false,dataType: "number"},
+                {field: "cityName",title: "City Name",sortable: "cityName",filter: {cityName: "text"},show: true,dataType: "text"},
+                {field: "customerStatus",title: "Status",sortable: "customerStatus",filter: {customerStatus: "number"},show: true,dataType: "number"},
+                {field: "customerTypeId",title: "CCT Id",sortable: "customerTypeId",filter: {customerTypeId: "number"},show: false,dataType: "number"},
+                {field: "customerTypeName",title: "Customer Type Name",sortable: "customerTypeName",filter: {customerTypeName: "text"},show: true,dataType: "text"}
+            ];
+
+            arCtrl.paymentItemTable = new ngTableParams({
+                page: 1,
+                count: 10
+            }, {
+                total: 2,
+                getData: function ($defer, params) {
+                    arCtrl.data = arCtrl.listCustomer.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(arCtrl.data);
+                }
+            });
 
 
         }]);

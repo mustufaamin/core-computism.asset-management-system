@@ -34,9 +34,12 @@
             custCtrl.quotationOpen = false;
             custCtrl.pastOrdersOpen = false;
             custCtrl.pastPaymentsOpen = false;
+            custCtrl.isCustomerPanelOpen = false;
 
             angular.element($document).ready(function () {
-                custCtrl.openCustomerList();
+                if(custCtrl.isCustomerPanelOpen){
+                    custCtrl.openCustomerList();
+                }
             });
 
 
@@ -115,7 +118,6 @@
                             var country = {};
                             country.id = response.data[i].id;
                             country.name = response.data[i].name;
-
                             custCtrl.listCountry.push(country);
                         }
                     }
@@ -211,7 +213,7 @@
             };
 
             $scope.$on("OPEN_CUSTOMER_PANEL", function(events, args){
-
+                custCtrl.isCustomerPanelOpen = true;
             });
     }]);
 
