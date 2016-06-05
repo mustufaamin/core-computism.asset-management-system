@@ -6,7 +6,7 @@
           <li class=""><a class="anime" ng-class="{active: arCtrl.adminSubModule}" ng-click="arCtrl.openAdminSubModule()">Admin</a></li>
           <li class=""><a class="anime" ng-class="{active: arCtrl.processSubModule}" ng-click="arCtrl.openProcessSubModule()">Process</a></li>
           <li class=""><a class="anime" ng-class="{active: arCtrl.paymentsSubModule}" ng-click="arCtrl.openPaymentsSubModule()">Payments</a></li>
-          <li class=""><a class="anime" ui-sref="customer" ng-class="{active: arCtrl.adjustmentSubModule}" ng-click="arCtrl.openAdjustmentSubModule()">Adjustment</a></li>
+          <li class=""><a class="anime" ui-sref="arPayments" ng-class="{active: arCtrl.adjustmentSubModule}" ng-click="arCtrl.openAdjustmentSubModule()">Adjustment</a></li>
       </ul>
     </div>
     <div ng-show="arCtrl.adjustmentSubModule">

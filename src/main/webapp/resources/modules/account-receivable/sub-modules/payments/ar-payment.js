@@ -27,7 +27,7 @@
                 arPaymentCtrl.paymentOpen = true;
             };
 
-            arPaymentCtrl.cols = [
+            arPaymentCtrl.paymentCols = [
                 {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
                 {field: "firstName",title: "First Name",sortable: "firstName",filter: {firstName: "text"},show: true,dataType: "text"},
                 {field: "lastName",title: "Last Name",sortable: "lastName",filter: {lastName: "text"},show: true,dataType: "text"},
@@ -42,7 +42,7 @@
                 {field: "customerTypeName",title: "Customer Type Name",sortable: "customerTypeName",filter: {customerTypeName: "text"},show: true,dataType: "text"}
             ];
 
-            arPaymentCtrl.itemTable = new ngTableParams({
+            arPaymentCtrl.paymentItemTable = new ngTableParams({
                 page: 1,
                 count: 10
             }, {
