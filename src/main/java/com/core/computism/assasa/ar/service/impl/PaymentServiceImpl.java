@@ -1,5 +1,6 @@
 package com.core.computism.assasa.ar.service.impl;
 
+import com.amazonaws.util.DateUtils;
 import com.core.computism.assasa.ar.builder.PaymentBuilder;
 import com.core.computism.assasa.ar.dto.PaymentDto;
 import com.core.computism.assasa.ar.dto.service.TransactionServiceDto;
@@ -16,12 +17,16 @@ import com.core.computism.assasa.persistence.repository.ar.ArAccountRepository;
 import com.core.computism.assasa.persistence.repository.ar.PaymentRepository;
 import com.core.computism.assasa.persistence.repository.ar.PaymentTypeRepository;
 import org.apache.commons.collections.CollectionUtils;
+import org.joda.time.DateTime;
+import org.joda.time.DateTimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.PersistenceException;
+import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -127,6 +132,17 @@ public class PaymentServiceImpl extends BaseService implements PaymentService, I
         try {
             List<Payment> payments = paymentRepository.getPaymentByCustomerId(customerId);
             return new PaymentBuilder().buildPaymentDtoList(payments);
+
+        } catch (PersistenceException | BuilderException e) {
+            throw new ArBusinessException("Error occurred In payment service Update", e);
+        }
+    }
+
+    @Override
+    public List<PaymentDto> getPaymentsByDateCriteria(Long fromDateInMillis, Long toDateInMillis) throws ArBusinessException {
+        try {
+            List<Payment> payments = paymentRepository.getPaymentsByDateCriteria(new Timestamp(fromDateInMillis), new Timestamp(toDateInMillis));
+                return new PaymentBuilder().buildPaymentDtoList(payments);
 
         } catch (PersistenceException | BuilderException e) {
             throw new ArBusinessException("Error occurred In payment service Update", e);

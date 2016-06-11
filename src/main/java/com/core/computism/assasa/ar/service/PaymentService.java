@@ -9,9 +9,11 @@ import java.util.List;
  * Created by VD on 3/6/2016.
  */
 public interface PaymentService {
-    public void savePayment(PaymentDto paymentDto) throws ArBusinessException;
+    void savePayment(PaymentDto paymentDto) throws ArBusinessException;
 
-    public void saveNPostPayment(PaymentDto paymentDto) throws ArBusinessException;
+    void saveNPostPayment(PaymentDto paymentDto) throws ArBusinessException;
 
-    public List<PaymentDto> getPaymentsByCustomerId(Long customerId) throws ArBusinessException;
+    List<PaymentDto> getPaymentsByCustomerId(Long customerId) throws ArBusinessException;
+
+    List<PaymentDto> getPaymentsByDateCriteria(Long fromDateInMillis, Long toDateInMillis) throws ArBusinessException;
 }

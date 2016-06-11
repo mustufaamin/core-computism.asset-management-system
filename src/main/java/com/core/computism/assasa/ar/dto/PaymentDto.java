@@ -1,5 +1,7 @@
 package com.core.computism.assasa.ar.dto;
 
+import com.core.computism.assasa.ar.enumtype.PaymentSource;
+import com.core.computism.assasa.ar.enumtype.PaymentStatus;
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -16,6 +18,7 @@ public class PaymentDto {
     private Long arAccountId;
     private Integer referenceArAccountId;
     private Long paymentTypeId;
+    private String paymentTypeName;
     private BigDecimal paymentAmount;
     private Date paymentDate;
     private Date postedDate;
@@ -23,10 +26,12 @@ public class PaymentDto {
     private String description;
     private String note;
     private Integer status;
+    private PaymentStatus paymentStatus;
     private Integer createdBy;
     private Integer modifiedBy;
     private Integer batchId;
     private Integer source;
+    private PaymentSource paymentSource;
     private Boolean suppressOnStatement;
     private String statementDescription2;
     private Integer referenceId;
@@ -53,6 +58,14 @@ public class PaymentDto {
 
     public void setPaymentTypeId(Long paymentTypeId) {
         this.paymentTypeId = paymentTypeId;
+    }
+
+    public String getPaymentTypeName() {
+        return paymentTypeName;
+    }
+
+    public void setPaymentTypeName(String paymentTypeName) {
+        this.paymentTypeName = paymentTypeName;
     }
 
     public BigDecimal getPaymentAmount() {
@@ -111,6 +124,14 @@ public class PaymentDto {
         this.status = status;
     }
 
+    public PaymentStatus getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(PaymentStatus paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
     public Integer getCreatedBy() {
         return createdBy;
     }
@@ -141,6 +162,14 @@ public class PaymentDto {
 
     public void setSource(Integer source) {
         this.source = source;
+    }
+
+    public PaymentSource getPaymentSource() {
+        return paymentSource;
+    }
+
+    public void setPaymentSource(PaymentSource paymentSource) {
+        this.paymentSource = paymentSource;
     }
 
     public Boolean getSuppressOnStatement() {

@@ -24,6 +24,6 @@ public class BrainWebInitializer extends AbstractAnnotationConfigDispatcherServl
 
     @Override
     protected String getServletName() {
-        return "harmonyBrain-dispatcher";
+        return "core-dispatcher";
     }
 }

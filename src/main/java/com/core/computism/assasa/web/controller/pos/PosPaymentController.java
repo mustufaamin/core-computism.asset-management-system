@@ -18,7 +18,7 @@ import java.util.List;
  * Created by M.Mustafa Amin Shah on 4/2/2016.
  */
 
-@RestController
+@RestController(value = "posPaymentController")
 @RequestMapping(value = "/posPayment/")
 public class PosPaymentController extends BaseController {
     private static final Logger LOGGER = Logger.getLogger(PosPaymentController.class);

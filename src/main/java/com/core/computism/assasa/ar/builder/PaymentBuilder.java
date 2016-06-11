@@ -2,6 +2,8 @@ package com.core.computism.assasa.ar.builder;
 
 import com.core.computism.assasa.ar.dto.AdjustmentDto;
 import com.core.computism.assasa.ar.dto.PaymentDto;
+import com.core.computism.assasa.ar.enumtype.PaymentSource;
+import com.core.computism.assasa.ar.enumtype.PaymentStatus;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.ar.Adjustment;
 import com.core.computism.assasa.persistence.entity.ar.Payment;
@@ -237,6 +239,7 @@ public class PaymentBuilder {
         paymentDto.setArAccountId(payment.getArAccount().getId());
         paymentDto.setReferenceArAccountId(payment.getReferenceArAccountId());
         paymentDto.setPaymentTypeId(payment.getPaymentType().getId());
+        paymentDto.setPaymentTypeName(payment.getPaymentType().getPaymentTypeName());
         paymentDto.setPaymentAmount(payment.getPaymentAmount());
         paymentDto.setPaymentDate(payment.getPaymentDate());
         paymentDto.setPostedDate(payment.getPostedDate());
@@ -244,10 +247,12 @@ public class PaymentBuilder {
         paymentDto.setDescription(payment.getDescription());
         paymentDto.setNote(payment.getNote());
         paymentDto.setStatus(payment.getStatus());
+        paymentDto.setPaymentStatus(PaymentStatus.getPaymentStatus(payment.getStatus()));
         paymentDto.setCreatedBy(payment.getCreatedBy());
         paymentDto.setModifiedBy(payment.getModifiedBy());
         paymentDto.setBatchId(payment.getBatchId());
         paymentDto.setSource(payment.getSource());
+        paymentDto.setPaymentSource(PaymentSource.getPaymentSource(payment.getSource()));
         paymentDto.setSuppressOnStatement(payment.getSuppressOnStatement());
         paymentDto.setStatementDescription2(payment.getStatementDescription2());
         paymentDto.setReferenceId(payment.getReferenceId());

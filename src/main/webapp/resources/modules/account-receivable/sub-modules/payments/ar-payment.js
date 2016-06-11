@@ -11,10 +11,11 @@
         });
 
     angular.module('Asasa')
-        .controller('ArPaymentController', ['ArAdjustmentGatewayService', 'ngTableParams', '$http', function(adjustmentGatewayService, ngTableParams, $http) {
+        .controller('ArPaymentController', ['ArPaymentGatewayService', 'ngTableParams', '$http', function(arPaymentGatewayService, ngTableParams, $http) {
             var arPaymentCtrl = this;
             arPaymentCtrl.paymentOpen = false;
             arPaymentCtrl.importPaymentOpen = false;
+            arPaymentCtrl.paymentList = [];
 
             arPaymentCtrl.openImportPaymentsPanel = function () {
                 arPaymentCtrl.importPaymentOpen = true;
@@ -28,18 +29,13 @@
             };
 
             arPaymentCtrl.paymentCols = [
-                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
-                {field: "firstName",title: "First Name",sortable: "firstName",filter: {firstName: "text"},show: true,dataType: "text"},
-                {field: "lastName",title: "Last Name",sortable: "lastName",filter: {lastName: "text"},show: true,dataType: "text"},
-                {field: "phoneNumber",title: "Phone Number",sortable: "phoneNumber",filter: {phoneNumber: "number"},show: true,dataType: "number"},
-                {field: "mobileNumber",title: "Mobile Number",sortable: "mobileNumber",filter: {mobileNumber: "number"},show: true,dataType: "number"},
-                {field: "email",title: "Email",sortable: "email",filter: {email: "text"},show: true,dataType: "text"},
-                {field: "locationAddress",title: "Address",sortable: "locationAddress",filter: {locationAddress: "text"},show: true,dataType: "text"},
-                {field: "cityId",title: "City Id",sortable: "cityId",filter: {cityId: "number"},show: false,dataType: "number"},
-                {field: "cityName",title: "City Name",sortable: "cityName",filter: {cityName: "text"},show: true,dataType: "text"},
-                {field: "customerStatus",title: "Status",sortable: "customerStatus",filter: {customerStatus: "number"},show: true,dataType: "number"},
-                {field: "customerTypeId",title: "CCT Id",sortable: "customerTypeId",filter: {customerTypeId: "number"},show: false,dataType: "number"},
-                {field: "customerTypeName",title: "Customer Type Name",sortable: "customerTypeName",filter: {customerTypeName: "text"},show: true,dataType: "text"}
+                {field: "command", title: "", sortable: "command", filter: {command: "command"}, show: true, dataType: "command"},
+                {field: "paymentDate", title: "Payment Date", sortable: "paymentDate", filter: {paymentDate: "text"}, show: true,dataType: "text"},
+                {field: "description", title: "Description",sortable: "description", filter: {description: "text"},show: true,dataType: "text"},
+                {field: "paymentSource", title: "Payment Source",sortable: "paymentSource", filter: {paymentSource: "text"},show: true,dataType: "text"},
+                {field: "paymentTypeName", title: "Type",sortable: "paymentTypeName", filter: {paymentTypeName: "text"},show: true,dataType: "text"},
+                {field: "paymentAmount", title: "Amount",sortable: "paymentAmount", filter: {paymentAmount: "number"},show: true,dataType: "number"},
+                {field: "paymentStatus", title: "Status",sortable: "paymentStatus", filter: {paymentStatus: "text"},show: true,dataType: "text"}
             ];
 
             arPaymentCtrl.paymentItemTable = new ngTableParams({
@@ -48,19 +44,48 @@
             }, {
                 total: 2,
                 getData: function ($defer, params) {
-                    arPaymentCtrl.data = arPaymentCtrl.listCustomer.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    arPaymentCtrl.data = arPaymentCtrl.paymentList.slice((params.page() - 1) * params.count(), params.page() * params.count());
                     $defer.resolve(arPaymentCtrl.data);
                 }
             });
+
+            arPaymentCtrl.listOfArPayment = function(fromDate, toDate) {
+                var param = {
+                    fromDate:0,
+                    toDate:1465633213438
+                };
+                arPaymentGatewayService.listOfArPayment(param).$promise.then( function(response){
+                    if(response!=null) {
+                        arPaymentCtrl.paymentList = [];
+                        for(var i = 0; i < response.data.length; i++){
+                            var arPayment = {};
+                            arPayment.arAccountId = response.data[i].arAccountId;
+                            arPayment.referenceArAccountId = response.data[i].referenceArAccountId;
+                            arPayment.paymentTypeId = response.data[i].paymentTypeId;
+                            arPayment.paymentTypeName = response.data[i].paymentTypeName;
+                            arPayment.paymentAmount = response.data[i].paymentAmount;
+                            arPayment.paymentDate = response.data[i].paymentDate;
+                            arPayment.description = response.data[i].description;
+                            arPayment.status = response.data[i].status;
+                            arPayment.paymentStatus = response.data[i].paymentStatus;
+                            arPayment.source = response.data[i].source;
+                            arPayment.paymentSource = response.data[i].paymentSource;
+                            arPaymentCtrl.paymentList.push(arPayment);
+                        }
+                        arPaymentCtrl.paymentItemTable.reload();
+                    }
+                });
+            }
+            arPaymentCtrl.listOfArPayment();
         }]);
 
 
     angular.module('Asasa')
-        .service('ArAdjustmentGatewayService',['$resource' ,function ($resource) {
-            var arAdjustmentGatewayService = this;
+        .service('ArPaymentGatewayService',['$resource' ,function ($resource) {
+            var arPaymentGatewayService = this;
             return $resource('',{},
                 {
-                    listOfArAdjustment :{method: 'GET', isArray: false, url:"/glAccount/glAccountTypes"},
+                    listOfArPayment :{method: 'GET', isArray: false, url:"payments/list/:fromDate/:toDate"},
 
                     listOfBillCodes : {method: 'GET', isArray: false, url: "/billCodes/list"},
 

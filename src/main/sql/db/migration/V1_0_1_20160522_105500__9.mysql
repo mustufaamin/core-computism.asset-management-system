@@ -16,6 +16,13 @@ CREATE TABLE `ar_order` (
 
 
 
+ALTER TABLE `assasa`.`ar_payment`
+  CHANGE `payment_date` `payment_date` TIMESTAMP NULL,
+  CHANGE `posted_date` `posted_date` TIMESTAMP NULL;
+
+
+
+
 
 CREATE TABLE `ar_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
