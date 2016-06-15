@@ -644,8 +644,8 @@ body{
     overflow-y: auto;
     position: absolute;
     width: 100%;
-    bottom: 50px;
-    top: 98px;
+    bottom: 2px;
+    top: 2px;
     padding:15px;
 }
 .wid50p{width:50%;float:left;}

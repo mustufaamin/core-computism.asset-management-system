@@ -9,7 +9,7 @@
       <li class=""><a class="anime" ng-class="{active: arCtrl.adjustmentSubModule}" ng-click="arCtrl.openAdjustmentSubModule()">Adjustment</a></li>
     </ul>
   </div>
-  <div class="adj-sec payment-panel">
+  <div class="adj-sec">
     <div class="wid50p">
       <div class="adj-sec-module col-xs-12">
         <span class="adj-sec-heading col-xs-12">Batch Info:</span>
