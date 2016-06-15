@@ -18,7 +18,7 @@
 									  <span class="boxInfoWrap"><span class="col-xs-12  boxLabel">TOTAL CUSTOMERS</span><span class="col-xs-12  boxCont">30,300</span></span>
 									  <span class="boxInfoWrap"><span class="col-xs-12  boxLabel">CUSTOMERS PAYABLE %</span><span class="col-xs-12  boxCont">45%</span></span>
 								</span>
-                                <a class="mainModulebtn" ui-sref="arPayments" ng-click="moduleCtrl.openCustomerModule()"><span>Details</span></a>
+                                <a class="mainModulebtn" ui-sref="customer" ng-click="moduleCtrl.openCustomerModule()"><span>Details</span></a>
                             </div>
                         </div>
                     </div>

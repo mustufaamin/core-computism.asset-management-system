@@ -47,6 +47,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',  functi
             templateUrl: 'resources/modules/account-receivable/sub-modules/payments/template/ar-payment.jsp'
         })
 
+        .state('customerProfile', {
+            url: '/customer/customerProfile',
+            templateUrl: 'resources/modules/customer/templates/customer-profile.jsp'
+        })
+
+        .state('customerList', {
+            url: '/customer/customerList',
+            templateUrl: 'resources/modules/customer/templates/customer-list.jsp'
+        })
+
         /*.state('arTypes', {
             url: '/arTypes',
             templateUrl: 'resources/modules/account-receivable/sub-modules/admin/ar-types/templates/ar-types-panel.jsp'
