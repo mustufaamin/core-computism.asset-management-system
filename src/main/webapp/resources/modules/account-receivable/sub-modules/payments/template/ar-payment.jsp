@@ -1,37 +1,89 @@
-<div ng-show="arPaymentCtrl.paymentOpen">
-  <div class="cont-wrap">
-    <div class="search-bar-panel">
-      <div class="search-bar-wrapper">
-         <span class="search-lbl-wrap">
-           <label class="search-lbl">Payments</label>
-         </span>
-        <span class="search-inpt-wrap">
-          <input type="text" class="search-inpt anime" placeholder="Search Payments">
-        </span>
-      </div>
-      <div class="add-btn-wrap">
-        <a class="mainModulebtn add-btn" ng-click=""><span>Add Payments</span></a>
-      </div>
-    </div>
-    <div class="tbl-dynamic-div">
-      <span class="tbl-dynamic-head"><h3 class="list-head">Current Payments</h3></span>
-      <table ng-table-dynamic="arPaymentCtrl.paymentItemTable with arPaymentCtrl.paymentCols"  class="table table-condensed table-bordered table-striped">
-        <tr ng-repeat="row in $data">
-          <td ng-repeat="col in $columns">
-            <span ng-if="col.dataType !== 'command'">{{row[col.field]}}</span>
-            <div ng-if="col.dataType === 'command'">
-              <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-trash" aria-hidden="true"></i></span>
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
+<div ng-show="true">
+  <div class="sub-menu">
+    <ul class="menuList">
+      <li class=""><a class="anime" ng-class="{active: arCtrl.overviewSubModule}" ng-click="arCtrl.openOverviewSubModule()">Overview</a></li>
+      <li class=""><a class="anime" ng-class="{active: arCtrl.inquirySubModule}" ng-click="arCtrl.openInquirySubModule()">Inquiry</a></li>
+      <li class=""><a class="anime" ng-class="{active: arCtrl.adminSubModule}" ng-click="arCtrl.openAdminSubModule()">Admin</a></li>
+      <li class=""><a class="anime" ng-class="{active: arCtrl.processSubModule}" ng-click="arCtrl.openProcessSubModule()">Process</a></li>
+      <li class=""><a class="anime active" ui-sref="arPayments" ng-click="arCtrl.openPaymentsSubModule()">Payments</a></li>
+      <li class=""><a class="anime" ng-class="{active: arCtrl.adjustmentSubModule}" ng-click="arCtrl.openAdjustmentSubModule()">Adjustment</a></li>
+    </ul>
   </div>
-</div>
-<div class="side-menu">
-  <ul class="sm-list">
-    <li class=""><a class="anime" ng-click="arPaymentCtrl.openImportPaymentsPanel()" ng-class="{active: arPaymentCtrl.importPaymentOpen}">Import Payments</a></li>
-    <li class=""><a class="anime" ng-click="arPaymentCtrl.openPaymentsPanel()" ng-class="{active: arPaymentCtrl.paymentOpen}">Payments</a></li>
-  </ul>
+  <div class="adj-sec payment-panel">
+    <div class="wid50p">
+      <div class="adj-sec-module col-xs-12">
+        <span class="adj-sec-heading col-xs-12">Batch Info:</span>
+							<span class="sec-elem-wrap col-xs-6 form-group">
+								<span class="sec-elem-heading control-label">Batch #</span>
+								<input type="text" class="inpt anime" placeholder="Batch #...">
+							</span>
+							<span class="sec-elem-wrap col-xs-6 form-group">
+								<span class="sec-elem-heading control-label">Totals</span>
+								<input type="text" class="inpt anime" placeholder="Totals...">
+							</span>
+							<span class="sec-elem-wrap col-xs-6 form-group">
+								<span class="sec-elem-heading control-label">Used</span>
+								<input type="text" class="inpt anime" placeholder="Used...">
+							</span>
+      </div>
+      <div class="adj-sec-module col-xs-12">
+        <span class="adj-sec-heading col-xs-12">Customer Info:</span>
+
+							<span class="sec-elem-wrap col-xs-6 form-group">
+								<span class="sec-elem-heading control-label">Customer</span>
+								<input type="text" class="inpt anime" placeholder="Customer Name...">
+							</span>
+							<span class="sec-elem-wrap col-xs-6 form-group">
+								<span class="sec-elem-heading control-label">Customer Type</span>
+								<input type="text" class="inpt anime" placeholder="Customer Type...">
+							</span>
+							<span class="sec-elem-wrap col-xs-6 form-group">
+								<span class="sec-elem-heading control-label">Customer Status</span>
+								<input type="text" class="inpt anime" placeholder="Customer Status...">
+							</span>
+
+      </div>
+      <div class="adj-sec-module col-xs-12">
+        <span class="adj-sec-heading col-xs-12">Payment Info:</span>
+
+						<span class="sec-elem-wrap col-xs-4 form-group">
+							<span class="sec-elem-heading control-label">Payment Date</span>
+							<input type="text" class="inpt anime" placeholder="Payment Date...">
+						</span>
+						<span class="sec-elem-wrap col-xs-4 form-group">
+							<span class="sec-elem-heading control-label">Payment Type</span>
+							<input type="text" class="inpt anime" placeholder="Payment Type...">
+						</span>
+						<span class="sec-elem-wrap col-xs-4 form-group">
+							<span class="sec-elem-heading control-label">Payment Amount</span>
+							<input type="text" class="inpt anime" placeholder="Payment Amount...">
+						</span>
+      </div>
+    </div>
+    <div class="wid50p">
+      <div class="adj-sec-module col-xs-12">
+        <span class="adj-sec-heading col-xs-12">Payment Calculation:</span>
+
+							<span class="sec-elem-wrap col-xs-4 form-group">
+								<span class="sec-elem-heading control-label">Receivable Types</span>
+								<input type="text" class="inpt anime" placeholder="Receivable Types...">
+							</span>
+							<span class="sec-elem-wrap col-xs-4 form-group">
+								<span class="sec-elem-heading control-label">Amount</span>
+								<input type="text" class="inpt anime" placeholder="Amount...">
+							</span>
+							<span class="sec-elem-wrap col-xs-4 form-group">
+								<span class="sec-elem-heading control-label">Description</span>
+								<input type="text" class="inpt anime" placeholder="Description...">
+							</span>
+							<span class="sec-elem-wrap col-xs-4 form-group">
+								<span class="sec-elem-heading control-label">Payment Notes</span>
+								<input type="text" class="inpt anime" placeholder="Payment Notes...">
+							</span>
+
+      </div>
+    </div>
+
+  </div>
+  </div>
 </div>

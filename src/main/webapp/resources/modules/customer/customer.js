@@ -11,12 +11,20 @@
     });
 
     angular.module('Asasa')
-        .directive('addEditCustomerSlidePanel', function(){
-        return{
-            restrict: "E",
-            templateUrl: 'resources/modules/customer/templates/add-edit-customer-slide-panel.jsp'
-        }
-    });
+        .directive('customerList', function(){
+            return{
+                restrict: "E",
+                templateUrl: 'resources/modules/customer/templates/customer-list.jsp'
+            }
+        });
+
+    angular.module('Asasa')
+        .directive('customerProfile', function(){
+            return{
+                restrict: "E",
+                templateUrl: 'resources/modules/customer/templates/customer-profile.jsp'
+            }
+        });
 
     angular.module('Asasa')
         .controller('CustomerController', ['$scope', 'ngTableParams', 'CustomerGatewayService', 'CountryService', 'CityService', '$http', '$timeout', '$document', function($scope, ngTableParams, custGatewaySrv, countrySrv, citySrv, $http, $timeout, $document){
