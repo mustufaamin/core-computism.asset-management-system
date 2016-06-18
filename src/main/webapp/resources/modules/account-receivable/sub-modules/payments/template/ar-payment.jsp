@@ -9,6 +9,40 @@
       <li class=""><a class="anime" ng-class="{active: arCtrl.adjustmentSubModule}" ng-click="arCtrl.openAdjustmentSubModule()">Adjustment</a></li>
     </ul>
   </div>
+	<%--This is the Slide Panel HTML Start--%>
+	<div class="slideOverlay">
+	</div>
+	<div class="slidePanel">
+		<div class="slidePanelHead">
+			<h3 class="sld-panel-heading">Add Payments</h3>
+			<span class="options sld-pnl-close anime"><i class="fa fa-close" aria-hidden="true"></i></span>
+		</div>
+		<div class="sld-panel-cont">
+			<div class="adj-sec-module adj-sec-slide-panel col-xs-12">
+				<span class="adj-sec-heading col-xs-12">Customer Info:</span>
+						<span class="sec-elem-wrap col-xs-6 form-group">
+							<span class="sec-elem-heading control-label">Customer</span>
+							<input type="text" class="inpt anime" placeholder="Customer Name...">
+						</span>
+						<span class="sec-elem-wrap col-xs-6 form-group">
+							<span class="sec-elem-heading control-label">Customer Type</span>
+							<input type="text" class="inpt anime" placeholder="Customer Type...">
+						</span>
+						<span class="sec-elem-wrap col-xs-6 form-group">
+							<span class="sec-elem-heading control-label">Customer Status</span>
+							<input type="text" class="inpt anime" placeholder="Customer Status...">
+						</span>
+			</div>
+			<div class="adj-sec-module action-bar col-xs-12">
+						<span class="button-wrap">
+							<span class="button button-primary">Continue</span>
+							<span class="button button">Close</span>
+						</span>
+			</div>
+		</div>
+	</div>
+
+	<%--This is the Slide Panel HTML End--%>
   <div class="adj-sec">
     <div class="wid50p">
       <div class="adj-sec-module col-xs-12">
