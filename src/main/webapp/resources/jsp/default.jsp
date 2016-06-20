@@ -65,6 +65,7 @@
 	<script src="resources/libraries/bower-components/angular-resource/angular-resource.min.js"></script>
 	<script src="resources/libraries/bower-components/angular-ui-router/release/angular-ui-router.min.js"></script>
 	<script src="resources/libraries/datetimepicker.js"></script>
+	<script src="resources/libraries/elastic.js"></script>
 	<script src="resources/libraries/bower-components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="resources/libraries/bower-components/angular-animate/angular-animate.min.js"></script>
 	<script src="resources/libraries/bower-components/jquery/dist/jquery.min.js"></script>

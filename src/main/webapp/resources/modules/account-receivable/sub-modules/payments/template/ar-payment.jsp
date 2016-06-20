@@ -57,7 +57,12 @@
 							</span>
 							<span class="sec-elem-wrap col-xs-6 form-group">
 								<span class="sec-elem-heading control-label">Used</span>
-								<input type="text" class="inpt anime" placeholder="Used...">
+
+								<%--This is the TextArea HTML--%>
+								<textarea name="used" msd-elastic="\n" ng-model="manualVerCtrl.manualVerificationMessage"
+										  placeholder="Specify the reason for used...." class="inpt anime"
+										  ng-required="true" ng-keyup="manualVerCtrl.submitted=false" required="required"></textarea>
+								<%--<input type="text" class="inpt anime" placeholder="Used...">--%>
 							</span>
       </div>
       <div class="adj-sec-module col-xs-12">
@@ -65,6 +70,7 @@
 
 							<span class="sec-elem-wrap col-xs-6 form-group">
 								<span class="sec-elem-heading control-label">Customer</span>
+								<%--This is the DateTimePicker HTML--%>
 								<datetimepicker
 										hour-step="1"
 										minute-step="1"

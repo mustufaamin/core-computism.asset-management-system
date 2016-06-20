@@ -1,7 +1,7 @@
 /**
  * Created by Muhammad Umer on 3/12/2016.
  */
-var app = angular.module('Asasa', ['ngTable', 'ngResource', 'ui.router','ngAnimate', 'ui.bootstrap','ui.bootstrap.datetimepicker']);
+var app = angular.module('Asasa', ['ngTable', 'ngResource', 'ui.router','ngAnimate', 'ui.bootstrap','ui.bootstrap.datetimepicker', 'monospaced.elastic']);
 
 app.controller('AsasaController', ['$rootScope', '$http', '$window', '$location', '$scope',  function ($rootScope, $http, $window, $location, $scope){
     var asasaCtrl = this;
