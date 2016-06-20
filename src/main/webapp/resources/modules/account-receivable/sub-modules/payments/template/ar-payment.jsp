@@ -10,9 +10,9 @@
     </ul>
   </div>
 	<%--This is the Slide Panel HTML Start--%>
-	<div class="slideOverlay">
+	<div class="slideOverlay" ng-show="false">
 	</div>
-	<div class="slidePanel">
+	<div class="slidePanel" ng-show="false">
 		<div class="slidePanelHead">
 			<h3 class="sld-panel-heading">Add Payments</h3>
 			<span class="options sld-pnl-close anime"><i class="fa fa-close" aria-hidden="true"></i></span>
@@ -65,7 +65,20 @@
 
 							<span class="sec-elem-wrap col-xs-6 form-group">
 								<span class="sec-elem-heading control-label">Customer</span>
-								<input type="text" class="inpt anime" placeholder="Customer Name...">
+								<datetimepicker
+										hour-step="1"
+										minute-step="1"
+										ng-model="initialDate"
+										show-meridian="false"
+										date-disabled="false"
+										hidden-time="false"
+										hidden-date="false"
+										<%--name="editSchdBkCtrl.initialDate"--%>
+										show-spinners="true"
+										readonly-time="false"
+										>
+								</datetimepicker>
+								<%--<input type="text" class="inpt anime" placeholder="Customer Name...">--%>
 							</span>
 							<span class="sec-elem-wrap col-xs-6 form-group">
 								<span class="sec-elem-heading control-label">Customer Type</span>

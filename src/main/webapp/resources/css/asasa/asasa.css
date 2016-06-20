@@ -731,3 +731,18 @@ body{
     font-size: 20px;
     padding: 0px 0px 0px 24px;
 }
+
+.datetimepicker-wrapper > input{
+    width:50%;
+    float:left;
+}
+.datetimepicker-wrapper{
+    margin-top: 5px;
+}
+.uib-timepicker{
+    margin-top: -33px;
+}
+/*
+.datetimepicker-wrapper .uib-time.hours, .datetimepicker-wrapper .uib-time.minutes{
+    width:70%;
+}*/
