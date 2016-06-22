@@ -105,7 +105,12 @@
 						</span>
 						<span class="sec-elem-wrap col-xs-4 form-group">
 							<span class="sec-elem-heading control-label">Payment Type</span>
-							<input type="text" class="inpt anime" placeholder="Payment Type...">
+							<input typeahead-click-open typeahead-min-length="0" type="text" ng-model="selectedDriver"
+								   placeholder="Payment Type..." ng-required="true"
+								   ng-class=""
+								   uib-typeahead="billCode as billCode.label for billCode in capBulkCtrl.genderList | filter:{label: $viewValue}"
+								   typeahead-on-select="onSelectDriver($item)" typeahead-loading="loadingDrivers"
+								   typeahead-no-results="noDrivers" typeahead-wait-ms=1500 class="inpt anime">
 						</span>
 						<span class="sec-elem-wrap col-xs-4 form-group">
 							<span class="sec-elem-heading control-label">Payment Amount</span>

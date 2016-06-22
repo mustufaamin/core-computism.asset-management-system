@@ -1,47 +1,32 @@
-<div ng-show="arPaymentCtrl.paymentOpen">
+<div ng-show="true">
   <div class="sub-menu">
     <ul class="menuList">
-      <li class=""><a class="anime" ng-class="{active: arCtrl.overviewSubModule}" ng-click="arCtrl.openOverviewSubModule()">Overview</a></li>
-      <li class=""><a class="anime" ng-class="{active: arCtrl.inquirySubModule}" ng-click="arCtrl.openInquirySubModule()">Inquiry</a></li>
-      <li class=""><a class="anime" ng-class="{active: arCtrl.adminSubModule}" ng-click="arCtrl.openAdminSubModule()">Admin</a></li>
-      <li class=""><a class="anime" ng-class="{active: arCtrl.processSubModule}" ng-click="arCtrl.openProcessSubModule()">Process</a></li>
-      <li class=""><a class="anime active" ui-sref="arPayments" ng-click="arCtrl.openPaymentsSubModule()">Payments</a></li>
-      <li class=""><a class="anime" ng-class="{active: arCtrl.adjustmentSubModule}" ng-click="arCtrl.openAdjustmentSubModule()">Adjustment</a></li>
+      <li class=""><a class="anime" ng-class="{active: arAdminCtrl.overviewSubModule}" ng-click="arAdminCtrl.openOverviewSubModule()">Overview</a></li>
+      <li class=""><a class="anime" ng-class="{active: arAdminCtrl.inquirySubModule}" ng-click="arAdminCtrl.openInquirySubModule()">Inquiry</a></li>
+      <li class=""><a class="anime" ng-class="{active: arAdminCtrl.adminSubModule}" ng-click="arAdminCtrl.openAdminSubModule()">Admin</a></li>
+      <li class=""><a class="anime" ng-class="{active: arAdminCtrl.processSubModule}" ng-click="arAdminCtrl.openProcessSubModule()">Process</a></li>
+      <li class=""><a class="anime active" ui-sref="arPayments" ng-click="arAdminCtrl.openPaymentsSubModule()">Payments</a></li>
+      <li class=""><a class="anime" ng-class="{active: arAdminCtrl.adjustmentSubModule}" ng-click="arAdminCtrl.openAdjustmentSubModule()">Adjustment</a></li>
     </ul>
   </div>
   <div class="cont-wrap">
-    <div class="search-bar-panel">
-      <div class="search-bar-wrapper">
-         <span class="search-lbl-wrap">
-           <label class="search-lbl">Payments</label>
-         </span>
-        <span class="search-inpt-wrap">
-          <input type="text" class="search-inpt anime" placeholder="Search Payments">
-        </span>
-      </div>
-      <div class="add-btn-wrap">
-        <a class="mainModulebtn add-btn" ng-click=""><span>Add Payments</span></a>
-      </div>
+    <div ng-show="arAdminCtrl.adminBillCodesOpen">
+      <ar-billcode></ar-billcode>
     </div>
-    <div class="tbl-dynamic-div">
-      <span class="tbl-dynamic-head"><h3 class="list-head">Current Payments</h3></span>
-      <table ng-table-dynamic="arPaymentCtrl.paymentItemTable with arPaymentCtrl.paymentCols"  class="table table-condensed table-bordered table-striped">
-        <tr ng-repeat="row in $data">
-          <td ng-repeat="col in $columns">
-            <span ng-if="col.dataType !== 'command'">{{row[col.field]}}</span>
-            <div ng-if="col.dataType === 'command'">
-              <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-pencil" aria-hidden="true"></i></span>
-              <span class="tbl-dynamic-cmnd-btn anime"><i class="fa fa-trash" aria-hidden="true"></i></span>
-            </div>
-          </td>
-        </tr>
-      </table>
+    <div ng-show="arAdminCtrl.paymentTypesOpen">
+      <ar-payment-type></ar-payment-type>
     </div>
   </div>
 </div>
 <div class="side-menu">
   <ul class="sm-list">
-    <li class=""><a class="anime" ng-click="arPaymentCtrl.openImportPaymentsPanel()" ng-class="{active: arPaymentCtrl.importPaymentOpen}">Import Payments</a></li>
-    <li class=""><a class="anime" ng-click="arPaymentCtrl.openPaymentsPanel()" ng-class="{active: arPaymentCtrl.paymentOpen}">Payments</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openAddonChargePanel()" ng-class="{active: arAdminCtrl.addonChargeOpen}">Add-on Charge</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openAddonGroupPanel()" ng-class="{active: arAdminCtrl.addonGroupOpen}">Addon Group</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openRecievableTypesPanel()" ng-class="{active: arAdminCtrl.receivableTypeOpen}">Receivable Types</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openBatchesPanel()" ng-class="{active: arAdminCtrl.batchesOpen}">Batches</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openAdminBillCodesPanel()" ng-class="{active: arAdminCtrl.adminBillCodesOpen}">BillCodes</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openPaymentTypesPanel()" ng-class="{active: arAdminCtrl.paymentTypesOpen}">Payment Types</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openPropertiesPanel()" ng-class="{active: arAdminCtrl.propertiesOpen}">Properties</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openStatementPropertiesPanel()" ng-class="{active: arAdminCtrl.statementPropertiesOpen}">Statement Properties</a></li>
   </ul>
 </div>

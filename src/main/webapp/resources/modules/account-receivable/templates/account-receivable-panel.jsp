@@ -29,19 +29,8 @@
     <div ng-show="arCtrl.paymentsSubModule" ng-controller="ArPaymentController as arPaymentCtrl">
         <ar-payment-panel></ar-payment-panel>
     </div>
-    <div ng-show="arCtrl.adminSubModule">
-        <div class="side-menu">
-            <ul class="sm-list">
-                <li class=""><a class="anime" ng-click="arCtrl.openAddonChargePanel()" ng-class="{active: arCtrl.addonChargeOpen}">Add-on Charge</a></li>
-                <li class=""><a class="anime" ng-click="arCtrl.openAddonGroupPanel()" ng-class="{active: arCtrl.addonGroupOpen}">Addon Group</a></li>
-                <li class=""><a class="anime" ng-click="arCtrl.openRecievableTypesPanel()" ng-class="{active: arCtrl.receivableTypeOpen}">Receivable Types</a></li>
-                <li class=""><a class="anime" ng-click="arCtrl.openBatchesPanel()" ng-class="{active: arCtrl.batchesOpen}">Batches</a></li>
-                <li class=""><a class="anime" ng-click="arCtrl.openAdminBillCodesPanel()" ng-class="{active: arCtrl.adminBillCodesOpen}">BillCodes</a></li>
-                <li class=""><a class="anime" ng-click="arCtrl.openPaymentTypesPanel()" ng-class="{active: arCtrl.paymentTypesOpen}">Payment Types</a></li>
-                <li class=""><a class="anime" ng-click="arCtrl.openPropertiesPanel()" ng-class="{active: arCtrl.propertiesOpen}">Properties</a></li>
-                <li class=""><a class="anime" ng-click="arCtrl.openStatementPropertiesPanel()" ng-class="{active: arCtrl.statementPropertiesOpen}">Statement Properties</a></li>
-            </ul>
-        </div>
+    <div ng-show="arCtrl.adminSubModule"  ng-controller="ArAdminController as arAdminCtrl">
+        <ar-admin-panel></ar-admin-panel>
     </div>
     <div ng-show="arCtrl.inquirySubModule">
         <div class="side-menu">
