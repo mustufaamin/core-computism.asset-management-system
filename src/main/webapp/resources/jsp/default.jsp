@@ -21,7 +21,7 @@
 			</span>
 			<span class="right-head pull-right">
 				<span class=" col-xs-6 as-search">
-					<input type="text" name="search" class="form-control as-inpt anime right" placeholder="Search..."></input>
+					<input type="text" name="search" class="form-control as-inpt anime right" placeholder="Search..."/>
 					<img class="searchIcon anime" src="resources/images/search.svg" alt="Search">
 				</span>
 				<span class="anime pull-right as-options">
@@ -76,6 +76,7 @@
 	<script src="resources/modules/home/modules.js"></script>
 	<script src="resources/modules/customer/customer.js"></script>
 	<script src="resources/modules/account-receivable/account-receivable.js"></script>
+	<script src="resources/modules/account-receivable/sub-modules/admin/ar-admin.js"></script>
 	<script src="resources/modules/account-receivable/sub-modules/payments/ar-payment.js"></script>
 
 </div>

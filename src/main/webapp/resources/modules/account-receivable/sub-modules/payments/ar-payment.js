@@ -15,6 +15,7 @@
             var arPaymentCtrl = this;
             arPaymentCtrl.paymentOpen = false;
             arPaymentCtrl.importPaymentOpen = false;
+            arPaymentCtrl.billCodes = [];
 
             arPaymentCtrl.openImportPaymentsPanel = function () {
                 arPaymentCtrl.importPaymentOpen = true;
@@ -25,6 +26,12 @@
             arPaymentCtrl.openPaymentsPanel = function () {
                 arPaymentCtrl.importPaymentOpen = false;
                 arPaymentCtrl.paymentOpen = true;
+            };
+
+            arPaymentCtrl.getBillCode = function(){
+                adjustmentGatewayService.listOfBillCodes().$promise.then(function(response){
+                    arPaymentCtrl.billCodes = response.data;
+                });
             };
 
             arPaymentCtrl.paymentCols = [
