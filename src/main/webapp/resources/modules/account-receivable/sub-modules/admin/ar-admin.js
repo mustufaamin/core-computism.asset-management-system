@@ -14,7 +14,7 @@
         .directive('arBillcode', function(){
             return{
                 restrict: "E",
-                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-billcode.jsp'
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-billCode.jsp'
             }
         });
 
