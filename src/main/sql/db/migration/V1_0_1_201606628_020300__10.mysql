@@ -1,0 +1,19 @@
+CREATE TABLE `cmn_batch` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `batch_type` INT(11) DEFAULT '0',
+  `batch_status` INT(11) DEFAULT '0',
+  `batch_name` CHAR(40) NOT NULL DEFAULT '',
+  `batch_count_method` INT(11) DEFAULT '0',
+  `batch_amount` DECIMAL(10,2) DEFAULT NULL,
+  `module_id` INT(11) DEFAULT '0',
+  `date_opened` DATE DEFAULT NULL,
+  `opened_by` INT(11) DEFAULT '0',
+  `closing_date` DATE DEFAULT NULL,
+  `closed_by` INT(11) DEFAULT '0',
+  `close_on_posting` INT(1) DEFAULT '0',
+  `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `last_modified_date` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `version` INT(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `batch_name` (`module_id`,`batch_name`,`batch_type`)
+) ENGINE=INNODB AUTO_INCREMENT=1 ;
