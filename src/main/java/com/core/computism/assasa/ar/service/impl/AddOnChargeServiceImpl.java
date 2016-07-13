@@ -8,7 +8,9 @@ import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.ar.billing.AddOnCharge;
 import com.core.computism.assasa.persistence.entity.common.Batch;
+import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.repository.ar.AddOnChargeRepository;
+import com.core.computism.assasa.persistence.repository.gl.GlAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -25,6 +27,10 @@ public class AddOnChargeServiceImpl implements AddOnChargeService {
 
     @Autowired
     AddOnChargeRepository addOnChargeRepository;
+
+    @Autowired
+    GlAccountRepository glAccountRepository;
+
     @Autowired
     AddOnChargeBuilder addOnChargeBuilder;
 
@@ -32,8 +38,15 @@ public class AddOnChargeServiceImpl implements AddOnChargeService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public AddOnChargeDto add(AddOnChargeDto addOnChargeDto) throws ArBusinessException {
         try {
+
+            if (addOnChargeDto.getGlAccountId() == null) {
+                throw new ArBusinessException("GL Account is missing.");
+            }
             AddOnCharge addOnCharge = new AddOnCharge();
             addOnCharge = addOnChargeBuilder.buildAddOnChargeEntity(addOnChargeDto, addOnCharge);
+
+            GlAccount glAccount = glAccountRepository.findOne(addOnChargeDto.getGlAccountId());
+            addOnCharge.setGlAccount(glAccount);
 
             addOnCharge = addOnChargeRepository.save(addOnCharge);
             return addOnChargeBuilder.buildAddOnChargeDto(addOnCharge);
@@ -46,8 +59,15 @@ public class AddOnChargeServiceImpl implements AddOnChargeService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public AddOnChargeDto update(AddOnChargeDto addOnChargeDto) throws ArBusinessException {
         try {
+
+            if (addOnChargeDto.getGlAccountId() == null) {
+                throw new ArBusinessException("GL Account is missing.");
+            }
             AddOnCharge addOnCharge = addOnChargeRepository.getOne(addOnChargeDto.getId());
             addOnCharge = addOnChargeBuilder.buildAddOnChargeEntity(addOnChargeDto, addOnCharge);
+
+            GlAccount glAccount = glAccountRepository.findOne(addOnChargeDto.getGlAccountId());
+            addOnCharge.setGlAccount(glAccount);
 
             addOnCharge = addOnChargeRepository.save(addOnCharge);
             return addOnChargeBuilder.buildAddOnChargeDto(addOnCharge);

@@ -14,7 +14,7 @@ import java.util.Date;
 public class AddOnChargeDto {
 
     private Long id;
-    private Integer glAccountId;
+    private Long glAccountId;
     private String name;
     private String description;
     private BigDecimal amount;
@@ -36,11 +36,11 @@ public class AddOnChargeDto {
         this.id = id;
     }
 
-    public Integer getGlAccountId() {
+    public Long getGlAccountId() {
         return glAccountId;
     }
 
-    public void setGlAccountId(Integer glAccountId) {
+    public void setGlAccountId(Long glAccountId) {
         this.glAccountId = glAccountId;
     }
 

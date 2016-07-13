@@ -123,7 +123,4 @@ public class BillCode extends BaseEntity {
         this.billCodeTypeId = billCodeType.getCode();
     }
 
-
-
-
    }
