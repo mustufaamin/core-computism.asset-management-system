@@ -40,7 +40,7 @@ public class AddOnChargeServiceImpl implements AddOnChargeService {
         try {
 
             if (addOnChargeDto.getGlAccountId() == null) {
-                throw new ArBusinessException("GL Account is missing.");
+                throw new ArBusinessException("Invalid GL Account Id.");
             }
             AddOnCharge addOnCharge = new AddOnCharge();
             addOnCharge = addOnChargeBuilder.buildAddOnChargeEntity(addOnChargeDto, addOnCharge);
@@ -61,7 +61,7 @@ public class AddOnChargeServiceImpl implements AddOnChargeService {
         try {
 
             if (addOnChargeDto.getGlAccountId() == null) {
-                throw new ArBusinessException("GL Account is missing.");
+                throw new ArBusinessException("Invalid GL Account Id.");
             }
             AddOnCharge addOnCharge = addOnChargeRepository.getOne(addOnChargeDto.getId());
             addOnCharge = addOnChargeBuilder.buildAddOnChargeEntity(addOnChargeDto, addOnCharge);
@@ -81,6 +81,10 @@ public class AddOnChargeServiceImpl implements AddOnChargeService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<AddOnChargeDto> getAddOnChargeByStatus(Integer addOnChargeStatus) throws ArBusinessException {
         try {
+
+            if (addOnChargeStatus == null) {
+                throw new ArBusinessException("Invalid add-on Charge status.");
+            }
             List<AddOnCharge> addOnCharges = addOnChargeRepository.findAddOnChargesByStatus(addOnChargeStatus);
             return addOnChargeBuilder.buildAddOnChargeDtoList(addOnCharges);
         } catch (BuilderException e) {
