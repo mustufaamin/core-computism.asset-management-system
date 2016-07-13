@@ -1,7 +1,6 @@
 package com.core.computism.assasa.web.controller.common;
 
 import com.core.computism.assasa.common.domain.BatchDto;
-import com.core.computism.assasa.common.domain.CityDto;
 import com.core.computism.assasa.common.service.BatchService;
 import com.core.computism.assasa.exception.PosBusinessException;
 import com.core.computism.assasa.util.ServerResponse;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * Created by M.Mustufa Amin Shah on 3/13/2016.
+ * Created by Faizan Iftikhar on 06/13/2016.
  */
 @RestController
 @RequestMapping(value = "batch/")

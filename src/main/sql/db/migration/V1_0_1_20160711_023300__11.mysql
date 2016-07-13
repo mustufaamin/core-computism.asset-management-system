@@ -1,0 +1,16 @@
+CREATE TABLE `assasa`.`bi_add_on_charge`(
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `gl_account_id` INT(11) NOT NULL,
+  `name` VARCHAR(255) NOT NULL,
+  `description` VARCHAR(255),
+  `amount` DECIMAL,
+  `amount_type` INT(1) NOT NULL,
+  `activation_date` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `deactivation_date` TIMESTAMP NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `status` INT(1) NOT NULL,
+  `company_id` INT(11),
+  `inclusive_flag` INT(1),
+  `version` INT(11),
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_ac_gl_account_id1_idx` FOREIGN KEY (`gl_account_id`) REFERENCES `assasa`.`ac_gl_account`(`id`) ON UPDATE CASCADE ON DELETE CASCADE
+);

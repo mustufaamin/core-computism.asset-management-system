@@ -23,7 +23,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "bi_bill_code")
-public class BillCode extends BaseEntity{
+public class BillCode extends BaseEntity {
     private Integer billCodeTypeId;
     private Integer addOnGroupId;
     private GlAccount glAccount;
