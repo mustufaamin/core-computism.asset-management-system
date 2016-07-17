@@ -1,5 +1,6 @@
 package com.core.computism.assasa.persistence.repository.common;
 
+import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.entity.common.Batch;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,7 @@ public interface BatchRepository extends JpaRepository<Batch, Long> {
 
     @Query("from Batch b where b.batchType= :batchType")
     List<Batch> findBatchesByType(@Param("batchType") Integer batchType);
+
+    @Query("from Batch b where b.batchName like :searchKey")
+    List<Batch> searchBatches(@Param("searchKey") String searchKey);
 }

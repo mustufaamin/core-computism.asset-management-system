@@ -1,23 +1,20 @@
 package com.core.computism.assasa.common.service.impl;
 
+import com.core.computism.assasa.ar.dto.BillCodeDto;
 import com.core.computism.assasa.common.builder.BatchBuilder;
-import com.core.computism.assasa.common.builder.CityBuilder;
 import com.core.computism.assasa.common.domain.BatchDto;
-import com.core.computism.assasa.common.domain.CityDto;
 import com.core.computism.assasa.common.service.BatchService;
-import com.core.computism.assasa.common.service.CityService;
+import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.BuilderException;
-import com.core.computism.assasa.exception.PosBusinessException;
+import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.entity.common.Batch;
-import com.core.computism.assasa.persistence.entity.common.City;
 import com.core.computism.assasa.persistence.repository.common.BatchRepository;
-import com.core.computism.assasa.persistence.repository.common.CityRepository;
-import com.core.computism.assasa.persistence.repository.common.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 /**
@@ -32,15 +29,30 @@ public class BatchServiceImpl implements BatchService {
     BatchBuilder batchBuilder;
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = PosBusinessException.class)
-    public Long add(BatchDto batchDto) throws PosBusinessException {
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
+    public BatchDto add(BatchDto batchDto) throws ArBusinessException {
         try {
             Batch batch = batchBuilder.buildBatchEntity(batchDto);
             batch = batchRepository.save(batch);
 
-            return batch.getId();
+            return batchBuilder.buildBatchDto(batch);
         } catch (BuilderException e) {
-            throw new PosBusinessException("Error Occurred While saving batch", e);
+            throw new ArBusinessException("Error Occurred While saving batch", e);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
+    public BatchDto update(BatchDto batchDto) throws ArBusinessException {
+        try {
+            Batch batch = batchRepository.getOne(batchDto.getBatchId());
+            batch = batchBuilder.buildBatchEntity(batchDto);
+
+            batch = batchRepository.save(batch);
+            return batchBuilder.buildBatchDto(batch);
+
+        } catch (PersistenceException | BuilderException e) {
+            throw new ArBusinessException("Error Occurred In BillCode service Update", e);
         }
     }
 
@@ -69,5 +81,18 @@ public class BatchServiceImpl implements BatchService {
     public List<BatchDto> getBatchesByType(Integer batchType) {
         List<Batch> batches = batchRepository.findBatchesByType(batchType);
         return batchBuilder.buildBatchDtoList(batches);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<BatchDto> search(String searchKey) throws ArBusinessException {
+        try {
+            searchKey = "%"+searchKey+"%";
+            List<Batch> batches = batchRepository.searchBatches(searchKey);
+            return batchBuilder.buildBatchDtoList(batches);
+
+        } catch (PersistenceException e) {
+            throw new ArBusinessException("Error occurred In Batch service search", e);
+        }
     }
 }

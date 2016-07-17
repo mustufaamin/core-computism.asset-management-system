@@ -19,6 +19,14 @@
         });
 
     angular.module('Asasa')
+        .directive('arBatches', function(){
+            return{
+                restrict: "E",
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-batches.jsp'
+            }
+        });
+
+    angular.module('Asasa')
         .directive('arPaymentType', function(){
             return{
                 restrict: "E",
@@ -27,7 +35,7 @@
         });
 
     angular.module('Asasa')
-        .controller('ArAdminController', ['ArAdminBillCodeService', 'ArAdminPaymentTypeService', 'ngTableParams', '$http', function(arAdminBillcodeGWSrv, arAdminPaymentTypeGWSrv,  ngTableParams, $http) {
+        .controller('ArAdminController', ['ArAdminBatchesService','ArAdminBillCodeService', 'ArAdminPaymentTypeService', 'ngTableParams', '$http', function(arAdminBatchesGWSrv, arAdminBillcodeGWSrv, arAdminPaymentTypeGWSrv,  ngTableParams, $http) {
             var arAdminCtrl = this;
             arAdminCtrl.openAddonChargePanel = function(){
                 arAdminCtrl.addonChargeOpen = true;
@@ -71,6 +79,7 @@
                 arAdminCtrl.paymentTypesOpen = false;
                 arAdminCtrl.propertiesOpen = false;
                 arAdminCtrl.statementPropertiesOpen = false;
+                arAdminCtrl.getBatchesList();
             };
 
             arAdminCtrl.openAdminBillCodesPanel = function(){
@@ -190,6 +199,38 @@
                 });
             };
 
+            arAdminCtrl.batchesCols = [
+                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
+                {field: "batchId",title: "Id",sortable: "batchId",filter: {batchId: "number"},show: true,dataType: "number"},
+                {field: "batchName",title: "Name",sortable: "batchName",filter: {batchName: "text"},show: true,dataType: "text"},
+                {field: "batchType",title: "Batch Type",sortable: "batchType",filter: {batchType: "number"},show: true,dataType: "number"},
+                {field: "batchStatus",title: "Status",sortable: "batchStatus",filter: {batchStatus: "number"},show: true,dataType: "number"},
+                {field: "batchCountMethod",title: "Count Method",sortable: "batchCountMethod",filter: {batchCountMethod: "number"},show: true,dataType: "number"},
+                {field: "batchAmount",title: "Amount",sortable: "batchAmount",filter: {batchAmount: "number"},show: true,dataType: "number"}
+            ];
+
+            arAdminCtrl.batchesTable = new ngTableParams({
+                page: 1,
+                count: 10
+            }, {
+                total: 2,
+                getData: function ($defer, params) {
+                    arAdminCtrl.data = arAdminCtrl.listOfBatches.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(arAdminCtrl.data);
+                }
+            });
+
+            arAdminCtrl.getBatchesList = function(){
+                arAdminCtrl.listOfBatches = [];
+                arAdminBatchesGWSrv.listBatches().$promise.then(function(response){
+                    if(response != null){
+                        arAdminCtrl.listOfBatches = response.data;
+                        arAdminCtrl.batchesTable.total(arAdminCtrl.listOfBatches.length);
+                        arAdminCtrl.batchesTable.reload();
+                    }
+                });
+            };
+
         }]);
 
     angular.module('Asasa')
@@ -204,6 +245,22 @@
                     addBillCodes :{method: 'POST', isArray: false, url:"/billCodes/add"},
 
                     searchBillCodes :{method: 'GET', isArray: false, url:"/billCodes/search/{searchKey}"}
+
+                });
+        }]);
+
+    angular.module('Asasa')
+        .service('ArAdminBatchesService',['$resource' ,function ($resource) {
+            var arAdminBatchesGWSrv = this;
+            return $resource('',{},
+                {
+                    updateBatches :{method: 'POST', isArray: false, url:"/batch/update"},
+
+                    listBatches : {method: 'GET', isArray: false, url: "/batch/list"},
+
+                    addBatches :{method: 'POST', isArray: false, url:"/batch/add"},
+
+                    searchBatches :{method: 'GET', isArray: false, url:"/batch/search/{searchKey}"}
 
                 });
         }]);

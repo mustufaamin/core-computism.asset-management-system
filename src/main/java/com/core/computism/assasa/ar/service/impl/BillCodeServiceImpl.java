@@ -32,6 +32,7 @@ public class BillCodeServiceImpl implements BillCodeService {
     @Autowired
     GlAccountRepository glAccountRepository;
 
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public BillCodeDto add(BillCodeDto billCodeDto) throws ArBusinessException {
         try {
@@ -49,6 +50,7 @@ public class BillCodeServiceImpl implements BillCodeService {
         }
     }
 
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public BillCodeDto update(BillCodeDto billCodeDto) throws ArBusinessException {
         try {
@@ -63,6 +65,7 @@ public class BillCodeServiceImpl implements BillCodeService {
         }
     }
 
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<BillCodeDto> list() throws ArBusinessException {
         try {
@@ -73,6 +76,8 @@ public class BillCodeServiceImpl implements BillCodeService {
             throw new ArBusinessException("Error Occurred In BillCode service Update", e);
         }
     }
+
+    @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<BillCodeDto> search(String searchKey) throws ArBusinessException {
         try {
@@ -84,6 +89,5 @@ public class BillCodeServiceImpl implements BillCodeService {
             throw new ArBusinessException("Error Occurred In BillCode service Update", e);
         }
     }
-
 
 }

@@ -10,6 +10,9 @@
     </ul>
   </div>
   <div class="cont-wrap">
+    <div ng-show="arAdminCtrl.batchesOpen">
+      <ar-batches></ar-batches>
+    </div>
     <div ng-show="arAdminCtrl.adminBillCodesOpen">
       <ar-billcode></ar-billcode>
     </div>
