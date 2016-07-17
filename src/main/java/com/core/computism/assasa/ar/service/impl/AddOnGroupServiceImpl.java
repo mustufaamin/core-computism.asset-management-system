@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Created by Faizan Iftikhar on 7/12/2016.
  */
-@Service(value = "addOnChargeService")
+@Service(value = "addOnGroupService")
 public class AddOnGroupServiceImpl implements AddOnGroupService {
 
     @Autowired

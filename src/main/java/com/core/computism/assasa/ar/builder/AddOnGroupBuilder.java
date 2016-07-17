@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by Faizan Iftikhar on 7/12/2016.
  */
-@Component(value = "addOnChargeBuilder")
+@Component(value = "addOnGroupBuilder")
 public class AddOnGroupBuilder {
 
     public AddOnGroup buildAddOnChargeEntity(AddOnGroupDto addOnGroupDto, AddOnGroup addOnGroup) throws BuilderException {
