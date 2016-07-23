@@ -19,6 +19,22 @@
         });
 
     angular.module('Asasa')
+        .directive('arReceivableType', function(){
+            return{
+                restrict: "E",
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-receivable-type.jsp'
+            }
+        });
+
+    angular.module('Asasa')
+        .directive('arAddOnCharge', function(){
+            return{
+                restrict: "E",
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-addoncharges.jsp'
+            }
+        });
+
+    angular.module('Asasa')
         .directive('arBatches', function(){
             return{
                 restrict: "E",
@@ -35,7 +51,7 @@
         });
 
     angular.module('Asasa')
-        .controller('ArAdminController', ['ArAdminBatchesService','ArAdminBillCodeService', 'ArAdminPaymentTypeService', 'ngTableParams', '$http', function(arAdminBatchesGWSrv, arAdminBillcodeGWSrv, arAdminPaymentTypeGWSrv,  ngTableParams, $http) {
+        .controller('ArAdminController', ['ArAdminAddOnChargeService', 'ArAdminReceivableTypeService', 'ArAdminBatchesService', 'ArAdminBillCodeService', 'ArAdminPaymentTypeService', 'ngTableParams', '$http', function(arAdminAddOnChargeGWSrv, arAdminReceivableTypeGWSrv, arAdminBatchesGWSrv, arAdminBillcodeGWSrv, arAdminPaymentTypeGWSrv,  ngTableParams, $http) {
             var arAdminCtrl = this;
             arAdminCtrl.openAddonChargePanel = function(){
                 arAdminCtrl.addonChargeOpen = true;
@@ -46,6 +62,7 @@
                 arAdminCtrl.paymentTypesOpen = false;
                 arAdminCtrl.propertiesOpen = false;
                 arAdminCtrl.statementPropertiesOpen = false;
+                arAdminCtrl.getAddOnChargeList();
             };
 
             arAdminCtrl.openAddonGroupPanel = function(){
@@ -59,7 +76,7 @@
                 arAdminCtrl.statementPropertiesOpen = false;
             };
 
-            arAdminCtrl.openRecievableTypesPanel = function(){
+            arAdminCtrl.openReceivableTypePanel = function(){
                 arAdminCtrl.addonChargeOpen = false;
                 arAdminCtrl.addonGroupOpen = false;
                 arAdminCtrl.receivableTypeOpen = true;
@@ -68,6 +85,7 @@
                 arAdminCtrl.paymentTypesOpen = false;
                 arAdminCtrl.propertiesOpen = false;
                 arAdminCtrl.statementPropertiesOpen = false;
+                arAdminCtrl.getReceivableTypeList();
             };
 
             arAdminCtrl.openBatchesPanel = function(){
@@ -199,6 +217,37 @@
                 });
             };
 
+            arAdminCtrl.addOnChargeCols = [
+                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
+                {field: "arAccountTypeId",title: "Id",sortable: "arAccountTypeId",filter: {arAccountTypeId: "number"},show: true,dataType: "number"},
+                {field: "accountTypeCode",title: "Code",sortable: "accountTypeCode",filter: {accountTypeCode: "text"},show: true,dataType: "text"},
+                {field: "accountTypeName",title: "Name",sortable: "accountTypeName",filter: {accountTypeName: "text"},show: true,dataType: "text"},
+                {field: "glAccountId",title: "Gl Account",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
+                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
+            ];
+
+            arAdminCtrl.addOnChargeTable = new ngTableParams({
+                page: 1,
+                count: 10
+            }, {
+                total: 2,
+                getData: function ($defer, params) {
+                    arAdminCtrl.data = arAdminCtrl.listOfAddOnCharge.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(arAdminCtrl.data);
+                }
+            });
+
+            arAdminCtrl.getAddOnChargeList = function(){
+                arAdminCtrl.listOfAddOnCharge = [];
+                arAdminAddOnChargeGWSrv.listAddOnCharge().$promise.then(function(response){
+                    if(response != null){
+                        arAdminCtrl.listOfAddOnCharge = response.data;
+                        arAdminCtrl.addOnChargeTable.total(arAdminCtrl.listOfAddOnCharge.length);
+                        arAdminCtrl.addOnChargeTable.reload();
+                    }
+                });
+            };
+
             arAdminCtrl.batchesCols = [
                 {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
                 {field: "batchId",title: "Id",sortable: "batchId",filter: {batchId: "number"},show: true,dataType: "number"},
@@ -231,6 +280,36 @@
                 });
             };
 
+            arAdminCtrl.receivableTypeCols = [
+                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
+                {field: "arAccountTypeId",title: "Id",sortable: "arAccountTypeId",filter: {arAccountTypeId: "number"},show: true,dataType: "number"},
+                {field: "accountTypeCode",title: "Code",sortable: "accountTypeCode",filter: {accountTypeCode: "text"},show: true,dataType: "text"},
+                {field: "accountTypeName",title: "Name",sortable: "accountTypeName",filter: {accountTypeName: "text"},show: true,dataType: "text"},
+                {field: "glAccountId",title: "Gl Account",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
+                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
+            ];
+
+            arAdminCtrl.receivableTypeTable = new ngTableParams({
+                page: 1,
+                count: 10
+            }, {
+                total: 2,
+                getData: function ($defer, params) {
+                    arAdminCtrl.data = arAdminCtrl.listOfReceivableType.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(arAdminCtrl.data);
+                }
+            });
+
+            arAdminCtrl.getReceivableTypeList = function(){
+                arAdminCtrl.listOfReceivableType = [];
+                arAdminReceivableTypeGWSrv.listReceivableType().$promise.then(function(response){
+                    if(response != null){
+                        arAdminCtrl.listOfReceivableType = response.data;
+                        arAdminCtrl.receivableTypeTable.total(arAdminCtrl.listOfReceivableType.length);
+                        arAdminCtrl.receivableTypeTable.reload();
+                    }
+                });
+            };
         }]);
 
     angular.module('Asasa')
@@ -250,6 +329,22 @@
         }]);
 
     angular.module('Asasa')
+        .service('ArAdminAddOnChargeService',['$resource' ,function ($resource) {
+            var arAdminAddOnChargeGWSrv = this;
+            return $resource('',{},
+                {
+                    updateReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/update"},
+
+                    listAddOnCharge : {method: 'GET', isArray: false, url: "/arAccountType/arAccountTypes"},
+
+                    addReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/add"},
+
+                    searchReceivableType :{method: 'GET', isArray: false, url:"/arAccountType/search/{searchKey}"}
+
+                });
+        }]);
+
+    angular.module('Asasa')
         .service('ArAdminBatchesService',['$resource' ,function ($resource) {
             var arAdminBatchesGWSrv = this;
             return $resource('',{},
@@ -261,6 +356,23 @@
                     addBatches :{method: 'POST', isArray: false, url:"/batch/add"},
 
                     searchBatches :{method: 'GET', isArray: false, url:"/batch/search/{searchKey}"}
+
+                });
+        }]);
+
+    angular.module('Asasa')
+        .service('ArAdminReceivableTypeService',['$resource' ,function ($resource) {
+            var arAdminReceivableTypeGWSrv = this;
+            return $resource('',{},
+                {
+                    updateReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/update"},
+
+                    listReceivableType : {method: 'GET', isArray: false, url: "/arAccountType/arAccountTypes"},
+
+                    addReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/add"},
+
+                    searchReceivableType :{method: 'GET', isArray: false, url:"/arAccountType/search/{searchKey}"}
+                    //TODO : search api need to be written on backend.
 
                 });
         }]);

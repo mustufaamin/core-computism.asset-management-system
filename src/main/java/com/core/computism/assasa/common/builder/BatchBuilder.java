@@ -14,12 +14,11 @@ import java.util.List;
 @Component(value = "batchBuilder")
 public class BatchBuilder {
 
-    public Batch buildBatchEntity(BatchDto batchDto) throws BuilderException {
+    public Batch buildBatchEntity(BatchDto batchDto, Batch batch) throws BuilderException {
 
         if (batchDto == null) {
             throw new BuilderException("Batch Dto not present");
         }
-        Batch batch = new Batch();
 
         batch.setId(batchDto.getBatchId());
         batch.setBatchType(batchDto.getBatchType());

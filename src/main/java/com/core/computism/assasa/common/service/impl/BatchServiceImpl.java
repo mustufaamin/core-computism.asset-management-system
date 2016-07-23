@@ -32,7 +32,8 @@ public class BatchServiceImpl implements BatchService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
     public BatchDto add(BatchDto batchDto) throws ArBusinessException {
         try {
-            Batch batch = batchBuilder.buildBatchEntity(batchDto);
+            Batch batch = new Batch();
+            batch = batchBuilder.buildBatchEntity(batchDto, batch);
             batch = batchRepository.save(batch);
 
             return batchBuilder.buildBatchDto(batch);
@@ -46,7 +47,7 @@ public class BatchServiceImpl implements BatchService {
     public BatchDto update(BatchDto batchDto) throws ArBusinessException {
         try {
             Batch batch = batchRepository.getOne(batchDto.getBatchId());
-            batch = batchBuilder.buildBatchEntity(batchDto);
+            batch = batchBuilder.buildBatchEntity(batchDto, batch);
 
             batch = batchRepository.save(batch);
             return batchBuilder.buildBatchDto(batch);
@@ -87,7 +88,7 @@ public class BatchServiceImpl implements BatchService {
     @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<BatchDto> search(String searchKey) throws ArBusinessException {
         try {
-            searchKey = "%"+searchKey+"%";
+            searchKey = "%" + searchKey + "%";
             List<Batch> batches = batchRepository.searchBatches(searchKey);
             return batchBuilder.buildBatchDtoList(batches);
 

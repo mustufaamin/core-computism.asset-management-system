@@ -58,8 +58,9 @@ public class ArAccountController extends BaseController {
     }
 
     @RequestMapping(value = "list", method = RequestMethod.GET)
-    public @ResponseBody
-    ServerResponse<List<ArAccountSearchResponseDto>>  getArAccountList() throws ArBusinessException {
+    public
+    @ResponseBody
+    ServerResponse<List<ArAccountSearchResponseDto>> getArAccountList() throws ArBusinessException {
         ServerResponse<List<ArAccountSearchResponseDto>> response = toResponse(arAccountService.getArAccounts());
         return response;
     }
@@ -75,11 +76,13 @@ public class ArAccountController extends BaseController {
     }
 
     @RequestMapping(value = "arAccountTypes", method = RequestMethod.GET)
-    public @ResponseBody ServerResponse<List<ArAccountTypeDto>> getArAccountTypes() throws ArBusinessException {
+    public
+    @ResponseBody
+    ServerResponse<List<ArAccountTypeDto>> getArAccountTypes() throws ArBusinessException {
         List<ArAccountTypeDto> arAccountTypeDtos = null;
         try {
             arAccountTypeDtos = arAccountTypeService.getArAccountTypes();
-            ServerResponse<List< ArAccountTypeDto >> response = toResponse(arAccountTypeDtos);
+            ServerResponse<List<ArAccountTypeDto>> response = toResponse(arAccountTypeDtos);
             return response;
         } catch (ArBusinessException e) {
             throw new ArBusinessException(e);

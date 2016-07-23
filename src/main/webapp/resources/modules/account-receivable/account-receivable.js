@@ -61,8 +61,8 @@
                 arCtrl.inquiryBillCodePanel = true;
             };
 
-            arCtrl.openAddonChargePanel = function(){
-                arCtrl.addonChargeOpen = true;
+            arCtrl.openAddonCharge = function(){
+                arCtrl.addonChargesOpen = true;
                 arCtrl.addonGroupOpen = false;
                 arCtrl.receivableTypeOpen = false;
                 arCtrl.batchesOpen = false;
@@ -73,7 +73,7 @@
             };
 
             arCtrl.openAddonGroupPanel = function(){
-                arCtrl.addonChargeOpen = false;
+                arCtrl.addonChargesOpen = false;
                 arCtrl.addonGroupOpen = true;
                 arCtrl.receivableTypeOpen = false;
                 arCtrl.batchesOpen = false;
@@ -84,7 +84,7 @@
             };
 
             arCtrl.openRecievableTypesPanel = function(){
-                arCtrl.addonChargeOpen = false;
+                arCtrl.addonChargesOpen = false;
                 arCtrl.addonGroupOpen = false;
                 arCtrl.receivableTypeOpen = true;
                 arCtrl.batchesOpen = false;
@@ -95,7 +95,7 @@
             };
 
             arCtrl.openBatchesPanel = function(){
-                arCtrl.addonChargeOpen = false;
+                arCtrl.addonChargesOpen = false;
                 arCtrl.addonGroupOpen = false;
                 arCtrl.receivableTypeOpen = false;
                 arCtrl.batchesOpen = true;
@@ -106,7 +106,7 @@
             };
 
             arCtrl.openAdminBillCodesPanel = function(){
-                arCtrl.addonChargeOpen = false;
+                arCtrl.addonChargesOpen = false;
                 arCtrl.addonGroupOpen = false;
                 arCtrl.receivableTypeOpen = false;
                 arCtrl.batchesOpen = false;
@@ -117,7 +117,7 @@
             };
 
             arCtrl.openPaymentTypesPanel = function(){
-                arCtrl.addonChargeOpen = false;
+                arCtrl.addonChargesOpen = false;
                 arCtrl.addonGroupOpen = false;
                 arCtrl.receivableTypeOpen = false;
                 arCtrl.batchesOpen = false;
@@ -128,7 +128,7 @@
             };
 
             arCtrl.openPropertiesPanel = function(){
-                arCtrl.addonChargeOpen = false;
+                arCtrl.addonChargesOpen = false;
                 arCtrl.addonGroupOpen = false;
                 arCtrl.receivableTypeOpen = false;
                 arCtrl.batchesOpen = false;
@@ -139,7 +139,7 @@
             };
 
             arCtrl.openStatementPropertiesPanel = function(){
-                arCtrl.addonChargeOpen = false;
+                arCtrl.addonChargesOpen = false;
                 arCtrl.addonGroupOpen = false;
                 arCtrl.receivableTypeOpen = false;
                 arCtrl.batchesOpen = false;

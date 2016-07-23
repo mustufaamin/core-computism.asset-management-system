@@ -10,6 +10,9 @@
     </ul>
   </div>
   <div class="cont-wrap">
+    <div ng-show="arAdminCtrl.receivableTypeOpen">
+      <ar-receivable-type></ar-receivable-type>
+    </div>
     <div ng-show="arAdminCtrl.batchesOpen">
       <ar-batches></ar-batches>
     </div>
@@ -19,13 +22,16 @@
     <div ng-show="arAdminCtrl.paymentTypesOpen">
       <ar-payment-type></ar-payment-type>
     </div>
+    <div ng-show="arAdminCtrl.addonChargeOpen">
+      <ar-addoncharges></ar-addoncharges>
+    </div>
   </div>
 </div>
 <div class="side-menu">
   <ul class="sm-list">
-    <li class=""><a class="anime" ng-click="arAdminCtrl.openAddonChargePanel()" ng-class="{active: arAdminCtrl.addonChargeOpen}">Add-on Charge</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openAddonChargePanel()" ng-class="{active: arAdminCtrl.addonChargeOpen}">Addon Charge</a></li>
     <li class=""><a class="anime" ng-click="arAdminCtrl.openAddonGroupPanel()" ng-class="{active: arAdminCtrl.addonGroupOpen}">Addon Group</a></li>
-    <li class=""><a class="anime" ng-click="arAdminCtrl.openRecievableTypesPanel()" ng-class="{active: arAdminCtrl.receivableTypeOpen}">Receivable Types</a></li>
+    <li class=""><a class="anime" ng-click="arAdminCtrl.openReceivableTypePanel()" ng-class="{active: arAdminCtrl.receivableTypeOpen}">Receivable Types</a></li>
     <li class=""><a class="anime" ng-click="arAdminCtrl.openBatchesPanel()" ng-class="{active: arAdminCtrl.batchesOpen}">Batches</a></li>
     <li class=""><a class="anime" ng-click="arAdminCtrl.openAdminBillCodesPanel()" ng-class="{active: arAdminCtrl.adminBillCodesOpen}">BillCodes</a></li>
     <li class=""><a class="anime" ng-click="arAdminCtrl.openPaymentTypesPanel()" ng-class="{active: arAdminCtrl.paymentTypesOpen}">Payment Types</a></li>

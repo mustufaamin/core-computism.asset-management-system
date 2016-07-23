@@ -2,6 +2,7 @@ package com.core.computism.assasa.ar.service.impl;
 
 import com.core.computism.assasa.ar.builder.ArAccountTypeBuilder;
 import com.core.computism.assasa.ar.dto.ArAccountTypeDto;
+import com.core.computism.assasa.ar.factory.ArAccountTypeFactory;
 import com.core.computism.assasa.ar.service.ArAccountTypeService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.persistence.entity.ar.account.ArAccountType;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +30,9 @@ public class ArAccountTypeServiceImpl extends BaseService implements ArAccountTy
 
     @Autowired
     GlAccountRepository glAccountRepository;
+
+    @Autowired
+    ArAccountTypeFactory arAccountTypeFactory;
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
@@ -53,6 +58,31 @@ public class ArAccountTypeServiceImpl extends BaseService implements ArAccountTy
                 .build();
 
         arAccountTypeRepository.save(arAccountType);
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = false, rollbackFor = ArBusinessException.class)
+    public ArAccountTypeDto update(ArAccountTypeDto arAccountTypeDto) throws ArBusinessException {
+        try {
+            ArAccountType arAccountType = arAccountTypeRepository.getOne(arAccountTypeDto.getArAccountTypeId());
+            if (arAccountTypeDto.getGlAccountId() != null && !arAccountTypeDto.getGlAccountId().equals(arAccountType.getGlAccount().getId())) {
+                GlAccount glAccount = glAccountRepository.findOne(arAccountTypeDto.getGlAccountId());
+                arAccountType.setGlAccount(glAccount);
+            }
+            arAccountTypeFactory.getArAccountType(arAccountTypeDto, arAccountType);
+            arAccountTypeRepository.save(arAccountType);
+
+            return arAccountTypeFactory.buildArAccountTypeDto(arAccountType);
+
+        } catch (PersistenceException e) {
+            throw new ArBusinessException("Error Occurred In ArAccountTypeDto service Update", e);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public ArAccountTypeDto getArAccountType(Long id) throws ArBusinessException {
+        return arAccountTypeFactory.buildArAccountTypeDto(arAccountTypeRepository.findOne(id));
     }
 
     @Override

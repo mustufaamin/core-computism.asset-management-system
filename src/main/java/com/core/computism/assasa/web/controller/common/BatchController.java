@@ -43,20 +43,21 @@ public class BatchController extends BaseController {
     }
 
     @RequestMapping(value = "get/{batchId}", method = RequestMethod.GET)
-    public ServerResponse<BatchDto> get(@PathVariable Long batchId) throws PosBusinessException {
+    public ServerResponse<BatchDto> get(@PathVariable Long batchId) throws ArBusinessException {
         LOGGER.info("Retrieving batches...");
         ServerResponse<BatchDto> response = toResponse(batchService.getBatch(batchId));
         return response;
     }
+
     @RequestMapping(value = "list/type/{batchType}", method = RequestMethod.GET)
-    public ServerResponse<List<BatchDto>> getBatchesByType(@PathVariable Integer batchType) throws PosBusinessException {
+    public ServerResponse<List<BatchDto>> getBatchesByType(@PathVariable Integer batchType) throws ArBusinessException {
         LOGGER.info("Retrieving batches ...");
         ServerResponse<List<BatchDto>> response = toResponse(batchService.getBatchesByType(batchType));
         return response;
     }
 
     @RequestMapping(value = "list/status/{batchStatus}", method = RequestMethod.GET)
-    public ServerResponse<List<BatchDto>> getBatchesByStatus(@PathVariable Integer batchStatus) throws PosBusinessException {
+    public ServerResponse<List<BatchDto>> getBatchesByStatus(@PathVariable Integer batchStatus) throws ArBusinessException {
         LOGGER.info("Retrieving batches ...");
         ServerResponse<List<BatchDto>> response = toResponse(batchService.getBatchesByStatus(batchStatus));
         return response;
