@@ -30,7 +30,7 @@
         .directive('arAddOnCharge', function(){
             return{
                 restrict: "E",
-                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-addoncharges.jsp'
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-add-on-charge.jsp'
             }
         });
 

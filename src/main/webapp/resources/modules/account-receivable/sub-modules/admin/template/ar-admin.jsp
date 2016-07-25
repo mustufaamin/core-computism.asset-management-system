@@ -23,7 +23,7 @@
       <ar-payment-type></ar-payment-type>
     </div>
     <div ng-show="arAdminCtrl.addonChargeOpen">
-      <ar-addoncharges></ar-addoncharges>
+      <ar-add-on-charge></ar-add-on-charge>
     </div>
   </div>
 </div>
