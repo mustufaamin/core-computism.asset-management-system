@@ -11,6 +11,11 @@
 .clearfix {
   *zoom: 1;
 }
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../libraries/bower-components/bootstrap/fonts/glyphicons-halflings-regular.eot');
+  src: url('../libraries/bower-components/bootstrap/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../libraries/bower-components/bootstrap/fonts/glyphicons-halflings-regular.woff') format('woff'), url('../libraries/bower-components/bootstrap/fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../libraries/bower-components/bootstrap/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+}
 
 .clearfix:before,
 .clearfix:after {
@@ -2282,7 +2287,7 @@ table th[class*="span"],
   *margin-right: .3em;
   line-height: 14px;
   vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
+  background-image: url("../libraries/bower-components/bootstrap/fonts/glyphicons-halflings-regular.svg");
   background-position: 14px 14px;
   background-repeat: no-repeat;
 }
@@ -2306,7 +2311,7 @@ table th[class*="span"],
 .dropdown-submenu:focus > a > [class^="icon-"],
 .dropdown-submenu:hover > a > [class*=" icon-"],
 .dropdown-submenu:focus > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png");
+  background-image: url("../libraries/bower-components/bootstrap/fonts/glyphicons-halflings-regular.svg");
 }
 
 .icon-glass {

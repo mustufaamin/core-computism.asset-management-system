@@ -35,6 +35,14 @@
         });
 
     angular.module('Asasa')
+        .directive('arAddOnChargeSlidePanel', function(){
+            return{
+                restrict: "E",
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-addon-charge-slide-panel.jsp'
+            }
+        });
+
+    angular.module('Asasa')
         .directive('arBatches', function(){
             return{
                 restrict: "E",
@@ -53,6 +61,22 @@
     angular.module('Asasa')
         .controller('ArAdminController', ['ArAdminAddOnChargeService', 'ArAdminReceivableTypeService', 'ArAdminBatchesService', 'ArAdminBillCodeService', 'ArAdminPaymentTypeService', 'ngTableParams', '$http', function(arAdminAddOnChargeGWSrv, arAdminReceivableTypeGWSrv, arAdminBatchesGWSrv, arAdminBillcodeGWSrv, arAdminPaymentTypeGWSrv,  ngTableParams, $http) {
             var arAdminCtrl = this;
+
+            arAdminCtrl.openAddOnSlidePanel = function(type){
+                arAdminCtrl.type = type;
+                arAdminCtrl.showAddOnPanel = true;
+                arAdminCtrl.isView = false;
+                if(type == 1){
+                    arAdminCtrl.slidePanelHeading = "Add AddOn";
+                }else if(type == 2){
+                    arAdminCtrl.slidePanelHeading = "View AddOn";
+                    arAdminCtrl.isView = true;
+                }else{
+                    arAdminCtrl.slidePanelHeading = "Edit AddOn";
+                }
+            };
+
+
             arAdminCtrl.openAddonChargePanel = function(){
                 arAdminCtrl.addonChargeOpen = true;
                 arAdminCtrl.addonGroupOpen = false;
@@ -145,6 +169,20 @@
                 arAdminCtrl.propertiesOpen = false;
                 arAdminCtrl.statementPropertiesOpen = true;
             };
+
+            arAdminCtrl.paymentTypeCols = [
+                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
+                {field: "paymentTypeId",title: "Id",sortable: "paymentTypeId",filter: {paymentTypeId: "number"},show: false,dataType: "number"},
+                {field: "paymentTypeName",title: "Payment Type Name",sortable: "paymentTypeName",filter: {paymentTypeName: "text"},show: true,dataType: "text"},
+                {field: "paymentTypeDesc",title: "Description",sortable: "paymentTypeDesc",filter: {paymentTypeDesc: "text"},show: true,dataType: "text"},
+                {field: "glAccountId",title: "GL Account Id",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
+                {field: "glAccountNumber",title: "GL Account Name",sortable: "glAccountNumber",filter: {glAccountNumber: "text"},show: true,dataType: "text"},
+                {field: "moduleId",title: "Module Id",sortable: "moduleId",filter: {moduleId: "number"},show: true,dataType: "number"},
+                {field: "companyId",title: "Company Id",sortable: "companyId",filter: {companyId: "number"},show: false,dataType: "number"},
+                {field: "addOnGroupId",title: "AddOn Group Id",sortable: "addOnGroupId",filter: {addOnGroupId: "number"},show: true,dataType: "number"},
+                {field: "displayPriority",title: "Display Priority",sortable: "displayPriority",filter: {displayPriority: "number"},show: true,dataType: "number"},
+                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
+            ];
 
             arAdminCtrl.paymentTypeCols = [
                 {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},

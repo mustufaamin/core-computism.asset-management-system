@@ -8,7 +8,7 @@
         </span>
   </div>
   <div class="add-btn-wrap">
-    <a class="mainModulebtn add-btn" ng-click=""><span>Add Add-On Charge</span></a>
+    <a class="mainModulebtn add-btn" ng-click="arAdminCtrl.openAddOnSlidePanel(1)"><span>Add Add-On Charge</span></a>
   </div>
 </div>
 <div class="tbl-dynamic-div">
@@ -24,4 +24,7 @@
       </td>
     </tr>
   </table>
+</div>
+<div>
+  <ar-add-on-charge-slide-panel></ar-add-on-charge-slide-panel>
 </div>

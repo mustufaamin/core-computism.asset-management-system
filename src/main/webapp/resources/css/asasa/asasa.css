@@ -746,3 +746,51 @@ body{
 .datetimepicker-wrapper .uib-time.hours, .datetimepicker-wrapper .uib-time.minutes{
     width:70%;
 }*/
+
+
+
+/*
+Slide Panel CSS*/
+
+.panel-heading{
+    width: 100%;
+    background-color: #1D61BF;
+    height: 50px;
+    color: #fff;
+}
+.panel-heading-lbl{
+    margin: 5px;
+    font-size: 20px;
+}
+.panel-close{
+    float: right;
+    padding: 5px 10px 0px 0px;
+    font-size: 20px;
+}
+.panel-lbl{
+    font-size: 11px;
+    display: table;
+    padding: 10px 0px 0px 10px;
+}
+.panel-input{
+    border-style: none none solid;
+    outline: none;
+    border-bottom-width: 1px;
+    border-bottom-color: rgb(204, 204, 204);
+    color: rgb(51, 51, 51);
+    margin-right: 14px;
+    margin-left: 10px;
+    background: none;
+}
+.panel-foot{
+    margin-top: 80px;
+    margin-right: 20px;
+}
+.c-btn {padding:9px 12px;margin:2px;border-radius:2px;border:none;display:table;float:left;font-size:13px;cursor: pointer;}
+.c-btn-normal {background:#ccc;color:#666;}
+.c-btn-action {background:#4285f4;color:#fff;}
+.c-btn-disabled {opacity:0.6;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;cursor:none;}
+.panel-button { float: right;}
+.sub-item-panel{
+    margin-left: -210px;
+}
