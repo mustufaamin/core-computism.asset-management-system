@@ -2,10 +2,12 @@ package com.core.computism.assasa.ar.service.impl;
 
 import com.core.computism.assasa.ar.builder.AddOnChargeBuilder;
 import com.core.computism.assasa.ar.dto.AddOnChargeDto;
+import com.core.computism.assasa.ar.dto.BillCodeDto;
 import com.core.computism.assasa.ar.service.AddOnChargeService;
 import com.core.computism.assasa.exception.ArBusinessException;
 import com.core.computism.assasa.exception.BuilderException;
 import com.core.computism.assasa.persistence.entity.ar.billing.AddOnCharge;
+import com.core.computism.assasa.persistence.entity.ar.billing.BillCode;
 import com.core.computism.assasa.persistence.entity.gl.admin.GlAccount;
 import com.core.computism.assasa.persistence.repository.ar.AddOnChargeRepository;
 import com.core.computism.assasa.persistence.repository.gl.GlAccountRepository;
@@ -86,6 +88,18 @@ public class AddOnChargeServiceImpl implements AddOnChargeService {
             List<AddOnCharge> addOnCharges = addOnChargeRepository.findAddOnChargesByStatus(addOnChargeStatus);
             return addOnChargeBuilder.buildAddOnChargeDtoList(addOnCharges);
         } catch (BuilderException e) {
+            throw new ArBusinessException("Error Occurred In BillCode service Update", e);
+        }
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+    public List<AddOnChargeDto> list() throws ArBusinessException {
+        try {
+            List<AddOnCharge> addOnCharges = addOnChargeRepository.findAll();
+            return addOnChargeBuilder.buildAddOnChargeDtoList(addOnCharges);
+
+        } catch (PersistenceException | BuilderException e) {
             throw new ArBusinessException("Error Occurred In BillCode service Update", e);
         }
     }

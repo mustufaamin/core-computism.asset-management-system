@@ -59,7 +59,15 @@
         });
 
     angular.module('Asasa')
-        .controller('ArAdminController', ['ArAdminAddOnChargeService', 'ArAdminReceivableTypeService', 'ArAdminBatchesService', 'ArAdminBillCodeService', 'ArAdminPaymentTypeService', 'ngTableParams', '$http', function(arAdminAddOnChargeGWSrv, arAdminReceivableTypeGWSrv, arAdminBatchesGWSrv, arAdminBillcodeGWSrv, arAdminPaymentTypeGWSrv,  ngTableParams, $http) {
+        .directive('arAddOnGroup', function(){
+            return{
+                restrict: "E",
+                templateUrl: 'resources/modules/account-receivable/sub-modules/admin/template/ar-add-on-group.jsp'
+            }
+        });
+
+    angular.module('Asasa')
+        .controller('ArAdminController', ['ArAdminAddOnGroupService', 'ArAdminAddOnChargeService', 'ArAdminReceivableTypeService', 'ArAdminBatchesService', 'ArAdminBillCodeService', 'ArAdminPaymentTypeService', 'ngTableParams', '$http', function(arAdminAddOnGroupGWSrv, arAdminAddOnChargeGWSrv, arAdminReceivableTypeGWSrv, arAdminBatchesGWSrv, arAdminBillcodeGWSrv, arAdminPaymentTypeGWSrv,  ngTableParams, $http) {
             var arAdminCtrl = this;
 
             arAdminCtrl.openAddOnSlidePanel = function(type){
@@ -98,6 +106,7 @@
                 arAdminCtrl.paymentTypesOpen = false;
                 arAdminCtrl.propertiesOpen = false;
                 arAdminCtrl.statementPropertiesOpen = false;
+                arAdminCtrl.getAddOnGroupList();
             };
 
             arAdminCtrl.openReceivableTypePanel = function(){
@@ -286,6 +295,37 @@
                 });
             };
 
+            arAdminCtrl.addOnGroupCols = [
+                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
+                {field: "arAccountTypeId",title: "Id",sortable: "arAccountTypeId",filter: {arAccountTypeId: "number"},show: true,dataType: "number"},
+                {field: "accountTypeCode",title: "Code",sortable: "accountTypeCode",filter: {accountTypeCode: "text"},show: true,dataType: "text"},
+                {field: "accountTypeName",title: "Name",sortable: "accountTypeName",filter: {accountTypeName: "text"},show: true,dataType: "text"},
+                {field: "glAccountId",title: "Gl Account",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
+                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
+            ];
+
+            arAdminCtrl.addOnGroupTable = new ngTableParams({
+                page: 1,
+                count: 10
+            }, {
+                total: 2,
+                getData: function ($defer, params) {
+                    arAdminCtrl.data = arAdminCtrl.listOfAddOnGroup.slice((params.page() - 1) * params.count(), params.page() * params.count());
+                    $defer.resolve(arAdminCtrl.data);
+                }
+            });
+
+            arAdminCtrl.getAddOnGroupList = function(){
+                arAdminCtrl.listOfAddOnGroup = [];
+                arAdminAddOnGroupGWSrv.listAddOnGroup().$promise.then(function(response){
+                    if(response != null){
+                        arAdminCtrl.listOfAddOnGroup = response.data;
+                        arAdminCtrl.addOnGroupTable.total(arAdminCtrl.listOfAddOnGroup.length);
+                        arAdminCtrl.addOnGroupTable.reload();
+                    }
+                });
+            };
+
             arAdminCtrl.batchesCols = [
                 {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
                 {field: "batchId",title: "Id",sortable: "batchId",filter: {batchId: "number"},show: true,dataType: "number"},
@@ -374,6 +414,22 @@
                     updateReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/update"},
 
                     listAddOnCharge : {method: 'GET', isArray: false, url: "/arAccountType/arAccountTypes"},
+
+                    addReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/add"},
+
+                    searchReceivableType :{method: 'GET', isArray: false, url:"/arAccountType/search/{searchKey}"}
+
+                });
+        }]);
+
+    angular.module('Asasa')
+        .service('ArAdminAddOnGroupService',['$resource' ,function ($resource) {
+            var arAdminAddOnGroupGWSrv = this;
+            return $resource('',{},
+                {
+                    updateReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/update"},
+
+                    listAddOnGroup : {method: 'GET', isArray: false, url: "/arAccountType/arAccountTypes"},
 
                     addReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/add"},
 

@@ -16,4 +16,6 @@ public interface AddOnChargeService {
     AddOnChargeDto update(AddOnChargeDto addOnChargeDto) throws ArBusinessException;
 
     List<AddOnChargeDto> getAddOnChargeByStatus(Integer addOnChargeStatus) throws ArBusinessException;
+
+    List<AddOnChargeDto> list() throws ArBusinessException;
 }

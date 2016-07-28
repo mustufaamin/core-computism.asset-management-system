@@ -25,6 +25,9 @@
     <div ng-show="arAdminCtrl.addonChargeOpen">
       <ar-add-on-charge></ar-add-on-charge>
     </div>
+    <div ng-show="arAdminCtrl.addonGroupOpen">
+      <ar-add-on-group></ar-add-on-group>
+    </div>
   </div>
 </div>
 <div class="side-menu">

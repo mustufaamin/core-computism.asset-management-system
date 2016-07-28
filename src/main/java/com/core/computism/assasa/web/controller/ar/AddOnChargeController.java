@@ -49,4 +49,11 @@ public class AddOnChargeController extends BaseController {
         ServerResponse<List<AddOnChargeDto>> response = toResponse(addOnChargeService.getAddOnChargeByStatus(statusId));
         return response;
     }
+
+    @RequestMapping(value = "list", method = RequestMethod.GET)
+    public ServerResponse<List<AddOnChargeDto>> list() throws ArBusinessException {
+        LOGGER.info("List AddonCharge..");
+        ServerResponse<List<AddOnChargeDto>> response = toResponse(addOnChargeService.list());
+        return response;
+    }
 }
