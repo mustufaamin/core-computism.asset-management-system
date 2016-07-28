@@ -193,20 +193,6 @@
                 {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
             ];
 
-            arAdminCtrl.paymentTypeCols = [
-                {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
-                {field: "paymentTypeId",title: "Id",sortable: "paymentTypeId",filter: {paymentTypeId: "number"},show: false,dataType: "number"},
-                {field: "paymentTypeName",title: "Payment Type Name",sortable: "paymentTypeName",filter: {paymentTypeName: "text"},show: true,dataType: "text"},
-                {field: "paymentTypeDesc",title: "Description",sortable: "paymentTypeDesc",filter: {paymentTypeDesc: "text"},show: true,dataType: "text"},
-                {field: "glAccountId",title: "GL Account Id",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
-                {field: "glAccountNumber",title: "GL Account Name",sortable: "glAccountNumber",filter: {glAccountNumber: "text"},show: true,dataType: "text"},
-                {field: "moduleId",title: "Module Id",sortable: "moduleId",filter: {moduleId: "number"},show: true,dataType: "number"},
-                {field: "companyId",title: "Company Id",sortable: "companyId",filter: {companyId: "number"},show: false,dataType: "number"},
-                {field: "addOnGroupId",title: "AddOn Group Id",sortable: "addOnGroupId",filter: {addOnGroupId: "number"},show: true,dataType: "number"},
-                {field: "displayPriority",title: "Display Priority",sortable: "displayPriority",filter: {displayPriority: "number"},show: true,dataType: "number"},
-                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
-            ];
-
             arAdminCtrl.paymentTypeTable = new ngTableParams({
                 page: 1,
                 count: 10
@@ -266,11 +252,10 @@
 
             arAdminCtrl.addOnChargeCols = [
                 {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
-                {field: "arAccountTypeId",title: "Id",sortable: "arAccountTypeId",filter: {arAccountTypeId: "number"},show: true,dataType: "number"},
-                {field: "accountTypeCode",title: "Code",sortable: "accountTypeCode",filter: {accountTypeCode: "text"},show: true,dataType: "text"},
-                {field: "accountTypeName",title: "Name",sortable: "accountTypeName",filter: {accountTypeName: "text"},show: true,dataType: "text"},
-                {field: "glAccountId",title: "Gl Account",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
-                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
+                {field: "id",title: "Id",sortable: "id",filter: {id: "number"},show: true,dataType: "number"},
+                {field: "name",title: "Name",sortable: "name",filter: {name: "text"},show: true,dataType: "text"},
+                {field: "amountType",title: "Amount Type",sortable: "amountType",filter: {amountType: "text"},show: true,dataType: "text"},
+                {field: "amount",title: "Amount",sortable: "amount",filter: {amount: "number"},show: true,dataType: "number"}
             ];
 
             arAdminCtrl.addOnChargeTable = new ngTableParams({
@@ -297,11 +282,10 @@
 
             arAdminCtrl.addOnGroupCols = [
                 {field: "command",title: "",sortable: "command",filter: {command: "command"},show: true,dataType: "command"},
-                {field: "arAccountTypeId",title: "Id",sortable: "arAccountTypeId",filter: {arAccountTypeId: "number"},show: true,dataType: "number"},
-                {field: "accountTypeCode",title: "Code",sortable: "accountTypeCode",filter: {accountTypeCode: "text"},show: true,dataType: "text"},
-                {field: "accountTypeName",title: "Name",sortable: "accountTypeName",filter: {accountTypeName: "text"},show: true,dataType: "text"},
-                {field: "glAccountId",title: "Gl Account",sortable: "glAccountId",filter: {glAccountId: "number"},show: true,dataType: "number"},
-                {field: "status",title: "Status",sortable: "status",filter: {status: "number"},show: true,dataType: "number"}
+                {field: "id",title: "Id",sortable: "id",filter: {id: "number"},show: true,dataType: "number"},
+                {field: "name",title: "Name",sortable: "name",filter: {name: "text"},show: true,dataType: "text"},
+                {field: "amountType",title: "Amount Type",sortable: "amountType",filter: {amountType: "text"},show: true,dataType: "text"},
+                {field: "amount",title: "Amount",sortable: "amount",filter: {amount: "number"},show: true,dataType: "number"}
             ];
 
             arAdminCtrl.addOnGroupTable = new ngTableParams({
@@ -413,7 +397,7 @@
                 {
                     updateReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/update"},
 
-                    listAddOnCharge : {method: 'GET', isArray: false, url: "/arAccountType/arAccountTypes"},
+                    listAddOnCharge : {method: 'GET', isArray: false, url: "/addOnCharge/list"},
 
                     addReceivableType :{method: 'POST', isArray: false, url:"/arAccountType/add"},
 

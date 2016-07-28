@@ -1,0 +1,2 @@
+ALTER TABLE `assasa`.`bi_add_on_charge`
+  CHANGE `deactivation_date` `deactivation_date` TIMESTAMP NULL;

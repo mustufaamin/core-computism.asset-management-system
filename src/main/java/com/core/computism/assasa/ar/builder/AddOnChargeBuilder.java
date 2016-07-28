@@ -41,6 +41,7 @@ public class AddOnChargeBuilder {
 
         AddOnChargeDto addOnChargeDto = new AddOnChargeDto();
         addOnChargeDto.setId(addOnCharge.getId());
+        addOnChargeDto.setGlAccountId(addOnCharge.getGlAccount().getId());
         addOnChargeDto.setName(addOnCharge.getName());
         addOnChargeDto.setDescription(addOnCharge.getDescription());
         addOnChargeDto.setAmount(addOnCharge.getAmount());
